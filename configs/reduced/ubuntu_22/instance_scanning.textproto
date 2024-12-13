@@ -1,0 +1,2 @@
+version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "1.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+benchmark_id: "cramfs-mounting-disabled"
