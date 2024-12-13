@@ -14,5 +14,6 @@ benchmark_id: "var-tmp-nosuid"
 benchmark_id: "var-tmp-noexec"
 benchmark_id: "apparmor-installed"
 benchmark_id: "bootloader-password-set"
+benchmark_id: "bootloader-config-permissions"
 
 
