@@ -7296,6 +7296,7 @@ benchmark_configs: {
   compliance_note: {
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "1.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure cron daemon is enabled"
     description: "The cron daemon is used to execute batch jobs on the system."
     rationale:
