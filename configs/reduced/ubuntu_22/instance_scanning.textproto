@@ -34,4 +34,5 @@ benchmark_id: "rsh-client-not-installed"
 benchmark_id: "talk-client-not-installed"
 benchmark_id: "telnet-client-not-installed"
 benchmark_id: "ldap-client-not-installed"
+benchmark_id: "chrony-configured"
 
