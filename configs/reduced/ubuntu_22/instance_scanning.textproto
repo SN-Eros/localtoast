@@ -10,5 +10,6 @@ benchmark_id: "shm-nodev"
 benchmark_id: "shm-nosuid"
 benchmark_id: "shm-noexec"
 benchmark_id: "var-tmp-nodev"
+benchmark_id: "var-tmp-nosuid"
 
 
