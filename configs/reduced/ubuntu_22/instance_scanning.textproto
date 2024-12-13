@@ -31,5 +31,6 @@ benchmark_id: "samba-disabled"
 benchmark_id: "snmp-server-disabled"
 benchmark_id: "mail-transfer-agent-is-configured-for-localonly-mode"
 benchmark_id: "rsh-client-not-installed"
+benchmark_id: "talk-client-not-installed"
 
 
