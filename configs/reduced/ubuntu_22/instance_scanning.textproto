@@ -18,5 +18,6 @@ benchmark_id: "bootloader-config-permissions"
 benchmark_id: "aslr-enabled"
 benchmark_id: "core-dumps-restricted"
 benchmark_id: "motd-configured"
+benchmark_id: "local-login-warning-configured"
 
 
