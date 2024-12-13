@@ -22,5 +22,6 @@ benchmark_id: "local-login-warning-configured"
 benchmark_id: "gdm-login-banner-configured"
 benchmark_id: "xdcmp-not-enabled"
 benchmark_id: "dhcp-server-disabled"
+benchmark_id: "ftp-server-disabled"
 
 
