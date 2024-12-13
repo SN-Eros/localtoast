@@ -29,5 +29,6 @@ benchmark_id: "nis-server-disabled"
 benchmark_id: "rsync-disabled"
 benchmark_id: "samba-disabled"
 benchmark_id: "snmp-server-disabled"
+benchmark_id: "mail-transfer-agent-is-configured-for-localonly-mode"
 
 
