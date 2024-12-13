@@ -16,5 +16,6 @@ benchmark_id: "apparmor-installed"
 benchmark_id: "bootloader-password-set"
 benchmark_id: "bootloader-config-permissions"
 benchmark_id: "aslr-enabled"
+benchmark_id: "core-dumps-restricted"
 
 
