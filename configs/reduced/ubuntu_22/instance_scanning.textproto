@@ -20,5 +20,6 @@ benchmark_id: "core-dumps-restricted"
 benchmark_id: "motd-configured"
 benchmark_id: "local-login-warning-configured"
 benchmark_id: "gdm-login-banner-configured"
+benchmark_id: "xdcmp-not-enabled"
 
 
