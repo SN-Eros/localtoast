@@ -9407,7 +9407,7 @@ benchmark_configs: {
       "For systems that were previously installed, create a new partition and configure /etc/fstab as appropriate."
     cis_benchmark: {
       profile_level: 2
-      severity: LOWe 
+      severity: LOW
     }
     scan_instructions:
       "scan_type_specific:{instance_scanning:{"
