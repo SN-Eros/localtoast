@@ -268,7 +268,7 @@ benchmark_configs: {
   }
 }
 benchmark_configs: {
-  id: "shm-separate-partition"
+  id: "separate-partition-shm"
   compliance_note: {
     version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "1.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure /dev/shm is configured"
