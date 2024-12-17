@@ -1,6 +1,7 @@
 version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "1.0.0" benchmark_document: "CIS Ubuntu 22.04" }
 benchmark_id: "cramfs-mounting-disabled"
 benchmark_id: "squashfs-mounting-disabled"
+benchmark_id: "hfsplus-mounting-disabled"
 benchmark_id: "udf-mounting-disabled"
 benchmark_id: "tmp-configured"
 benchmark_id: "tmp-nodev"
