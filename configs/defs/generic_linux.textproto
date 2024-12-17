@@ -10367,12 +10367,8 @@ benchmark_configs: {
 benchmark_configs: {
   id: "sshd-access-configured"
   compliance_note: {
-    version: { 
-      cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" 
-      version: "1.0.0" 
-      benchmark_document: "CIS Ubuntu 22.04" 
-    }
-    title: "Ensure sshd access is configured (Automated)"
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "1.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    title: "Ensure sshd access is configured"
     description:
       "There are several options available to limit which users and groups can access the"
       " system via SSH. It is recommended that at least one of the following options be"
@@ -10454,6 +10450,7 @@ benchmark_configs: {
       "}"
   }
 }
+
 
 
 
