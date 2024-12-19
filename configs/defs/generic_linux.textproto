@@ -11068,8 +11068,54 @@ benchmark_configs: {
       "}}"
   }
 }
-
-
-
-
-
+benchmark_configs: {
+  id: "ensure-pam-pwhistory-enabled"
+  compliance_note: {
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "1.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    title: "Ensure pam_pwhistory module is enabled"
+    description: 
+      "The pam_pwhistory.so module saves the last passwords for each user in order to force password change history and keep the user from alternating between the same password too frequently."
+    rationale: 
+      "Use of a unique, complex password helps to increase the time and resources required to compromise the password."
+    remediation: 
+      "Run the following script to verify the pam_pwhistory.so line exists in a pam-auth-update profile:\n"
+      "```\n"
+      "# grep -P -- '\\bpam_pwhistory\\.so\\b' /usr/share/pam-configs/*\n"
+      "```\n"
+      "If the output is similar to:\n"
+      "/usr/share/pam-configs/pwhistory:\n"
+      "requisite\n"
+      "pam_pwhistory.so remember=24\n"
+      "Then run the following command to enable the profile:\n"
+      "```\n"
+      "# pam-auth-update --enable pwhistory\n"
+      "```\n"
+      "If similar output is NOT returned, run the following script to create the pam-auth-update profile for pwhistory:\n"
+      "```\n"
+      "#!/usr/bin/env bash\n"
+      "{\n"
+      "arr=('Name: pwhistory password history checking' 'Default: yes' 'Priority: 1024' 'Password-Type: Primary' 'Password:' '\\n'\n"
+      "'requisite\n"
+      "pam_pwhistory.so remember=24 enforce_for_root try_first_pass use_authtok')\n"
+      "printf '%s\\n' \"${arr[@]}\" > /usr/share/pam-configs/pwhistory\n"
+      "}\n"
+      "```\n"
+    cis_benchmark: {
+      profile_level: 1
+      severity: LOW
+    }
+    scan_instructions: 
+      "generic:{check_alternatives:{"
+      "  file_checks:{"
+      "    files_to_check:{single_file:{path:\"/etc/pam.d/common-password\"}}"
+      "    content_entry:{"
+      "      match_type: ALL_MATCH_ANY_ORDER"
+      "      match_criteria: {"
+      "        filter_regex: \"password.*requisite.*pam_pwhistory.so.*\""
+      "        expected_regex: \"password.*requisite.*pam_pwhistory.so.*remember=24.*\""
+      "      }"
+      "    }"
+      "  }"
+      "}}"
+  }
+}
