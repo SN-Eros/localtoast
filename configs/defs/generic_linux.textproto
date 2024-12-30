@@ -14061,3 +14061,55 @@ benchmark_configs: {
       "}"
   }
 }
+benchmark_configs: {
+  id: "nftables-not-installed-with-iptables"
+  compliance_note: {
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "1.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    title: "Ensure nftables is not installed with iptables"
+    description:
+      "nftables is a subsystem of the Linux kernel providing filtering and classification of network "
+      "packets/datagrams/frames and is the successor to iptables."
+    rationale: "Running both iptables and nftables may lead to conflict."
+    remediation:
+      "Run the following command to remove nftables:\n"
+      "# apt purge nftables"
+    cis_benchmark: {
+      profile_level: 1
+      severity: LOW
+    }
+    scan_instructions:
+      "generic:{"
+      " check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{files_in_dir:{"
+      "         dir_path:\"/etc/systemd/system/\""
+      "        recursive: true"
+      "        filename_regex: \"nftables.service\""
+      "       }"
+      "      }"
+      "      existence:{should_exist:false}"
+      "    }"
+      " }"
+      " check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{files_in_dir:{"
+      "         dir_path:\"/etc/systemd/system/\""
+      "        recursive: true"
+      "        filename_regex: \"nftables.service\""
+      "       }"
+      "      }"
+      "      existence:{should_exist:true}"
+      "    }"
+      "    file_checks:{"
+      "      files_to_check:{files_in_dir:{"
+      "         dir_path:\"/etc/systemd/system/\""
+      "        recursive: true"
+      "        filename_regex: \"iptables.service\""
+      "       }"
+      "      }"
+      "      existence:{should_exist:false}"
+      "    }"
+      " }"
+      "}"
+  }
+}
