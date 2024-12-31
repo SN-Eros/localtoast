@@ -14801,4 +14801,63 @@ benchmark_configs: {
       "}}"
   }
 }
+benchmark_configs: {
+  id: "nftables-default-deny-policy"
+  compliance_note: {
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "1.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    title: "Ensure nftables default deny firewall policy"
+    description: 
+      "Base chain policy is the default verdict that will be applied to packets reaching the end of the chain. Setting a default deny policy helps ensure only explicitly allowed traffic is permitted."
+    rationale: 
+      "If the policy is set to accept, the firewall will accept any packet not configured to be denied. It is easier to whitelist acceptable usage than to blacklist unacceptable usage."
+    remediation: 
+      "To set the default deny policy for base chains, run:\n"
+      "```"
+      "# nft chain inet filter input { policy drop }\n"
+      "# nft chain inet filter forward { policy drop  }\n"
+      "# nft chain inet filter output { policy drop  }\n"
+      "```"
+      "Note: Adding a drop policy can result in loss of connectivity. Ensure necessary rules, such as allowing SSH, are added beforehand."
+    cis_benchmark: {
+      profile_level: 1
+      severity: MEDIUM
+    }
+    scan_instructions:
+      "scan_type_specific:{instance_scanning:{"
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{path:\"/etc/nftables.conf\"}}"
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria:{"
+      "          filter_regex: \"hook input.*policy drop\""
+      "          expected_regex: \"hook input.*policy drop\""
+      "        }"
+      "      }"
+      "    }"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{path:\"/etc/nftables.conf\"}}"
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria:{"
+      "          filter_regex: \"hook forward.*policy drop\""
+      "          expected_regex: \"hook forward.*policy drop\""
+      "        }"
+      "      }"
+      "    }"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{path:\"/etc/nftables.conf\"}}"
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria:{"
+      "          filter_regex: \"hook output.*policy drop\""
+      "          expected_regex: \"hook output.*policy drop\""
+      "        }"
+      "      }"
+      "    }"
+      "  }"
+      "}}"
+  }
+}
+
 
