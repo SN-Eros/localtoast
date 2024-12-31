@@ -14717,3 +14717,47 @@ benchmark_configs: {
       "}}"
   }
 }
+benchmark_configs: {
+  id: "ufw-uninstalled-or-disabled-with-nftables"
+  compliance_note: {
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "1.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    title: "Ensure ufw is uninstalled or disabled with nftables"
+    description: 
+      "Uncomplicated Firewall (UFW) is a program for managing a Netfilter firewall designed to be easy to use. Running both the nftables service and UFW may lead to conflict and unexpected results."
+    rationale: 
+      "Running both the nftables service and ufw may lead to conflict and unexpected results. Ensuring only one is active prevents issues."
+    remediation: 
+      "To remove or disable UFW, run one of the following:\n"
+      "```"
+      "# apt purge ufw\n"
+      "-OR-\n"
+      "# ufw disable\n"
+      "# systemctl stop ufw.service\n"
+      "# systemctl mask ufw.service\n"
+      "```"
+      "Note: Run `ufw disable` before `systemctl mask ufw.service` to ensure proper disabling of UFW."
+    cis_benchmark: {
+      profile_level: 1
+      severity: MEDIUM
+    }
+    scan_instructions:
+      "scan_type_specific:{instance_scanning:{"
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{path:\"/usr/sbin/ufw\"}}"
+      "      existence:{should_exist:false}"
+      "    }"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{path:\"/lib/systemd/system/ufw.service\"}}"
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_STRICT_ORDER"
+      "        match_criteria:{"
+      "          filter_regex: \"Status: inactive\""
+      "          expected_regex: \"Status: inactive\""
+      "        }"
+      "      }"
+      "    }"
+      "  }"
+      "}}"
+  }
+}
