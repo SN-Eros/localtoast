@@ -1041,4 +1041,42 @@ benchmark_configs: {
     "}"
   }
 }
+benchmark_configs: {
+  id: "ensure-audit-configuration-files-mode-configured"
+  compliance_note: {
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "1.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    title: "Ensure audit configuration files mode is configured"
+    description: "Audit configuration files must be configured with mode 0640 or more restrictive to prevent unauthorized access and protect the integrity of the audit system."
+    rationale: "Restricting access to audit configuration files ensures that only authorized personnel can modify the settings, preventing the disabling of critical auditing or misconfigurations that may impact performance or investigation efforts."
+    remediation:
+      "Run the following command to set permissions on audit configuration files:"
+      "```bash\n"
+      "find /etc/audit/ -type f \\\\( -name '*.conf' -o -name '*.rules' \\\\) -exec chmod u-x,g-wx,o-rwx {} +\n"
+      "```"
+  cis_benchmark: {
+    profile_level: 2
+    severity: MEDIUM
+  }
+  scan_instructions:
+    "scan_type_specific:{"
+    "  instance_scanning:{"
+    "    check_alternatives:{"
+    "      file_checks:{"
+    "        files_to_check:{files_in_dir:{"
+    "          dir_path:\"/etc/audit/\""
+    "          recursive: false"
+    "          files_only: true"
+    "          filename_regex: \".*\\\\.(conf|rules)\""
+    "        }}"
+    "        permission:{"
+    "          set_bits: 0640"
+    "          clear_bits: 0137"
+    "          bits_should_match: BOTH_SET_AND_CLEAR"
+    "        }"
+    "      }"
+    "    }"
+    "  }"
+    "}"
+  }
+}
 
