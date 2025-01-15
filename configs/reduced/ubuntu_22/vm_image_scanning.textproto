@@ -2,3 +2,4 @@ version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "1.0.0" benchmar
 benchmark_id: "cramfs-mounting-disabled"
 benchmark_id: "squashfs-mounting-disabled"
 benchmark_id: "hfsplus-mounting-disabled"
+benchmark_id: "jffs2-mounting-disabled"
