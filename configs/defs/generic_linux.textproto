@@ -9911,64 +9911,6 @@ benchmark_configs: {
   }
 }
 benchmark_configs: {
-  id: "sshd-hostbasedauthentication-disabled"
-  compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "1.0.0" benchmark_document: "CIS Ubuntu 22.04" }
-    title: "Ensure SSH HostbasedAuthentication is disabled"
-    description:
-      "The HostbasedAuthentication parameter specifies if authentication is allowed through"
-      "trusted hosts via the use of .rhosts or /etc/hosts.equiv, along with successful public"
-      "key client host authentication. This option only applies to SSH Protocol Version 2."
-    rationale:
-      "Even though the .rhosts files are ineffective if support is disabled in /etc/pam.conf,"
-      "disabling the ability to use .rhosts files in SSH provides an additional layer of protection."
-    remediation:
-      "Edit the /etc/ssh/sshd_config file to set the HostbasedAuthentication parameter to no"
-      "above any Include and Match entries as follows:"
-      "```"
-      "HostbasedAuthentication no"
-      "```"
-      "Note: First occurrence of an option takes precedence. If Include locations are enabled,"
-      "used, and order of precedence is understood in your environment, the entry may be created"
-      "in a file in an Include location."
-    cis_benchmark: {
-      profile_level: 1
-      severity: LOW
-    }
-    scan_instructions:
-      "generic:{check_alternatives:{"
-      "  file_checks:{"
-      "    files_to_check:{single_file:{path:\"/etc/ssh/sshd_config\"}}"
-      "    content_entry:{"
-      "      match_type: ALL_MATCH_ANY_ORDER"
-      "      match_criteria: {"
-      "        filter_regex: \"HostbasedAuthentication .*\""
-      "        expected_regex: \"HostbasedAuthentication no\""
-      "      }"
-      "    }"
-      "  }"
-      "}"
-      "check_alternatives:{"
-      "  file_checks:{"
-      "    files_to_check:{single_file:{path:\"/etc/ssh/sshd_config\"}}"
-      "    content_entry:{"
-      "      match_type: NONE_MATCH"
-      "      match_criteria: {"
-      "        filter_regex: \"HostbasedAuthentication .*\""
-      "        expected_regex: \"HostbasedAuthentication .*\""
-      "      }"
-      "    }"
-      "  }"
-      "}"
-      "check_alternatives:{"
-      "  file_checks:{"
-      "    files_to_check:{single_file:{path:\"/etc/ssh/sshd_config\"}}"
-      "    existence:{should_exist: false}"
-      "  }"
-      "}}"
-  }
-}
-benchmark_configs: {
   id: "ssh-maxsessions-10-or-less"
   compliance_note: {
     version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "1.0.0" benchmark_document: "CIS Ubuntu 22.04" }
