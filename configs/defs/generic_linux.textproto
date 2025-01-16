@@ -5657,6 +5657,7 @@ benchmark_configs: {
   id: "prelink-disabled"
   compliance_note: {
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "1.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure prelink is disabled"
     description:
       "prelink is a program that modifies ELF shared libraries and ELF "
@@ -9633,49 +9634,6 @@ benchmark_configs: {
       "    }"
       "  }"
       "}"
-  }
-}
-benchmark_configs: {
-  id: "prelink-disabled"
-  compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "1.0.0" benchmark_document: "CIS Ubuntu 22.04" }
-    title: "Ensure prelink is disabled"
-    description:
-      "prelink is a program that modifies ELF shared libraries and ELF "
-      "dynamically linked binaries in such a way that the time needed for the "
-      "dynamic linker to perform relocations at startup significantly "
-      "decreases."
-    rationale:
-      "The prelinking feature can interfere with the operation of AIDE, "
-      "because it changes binaries. Prelinking can also increase the "
-      "vulnerability of the system if a malicious user is able to compromise "
-      "a common library such as libc."
-    remediation:
-      "Run the following command to restore binaries to normal:\n"
-      "```\n"
-      "# prelink -ua\n"
-      "```\n"
-      "Uninstall prelink using the appropriate package manager or manual "
-      "installation:\n"
-      "```\n"
-      "# yum remove prelink\n"
-      "# apt-get remove prelink\n"
-      "# zypper remove prelink\n"
-      "```\n"
-    cis_benchmark: {
-      profile_level: 1
-      severity: LOW
-    }
-    scan_instructions:
-      "generic:{check_alternatives:{"
-      "  file_checks:{"
-      "    files_to_check:{single_file:{path:\"/usr/bin/prelink\"}}"
-      "    files_to_check:{single_file:{path:\"/usr/sbin/prelink\"}}"
-      "    files_to_check:{single_file:{path:\"/bin/prelink\"}}"
-      "    files_to_check:{single_file:{path:\"/sbin/prelink\"}}"
-      "    existence:{should_exist: false}"
-      "  }"
-      "}}"
   }
 }
 benchmark_configs: {
