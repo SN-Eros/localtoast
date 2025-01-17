@@ -782,8 +782,7 @@ benchmark_configs: {
       severity: MEDIUM
     }
     scan_instructions: 
-      "scan_type_specific:{instance_scanning:{"
-      "  check_alternatives:{"
+      "generic:{check_alternatives:{"
       "    file_checks:{"
       "      files_to_check:{single_file:{path:\"/etc/iptables/rules.v6\"}}"
       "      content_entry:{"
@@ -802,7 +801,6 @@ benchmark_configs: {
       "        }"
       "      }"
       "    }"
-      "  }"
       "}}"
   }
 }
