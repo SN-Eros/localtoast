@@ -12007,49 +12007,6 @@ benchmark_configs: {
   }
 }
 benchmark_configs: {
-  id: "web-server-services-not-in-use"
-  compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "1.0.0" benchmark_document: "CIS Ubuntu 22.04" }
-    title: "Ensure web server services are not in use"
-    description: 
-      "Web servers provide the ability to host web site content. Unless explicitly required, their presence increases the attack surface."
-    rationale: 
-      "Unless there is a local site-approved requirement to run a web server, these packages should be removed to reduce the potential attack surface."
-    remediation: 
-      "1. Stop and mask the web server services to ensure they do not run:\n"
-      "```"
-      "# systemctl stop apache2.socket apache2.service nginx.service\n"
-      "# systemctl mask apache2.socket apache2.service nginx.service\n"
-      "```"
-      "2. Remove the web server packages if they are not required as dependencies:\n"
-      "```"
-      "# apt purge apache2 nginx\n"
-      "```"
-      "Note: If web servers are required for dependencies, ensure the services and sockets are stopped and masked."
-    cis_benchmark: {
-      profile_level: 1
-      severity: MEDIUM
-    }
-    scan_instructions:
-      "scan_type_specific:{instance_scanning:{"
-      "  check_alternatives:{"
-      "    file_checks:{"
-      "      files_to_check:{single_file:{path:\"/etc/systemd/system/apache2.socket\"}}"
-      "      existence:{should_exist:false}"
-      "    }"
-      "    file_checks:{"
-      "      files_to_check:{single_file:{path:\"/etc/systemd/system/apache2.service\"}}"
-      "      existence:{should_exist:false}"
-      "    }"
-      "    file_checks:{"
-      "      files_to_check:{single_file:{path:\"/etc/systemd/system/nginx.service\"}}"
-      "      existence:{should_exist:false}"
-      "    }"
-      "  }"
-      "}}"
-  }
-}
-benchmark_configs: {
   id: "ufw-is-installed"
   compliance_note: {
     version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "1.0.0" benchmark_document: "CIS Ubuntu 22.04" }
