@@ -1039,9 +1039,7 @@ benchmark_configs: {
     severity: MEDIUM
   }
   scan_instructions:
-    "scan_type_specific:{"
-    "  instance_scanning:{"
-    "    check_alternatives:{"
+    "generic:{check_alternatives:{"
     "      file_checks:{"
     "        files_to_check:{"
     "          files_in_dir:{"
@@ -1060,7 +1058,6 @@ benchmark_configs: {
     "        file_display_command: \"ls -l /sbin/auditctl /sbin/aureport /sbin/ausearch /sbin/autrace /sbin/auditd /sbin/augenrules\""
     "      }"
     "    }"
-    "  }"
     "}"
   }
 }
