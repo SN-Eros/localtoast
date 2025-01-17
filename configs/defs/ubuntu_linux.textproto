@@ -3632,3 +3632,42 @@ benchmark_configs: {
       "}}"
   }
 }
+benchmark_configs: {
+  id: "dnsmasq-not-in-use"
+  compliance_note: {
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "1.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    title: "Ensure dnsmasq services are not in use"
+    description: 
+      "The dnsmasq service provides DNS caching, DNS forwarding, and DHCP services. Unless explicitly required, its presence increases the attack surface."
+    rationale: 
+      "Unless the system is designated for DNS or DHCP services, dnsmasq should be disabled or removed to reduce security risks."
+    remediation: 
+      "1. Stop and mask the dnsmasq service to ensure it does not run:\n"
+      "```"
+      "# systemctl stop dnsmasq.service\n"
+      "# systemctl mask dnsmasq.service\n"
+      "```"
+      "2. Remove the dnsmasq package if it is not required as a dependency:\n"
+      "```"
+      "# apt purge dnsmasq\n"
+      "```"
+      "Note: If dnsmasq is required for dependencies, ensure the service is stopped and masked."
+    cis_benchmark: {
+      profile_level: 1
+      severity: MEDIUM
+    }
+    scan_instructions:
+      "scan_type_specific:{instance_scanning:{"
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{process_path:{proc_name:\"dnsmasq\"}}"
+      "      existence:{should_exist:false}"
+      "    }"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{path:\"/etc/systemd/system/dnsmasq.service\"}}"
+      "      existence:{should_exist:false}"
+      "    }"
+      "  }"
+      "}}"
+  }
+}
