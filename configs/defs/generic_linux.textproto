@@ -10062,54 +10062,6 @@ benchmark_configs: {
   }
 }
 benchmark_configs: {
-  id: "ensure-systemd-journal-remote-not-enabled"
-  compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "1.0.0" benchmark_document: "CIS Ubuntu 22.04" }
-    title: "Ensure systemd-journal-remote service is not in use"
-    description:
-      "Journald systemd-journal-remote supports the ability to receive messages from remote"
-      "hosts, thus acting as a log server. Clients should not receive data from other hosts.\n"
-      "NOTE:\n"
-      "The same package, systemd-journal-remote, is used for both sending logs to "
-      "remote hostsand receiving incominglogs.\n"
-      "With regards to receiving logs, there are two services; systemd-journal-"
-      "remote.socket and systemd-journal-remote.service."
-    rationale:
-      "If a client is configured to also receive data, thus turning it into a server, the client system is "
-      "acting outside it's operational boundary."
-    remediation:
-      "Run the following command to verify systemd-journal-remote.socket and systemdjournal-remote.service are not enabled:\n"
-      "```\n"
-      "systemctl is-enabled systemd-journal-remote.socket systemd-journalremote.service | grep -P -- '^enabled'"
-      "systemctl is-active systemd-journal-remote.socket systemd-journalremote.service | grep -P -- '^active'"
-      "```"
-    cis_benchmark: {
-      profile_level: 1
-      severity: LOW
-    }
-    scan_instructions:
-      "generic:{check_alternatives:{"
-      "  file_checks:{"
-      "    files_to_check:{"
-      "      files_in_dir:{"
-      "        dir_path:\"/etc/systemd/system\""
-      "        recursive: true"
-      "        filename_regex: \"systemd-journal-remote.service\""
-      "      }"
-      "    }"
-      "    files_to_check:{"
-      "      files_in_dir:{"
-      "        dir_path:\"/etc/systemd/system\""
-      "        recursive: true"
-      "        filename_regex: \"systemd-journal-remote.socket\""
-      "      }"
-      "    }"
-      "    existence:{should_exist: false}"
-      "  }"
-      "}}"
-  }
-}
-benchmark_configs: {
   id: "auditd-installed"
   compliance_note: {
     version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "1.0.0" benchmark_document: "CIS Ubuntu 22.04" }
