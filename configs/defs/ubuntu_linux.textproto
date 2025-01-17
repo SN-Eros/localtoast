@@ -1002,9 +1002,7 @@ benchmark_configs: {
     severity: MEDIUM
   }
   scan_instructions:
-    "scan_type_specific:{"
-    "  instance_scanning:{"
-    "    check_alternatives:{"
+    "generic:{check_alternatives:{"
     "      file_checks:{"
     "        files_to_check:{files_in_dir:{"
     "          dir_path:\"/etc/audit/\""
@@ -1019,7 +1017,6 @@ benchmark_configs: {
     "        }"
     "      }"
     "    }"
-    "  }"
     "}"
   }
 }
