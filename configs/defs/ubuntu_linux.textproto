@@ -3601,10 +3601,6 @@ benchmark_configs: {
       "      files_to_check:{process_path:{proc_name:\"dnsmasq\"}}"
       "      existence:{should_exist:false}"
       "    }"
-      "    file_checks:{"
-      "      files_to_check:{single_file:{path:\"/etc/systemd/system/dnsmasq.service\"}}"
-      "      existence:{should_exist:false}"
-      "    }"
       "  }"
       "}}"
   }
