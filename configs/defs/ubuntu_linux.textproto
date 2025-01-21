@@ -3146,33 +3146,38 @@ benchmark_configs: {
   compliance_note: {
     version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure journald service is enabled"
-    description: "Ensure that the systemd-journald serviceis enabled to allow capturing of logging events."
-    rationale:
-      "If the systemd-journald serviceis not enabled to start on boot, the system will not capture "
-      "logging events."
-    remediation:
-      "By default the systemd-journald service does not have an [Install] sectionand thus "
-      "cannot be enabled / disabled.\nIt is meant to be referenced as Requires or wants by other "
-      "unit files. As such, if the status of systemd-journald is not static, investigate why."
+    description: 
+      "Ensure that the systemd-journald service is enabled and running to allow capturing of logging events."
+    rationale: 
+      "If the systemd-journald service is not enabled or running, the system will not capture logging events, which is critical for monitoring and auditing."
+    remediation: 
+      "Investigate why systemd-journald is not active. Ensure it is configured correctly and not masked. By default, systemd-journald does not have an [Install] section, so its activation depends on other unit files."
     cis_benchmark: {
       profile_level: 1
       severity: LOW
     }
-    scan_instructions:
-      "generic:{"
-      "  check_alternatives:{"
+    scan_instructions: 
+      "generic:{check_alternatives:{"
       "    file_checks:{"
-      "      files_to_check:{files_in_dir:{"
-      "         dir_path:\"/etc/systemd/system/\""
-      "        recursive: true"
-      "        filename_regex: \"systemd-journal.service\""
-      "       }"
-      "      }"
+      "      files_to_check:{single_file:{path:\"/lib/systemd/system/systemd-journald.service\"}}"
       "      existence:{should_exist:true}"
+      "    }"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{path:\"/lib/systemd/system/systemd-journald.socket\"}}"
+      "      existence:{should_exist:true}"
+      "    }"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{path:\"/etc/systemd/system/systemd-journald.service\"}}"
+      "      existence:{should_exist:false}"
+      "    }"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{path:\"/etc/systemd/system/systemd-journald.socket\"}}"
+      "      existence:{should_exist:false}"
       "    }"
       "}}"
   }
 }
+
 benchmark_configs: {
   id: "nftables-is-installed"
   compliance_note: {
