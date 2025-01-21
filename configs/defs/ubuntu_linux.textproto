@@ -4532,14 +4532,15 @@ benchmark_configs: {
       "      content_entry:{"
       "        match_type: ALL_MATCH_ANY_ORDER"
       "        match_criteria: {"
-      "          filter_regex: \"\\\\s*ENCRYPT_METHOD\\\\s+(SHA512|YESCRYPT)\\b.*\""
-      "          expected_regex: \"\\\\s*ENCRYPT_METHOD\\\\s+(SHA512|YESCRYPT)\\b.*\""
+      "          filter_regex: \"[^#]*\\\\bENCRYPT_METHOD\\\\s+\\\\b(SHA512|YESCRYPT)\\\\b.*\""
+      "          expected_regex: \"[^#]*\\\\bENCRYPT_METHOD\\\\s+\\\\b(SHA512|YESCRYPT)\\\\b.*\""
       "        }"
       "      }"
       "    }"
       "}}"
   }
 }
+
 benchmark_configs: {
   id: "root-gid-zero-check"
   compliance_note: {
