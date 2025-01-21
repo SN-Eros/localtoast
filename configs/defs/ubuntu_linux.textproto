@@ -1,7 +1,7 @@
 benchmark_configs: {
   id: "hfsplus-mounting-disabled"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "1.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure mounting of hfsplus filesystems is disabled"
     description:
       "The hfsplus filesystem type is a hierarchical filesystem designed to "
@@ -90,7 +90,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "jffs2-mounting-disabled"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "1.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure mounting of jffs2 filesystems is disabled"
     description:
       "The jffs2 (journaling flash filesystem 2) filesystem type is a "
@@ -178,7 +178,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "usb-storage-disabled"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "1.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Disable USB Storage"
     description:
       "USB storage provides a means to transfer and store files insuring "
@@ -270,7 +270,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "separate-partition-shm"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "1.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure /dev/shm is a separate partition"
     description:
       "The /dev/shm directory is a world-writable directory that can function as shared memory "
@@ -329,7 +329,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "home-nosuid"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "1.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure nosuid option set on /home partition"
     description: "The nosuid mount option specifies thatthe filesystem cannot contain setuid files."
     rationale:
@@ -383,7 +383,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "ptrace-scope-restricted"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "1.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure ptrace_scope is restricted"
     description:
       "This configuration ensures that the ptrace() system call is restricted to limit the ability of compromised processes to attach to other processes running under the same user, enhancing system security."
@@ -443,7 +443,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "nftables-base-chains-exist"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "1.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure nftables Base Chains Exist"
     description: 
       "Chains are containers for rules in nftables. Base chains are entry points for packets from the networking stack, and their absence can result in packets not being processed as intended."
@@ -502,7 +502,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "nftables-loopback-traffic-configured"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "1.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure nftables Loopback Traffic is Configured"
     description: 
       "Configuring loopback traffic ensures that internal communication between processes on the machine is maintained while preventing spoofing attacks by dropping loopback traffic on other interfaces."
@@ -560,7 +560,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "nftables-service-enabled"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "1.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure nftables service is enabled"
     description: 
       "The nftables service allows for the loading of nftables rulesets during boot, or starting on"
@@ -595,7 +595,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "ufw-uninstalled-or-disabled-with-nftables"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "1.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure ufw is uninstalled or disabled with nftables"
     description: 
       "Uncomplicated Firewall (UFW) is a program for managing a Netfilter firewall designed to be easy to use. Running both the nftables service and UFW may lead to conflict and unexpected results."
@@ -631,7 +631,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "iptables-default-deny-policy"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "1.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure iptables Default Deny Firewall Policy"
     description: 
       "A default deny all policy on connections ensures that any unconfigured network usage will be rejected."
@@ -675,7 +675,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "iptables-loopback-traffic-configured"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "1.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure iptables Loopback Traffic is Configured"
     description: 
       "Configure the loopback interface to accept traffic and deny traffic to the loopback network on all other interfaces (127.0.0.0/8)."
@@ -718,7 +718,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "ip6tables-default-deny-policy"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "1.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure iptables Default Deny Firewall Policy"
     description: 
       "A default deny all policy on connections ensures that any unconfigured network usage will be rejected."
@@ -762,7 +762,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "ip6tables-loopback-traffic-configured"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "1.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure ip6tables Loopback Traffic is Configured"
     description: 
       "Configure the loopback interface to accept traffic. Configure all other interfaces to deny traffic to the loopback network (::1)."
@@ -806,7 +806,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "systemd-journal-remote-installed"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "1.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure systemd-journal-remote is installed"
     description:
       "Journald (via systemd-journal-remote) supports the ability to send log events it gathers to "
@@ -838,7 +838,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "systemd-journal-upload-enabled"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "1.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure systemd-journal-upload is enabled and active"
     description:
       "Journald (via systemd-journal-remote) supports the ability to send log events it gathers to "
@@ -870,7 +870,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "ensure-events-modifying-system-network-env-collected"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "1.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure events that modify the system's network environment are collected"
     description: "Record changes to network environment files or system calls. The parameters monitor the sethostname and setdomainname system calls and various network-related files."
     rationale: "Monitoring changes to network environments helps identify unauthorized alterations that could compromise security settings. Monitoring files like /etc/hosts or /etc/netplan/ ensures the detection of unauthorized changes to network configurations."
@@ -943,7 +943,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "ensure-privileged-commands-are-collected"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "1.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure use of privileged commands are collected"
     description: "Monitor privileged programs with setuid and/or setgid bit set to detect unauthorized use."
     rationale: "Monitoring privileged commands by non-privileged users helps identify potential unauthorized activities and access attempts."
@@ -987,7 +987,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "ensure-audit-configuration-files-mode-configured"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "1.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure audit configuration files mode is configured"
     description: "Audit configuration files must be configured with mode 0640 or more restrictive to prevent unauthorized access and protect the integrity of the audit system."
     rationale: "Restricting access to audit configuration files ensures that only authorized personnel can modify the settings, preventing the disabling of critical auditing or misconfigurations that may impact performance or investigation efforts."
@@ -1022,7 +1022,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "ensure-audit-tools-mode-configured"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "1.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure audit tools mode is configured"
     description:
       "Audit tools must be configured with mode 0755 or more restrictive to protect the integrity of audit tools and prevent unauthorized access."
@@ -1064,7 +1064,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "ensure-audit-tools-owner-configured"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "1.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure audit tools owner is configured"
     description: "Audit tools must be owned by the root user to ensure their integrity and prevent unauthorized access or modifications."
     rationale: "Protecting audit tools from unauthorized access or modification is critical to maintaining the integrity of the audit system and ensuring accurate logging of events."
@@ -1122,7 +1122,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "ensure-audit-tools-group-owner-configured"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "1.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure audit tools group owner is configured"
     description: "Audit tools must be owned by the root group to ensure their integrity and prevent unauthorized access or modifications."
     rationale: "Protecting audit tools from unauthorized access or modification is critical to maintaining the integrity of the audit system and ensuring accurate logging of events. Ensuring the correct group ownership prevents unauthorized users from altering critical audit files."
@@ -1180,7 +1180,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "etc-shells-permissions"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "1.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure permissions on /etc/shells are configured"
     description: 
       "/etc/shells is a text file which contains the full pathnames of valid login shells. This file"
@@ -1222,7 +1222,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "opasswd-permissions"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "1.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure permissions on /etc/security/opasswd are configured"
     description:
       "/etc/security/opasswd and its backup /etc/security/opasswd.old hold user's previous passwords if pam_unix or pam_pwhistory is in use on the system."
@@ -1280,7 +1280,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "var-nosuid"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "1.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure nosuid option set on /var partition"
     description:
       "The nosuid mount option specifies that the filesystem cannot contain "
@@ -1331,7 +1331,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "var-log-nodev"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "1.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure nodev option set on /var/log partition"
     description: "The nodev mount option specifies that the filesystem cannot contain special devices."
     rationale:
@@ -1385,7 +1385,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "var-log-nosuid"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "1.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure nosuid option set on /var/log partition"
     description: "The nosuid mount option specifies thatthe filesystem cannot contain setuid files."
     rationale:
@@ -1439,7 +1439,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "var-log-noexec"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "1.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure noexec option set on /var/log partition"
     description: "The noexec mount option specifies that the filesystem cannot contain executable binaries."
     rationale:
@@ -1493,7 +1493,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "var-log-audit-nodev"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "1.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure nodev option set on /var/log/audit partition"
     description: "The nodev mount option specifies that the filesystem cannot contain special devices."
     rationale:
@@ -1548,7 +1548,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "var-log-audit-nosuid"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "1.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure nosuid option set on /var/log/audit partition"
     description: "The nosuid mount option specifies thatthe filesystem cannot contain setuid files."
     rationale:
@@ -1603,7 +1603,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "var-log-audit-noexec"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "1.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure noexec option set on /var/log/audit partition"
     description: "The noexec mount option specifies that the filesystem cannot contain executable binaries."
     rationale:
@@ -1658,7 +1658,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "sshd-banner-configured"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "1.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure sshd Banner is configured"
     description:
       "The Banner parameter specifies a file whose contents must be sent to the remote user "
@@ -1698,7 +1698,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "sshd-access-configured"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "1.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure sshd access is configured"
     description:
       "There are several options available to limit which users and groups can access the "
@@ -1745,7 +1745,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "sshd-disable-forwarding-configured"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "1.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure sshd DisableForwarding is enabled"
     description:
       "The DisableForwarding parameter disables all forwarding features, including X11, ssh-agent, TCP, and StreamLocal forwarding. "
@@ -1784,7 +1784,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "sshd-gssapi-authentication-disabled"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "1.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure sshd GSSAPIAuthentication is disabled"
     description:
       "The GSSAPIAuthentication parameter specifies whether user authentication "
@@ -1823,7 +1823,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "sshd-hostbasedauthentication-disabled"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "1.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure SSH HostbasedAuthentication is disabled"
     description:
       "The HostbasedAuthentication parameter specifies if authentication is allowed through "
@@ -1865,7 +1865,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "ssh-maxsessions-10-or-less"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "1.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure SSH MaxSessions is set to 10 or less"
     description:
       "The MaxSessions parameter specifies the maximum number of open "
@@ -1908,7 +1908,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "sudo-is-installed"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "1.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure sudo is installed"
     description:
       "sudo allows a permitted user to execute a command as the superuser or another user, as "
@@ -1962,7 +1962,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "users-password-for-escalation"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "1.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure users must provide password for escalation"
     description:
       "The operating system must be configured so that users must provide a password for "
@@ -2015,7 +2015,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "reauthentication-for-privilege-escalation-not-disabled"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "1.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure re-authentication for privilege escalation is not disabled globally"
     description:
       "The operating system must be configured so that users must re-authenticate for privilege "
@@ -2061,7 +2061,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "sudo-authentication-timeout-is-configured-correctly"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "1.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure sudo authentication timeout is configured correctly"
     description:
       "sudo caches used credentials for a default of 5 minutes. This is for ease of use when there "
@@ -2141,7 +2141,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "ensure-libpam-modules-installed"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "1.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure libpam-modules is installed"
     description:
       "Pluggable Authentication Modules for PAM. Ensures the system has full functionality and access to the PAM options covered by this Benchmark."
@@ -2178,7 +2178,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "ensure-libpam-pwquality-installed"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "1.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: 
       "Ensure libpam-pwquality is installed"
     description: 
@@ -2212,7 +2212,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "ensure-pam-faillock-enabled"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "1.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure pam_faillock module is enabled"
     description:
       "The pam_faillock.so module maintains a list of failed authentication attempts per user during a specified interval and locks the account in case there were more than the configured number of consecutive failed authentications (defined by the deny parameter in the faillock configuration). It stores the failure records into per-user files in the tally directory."
@@ -2264,7 +2264,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "ensure-pam-pwquality-enabled"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "1.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure pam_pwquality module is enabled"
     description:
       "The pam_pwquality.so module performs password quality checking. This module can be plugged into the password stack of a given service to provide strength-checking for passwords. The code was originally based on pam_cracklib module and the module is backwards compatible with its options."
@@ -2312,7 +2312,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "ensure-pam-pwhistory-enabled"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "1.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure pam_pwhistory module is enabled"
     description:
       "The pam_pwhistory.so module saves the last passwords for each user in order to force password change history and prevent users from alternating between the same passwords too frequently."
@@ -2371,7 +2371,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "ensure-password-failed-attempts-lockout-is-configured"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "1.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure password failed attempts lockout is configured"
     description:
       "The deny=<n> option will deny access if the number of consecutive authentication failures for this user during the recent interval exceeds."
@@ -2406,7 +2406,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "ensure-systemd-journal-remote-not-enabled"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "1.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure systemd-journal-remote service is not in use"
     description:
       "The systemd-journal-remote service supports receiving messages from remote hosts, effectively turning the system into a log server. This is outside the operational boundary of a client system."
@@ -2438,7 +2438,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "accounts-in-etc-passwd-use-shadowed-passwords"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "1.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure accounts in /etc/passwd use shadowed passwords"
     description:
       "Local accounts can uses shadowed passwords. With shadowed passwords, The passwords "
@@ -2491,7 +2491,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "attempts-to-use-usermod-recorded"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "1.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure successful and unsuccessful attempts to use the usermod command are recorded"
     description:
       "The operating system must generate audit records for successful/unsuccessful uses of the"
@@ -2578,7 +2578,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "attempts-to-use-chacl-recorded"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "1.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure successful and unsuccessful attempts to use the chacl command are recorded"
     description:
       "The operating system must generate audit records for successful/unsuccessful uses of the"
@@ -2665,7 +2665,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "attempts-to-use-setfacl-recorded"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "1.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure successful and unsuccessful attempts to use the setfacl command are recorded"
     description:
       "The operating system must generate audit records for successful/unsuccessful uses of the"
@@ -2752,7 +2752,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "attempts-to-use-chcon-recorded"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "1.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure successful and unsuccessful attempts to use the chcon command are recorded"
     description:
       "The operating system must generate audit records for successful/unsuccessful uses of the "
@@ -2839,7 +2839,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "unsuccessful-file-access-attempts-collected"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "1.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure unsuccessful file access attempts are collected"
     description:
       "Monitor for unsuccessful attempts to access files. The following parameters are associated "
@@ -3061,7 +3061,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "actions-as-another-user-logged"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "1.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure actions as another user are always logged"
     description:
       "sudo provides users with temporary elevated privileges to perform operations, either as "
@@ -3144,7 +3144,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "journald-service-enabled"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "1.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure journald service is enabled"
     description: "Ensure that the systemd-journald serviceis enabled to allow capturing of logging events."
     rationale:
@@ -3176,7 +3176,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "nftables-is-installed"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "1.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure nftables is installed"
     description:
       "nftables provides a new in-kernel packet classification framework that is based on a "
@@ -3232,7 +3232,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "nftables-not-installed-with-iptables"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "1.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure nftables is not installed with iptables"
     description:
       "nftables is a subsystem of the Linux kernel providing filtering and classification of network "
@@ -3285,7 +3285,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "ensure-gdm-removed"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "1.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure GDM is removed"
     description: 
       "The GNOME Display Manager (GDM) is a program that manages graphical display servers and handles graphical user logins. If a Graphical User Interface (GUI) is not required, it should be removed to reduce the attack surface of the system."
@@ -3319,7 +3319,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "ensure-gdm-screen-locks-when-user-is-idle"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "1.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure GDM screen locks when the user is idle"
     description: 
       "GNOME Desktop Manager can make the screen lock automatically whenever the user is idle for some amount of time."
@@ -3380,7 +3380,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "ensure-gdm-screen-locks-cannot-be-overridden"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "1.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure GDM screen locks cannot be overridden"
     description:
       "GNOME Desktop Manager can lock down specific settings by using the lockdown mode in dconf to prevent users from changing specific settings."
@@ -3430,7 +3430,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "ensure-gdm-autorun-never-enabled"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "1.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure GDM autorun-never is enabled"
     description: 
       "The autorun-never setting allows the GNOME Desktop Display Manager to disable autorun through GDM."
@@ -3522,7 +3522,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "ensure-gdm-autorun-never-is-not-overridden"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "1.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure GDM autorun-never is not overridden"
     description: 
       "The autorun-never setting allows the GNOME Desktop Display Manager to disable autorun through GDM. By using the lockdown mode in dconf, you can prevent users from changing specific settings."
@@ -3573,7 +3573,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "dnsmasq-not-in-use"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "1.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure dnsmasq services are not in use"
     description: 
       "The dnsmasq service provides DNS caching, DNS forwarding, and DHCP services. Unless explicitly required, its presence increases the attack surface."
@@ -3606,7 +3606,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "web-server-services-not-in-use"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "1.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure web server services are not in use"
     description:
       "Web servers provide the ability to host website content. Unless explicitly required, their presence increases the attack surface of a system."
@@ -3643,7 +3643,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "ufw-is-installed"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "1.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure ufw is installed"
     description:
       "The Uncomplicated Firewall (ufw) is a frontend for iptables and is particularly well-suited for host-based firewalls. It provides a framework for managing Netfilter and a command-line interface for firewall configuration."
@@ -3671,7 +3671,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "iptables-persistent-not-installed-with-ufw"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "1.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure iptables-persistent is not installed with ufw"
     description: 
       "The iptables-persistent is a boot-time loader for Netfilter rules, which may conflict with ufw if both are running simultaneously."
@@ -3711,7 +3711,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "ufw-loopback-traffic-configured"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "1.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure ufw loopback traffic is configured"
     description: 
       "Configure the loopback interface to accept traffic and configure all other interfaces to deny traffic to the loopback network (127.0.0.0/8 for IPv4 and ::1/128 for IPv6)."
@@ -3778,7 +3778,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "ufw-default-deny-policy"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "1.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure ufw default deny firewall policy"
     description: 
       "A default deny policy on connections ensures that any unconfigured network usage will be rejected."
@@ -3834,7 +3834,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "nftables-table-exists"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "1.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure a nftables table exists"
     description: 
       "Tables hold chains in nftables. Each table only has one address family and only applies to packets of this family. Without a table, nftables will not filter network traffic."
@@ -3872,7 +3872,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "nftables-default-deny-policy"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "1.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure nftables default deny firewall policy"
     description: 
       "Base chain policy is the default verdict that will be applied to packets reaching the end of the chain. Setting a default deny policy helps ensure only explicitly allowed traffic is permitted."
@@ -3928,7 +3928,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "iptables-packages-installed"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "1.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure iptables packages are installed"
     description: 
       "iptables is a utility program that allows a system administrator to configure the tables provided by the Linux kernel firewall, implemented as different Netfilter modules, and the chains and rules it stores."
@@ -3960,7 +3960,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "disable-apport-error-reporting"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "1.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure Apport Error Reporting Service is disabled"
     description: 
       "The Apport Error Reporting Service automatically generates crash reports for debugging. Disabling this service prevents collection of potentially sensitive data such as core dumps, stack traces, and log files."
@@ -4008,7 +4008,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "disable-gnome-automount-removable-media"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "1.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure GNOME Automounting of Removable Media is Disabled"
     description: 
       "By default, GNOME automatically mounts removable media when inserted as a convenience to the user. Disabling automounting enhances security by preventing unauthorized access to removable media."
@@ -4058,7 +4058,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "password-difok-changed-characters-configured"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "1.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure Password Number of Changed Characters is Configured"
     description: 
       "The configuration ensures that a specified number of characters in a new password differ from the old password, enhancing password complexity and security."
@@ -4090,7 +4090,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "password-minimum-length-configured"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "1.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure Minimum Password Length is Configured"
     description: 
       "The configuration ensures that the minimum password length is enforced to enhance password security."
@@ -4124,7 +4124,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "password-maxrepeat-configured"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "1.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure Password Same Consecutive Characters is Configured"
     description: 
       "The configuration ensures that the maximum number of allowed same consecutive characters in a new password is limited, enhancing password complexity and security."
@@ -4158,7 +4158,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "password-maxsequence-configured"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "1.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure Password Maximum Sequential Characters is Configured"
     description: 
       "The configuration ensures that the maximum length of monotonic character sequences in the new password is limited, enhancing password complexity and security."
@@ -4192,7 +4192,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "password-dictionary-check-enabled"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "1.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure Password Dictionary Check is Enabled"
     description: 
       "The configuration ensures that passwords are checked against a dictionary to avoid the use of weak or predictable passwords, enhancing password security."
@@ -4226,7 +4226,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "password-quality-check-enforced"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "1.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure Password Quality Checking is Enforced"
     description: 
       "The configuration ensures that the pam_pwquality module enforces password quality checks by rejecting passwords that fail configured policies."
@@ -4260,7 +4260,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "password-quality-enforced-for-root"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "1.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure Password Quality is Enforced for the Root User"
     description: 
       "The configuration ensures that the pam_pwquality module enforces password quality checks for the root user."
@@ -4293,7 +4293,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "password-history-remember-configured"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "1.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure Password History Remember is Configured"
     description: 
       "The configuration ensures that the pam_pwhistory module enforces a specific number of old passwords remembered, preventing users from reusing recent passwords."
@@ -4327,7 +4327,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "password-history-enforce-for-root"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "1.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure Password History is Enforced for the Root User"
     description: 
       "The configuration ensures that the pam_pwhistory module enforces password history for the root user as well, preventing root from reusing recent passwords."
@@ -4360,7 +4360,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "password-history-enforce-use-authtok"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "1.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure pam_pwhistory Includes use_authtok"
     description: 
       "The configuration ensures that the pam_pwhistory module enforces the use_authtok argument, enabling multiple pam modules to validate a new password before it is accepted."
@@ -4393,7 +4393,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "pam-unix-nullok-not-included"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "1.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure pam_unix Does Not Include nullok"
     description: 
       "The configuration ensures that the pam_unix module does not include the `nullok` argument, which permits blank passwords."
@@ -4423,7 +4423,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "pam-unix-remember-not-included"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "1.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure pam_unix Does Not Include remember"
     description: 
       "The configuration ensures that the pam_unix module does not include the `remember` argument, which stores passwords using the MD5 hash. Instead, the pam_pwhistory module should be used for enhanced security."
@@ -4452,7 +4452,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "pam-unix-strong-hashing-algorithm"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "1.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure pam_unix Includes a Strong Password Hashing Algorithm"
     description: 
       "The configuration ensures that the pam_unix module uses a strong password hashing algorithm, such as SHA-512 or yescrypt, to enhance password security."
@@ -4482,7 +4482,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "pam-unix-use-authtok"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "1.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure pam_unix Includes use_authtok"
     description: 
       "The configuration ensures that the pam_unix module uses the `use_authtok` argument to enforce the use of a password previously provided by a stacked PAM module."
@@ -4512,7 +4512,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "login-defs-strong-password-hashing"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "1.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure Strong Password Hashing Algorithm is Configured in /etc/login.defs"
     description: 
       "The configuration ensures that /etc/login.defs specifies a strong password hashing algorithm, such as SHA-512 or YESCRYPT, to enhance group password security."
@@ -4542,7 +4542,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "root-gid-zero-check"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "1.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure Root is the Only GID 0 Account"
     description: 
       "The configuration ensures that the root user's primary GID is 0 and no other user accounts have GID 0 as their primary GID, enhancing system security."
@@ -4575,7 +4575,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "ensure-root-umask-configured"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "1.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure root user umask is configured"
     description: 
       "The configuration ensures that the root user's umask is set to a secure value to enforce permissions for newly created files and directories."
@@ -4619,7 +4619,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "ensure-nologin-not-in-shells"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "1.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure nologin is not listed in /etc/shells"
     description: 
       "/etc/shells is a text file which contains the full pathnames of valid login shells. This file is consulted by chsh and available to be queried by other programs."
@@ -4649,7 +4649,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "ensure-default-user-umask-configured"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "1.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure default user umask is configured"
     description: 
       "The user file-creation mode mask (umask) determines the default permissions for newly created files and directories, ensuring they have appropriate restrictions."
@@ -4699,7 +4699,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "ensure-cryptographic-mechanisms-audit-tools"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "1.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure cryptographic mechanisms are used to protect the integrity of audit tools"
     description: 
       "Audit tools include vendor-provided and open source tools needed to view and manipulate audit information. Protecting their integrity ensures audit data remains secure and trustworthy."
@@ -4736,7 +4736,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "ensure-journald-forwardtosyslog-disabled"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "1.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure journald ForwardToSyslog is disabled"
     description: 
       "Data from journald should be kept within the service and not forwarded to other logging mechanisms."
@@ -4778,7 +4778,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "ensure-journald-storage-configured"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "1.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure journald Storage is configured"
     description: 
       "Data from journald may be stored in volatile memory or persisted locally on the server. Logs in memory will be lost upon a system reboot. By persisting logs to local disk on the server, they are protected from loss due to a reboot."
@@ -4820,7 +4820,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "audit-backlog-limit-sufficient"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "1.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure Audit Backlog Limit is Sufficient"
     description: 
       "This configuration ensures that the audit subsystem's queue for audit events has a sufficient backlog limit to prevent loss of audit data during high activity periods."
@@ -4852,7 +4852,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "system-warns-on-audit-logs-low-space"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "1.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure System Warns When Audit Logs Are Low on Space"
     description: 
       "This configuration ensures that the system is configured to warn or take appropriate actions when audit logs are low on space, preserving the integrity and continuity of logging."
@@ -4896,7 +4896,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "rpcbind-not-in-use"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "1.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure_rpcbind_services_are_not_in_use"
     description: 
       "The rpcbind utility maps RPC services to the ports on which they listen. RPC processes notify rpcbind when they start, registering the ports they are listening on and the RPC program numbers they expect to serve."
@@ -4929,7 +4929,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "ensure-password-failed-attempts-lockout-includes-root-account"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "1.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure password failed attempts lockout includes root account"
     description: 
       "even_deny_root - Root account can become locked as well as regular accounts. root_unlock_time=n - This option implies even_deny_root option. Allow access after n seconds to root account after the account is locked. In case the option is not specified the value is the same as of the unlock_time option."
