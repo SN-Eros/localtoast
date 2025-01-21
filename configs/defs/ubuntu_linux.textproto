@@ -682,12 +682,10 @@ benchmark_configs: {
     rationale: 
       "Loopback traffic is critical for internal communication between processes on a machine. Denying loopback traffic on other interfaces prevents spoofing attacks."
     remediation: 
-      "Run the following commands to implement the loopback rules:"
-      "```"
-      "# iptables -A INPUT -i lo -j ACCEPT"
-      "# iptables -A OUTPUT -o lo -j ACCEPT"
-      "# iptables -A INPUT -s 127.0.0.0/8 -j DROP"
-      "```"
+      "Run the following commands to implement the loopback rules:\n"
+      "# iptables -A INPUT -i lo -j ACCEPT\n"
+      "# iptables -A OUTPUT -o lo -j ACCEPT\n"
+      "# iptables -A INPUT -s 127.0.0.0/8 -j DROP\n"
       "Note: Changing firewall settings while connected over a network can result in being locked out of the system."
     cis_benchmark: {
       profile_level: 1
@@ -700,22 +698,23 @@ benchmark_configs: {
       "      content_entry:{"
       "        match_type: ALL_MATCH_STRICT_ORDER"
       "        match_criteria:{"
-      "          filter_regex: \"-A INPUT -i lo -j ACCEPT\""
-      "          expected_regex: \"-A INPUT -i lo -j ACCEPT\""
+      "          filter_regex: \"\\\\s*-A INPUT -i lo -j ACCEPT\""
+      "          expected_regex: \"\\\\s*-A INPUT -i lo -j ACCEPT\""
       "        }"
       "        match_criteria:{"
-      "          filter_regex: \"-A INPUT -s 127\\\\.0\\\\.0\\\\.0/8 -j DROP\""
-      "          expected_regex: \"-A INPUT -s 127\\\\.0\\\\.0\\\\.0/8 -j DROP\""
+      "          filter_regex: \"\\\\s*-A INPUT -s 127\\\\.0\\\\.0\\\\.0/8 -j DROP\""
+      "          expected_regex: \"\\\\s*-A INPUT -s 127\\\\.0\\\\.0\\\\.0/8 -j DROP\""
       "        }"
       "        match_criteria:{"
-      "          filter_regex: \"-A OUTPUT -o lo -j ACCEPT\""
-      "          expected_regex: \"-A OUTPUT -o lo -j ACCEPT\""
+      "          filter_regex: \"\\\\s*-A OUTPUT -o lo -j ACCEPT\""
+      "          expected_regex: \"\\\\s*-A OUTPUT -o lo -j ACCEPT\""
       "        }"
       "      }"
       "    }"
       "}}"
   }
 }
+
 benchmark_configs: {
   id: "ip6tables-default-deny-policy"
   compliance_note: {
@@ -3282,6 +3281,7 @@ benchmark_configs: {
       "}"
   }
 }
+
 benchmark_configs: {
   id: "ensure-gdm-removed"
   compliance_note: {
