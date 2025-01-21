@@ -1124,3 +1124,79 @@ benchmark_configs: {
       "}}"
   }
 }
+
+benchmark_configs: {
+  id: "tmp-configured"
+  compliance_note: {
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }  		   
+    title: "Ensure /tmp is configured"
+    description:
+      "The /tmp directory is a world-writable directory used for temporary "
+      "storage by all users and some applications."
+    rationale:
+      "Making /tmp its own file system allows an administrator to set additional mount options"
+      "such as the noexec option on the mount, making /tmp useless for an attacker to install"
+      "executable code. It would also prevent an attacker from establishing a hard link to a"
+      "system setuid program and wait for it to be updated. Once the program was updated,"
+      "the hard link would be broken, and the attacker would have his own copy of the"
+      "program. If the program happened to have a security vulnerability, the attacker could"
+      "continue to exploit the known flaw."
+      "This can be accomplished by either mounting tmpfs to /tmp, or creating a separate"
+      "partition for /tmp."
+    remediation:
+      "First ensure that systemd is correctly configured to ensure that /tmp will be mounted at"""
+      "boot time."
+      "`# systemctl unmask tmp.mount`"
+      "For specific configuration requirements of the /tmp mount for your environment, modify"
+      "/etc/fstab."
+      "Example of using tmpfs with specific mount options:"
+      "`tmpfs /tmp tmpfs defaults,rw,nosuid,nodev,noexec,relatime,size=2G 0 0`"
+      "Note: the size=2G is an example of setting a specific size for tmpfs."
+      "Example of using a volume or disk with specific mount options. The source location of"
+      "the volume or disk will vary depending on your environment:"
+      "`<device> /tmp <fstype> defaults,nodev,nosuid,noexec 0 0`"
+    cis_benchmark: {
+      profile_level: 1
+      severity: LOW
+    }
+    scan_instructions:
+      "scan_type_specific:{instance_scanning:{"
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{path:\"/proc/self/mountinfo\"}}"
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \".* /tmp .*- .*\""
+      "          expected_regex: \".* /tmp .*- tmpfs tmpfs.*\""
+      "        }"
+      "      }"
+      "    }"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{path:\"/usr/share/systemd/tmp.mount\"}}"
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \"Type=.*\""
+      "          expected_regex: \"Type=tmpfs\""
+      "        }"
+      "      }"
+      "    }"
+      "  }"
+      "}"
+      "image_scanning:{"
+      "  check_alternatives:{"
+      "      file_checks:{"
+      "      files_to_check:{single_file:{path:\"/usr/share/systemd/tmp.mount\"}}"
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \"Type=.*\""
+      "          expected_regex: \"Type=tmpfs\""
+      "        }"
+      "      }"
+      "    }"
+      "  }"
+      "}}"
+  }
+}
