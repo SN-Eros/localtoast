@@ -10803,7 +10803,7 @@ benchmark_configs: {
   }
 }
 benchmark_configs: {
-  id: "etc-passwd-dash-permissions-fallback"
+  id: "etc-passwd-dash-permissions"
   compliance_note: {
     version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure permissions on /etc/passwd- are configured"
