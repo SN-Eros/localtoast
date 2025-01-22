@@ -1602,7 +1602,7 @@ benchmark_configs: {
   id: "shm-nosuid"
   compliance_note: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }  		   
-    title: "Ensure nosuid option set on /tmp partition"
+    title: "Ensure nosuid option set on /dev/shm partition"
     description:
       "The nosuid mount option specifies that the filesystem cannot contain setuid files."
     rationale:
@@ -1664,7 +1664,7 @@ benchmark_configs: {
       "  check_alternatives:{"
       "    file_checks:{"
       "      files_to_check:{single_file:{"
-      "        path:\"/usr/share/systemd/tmp.mount\"}}"      
+      "        path:\"/etc/fstab"}}"      
       "      content_entry:{"
       "        match_type: ALL_MATCH_ANY_ORDER"
       "        match_criteria: {"
@@ -1745,7 +1745,7 @@ benchmark_configs: {
       "  check_alternatives:{"
       "    file_checks:{"
       "      files_to_check:{single_file:{"
-      "        path:\"/usr/share/systemd/tmp.mount\"}}"      
+      "        path:\"/etc/fstab\"}}"      
       "      content_entry:{"
       "        match_type: ALL_MATCH_ANY_ORDER"
       "        match_criteria: {"
@@ -1910,3 +1910,4 @@ benchmark_configs: {
       "}}"
   }
 }
+
