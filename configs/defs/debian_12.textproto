@@ -1677,3 +1677,84 @@ benchmark_configs: {
       "}}"
   }
 }
+
+benchmark_configs: {
+  id: "shm-noexec"
+  compliance_note: {
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }  		   
+    title: "Ensure noexec option set on /tmp partition"
+    description:
+      "The noexec mount option specifies that the filesystem cannot contain executable binaries."
+    rationale:
+      "Setting this option on a file system prevents users from executing programs from shared"
+      "memory. This deters users from introducing potentially malicious software on the"
+      "system."
+    remediation:
+      "- IF - a separate partition exists for /dev/shm."
+      "Edit the /etc/fstab file and add noexec to the fourth field (mounting options) for the"
+      "/dev/shm partition."
+      "Example:"
+      "tmpfs /dev/shm tmpfs defaults,rw,noexec,nodev,noexec,relatime 0 0"
+      "Run the following command to remount /dev/shm with the configured options:"
+      "# mount -o remount /dev/shm"
+      "Note: It is recommended to use tmpfs as the device/filesystem type as /dev/shm is"
+      "used as shared memory space by applications."
+    cis_benchmark: {
+      profile_level: 1
+      severity: LOW
+    }
+    scan_instructions:
+      "scan_type_specific:{instance_scanning:{"
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{path:\"/proc/self/mountinfo\"}}"
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \".* /tmp .* - .*\""
+      "          expected_regex: \".* /tmp .*noexec.* - .*\""
+      "        }"
+      "      }"
+      "    }"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{"
+      "        path:\"/etc/fstab\"}}"      
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \".*/dev/shm.*\""
+      "          expected_regex: \".*noexec.*\""
+      "        }"
+      "      }"
+      "    }"
+      "  }"
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{path:\"/proc/self/mountinfo\"}}"
+      "      content_entry:{"
+      "        match_type: NONE_MATCH"
+      "        match_criteria: {"
+      "          filter_regex: \".* /tmp .* - .*\""
+      "          expected_regex: \".* /tmp .* - .*\""
+      "        }"
+      "      }"
+      "    }"
+      "  }"
+      "}"
+      "image_scanning:{"
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{"
+      "        path:\"/usr/share/systemd/tmp.mount\"}}"      
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \".*/dev/shm.*\""
+      "          expected_regex: \".*noexec.*\""
+      "        }"
+      "      }"
+      "    }"
+      "  }"
+      "}}"
+  }
+}
