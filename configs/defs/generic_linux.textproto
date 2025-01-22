@@ -12089,6 +12089,94 @@ benchmark_configs: {
       "}}"
   }
 }
+benchmark_configs: {
+  id: "hfs-mounting-disabled"
+  compliance_note: {
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    title: "Ensure mounting of hfs filesystems is disabled"
+    description:
+      "The hfs filesystem type is a hierarchical filesystem that allows you "
+      "to mount Mac OS filesystems."
+    rationale:
+      "Removing support for unneeded filesystem types reduces the local attack "
+      "surface of the server. If this filesystem type is not needed, disable "
+      "it."
+    remediation:
+      "Edit or create a file in the /etc/modprobe.d/ directory ending in .conf\n"
+      "Example: vim /etc/modprobe.d/hfs.conf\n"
+      "and add the following line:\n"
+      "```\n"
+      "install hfs /bin/true\n"
+      "```\n"
+      "Run the following command to unload the hfs module:\n"
+      "```\n"
+      "# rmmod hfs\n"
+      "```\n"
+    cis_benchmark: {
+      profile_level: 1
+      severity: LOW
+    }
+    scan_instructions:
+      "scan_type_specific:{instance_scanning:{"
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{path:\"/proc/modules\"}}"
+      "      content_entry:{"
+      "        match_type: NONE_MATCH"
+      "        match_criteria: {"
+      "          filter_regex: \"hfs .*\""
+      "          expected_regex: \"hfs .*\""
+      "        }"
+      "      }"
+      "    }"
+      "    file_checks:{"
+      "      files_to_check:{files_in_dir:{"
+      "        dir_path:\"/etc/modprobe.d\""
+      "        filename_regex: \".*\\\\.conf\""
+      "        recursive: true"
+      "      }}"
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \"install hfs .*\""
+      "          expected_regex: \"install hfs /bin/true\""
+      "        }"
+      "      }"
+      "    }"
+      "  }"
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{path:\"/etc/modprobe.d\"}}"
+      "      existence:{should_exist: false}"
+      "    }"
+      "  }"
+      "}"
+      "image_scanning:{"
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{files_in_dir:{"
+      "        dir_path:\"/etc/modprobe.d\""
+      "        filename_regex: \".*\\\\.conf\""
+      "        recursive: true"
+      "      }}"
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \"install hfs .*\""
+      "          expected_regex: \"install hfs /bin/true\""
+      "        }"
+      "      }"
+      "    }"
+      "  }"
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{path:\"/etc/modprobe.d\"}}"
+      "      existence:{should_exist: false}"
+      "    }"
+      "  }"
+      "}}"
+  }
+}
 
 
 
