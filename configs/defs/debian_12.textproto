@@ -2448,3 +2448,81 @@ benchmark_configs: {
       "}}"
   }
 }
+
+benchmark_configs: {
+  id: "var-tmp-noexec"
+  compliance_note: {
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }  		   
+    title: "Ensure noexec option set on /var/tmp partition"
+    description:
+      "The noexec mount option specifies that the filesystem cannot contain executable binaries."
+    rationale:
+      "Since the /var/tmp filesystem is only intended for temporary file storage, set this option"
+      "to ensure that users cannot run executable binaries from /var/tmp."
+    remediation:
+      "- IF - a separate partition exists for /var/tmp."
+      "Edit the /etc/fstab file and add noexec to the fourth field (mounting options) for the"
+      "/var/tmp partition."
+      "Example:"
+      "<device> /var/tmp <fstype> defaults,rw,nosuid,nodev,noexec,relatime 0 0"
+      "Run the following command to remount /var/tmp with the configured options:"
+      "# mount -o remount /var/tmp"
+    cis_benchmark: {
+      profile_level: 1
+      severity: LOW
+    }
+    scan_instructions:
+      "scan_type_specific:{instance_scanning:{"
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{path:\"/proc/self/mountinfo\"}}"
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \".* /var/tmp .* - .*\""
+      "          expected_regex: \".* /var/tmp .*noexec.* - .*\""
+      "        }"
+      "      }"
+      "    }"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{"
+      "        path:\"/etc/fstab\"}}"      
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \".*/var/tmp .*\""
+      "          expected_regex: \".*noexec.*\""
+      "        }"
+      "      }"
+      "    }"
+      "  }"
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{path:\"/proc/self/mountinfo\"}}"
+      "      content_entry:{"
+      "        match_type: NONE_MATCH"
+      "        match_criteria: {"
+      "          filter_regex: \".* /var/tmp .* - .*\""
+      "          expected_regex: \".* /var/tmp .* - .*\""
+      "        }"
+      "      }"
+      "    }"
+      "  }"
+      "}"
+      "image_scanning:{"
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{"
+      "        path:\"/etc/fstab\"}}"      
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \".*/var/tmp .*\""
+      "          expected_regex: \".*noexec.*\""
+      "        }"
+      "      }"
+      "    }"
+      "  }"
+      "}}"
+  }
+}
