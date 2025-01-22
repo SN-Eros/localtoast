@@ -643,7 +643,7 @@ benchmark_configs: {
       "- IF - the overlayfs kernel module is not available on the system, or pre-compiled into"
       "the kernel, no additional configuration is necessary"
     cis_benchmark: {
-      profile_level: 1
+      profile_level: 2
       severity: LOW
     }
     scan_instructions:
