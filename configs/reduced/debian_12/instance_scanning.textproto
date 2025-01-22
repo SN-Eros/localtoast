@@ -11,4 +11,4 @@ benchmark_id: "udf-module-not-available"
 benchmark_id: "usb_storage-module-not-available"
 benchmark_id: "tmp-configured"
 benchmark_id: "tmp-nodev"
-
+benchmark_id: "tmp-nosuid"
