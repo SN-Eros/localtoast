@@ -1517,3 +1517,83 @@ benchmark_configs: {
       "}}"
   }
 }
+
+benchmark_configs: {
+  id: "shm-nodev"
+  compliance_note: {
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }  		   
+    title: "Ensure nodev option set on /tmp partition"
+    description:
+      "The nodev mount option specifies that the filesystem cannot contain special devices."
+    rationale:
+      "Since the /dev/shm filesystem is not intended to support devices, set this option to"
+      "ensure that users cannot attempt to create special devices in /dev/shm partitions."
+    remediation:
+      "- IF - a separate partition exists for /dev/shm."
+      "Edit the /etc/fstab file and add nodev to the fourth field (mounting options) for the"
+      "/dev/shm partition. See the fstab(5) manual page for more information."
+      "Example:"
+      "tmpfs /dev/shm tmpfs defaults,rw,nosuid,nodev,noexec,relatime 0 0"
+      "Run the following command to remount /dev/shm with the configured options:"
+      "# mount -o remount /dev/shm"
+      "Note: It is recommended to use tmpfs as the device/filesystem type as /dev/shm is"
+      "used as shared memory space by applications."
+    cis_benchmark: {
+      profile_level: 1
+      severity: LOW
+    }
+    scan_instructions:
+      "scan_type_specific:{instance_scanning:{"
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{path:\"/proc/self/mountinfo\"}}"
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \".* /tmp .* - .*\""
+      "          expected_regex: \".* /tmp .*nodev.* - .*\""
+      "        }"
+      "      }"
+      "    }"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{"
+      "        path:\"/etc/fstab\"}}"      
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \".*/dev/shm.*\""
+      "          expected_regex: \".*nodev.*\""
+      "        }"
+      "      }"
+      "    }"
+      "  }"
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{path:\"/proc/self/mountinfo\"}}"
+      "      content_entry:{"
+      "        match_type: NONE_MATCH"
+      "        match_criteria: {"
+      "          filter_regex: \".* /tmp .* - .*\""
+      "          expected_regex: \".* /tmp .* - .*\""
+      "        }"
+      "      }"
+      "    }"
+      "  }"
+      "}"
+      "image_scanning:{"
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{"
+      "        path:\"/usr/share/systemd/tmp.mount\"}}"      
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \".*/dev/shm.*\""
+      "          expected_regex: \".*nodev.*\""
+      "        }"
+      "      }"
+      "    }"
+      "  }"
+      "}}"
+  }
+}
