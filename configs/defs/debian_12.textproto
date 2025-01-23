@@ -4104,6 +4104,18 @@ benchmark_configs: {
     scan_instructions:
       "generic:{check_alternatives:{"
       "  file_checks:{"
+      "    files_to_check:{single_file:{path:\"/var/lib/dpkg/status\"}}"
+      "    content_entry:{"
+      "      match_type: NONE_MATCH"
+      "      match_criteria: {"
+      "        filter_regex: \"Package: autofs\""
+      "        expected_regex: \"Package: autofs\""
+      "      }"
+      "    }"
+      "  }"
+      "}"
+      "check_alternatives:{"
+      "  file_checks:{"
       "    files_to_check:{files_in_dir:{"
       "      dir_path:\"/etc/systemd/system\""
       "      recursive: true"
@@ -4112,6 +4124,65 @@ benchmark_configs: {
       "    existence:{should_exist: false}"
       "    non_compliance_msg: \"a config file in /etc/systemd/system enables autofs\""
       "    file_display_command: \"find /etc/systemd/system -name 'autofs.service'\""
+      "  }"
+      "}}"
+  }
+}
+
+
+benchmark_configs: {
+  id: "avahi-daemon-service-disabled"
+  compliance_note: {
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
+    title: "Ensure avahi daemon services are not in use"
+    description:
+      "Avahi is a free zeroconf implementation, including a system for multicast DNS/DNS-SD"
+      "service discovery. Avahi allows programs to publish and discover services and hosts"
+      "running on a local network with no specific configuration. For example, a user can plug"
+      "a computer into a network and Avahi automatically finds printers to print to, files to look"
+      "at and people to talk to, as well as network services running on the machine."
+    rationale:
+      "Automatic discovery of network services is not normally required for system"
+      "functionality. It is recommended to remove this package to reduce the potential attack"
+      "surface."
+    remediation:
+      "Run the following commands to stop avahi-daemon.socket and avahi-"
+      "daemon.service, and remove the avahi-daemon package:"
+      "# systemctl stop avahi-daemon.socket avahi-daemon.service"
+      "# apt purge avahi-daemon"
+      "- OR -"
+      "- IF - the avahi-daemon package is required as a dependency:"
+      "Run the following commands to stop and mask the avahi-daemon.socket and avahi-"
+      "daemon.service:"
+      "# systemctl stop avahi-daemon.socket avahi-daemon.service"
+      "# systemctl mask avahi-daemon.socket avahi-daemon.service"
+    cis_benchmark: {
+      profile_level: 2
+      severity: LOW
+    }
+    scan_instructions:
+      "generic:{check_alternatives:{"
+      "  file_checks:{"
+      "    files_to_check:{single_file:{path:\"/var/lib/dpkg/status\"}}"
+      "    content_entry:{"
+      "      match_type: NONE_MATCH"
+      "      match_criteria: {"
+      "        filter_regex: \"Package: avahi.*\""
+      "        expected_regex: \"Package: avahi.*\""
+      "      }"
+      "    }"
+      "  }"
+      "}"
+      "check_alternatives:{"
+      "  file_checks:{"
+      "    files_to_check:{files_in_dir:{"
+      "      dir_path:\"/etc/systemd/system\""
+      "      recursive: true"
+      "      filename_regex: \"avahi-daemon.service\""
+      "    }}"
+      "    existence:{should_exist: false}"
+      "    non_compliance_msg: \"a config file in /etc/systemd/system enables avahi-daemon\""
+      "    file_display_command: \"find /etc/systemd/system -name 'avahi-daemon.service'\""
       "  }"
       "}}"
   }
