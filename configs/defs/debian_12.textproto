@@ -3732,8 +3732,8 @@ benchmark_configs: {
       "        content_entry:{"
       "          match_type: NONE_MATCH"
       "          match_criteria: {"
-      "            filter_regex: \"((.*\\\\\m.*)|(.*\\\\\r.*)|(.*\\\\\s.*)|(.*\\\\\v.*)|(.*(D|d)ebian.*)|(.*12.*))\""
-      "            expected_regex: \"((.*\\\\\m.*)|(.*\\\\\r.*)|(.*\\\\\s.*)|(.*\\\\\v.*)|(.*(D|d)ebian.*)|(.*12.*))\""
+      "            filter_regex: \"((.*\\\\m.*)|(.*\\\\r.*)|(.*\\\\s.*)|(.*\\\\v.*)|(.*(D|d)ebian.*)|(.*12.*))\""
+      "            expected_regex: \"((.*\\\\m.*)|(.*\\\\r.*)|(.*\\\\s.*)|(.*\\\\v.*)|(.*(D|d)ebian.*)|(.*12.*))\""
       "          }"
       "        }"
       "     }"
@@ -3752,8 +3752,8 @@ benchmark_configs: {
       "        content_entry:{"
       "          match_type: NONE_MATCH"
       "          match_criteria: {"
-      "            filter_regex: \"((.*\\\\\m.*)|(.*\\\\\r.*)|(.*\\\\\s.*)|(.*\\\\\v.*)|(.*(D|d)ebian.*)|(.*12.*))\""
-      "            expected_regex: \"((.*\\\\\m.*)|(.*\\\\\r.*)|(.*\\\\\s.*)|(.*\\\\\v.*)|(.*(D|d)ebian.*)|(.*12.*))\""
+      "            filter_regex: \"((.*\\\\m.*)|(.*\\\\r.*)|(.*\\\\s.*)|(.*\\\\v.*)|(.*(D|d)ebian.*)|(.*12.*))\""
+      "            expected_regex: \"((.*\\\\m.*)|(.*\\\\r.*)|(.*\\\\s.*)|(.*\\\\v.*)|(.*(D|d)ebian.*)|(.*12.*))\""
       "          }"
       "        }"
       "     }"
@@ -3812,8 +3812,8 @@ benchmark_configs: {
       "        content_entry:{"
       "          match_type: NONE_MATCH"
       "          match_criteria: {"
-      "            filter_regex: \"((.*\\\\\m.*)|(.*\\\\\r.*)|(.*\\\\\s.*)|(.*\\\\\v.*)|(.*(D|d)ebian.*)|(.*12.*))\""
-      "            expected_regex: \"((.*\\\\\m.*)|(.*\\\\\r.*)|(.*\\\\\s.*)|(.*\\\\\v.*)|(.*(D|d)ebian.*)|(.*12.*))\""
+      "            filter_regex: \"((.*\\\\m.*)|(.*\\\\r.*)|(.*\\\\s.*)|(.*\\\\v.*)|(.*(D|d)ebian.*)|(.*12.*))\""
+      "            expected_regex: \"((.*\\\\m.*)|(.*\\\\r.*)|(.*\\\\s.*)|(.*\\\\v.*)|(.*(D|d)ebian.*)|(.*12.*))\""
       "          }"
       "        }"
       "     }"
@@ -3832,8 +3832,8 @@ benchmark_configs: {
       "        content_entry:{"
       "          match_type: NONE_MATCH"
       "          match_criteria: {"
-      "            filter_regex: \"((.*\\\\\m.*)|(.*\\\\\r.*)|(.*\\\\\s.*)|(.*\\\\\v.*)|(.*(D|d)ebian.*)|(.*12.*))\""
-      "            expected_regex: \"((.*\\\\\m.*)|(.*\\\\\r.*)|(.*\\\\\s.*)|(.*\\\\\v.*)|(.*(D|d)ebian.*)|(.*12.*))\""
+      "            filter_regex: \"((.*\\\\m.*)|(.*\\\\r.*)|(.*\\\\s.*)|(.*\\\\v.*)|(.*(D|d)ebian.*)|(.*12.*))\""
+      "            expected_regex: \"((.*\\\\m.*)|(.*\\\\r.*)|(.*\\\\s.*)|(.*\\\\v.*)|(.*(D|d)ebian.*)|(.*12.*))\""
       "          }"
       "        }"
       "     }"
@@ -3892,8 +3892,8 @@ benchmark_configs: {
       "        content_entry:{"
       "          match_type: NONE_MATCH"
       "          match_criteria: {"
-      "            filter_regex: \"((.*\\\\\m.*)|(.*\\\\\r.*)|(.*\\\\\s.*)|(.*\\\\\v.*)|(.*(D|d)ebian.*)|(.*12.*))\""
-      "            expected_regex: \"((.*\\\\\m.*)|(.*\\\\\r.*)|(.*\\\\\s.*)|(.*\\\\\v.*)|(.*(D|d)ebian.*)|(.*12.*))\""
+      "            filter_regex: \"((.*\\\\m.*)|(.*\\\\r.*)|(.*\\\\s.*)|(.*\\\\v.*)|(.*(D|d)ebian.*)|(.*12.*))\""
+      "            expected_regex: \"((.*\\\\m.*)|(.*\\\\r.*)|(.*\\\\s.*)|(.*\\\\v.*)|(.*(D|d)ebian.*)|(.*12.*))\""
       "          }"
       "        }"
       "     }"
@@ -3912,8 +3912,8 @@ benchmark_configs: {
       "        content_entry:{"
       "          match_type: NONE_MATCH"
       "          match_criteria: {"
-      "            filter_regex: \"((.*\\\\\m.*)|(.*\\\\\r.*)|(.*\\\\\s.*)|(.*\\\\\v.*)|(.*(D|d)ebian.*)|(.*12.*))\""
-      "            expected_regex: \"((.*\\\\\m.*)|(.*\\\\\r.*)|(.*\\\\\s.*)|(.*\\\\\v.*)|(.*(D|d)ebian.*)|(.*12.*))\""
+      "            filter_regex: \"((.*\\\\m.*)|(.*\\\\r.*)|(.*\\\\s.*)|(.*\\\\v.*)|(.*(D|d)ebian.*)|(.*12.*))\""
+      "            expected_regex: \"((.*\\\\m.*)|(.*\\\\r.*)|(.*\\\\s.*)|(.*\\\\v.*)|(.*(D|d)ebian.*)|(.*12.*))\""
       "          }"
       "        }"
       "     }"
@@ -3926,5 +3926,42 @@ benchmark_configs: {
       "  }" 
       "}"
       "}"
+  }
+}
+
+benchmark_configs: {
+  id: "motd-access"
+  compliance_note: {
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }   
+    title: "Ensure access to /etc/motd is configure"
+    description:
+      "The contents of the /etc/motd file are displayed to users after login "
+      "and function as a message of the day for authenticated users."
+    rationale:
+      "If the /etc/motd file does not have the correct ownership it could be "
+      "modified by unauthorized users with incorrect or misleading information."
+    remediation:
+      "Run the following commands to set permissions on /etc/motd:\n"
+      "```\n"
+      "# chown root:root /etc/motd\n"
+      "# chmod 644 /etc/motd\n"
+      "```\n"
+    cis_benchmark: {
+      profile_level: 1
+      severity: LOW
+    }
+    scan_instructions:
+      "generic:{check_alternatives:{"
+      "  file_checks:{"
+      "    files_to_check:{single_file:{path:\"/etc/motd\"}}"
+      "    permission:{"
+      "      set_bits: 0444"
+      "      clear_bits: 0133"
+      "      bits_should_match: BOTH_SET_AND_CLEAR"
+      "      user: {name: \"root\" should_own: true}"
+      "      group: {name: \"root\" should_own: true}"
+      "    }"
+      "  }"
+      "}}"
   }
 }
