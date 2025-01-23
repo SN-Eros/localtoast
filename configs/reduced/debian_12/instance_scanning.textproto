@@ -48,4 +48,4 @@ benchmark_id: "etc-issue-net-configured"
 benchmark_id: "motd-access"
 benchmark_id: "etc-issue-access"
 benchmark_id: "etc-issue-net-access"
-
+benchmark_id: "ensure-gdm-removed"
