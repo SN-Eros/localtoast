@@ -4011,7 +4011,7 @@ benchmark_configs: {
   }
 }
 benchmark_configs: {
-  id: "disable-gnome-automount-removable-media"
+  id: "ensure-disable-gnome-automount-removable-media-not-overridden"
   compliance_note: {
     version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure GNOME Automounting of Removable Media is Disabled"
