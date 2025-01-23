@@ -46,4 +46,5 @@ benchmark_id: "motd-configured"
 benchmark_id: "etc-issue-configured"
 benchmark_id: "etc-issue-net-configured"
 benchmark_id: "motd-access"
+benchmark_id: "etc-issue-access"
 
