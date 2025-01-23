@@ -4074,3 +4074,46 @@ benchmark_configs: {
       "}}"
   }
 }
+
+benchmark_configs: {
+  id: "autofs-service-disabled"
+  compliance_note: {
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
+    title: "Ensure autofs services are not in us"
+    description:
+      "autofs allows automatic mounting of devices, typically including CD/"
+      "DVDs and USB drives."
+    rationale:
+      "With automounting enabled anyone with physical access could attach a "
+      "USB drive or disc and have its contents available in system even if "
+      "they lacked permissions to mount it themselves."
+    remediation:
+      "Run the following commands to stop autofs.service and remove the autofs"
+      "package:"
+      "# systemctl stop autofs.service"
+      "# apt purge autofs"
+      "- OR -"
+      "- IF - the autofs package is required as a dependency:"
+      "Run the following commands to stop and mask autofs.service:"
+      "# systemctl stop autofs.service"
+      "# systemctl mask autofs.service"
+    cis_benchmark: {
+      profile_level: 2
+      severity: LOW
+    }
+    scan_instructions:
+      "generic:{check_alternatives:{"
+      "  file_checks:{"
+      "    files_to_check:{files_in_dir:{"
+      "      dir_path:\"/etc/systemd/system\""
+      "      recursive: true"
+      "      filename_regex: \"autofs.service\""
+      "    }}"
+      "    existence:{should_exist: false}"
+      "    non_compliance_msg: \"a config file in /etc/systemd/system enables autofs\""
+      "    file_display_command: \"find /etc/systemd/system -name 'autofs.service'\""
+      "  }"
+      "}}"
+  }
+}
+
