@@ -5755,6 +5755,7 @@ benchmark_configs: {
   id: "motd-permissions"
   compliance_note: {
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure permissions on /etc/motd are configured"
     description:
       "The contents of the /etc/motd file are displayed to users after login "
