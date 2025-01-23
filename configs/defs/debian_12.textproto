@@ -3688,3 +3688,83 @@ benchmark_configs: {
       "}}"
   }
 }
+
+benchmark_configs: {
+  id: "motd-configured"
+  compliance_note: {
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }   
+    title: "Ensure message of the day is configured properly"
+    description:
+      "The contents of the /etc/motd file are displayed to users after login and function as a"
+      "message of the day for authenticated users."
+      "Unix-based systems have typically displayed information about the OS release and"
+      "patch level upon logging in to the system. This information can be useful to developers"
+      "who are developing software for a particular OS platform. If mingetty(8) supports the"
+      "following options, they display operating system information: \\\\m - machine architecture"
+      "\\\\r - operating system release \\\\s - operating system name \\\\v - operating system"
+      "version"
+    rationale:
+      "Warning messages inform users who are attempting to login to the "
+      "system of their legal status regarding the system and must include the "
+      "name of the organization that owns the system and any monitoring "
+      "policies that are in place. Displaying OS and patch level information "
+      "in login banners also has the side effect of providing detailed system "
+      "information to attackers attempting to target specific exploits of a "
+      "system. Authorized users can easily get this information by running "
+      "the \"uname -a\" command once they have logged in."
+    remediation:
+      "Warning messages inform users who are attempting to login to the system of their legal"
+      "status regarding the system and must include the name of the organization that owns"
+      "the system and any monitoring policies that are in place. Displaying OS and patch level"
+      "information in login banners also has the side effect of providing detailed system"
+      "information to attackers attempting to target specific exploits of a system. Authorized"
+      "users can easily get this information by running the \" uname -a \" command once they"
+      "have logged in."
+    cis_benchmark: {
+      profile_level: 1
+      severity: LOW
+    }
+    scan_instructions:
+      "scan_type_specific:{instance_scanning:{"
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{path:\"/etc/motd\"}}"
+      "        content_entry:{"
+      "          match_type: NONE_MATCH"
+      "          match_criteria: {"
+      "            filter_regex: \"((.*debian.*)|(.*12.*))\""
+      "            expected_regex: \"((.*debian.*)|(.*12.*))\""
+      "          }"
+      "        }"
+      "     }"
+      "  }"
+      "  check_alternatives:{"
+      "	   file_checks:{"
+      "      files_to_check:{single_file:{path:\"/etc/motd\"}}"
+      "      existence:{should_exist:false}"
+      "	   }"
+      "  }" 
+      "}"
+      "image_scanning:{"
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{path:\"/etc/motd\"}}"
+      "        content_entry:{"
+      "          match_type: NONE_MATCH"
+      "          match_criteria: {"
+      "            filter_regex: \"((.*debian.*)|(.*12.*))\""
+      "            expected_regex: \"((.*debian.*)|(.*12.*))\""
+      "          }"
+      "        }"
+      "     }"
+      "  }"
+      "  check_alternatives:{"
+      "	   file_checks:{"
+      "      files_to_check:{single_file:{path:\"/etc/motd\"}}"
+      "      existence:{should_exist:false}"
+      "	   }"
+      "  }" 
+      "}"
+      "}"
+  }
+}
