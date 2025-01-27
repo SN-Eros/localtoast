@@ -3687,6 +3687,7 @@ benchmark_configs: {
   id: "iptables-persistent-not-installed-with-ufw"
   compliance_note: {
     version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure iptables-persistent is not installed with ufw"
     description: 
       "The iptables-persistent is a boot-time loader for Netfilter rules, which may conflict with ufw if both are running simultaneously."
