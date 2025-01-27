@@ -3658,6 +3658,7 @@ benchmark_configs: {
   id: "ufw-is-installed"
   compliance_note: {
     version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure ufw is installed"
     description:
       "The Uncomplicated Firewall (ufw) is a frontend for iptables and is particularly well-suited for host-based firewalls. It provides a framework for managing Netfilter and a command-line interface for firewall configuration."
