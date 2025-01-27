@@ -4403,3 +4403,56 @@ benchmark_configs: {
   }
 }
 
+benchmark_configs: {
+  id: "ldap-server-service-disabled"
+  compliance_note: {
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
+    title: "Ensure ldap server services are not in us"
+    description:
+      "The Lightweight Directory Access Protocol (LDAP) was introduced as a replacement for"
+      "NIS/YP. It is a service that provides a method for looking up information from a central"
+      "database."
+    rationale:
+      "If the system will not need to act as an LDAP server, it is recommended that the"
+      "software be removed to reduce the potential attack surface."
+    remediation:
+      "Run the following commands to stop slapd.service and remove the slapd package:"
+      "# systemctl stop slapd.service"
+      "# apt purge slapd"
+      "- OR -"
+      "- IF - the slapd package is required as a dependency:"
+      "Run the following commands to stop and mask slapd.service:"
+      "# systemctl stop slapd.service"
+      "# systemctl mask slapd.service"
+    cis_benchmark: {
+      profile_level: 1
+      severity: LOW
+    }
+    scan_instructions:
+      "generic:{check_alternatives:{"
+      "  file_checks:{"
+      "    files_to_check:{single_file:{path:\"/var/lib/dpkg/status\"}}"
+      "    content_entry:{"
+      "      match_type: NONE_MATCH"
+      "      match_criteria: {"
+      "        filter_regex: \"Package: slapd.*\""
+      "        expected_regex: \"Package: slapd.*\""
+      "      }"
+      "    }"
+      "  }"
+      "}"
+      "check_alternatives:{"
+      "  file_checks:{"
+      "    files_to_check:{files_in_dir:{"
+      "      dir_path:\"/etc/systemd/system\""
+      "      recursive: true"
+      "      filename_regex: \"slapd.service\""
+      "    }}"
+      "    existence:{should_exist: false}"
+      "    non_compliance_msg: \"a config file in /etc/systemd/system enables slapd.service\""
+      "    file_display_command: \"find /etc/systemd/system -name 'slapd.service'\""
+      "  }"
+      "}}"
+  }
+}
+
