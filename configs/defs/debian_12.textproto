@@ -4348,3 +4348,58 @@ benchmark_configs: {
   }
 }
 
+benchmark_configs: {
+  id: "ftp-server-service-disabled"
+  compliance_note: {
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
+    title: "Ensure ftp server services are not in use"
+    description:
+      "The File Transfer Protocol (FTP) provides networked computers with the ability to"
+      "transfer files. vsftpd is the Very Secure File Transfer Protocol Daemon."
+    rationale:
+      "FTP does not protect the confidentiality of data or authentication credentials. It is"
+      "recommended SFTP be used if file transfer is required. Unless there is a need to run"
+      "the system as a FTP server (for example, to allow anonymous downloads), it is"
+      "recommended that the package be deleted to reduce the potential attack surface."
+    remediation:
+      "Run the following commands to stop vsftpd.service and remove the vsftpd"
+      "package:"
+      "# systemctl stop vsftpd.service"
+      "# apt purge vsftpd"
+      "- OR -"
+      "- IF - the vsftpd package is required as a dependency:"
+      "Run the following commands to stop and mask the vsftpd.service:"
+      "# systemctl stop vsftpd.service"
+      "# systemctl mask vsftpd.service"
+    cis_benchmark: {
+      profile_level: 1
+      severity: LOW
+    }
+    scan_instructions:
+      "generic:{check_alternatives:{"
+      "  file_checks:{"
+      "    files_to_check:{single_file:{path:\"/var/lib/dpkg/status\"}}"
+      "    content_entry:{"
+      "      match_type: NONE_MATCH"
+      "      match_criteria: {"
+      "        filter_regex: \"Package: vsftpd.*\""
+      "        expected_regex: \"Package: vsftpd.*\""
+      "      }"
+      "    }"
+      "  }"
+      "}"
+      "check_alternatives:{"
+      "  file_checks:{"
+      "    files_to_check:{files_in_dir:{"
+      "      dir_path:\"/etc/systemd/system\""
+      "      recursive: true"
+      "      filename_regex: \"vsftpd.service\""
+      "    }}"
+      "    existence:{should_exist: false}"
+      "    non_compliance_msg: \"a config file in /etc/systemd/system enables vsftpd.service\""
+      "    file_display_command: \"find /etc/systemd/system -name 'vsftpd.service'\""
+      "  }"
+      "}}"
+  }
+}
+
