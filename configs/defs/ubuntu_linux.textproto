@@ -5142,6 +5142,7 @@ benchmark_configs: {
   id: "ensure-chrony-running-as-user-chrony"
   compliance_note: {
     version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure chrony is running as user _chrony"
     description:
       "The chrony package is installed with a dedicated user account _chrony. This account is granted the access required by the chronyd service."
