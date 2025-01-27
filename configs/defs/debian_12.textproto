@@ -4295,3 +4295,56 @@ benchmark_configs: {
   }
 }
 
+benchmark_configs: {
+  id: "dnsmasq-service-disabled"
+  compliance_note: {
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
+    title: "Ensure dnsmasq services are not in use"
+    description:
+      "dnsmasq is a lightweight tool that provides DNS caching, DNS forwarding and DHCP"
+      "(Dynamic Host Configuration Protocol) services."
+    rationale:
+      "Unless a system is specifically designated to act as a DNS caching, DNS forwarding"
+      "and/or DHCP server, it is recommended that the package be removed to reduce the"
+      "potential attack surface."
+    remediation:
+      "Run the following commands to stop dnsmasq.service and remove dnsmasq package:"
+      "# systemctl stop dnsmasq.service"
+      "# apt purge dnsmasq"
+      "- OR -"
+      "- IF - the dnsmasq package is required as a dependency:"
+      "Run the following commands to stop and mask the dnsmasq.service:"
+      "# systemctl stop dnsmasq.service"
+      "# systemctl mask dnsmasq.service"
+    cis_benchmark: {
+      profile_level: 1
+      severity: LOW
+    }
+    scan_instructions:
+      "generic:{check_alternatives:{"
+      "  file_checks:{"
+      "    files_to_check:{single_file:{path:\"/var/lib/dpkg/status\"}}"
+      "    content_entry:{"
+      "      match_type: NONE_MATCH"
+      "      match_criteria: {"
+      "        filter_regex: \"Package: dnsmasq.*\""
+      "        expected_regex: \"Package: dnsmasq.*\""
+      "      }"
+      "    }"
+      "  }"
+      "}"
+      "check_alternatives:{"
+      "  file_checks:{"
+      "    files_to_check:{files_in_dir:{"
+      "      dir_path:\"/etc/systemd/system\""
+      "      recursive: true"
+      "      filename_regex: \"dnsmasq.service\""
+      "    }}"
+      "    existence:{should_exist: false}"
+      "    non_compliance_msg: \"a config file in /etc/systemd/system enables dnsmasq.service\""
+      "    file_display_command: \"find /etc/systemd/system -name 'dnsmasq.service'\""
+      "  }"
+      "}}"
+  }
+}
+
