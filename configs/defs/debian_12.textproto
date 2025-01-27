@@ -5225,3 +5225,40 @@ benchmark_configs: {
       "}}"
   }
 }
+
+benchmark_configs: {
+  id: "ensure-ftp-client-not-installed"
+  compliance_note: {
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
+    title: "Ensure FTP client is not installed"
+    description: 
+      "tnftp an enhanced FTP client, is the user interface to the Internet standard File"
+      "Transfer Protocol. The program allows a user to transfer files to and from a remote"
+      "network site."
+    rationale: 
+      "Unless there is a need to run the system using Internet standard File Transfer Protocol"
+      "(for example, to allow anonymous downloads), it is recommended that the package be"
+      "removed to reduce the potential attack surface."
+    remediation: 
+      "Run the following command to uninstall tnftp & ftp:\n"
+      "```\n"
+      "# apt purge ftp\n"
+      "# apt purge tnftp\n"
+      "```"
+      "Ensure alternative secure protocols like SFTP are used if file transfer is required."
+    cis_benchmark: {
+      profile_level: 1
+      severity: MEDIUM
+    }
+    scan_instructions:
+      "generic:{check_alternatives:{"
+      "  file_checks:{"
+      "    files_to_check:{single_file:{path:\"/usr/bin/(tnftp|ftp)\"}}"
+      "    files_to_check:{single_file:{path:\"/usr/sbin/(tnftp|ftp)\"}}"
+      "    files_to_check:{single_file:{path:\"/bin/(tnftp|ftp)\"}}"
+      "    files_to_check:{single_file:{path:\"/sbin/(tnftp|ftp)\"}}"
+      "    existence:{should_exist: false}"
+      "  }"
+      "}}"
+  }
+}
