@@ -4129,7 +4129,6 @@ benchmark_configs: {
   }
 }
 
-
 benchmark_configs: {
   id: "avahi-daemon-service-disabled"
   compliance_note: {
@@ -4183,6 +4182,62 @@ benchmark_configs: {
       "    existence:{should_exist: false}"
       "    non_compliance_msg: \"a config file in /etc/systemd/system enables avahi-daemon\""
       "    file_display_command: \"find /etc/systemd/system -name 'avahi-daemon.service'\""
+      "  }"
+      "}}"
+  }
+}
+
+benchmark_configs: {
+  id: "dhcp-server-service-disabled"
+  compliance_note: {
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
+    title: "Ensure dhcp server services are not in use"
+    description:
+      "The Dynamic Host Configuration Protocol (DHCP) is a service that allows machines to"
+      "be dynamically assigned IP addresses. There are two versions of the DHCP protocol"
+      "DHCPv4 and DHCPv6. At startup the server may be started for one or the other via the -4"
+      "or -6 arguments."
+    rationale:
+      "Unless a system is specifically set up to act as a DHCP server, it is recommended that"
+      "this package be removed to reduce the potential attack surface."
+    remediation:
+      "Run the following commands to stop isc-dhcp-server.service and isc-dhcp-"
+      "server6.service and remove the isc-dhcp-server package:"
+      "# systemctl stop isc-dhcp-server.service isc-dhcp-server6.service"
+      "# apt purge isc-dhcp-server"
+      "- OR -"
+      "- IF - the isc-dhcp-server package is required as a dependency:"
+      "Run the following commands to stop and mask isc-dhcp-server.service and isc-"
+      "dhcp-server6.service:"
+      "# systemctl stop isc-dhcp-server.service isc-dhcp-server6.service"
+      "# systemctl mask isc-dhcp-server isc-dhcp-server6.service"
+    cis_benchmark: {
+      profile_level: 1
+      severity: LOW
+    }
+    scan_instructions:
+      "generic:{check_alternatives:{"
+      "  file_checks:{"
+      "    files_to_check:{single_file:{path:\"/var/lib/dpkg/status\"}}"
+      "    content_entry:{"
+      "      match_type: NONE_MATCH"
+      "      match_criteria: {"
+      "        filter_regex: \"Package: isc-dhcp-server.*\""
+      "        expected_regex: \"Package: isc-dhcp-server.*\""
+      "      }"
+      "    }"
+      "  }"
+      "}"
+      "check_alternatives:{"
+      "  file_checks:{"
+      "    files_to_check:{files_in_dir:{"
+      "      dir_path:\"/etc/systemd/system\""
+      "      recursive: true"
+      "      filename_regex: \"isc-dhcp-server*[0-9]*.service\""
+      "    }}"
+      "    existence:{should_exist: false}"
+      "    non_compliance_msg: \"a config file in /etc/systemd/system enables isc-dhcp-server\""
+      "    file_display_command: \"find /etc/systemd/system -name 'isc-dhcp-server.service'\""
       "  }"
       "}}"
   }
