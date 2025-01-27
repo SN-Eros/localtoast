@@ -4571,7 +4571,7 @@ benchmark_configs: {
   id: "nis-service-disabled"
   compliance_note: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
-    title: "Ensure nis server services are not in us"
+    title: "Ensure nis server services are not in use"
     description:
       "The Network Information Service (NIS) (formally known as Yellow Pages) is a client-"
       "server directory service protocol for distributing system configuration files. The NIS"
@@ -4629,7 +4629,7 @@ benchmark_configs: {
   id: "cups-service-disabled"
   compliance_note: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
-    title: "Ensure nis server services are not in us"
+    title: "Ensure nis server services are not in use"
     description:
       "The Common Unix Print System (CUPS) provides the ability to print to both local and"
       "network printers. A system running CUPS can also accept print jobs from remote"
@@ -4675,6 +4675,125 @@ benchmark_configs: {
       "    existence:{should_exist: false}"
       "    non_compliance_msg: \"a config file in /etc/systemd/system enables cups.service\""
       "    file_display_command: \"find /etc/systemd/system -name 'cups.service'\""
+      "  }"
+      "}}"
+  }
+}
+
+benchmark_configs: {
+  id: "cups-service-disabled"
+  compliance_note: {
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
+    title: "Ensure nis server services are not in use"
+    description:
+      "The Common Unix Print System (CUPS) provides the ability to print to both local and"
+      "network printers. A system running CUPS can also accept print jobs from remote"
+      "systems and print them to local printers. It also provides a web based remote"
+      "administration capability."
+    rationale:
+      "If the system does not need to print jobs or accept print jobs from other systems, it is"
+      "recommended that CUPS be removed to reduce the potential attack surface."
+    remediation:
+      "Run the following commands to stop cups.socket and cups.service, and remove the"
+      "cups package:"
+      "# systemctl stop cups.socket cups.service"
+      "# apt purge cups"
+      "- OR -"
+      "- IF - the cups package is required as a dependency:"
+      "Run the following commands to stop and mask the cups.socket and cups.service:"
+      "# systemctl stop cups.socket cups.service"
+      "# systemctl mask cups.socket cups.service"
+    cis_benchmark: {
+      profile_level: 2
+      severity: LOW
+    }
+    scan_instructions:
+      "generic:{check_alternatives:{"
+      "  file_checks:{"
+      "    files_to_check:{single_file:{path:\"/var/lib/dpkg/status\"}}"
+      "    content_entry:{"
+      "      match_type: NONE_MATCH"
+      "      match_criteria: {"
+      "        filter_regex: \"Package: cups.*\""
+      "        expected_regex: \"Package: cups\""
+      "      }"
+      "    }"
+      "  }"
+      "}"
+      "check_alternatives:{"
+      "  file_checks:{"
+      "    files_to_check:{files_in_dir:{"
+      "      dir_path:\"/etc/systemd/system\""
+      "      recursive: true"
+      "      filename_regex: \"cups.(service|socket)\""
+      "    }}"
+      "    existence:{should_exist: false}"
+      "    non_compliance_msg: \"a config file in /etc/systemd/system enables cups.service\""
+      "    file_display_command: \"find /etc/systemd/system -name 'cups.service'\""
+      "  }"
+      "}}"
+  }
+}
+
+benchmark_configs: {
+  id: "rpcbind-service-disabled"
+  compliance_note: {
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
+    title: "Ensure rpcbind services are not in use"
+    description:
+      "The rpcbind utility maps RPC services to the ports on which they listen. RPC"
+      "processes notify rpcbind when they start, registering the ports they are listening on and"
+      "the RPC program numbers they expect to serve. The client system then contacts"
+      "rpcbind on the server with a particular RPC program number. The rpcbind.service"
+      "redirects the client to the proper port number so it can communicate with the requested"
+      "service."
+      "Portmapper is an RPC service, which always listens on tcp and udp 111, and is used to"
+      "map other RPC services (such as nfs, nlockmgr, quotad, mountd, etc.) to their"
+      "corresponding port number on the server. When a remote host makes an RPC call to"
+      "that server, it first consults with portmap to determine where the RPC server is listening."
+    rationale:
+      "A small request (~82 bytes via UDP) sent to the Portmapper generates a large"
+      "response (7x to 28x amplification), which makes it a suitable tool for DDoS attacks. If"
+      "rpcbind is not required, it is recommended to remove rpcbind package to reduce the"
+      "potential attack surface."
+    remediation:
+      "Run the following commands to stop rpcbind.socket and rpcbind.service, and"
+      "remove the rpcbind package:"
+      "# systemctl stop rpcbind.socket rpcbind.service"
+      "# apt purge rpcbind"
+      "- OR -"
+      "- IF - the rpcbind package is required as a dependency:"
+      "Run the following commands to stop and mask the rpcbind.socket and"
+      "rpcbind.service:"
+      "# systemctl stop rpcbind.socket rpcbind.service"
+      "# systemctl mask rpcbind.socket rpcbind.service"
+    cis_benchmark: {
+      profile_level: 2
+      severity: LOW
+    }
+    scan_instructions:
+      "generic:{check_alternatives:{"
+      "  file_checks:{"
+      "    files_to_check:{single_file:{path:\"/var/lib/dpkg/status\"}}"
+      "    content_entry:{"
+      "      match_type: NONE_MATCH"
+      "      match_criteria: {"
+      "        filter_regex: \"Package: rpcbind.*\""
+      "        expected_regex: \"Package: rpcbind\""
+      "      }"
+      "    }"
+      "  }"
+      "}"
+      "check_alternatives:{"
+      "  file_checks:{"
+      "    files_to_check:{files_in_dir:{"
+      "      dir_path:\"/etc/systemd/system\""
+      "      recursive: true"
+      "      filename_regex: \"rpcbind.(service|socket)\""
+      "    }}"
+      "    existence:{should_exist: false}"
+      "    non_compliance_msg: \"a config file in /etc/systemd/system enables rpcbind.service\""
+      "    file_display_command: \"find /etc/systemd/system -name 'rpcbind.service'\""
       "  }"
       "}}"
   }
