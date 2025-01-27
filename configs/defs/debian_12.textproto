@@ -5026,3 +5026,53 @@ benchmark_configs: {
       "}}"
   }
 }
+
+benchmark_configs: {
+  id: "squid-service-disabled"
+  compliance_note: {
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
+    title: "Ensure web proxy server services are not in use"
+    description:
+      "Squid is a standard proxy server used in many distributions and environments."
+    rationale:
+      "Unless a system is specifically set up to act as a proxy server, it is recommended that"
+      "the squid package be removed to reduce the potential attack surface."
+    remediation:
+      "Run the following commands to stop squid.service and remove the squid package:"
+      "# systemctl stop squid.service"
+      "# apt purge squid"
+      "- OR - If the squid package is required as a dependency:"
+      "Run the following commands to stop and mask the squid.service:"
+      "# systemctl stop squid.service"
+      "# systemctl mask squid.service"
+    cis_benchmark: {
+      profile_level: 1
+      severity: LOW
+    }
+    scan_instructions:
+      "generic:{check_alternatives:{"
+      "  file_checks:{"
+      "    files_to_check:{single_file:{path:\"/var/lib/dpkg/status\"}}"
+      "    content_entry:{"
+      "      match_type: NONE_MATCH"
+      "      match_criteria: {"
+      "        filter_regex: \"Package: squid.*\""
+      "        expected_regex: \"Package: squid\""
+      "      }"
+      "    }"
+      "  }"
+      "}"
+      "check_alternatives:{"
+      "  file_checks:{"
+      "    files_to_check:{files_in_dir:{"
+      "      dir_path:\"/etc/systemd/system\""
+      "      recursive: true"
+      "      filename_regex: \"squid.service\""
+      "    }}"
+      "    existence:{should_exist: false}"
+      "    non_compliance_msg: \"a config file in /etc/systemd/system enables squid.service\""
+      "    file_display_command: \"find /etc/systemd/system -name 'squid.service'\""
+      "  }"
+      "}}"
+  }
+}
