@@ -4513,4 +4513,58 @@ benchmark_configs: {
   }
 }
 
+benchmark_configs: {
+  id: "network-fs-service-disabled"
+  compliance_note: {
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
+    title: " Ensure network file system services are not in use"
+    description:
+      "The Network File System (NFS) is one of the first and most widely distributed file"
+      "systems in the UNIX environment. It provides the ability for systems to mount file"
+      "systems of other servers through the network."
+    rationale:
+      "If the system does not export NFS shares, it is recommended that the nfs-kernel-server"
+      "package be removed to reduce the remote attack surface."
+    remediation:
+      "Run the following command to stop nfs-server.service and remove nfs-kernel-"
+      "server package:"
+      "# systemctl stop nfs-server.service"
+      "# apt purge nfs-kernel-server"
+      "- OR -"
+      "- IF - the nfs-kernel-server package is required as a dependency:"
+      "Run the following commands to stop and mask the nfs-server.service:"
+      "# systemctl stop nfs-server.service"
+      "# systemctl mask nfs-server.service"
+    cis_benchmark: {
+      profile_level: 1
+      severity: LOW
+    }
+    scan_instructions:
+      "generic:{check_alternatives:{"
+      "  file_checks:{"
+      "    files_to_check:{single_file:{path:\"/var/lib/dpkg/status\"}}"
+      "    content_entry:{"
+      "      match_type: NONE_MATCH"
+      "      match_criteria: {"
+      "        filter_regex: \"Package: nfs-kernel-server.*\""
+      "        expected_regex: \"Package: nfs-kernel-server\""
+      "      }"
+      "    }"
+      "  }"
+      "}"
+      "check_alternatives:{"
+      "  file_checks:{"
+      "    files_to_check:{files_in_dir:{"
+      "      dir_path:\"/etc/systemd/system\""
+      "      recursive: true"
+      "      filename_regex: \"nfs-server.service\""
+      "    }}"
+      "    existence:{should_exist: false}"
+      "    non_compliance_msg: \"a config file in /etc/systemd/system enables nfs-server.service\""
+      "    file_display_command: \"find /etc/systemd/system -name 'nfs-server.service'\""
+      "  }"
+      "}}"
+  }
+}
+
 
