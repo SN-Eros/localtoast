@@ -4460,7 +4460,7 @@ benchmark_configs: {
   id: "message-access-server-service-disabled"
   compliance_note: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
-    title: " Ensure message access server services are not in use"
+    title: "Ensure message access server services are not in use"
     description:
       "dovecot-imapd and dovecot-pop3d are an open source IMAP and POP3 server for"
       "Linux based systems."
@@ -4567,4 +4567,60 @@ benchmark_configs: {
   }
 }
 
-
+benchmark_configs: {
+  id: "nis-service-disabled"
+  compliance_note: {
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
+    title: "Ensure nis server services are not in us"
+    description:
+      "The Network Information Service (NIS) (formally known as Yellow Pages) is a client-"
+      "server directory service protocol for distributing system configuration files. The NIS"
+      "server is a collection of programs that allow for the distribution of configuration files. The"
+      "NIS client (ypbind) was used to bind a machine to an NIS server and receive the"
+      "distributed configuration files."
+    rationale:
+      "ypserv.service is inherently an insecure system that has been vulnerable to DOS"
+      "attacks, buffer overflows and has poor authentication for querying NIS maps. NIS"
+      "generally has been replaced by such protocols as Lightweight Directory Access"
+      "Protocol (LDAP). It is recommended that ypserv.service be removed and other, more"
+      "secure services be used"
+    remediation:
+      "Run the following commands to stop ypserv.service and remove ypserv package:"
+      "# systemctl stop ypserv.service"
+      "# apt purge ypserv"
+      "- OR -"
+      "- IF - the ypserv package is required as a dependency:"
+      "Run the following commands to stop and mask ypserv.service:"
+      "# systemctl stop ypserv.service"
+      "# systemctl mask ypserv.service"
+    cis_benchmark: {
+      profile_level: 1
+      severity: LOW
+    }
+    scan_instructions:
+      "generic:{check_alternatives:{"
+      "  file_checks:{"
+      "    files_to_check:{single_file:{path:\"/var/lib/dpkg/status\"}}"
+      "    content_entry:{"
+      "      match_type: NONE_MATCH"
+      "      match_criteria: {"
+      "        filter_regex: \"Package: ypserv.*\""
+      "        expected_regex: \"Package: ypserv\""
+      "      }"
+      "    }"
+      "  }"
+      "}"
+      "check_alternatives:{"
+      "  file_checks:{"
+      "    files_to_check:{files_in_dir:{"
+      "      dir_path:\"/etc/systemd/system\""
+      "      recursive: true"
+      "      filename_regex: \"ypserv.service\""
+      "    }}"
+      "    existence:{should_exist: false}"
+      "    non_compliance_msg: \"a config file in /etc/systemd/system enables ypserv.service\""
+      "    file_display_command: \"find /etc/systemd/system -name 'ypserv.service'\""
+      "  }"
+      "}}"
+  }
+}
