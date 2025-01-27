@@ -4624,3 +4624,58 @@ benchmark_configs: {
       "}}"
   }
 }
+
+benchmark_configs: {
+  id: "cups-service-disabled"
+  compliance_note: {
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
+    title: "Ensure nis server services are not in us"
+    description:
+      "The Common Unix Print System (CUPS) provides the ability to print to both local and"
+      "network printers. A system running CUPS can also accept print jobs from remote"
+      "systems and print them to local printers. It also provides a web based remote"
+      "administration capability."
+    rationale:
+      "If the system does not need to print jobs or accept print jobs from other systems, it is"
+      "recommended that CUPS be removed to reduce the potential attack surface."
+    remediation:
+      "Run the following commands to stop cups.socket and cups.service, and remove the"
+      "cups package:"
+      "# systemctl stop cups.socket cups.service"
+      "# apt purge cups"
+      "- OR -"
+      "- IF - the cups package is required as a dependency:"
+      "Run the following commands to stop and mask the cups.socket and cups.service:"
+      "# systemctl stop cups.socket cups.service"
+      "# systemctl mask cups.socket cups.service"
+    cis_benchmark: {
+      profile_level: 2
+      severity: LOW
+    }
+    scan_instructions:
+      "generic:{check_alternatives:{"
+      "  file_checks:{"
+      "    files_to_check:{single_file:{path:\"/var/lib/dpkg/status\"}}"
+      "    content_entry:{"
+      "      match_type: NONE_MATCH"
+      "      match_criteria: {"
+      "        filter_regex: \"Package: cups.*\""
+      "        expected_regex: \"Package: cups\""
+      "      }"
+      "    }"
+      "  }"
+      "}"
+      "check_alternatives:{"
+      "  file_checks:{"
+      "    files_to_check:{files_in_dir:{"
+      "      dir_path:\"/etc/systemd/system\""
+      "      recursive: true"
+      "      filename_regex: \"cups.(service|socket)\""
+      "    }}"
+      "    existence:{should_exist: false}"
+      "    non_compliance_msg: \"a config file in /etc/systemd/system enables cups.service\""
+      "    file_display_command: \"find /etc/systemd/system -name 'cups.service'\""
+      "  }"
+      "}}"
+  }
+}
