@@ -4243,3 +4243,55 @@ benchmark_configs: {
   }
 }
 
+benchmark_configs: {
+  id: "dns-server-service-disabled"
+  compliance_note: {
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
+    title: "Ensure dns server services are not in use"
+    description:
+      "The Domain Name System (DNS) is a hierarchical naming system that maps names to"
+      "IP addresses for computers, services and other resources connected to a network."
+    rationale:
+      "Unless a system is specifically designated to act as a DNS server, it is recommended"
+      "that the package be deleted to reduce the potential attack surface."
+    remediation:
+      "Run the following commands to stop named.service and remove the bind9 package:"
+      "# systemctl stop named.service"
+      "# apt purge bind9"
+      "- OR -"
+      "- IF - the bind9 package is required as a dependency:"
+      "Run the following commands to stop and mask bind9.service:"
+      "# systemctl stop named.service"
+      "# systemctl mask named.service"
+    cis_benchmark: {
+      profile_level: 1
+      severity: LOW
+    }
+    scan_instructions:
+      "generic:{check_alternatives:{"
+      "  file_checks:{"
+      "    files_to_check:{single_file:{path:\"/var/lib/dpkg/status\"}}"
+      "    content_entry:{"
+      "      match_type: NONE_MATCH"
+      "      match_criteria: {"
+      "        filter_regex: \"Package: bind9\""
+      "        expected_regex: \"Package: bind9.*\""
+      "      }"
+      "    }"
+      "  }"
+      "}"
+      "check_alternatives:{"
+      "  file_checks:{"
+      "    files_to_check:{files_in_dir:{"
+      "      dir_path:\"/etc/systemd/system\""
+      "      recursive: true"
+      "      filename_regex: \"bind9.service\""
+      "    }}"
+      "    existence:{should_exist: false}"
+      "    non_compliance_msg: \"a config file in /etc/systemd/system enables bind9.service\""
+      "    file_display_command: \"find /etc/systemd/system -name 'bind9.service'\""
+      "  }"
+      "}}"
+  }
+}
+
