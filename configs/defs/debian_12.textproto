@@ -4768,7 +4768,7 @@ benchmark_configs: {
       "# systemctl stop rpcbind.socket rpcbind.service"
       "# systemctl mask rpcbind.socket rpcbind.service"
     cis_benchmark: {
-      profile_level: 2
+      profile_level: 1
       severity: LOW
     }
     scan_instructions:
@@ -4820,7 +4820,7 @@ benchmark_configs: {
       "# systemctl stop rsync.service"
       "# systemctl mask rsync.service"
     cis_benchmark: {
-      profile_level: 2
+      profile_level: 1
       severity: LOW
     }
     scan_instructions:
@@ -4846,6 +4846,64 @@ benchmark_configs: {
       "    existence:{should_exist: false}"
       "    non_compliance_msg: \"a config file in /etc/systemd/system enables rsync.service\""
       "    file_display_command: \"find /etc/systemd/system -name 'rsync.service'\""
+      "  }"
+      "}}"
+  }
+}
+
+benchmark_configs: {
+  id: "smb-file-server-service-disabled"
+  compliance_note: {
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
+    title: "Ensure samba file server services are not in use"
+    description:
+      "The Samba daemon allows system administrators to configure their Linux systems to"
+      "share file systems and directories with Windows desktops. Samba will advertise the file"
+      "systems and directories via the Server Message Block (SMB) protocol. Windows"
+      "desktop users will be able to mount these directories and file systems as letter drives on"
+      "their systems."
+    rationale:
+      "The Samba daemon allows system administrators to configure their Linux systems to"
+      "share file systems and directories with Windows desktops. Samba will advertise the file"
+      "systems and directories via the Server Message Block (SMB) protocol. Windows"
+      "desktop users will be able to mount these directories and file systems as letter drives on"
+      "their systems."
+    remediation:
+      "Run the following commands to stop smbd.service and remove samba package:"
+      "# systemctl stop smbd.service"
+      "# apt purge samba"
+      "- OR -"
+      "- IF - the samba package is required as a dependency:"
+      "Run the following commands to stop and mask the smbd.service:"
+      "# systemctl stop smbd.service"
+      "# systemctl mask smbd.service"
+    cis_benchmark: {
+      profile_level: 1
+      severity: LOW
+    }
+    scan_instructions:
+      "generic:{check_alternatives:{"
+      "  file_checks:{"
+      "    files_to_check:{single_file:{path:\"/var/lib/dpkg/status\"}}"
+      "    content_entry:{"
+      "      match_type: NONE_MATCH"
+      "      match_criteria: {"
+      "        filter_regex: \"Package: samba.*\""
+      "        expected_regex: \"Package: samba\""
+      "      }"
+      "    }"
+      "  }"
+      "}"
+      "check_alternatives:{"
+      "  file_checks:{"
+      "    files_to_check:{files_in_dir:{"
+      "      dir_path:\"/etc/systemd/system\""
+      "      recursive: true"
+      "      filename_regex: \"smbd.service\""
+      "    }}"
+      "    existence:{should_exist: false}"
+      "    non_compliance_msg: \"a config file in /etc/systemd/system enables smbd.service\""
+      "    file_display_command: \"find /etc/systemd/system -name 'smbd.service'\""
       "  }"
       "}}"
   }
