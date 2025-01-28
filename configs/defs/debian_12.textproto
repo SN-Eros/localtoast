@@ -6084,7 +6084,7 @@ benchmark_configs: {
   id: "nftables-is-installed"
   compliance_note: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
-    title: "Ensure ufw is installed"
+    title: "Ensure nftables is installed"
     description:
       "nftables provides a new in-kernel packet classification framework that is based on a"
       "network-specific Virtual Machine (VM) and a new nft userspace command line tool."
