@@ -125,3 +125,5 @@ benchmark_id: "sshd-private-host-key-permissions"
 benchmark_id: "sshd-public-host-key-permissions"
 benchmark_id: "sshd-access-configured"
 benchmark_id: "sshd-banner-configured"
+benchmark_id: "ensure-sshd-ciphers-configured"
+
