@@ -6117,3 +6117,63 @@ benchmark_configs: {
       "}}"
   }
 }
+
+benchmark_configs: {
+  id: "nftables-base-chains-exist"
+  compliance_note: {
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
+    title: "Ensure nftables Base Chains Exist"
+    description: 
+      "Chains are containers for rules in nftables. Base chains are entry points for packets from the networking stack, and their absence can result in packets not being processed as intended."
+    rationale: 
+      "Base chains with appropriate hooks ensure that packets flowing through input, forward, and output chains are processed as expected, providing the foundation for proper firewall functionality."
+    remediation: 
+      "Run the following command to create the base chains:"
+      "```"
+      "# nft create chain inet <table name> <base chain name> { type filter hook <(input|forward|output)> priority 0 ; }"
+      "```"
+      "Example:"
+      "```"
+      "# nft create chain inet filter input { type filter hook input priority 0 ; }"
+      "# nft create chain inet filter forward { type filter hook forward priority 0 ; }"
+      "# nft create chain inet filter output { type filter hook output priority 0 ; }"
+      "```"
+    cis_benchmark: {
+      profile_level: 1
+      severity: MEDIUM
+    }
+    scan_instructions:
+      "generic:{check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{path:\"/etc/nftables.conf\"}}"
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria:{"
+      "          filter_regex: \".*chain input.*\""
+      "          expected_regex: \".*chain input.*\""
+      "        }"
+      "      }"
+      "    }"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{path:\"/etc/nftables.conf\"}}"
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria:{"
+      "          filter_regex: \".*chain forward.*\""
+      "          expected_regex: \".*chain forward.*\""
+      "        }"
+      "      }"
+      "    }"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{path:\"/etc/nftables.conf\"}}"
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria:{"
+      "          filter_regex: \".*chain output.*\""
+      "          expected_regex: \".*chain output.*\""
+      "        }"
+      "      }"
+      "    }"
+      "}}"
+  }
+}
