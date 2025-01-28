@@ -116,4 +116,5 @@ benchmark_id: "nftables-loopback-traffic-configured"
 benchmark_id: "nftables-default-deny-policy"
 benchmark_id: "nftables-service-enabled"
 benchmark_id: "nftables-rules-are-permanent"
+benchmark_id: "iptables-packages-installed"
 
