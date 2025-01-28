@@ -6296,3 +6296,60 @@ benchmark_configs: {
       "}}"
   }
 }
+
+benchmark_configs: {
+  id: "nftables-rules-are-permanent"
+  compliance_note: {
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
+    title: "Ensure nftables rules are permanent"
+    description:
+      "nftables is a subsystem of the Linux kernel providing filtering and classification of network "
+      "packets/datagrams/frames."
+      "The nftables service reads the /etc/sysconfig/nftables.conf file for a nftables file or "
+      "files to include in the nftables ruleset."
+      "A nftables ruleset containing the input, forward, and output base chains allow network "
+      "traffic to be filtered."
+    rationale:
+      "Changes made to nftables ruleset only affect the live system, you will also need to configure "
+      "the nftables ruleset to apply on boot"
+    remediation:
+      "Edit the /etc/sysconfig/nftables.conf file and un-comment or add a line with include\n"
+      "Absolute path to nftables rules file>for each nftables file you want included in the\n"
+      "nftables ruleset on boot:\n"
+      "Example:\n"
+      "include \"/etc/nftables/nftables.rules\""
+    cis_benchmark: {
+      profile_level: 1
+      severity: LOW
+    }
+    scan_instructions:
+      "generic:{"
+      " check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{files_in_dir:{"
+      "         dir_path:\"/etc/systemd/system/\""
+      "        recursive: true"
+      "        filename_regex: \"nftables.service\""
+      "       }"
+      "      }"
+      "      files_to_check:{single_file:{"
+      "         path:\"/etc/nftables.conf\""
+      "       }"
+      "      }"
+      "      existence:{should_exist:true}"
+      "  }"
+      " }"
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{files_in_dir:{"
+      "         dir_path:\"/etc/systemd/system/\""
+      "        recursive: true"
+      "        filename_regex: \"nftables.service\""
+      "       }"
+      "      }"
+      "      existence:{should_exist:false}"
+      "    }"
+      " }"
+      "}"
+  }
+}

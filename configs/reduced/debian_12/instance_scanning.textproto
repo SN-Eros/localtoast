@@ -115,3 +115,5 @@ benchmark_id: "nftables-base-chains-exist"
 benchmark_id: "nftables-loopback-traffic-configured"
 benchmark_id: "nftables-default-deny-policy"
 benchmark_id: "nftables-service-enabled"
+benchmark_id: "nftables-rules-are-permanent"
+
