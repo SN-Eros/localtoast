@@ -1971,6 +1971,7 @@ benchmark_configs: {
   id: "users-password-for-escalation"
   compliance_note: {
     version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure users must provide password for escalation"
     description:
       "The operating system must be configured so that users must provide a password for "
