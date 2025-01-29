@@ -10144,6 +10144,7 @@ benchmark_configs: {
   id: "ensure-pam-unix-enabled"
   compliance_note: {
     version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure pam_unix module is enabled"
     description: 
       "pam_unix is the standard Unix authentication module. It uses standard calls from the system's libraries to retrieve and set account information as well as authentication."
