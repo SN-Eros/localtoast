@@ -9478,6 +9478,8 @@ benchmark_configs: {
   compliance_note: {
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure sudo commands use pty"
     description:
       "sudo can be configured to run only from a pseudo-pty\n"
@@ -9506,6 +9508,17 @@ benchmark_configs: {
       "         path:\"/etc/sudoers\""
       "       }"
       "      }"
+      "    content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \"\\\\s*Defaults\\\\s+use_pty.*\""
+      "          expected_regex: \"\\\\s*Defaults\\\\s+use_pty.*\""
+      "        }"
+      "      }"
+      "    }"
+      "  }"
+      "  check_alternatives:{"
+      "    file_checks:{"
       "      files_to_check:{files_in_dir:{"
       "         dir_path:\"/etc/sudoers.d/\""
       "       }"
@@ -9513,8 +9526,8 @@ benchmark_configs: {
       "    content_entry:{"
       "        match_type: ALL_MATCH_ANY_ORDER"
       "        match_criteria: {"
-      "          filter_regex: \"^\\\\s*Defaults\\\\s+([^#]\\\\S+,\\\\s*)?use_pty\b\""
-      "          expected_regex: \"^\\\\s*Defaults\\\\s+([^#]\\\\S+,\\\\s*)?use_pty\""
+      "          filter_regex: \"\\\\s*Defaults\\\\s+use_pty.*\""
+      "          expected_regex: \"\\\\s*Defaults\\\\s+use_pty.*\""
       "        }"
       "      }"
       "    }"
