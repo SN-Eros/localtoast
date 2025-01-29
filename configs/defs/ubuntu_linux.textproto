@@ -4094,6 +4094,7 @@ benchmark_configs: {
   id: "password-difok-changed-characters-configured"
   compliance_note: {
     version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure Password Number of Changed Characters is Configured"
     description: 
       "The configuration ensures that a specified number of characters in a new password differ from the old password, enhancing password complexity and security."
