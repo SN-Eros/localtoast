@@ -2398,6 +2398,7 @@ benchmark_configs: {
   id: "ensure-password-failed-attempts-lockout-is-configured"
   compliance_note: {
     version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure password failed attempts lockout is configured"
     description:
       "The deny=<n> option will deny access if the number of consecutive authentication failures for this user during the recent interval exceeds."
