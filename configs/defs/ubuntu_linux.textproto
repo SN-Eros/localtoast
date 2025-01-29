@@ -5026,6 +5026,7 @@ benchmark_configs: {
   id: "ensure-root-password-is-set"
   compliance_note: {
     version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure root password is set"
     description: 
       "There are a number of methods to access the root account directly. Without a password set, any user would be able to gain access and control over the entire system."
