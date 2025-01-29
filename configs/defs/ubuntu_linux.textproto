@@ -4629,6 +4629,7 @@ benchmark_configs: {
   id: "ensure-root-umask-configured"
   compliance_note: {
     version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure root user umask is configured"
     description: 
       "The configuration ensures that the root user's umask is set to a secure value to enforce permissions for newly created files and directories."
@@ -5594,6 +5595,7 @@ benchmark_configs: {
   id: "ensure-accounts-without-valid-shell-locked"
   compliance_note: {
     version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure accounts without a valid login shell are locked"
     description:
       "Accounts that are not intended for interactive login should have their login "
