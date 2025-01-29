@@ -4563,6 +4563,7 @@ benchmark_configs: {
   id: "login-defs-strong-password-hashing"
   compliance_note: {
     version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure Strong Password Hashing Algorithm is Configured in /etc/login.defs"
     description: 
       "The configuration ensures that /etc/login.defs specifies a strong password hashing algorithm, such as SHA-512 or YESCRYPT, to enhance group password security."
