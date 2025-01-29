@@ -2025,6 +2025,7 @@ benchmark_configs: {
   id: "reauthentication-for-privilege-escalation-not-disabled"
   compliance_note: {
     version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure re-authentication for privilege escalation is not disabled globally"
     description:
       "The operating system must be configured so that users must re-authenticate for privilege "
