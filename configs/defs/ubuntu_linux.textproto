@@ -2338,7 +2338,6 @@ benchmark_configs: {
   id: "ensure-pam-pwhistory-enabled"
   compliance_note: {
     version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
-    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure pam_pwhistory module is enabled"
     description:
       "The pam_pwhistory.so module saves the last passwords for each user in order to force password change history and prevent users from alternating between the same passwords too frequently."
@@ -4336,6 +4335,7 @@ benchmark_configs: {
   id: "password-history-remember-configured"
   compliance_note: {
     version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure Password History Remember is Configured"
     description: 
       "The configuration ensures that the pam_pwhistory module enforces a specific number of old passwords remembered, preventing users from reusing recent passwords."
