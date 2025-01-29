@@ -4501,6 +4501,7 @@ benchmark_configs: {
   id: "pam-unix-strong-hashing-algorithm"
   compliance_note: {
     version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure pam_unix Includes a Strong Password Hashing Algorithm"
     description: 
       "The configuration ensures that the pam_unix module uses a strong password hashing algorithm, such as SHA-512 or yescrypt, to enhance password security."
