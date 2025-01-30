@@ -1133,6 +1133,7 @@ benchmark_configs: {
   id: "ensure-audit-tools-group-owner-configured"
   compliance_note: {
     version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure audit tools group owner is configured"
     description: "Audit tools must be owned by the root group to ensure their integrity and prevent unauthorized access or modifications."
     rationale: "Protecting audit tools from unauthorized access or modification is critical to maintaining the integrity of the audit system and ensuring accurate logging of events. Ensuring the correct group ownership prevents unauthorized users from altering critical audit files."

@@ -224,5 +224,6 @@ benchmark_id: "audit-configuration-immutable"
 benchmark_id: "ensure-audit-configuration-files-mode-configured"
 benchmark_id: "ensure-audit-tools-mode-configured"
 benchmark_id: "ensure-audit-tools-owner-configured"
+benchmark_id: "ensure-audit-tools-group-owner-configured"
 
 
