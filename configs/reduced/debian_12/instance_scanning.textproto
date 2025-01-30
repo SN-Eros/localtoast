@@ -231,4 +231,5 @@ benchmark_id: "ensure-cryptographic-mechanisms-audit-tools"
 benchmark_id: "etc-passwd-permissions"
 benchmark_id: "etc-passwd-dash-permissions-fallback"
 benchmark_id: "etc-group-permissions"
+benchmark_id: "etc-group-dash-permissions"
 
