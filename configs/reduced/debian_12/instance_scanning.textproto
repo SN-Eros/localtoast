@@ -228,4 +228,5 @@ benchmark_id: "ensure-audit-tools-group-owner-configured"
 benchmark_id: "aide-installed"
 benchmark_id: "filesystem-integrity-checked"
 benchmark_id: "ensure-cryptographic-mechanisms-audit-tools"
+benchmark_id: "etc-passwd-dash-permissions-fallback"
 
