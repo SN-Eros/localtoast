@@ -206,4 +206,5 @@ benchmark_id: "system-warns-on-audit-logs-low-space"
 benchmark_id: "changes-to-sudoers-collected"
 benchmark_id: "actions-as-another-user-logged"
 benchmark_id: "ensure-events-modifying-system-network-env-collected"
+benchmark_id: "ensure-privileged-commands-are-collected"
 
