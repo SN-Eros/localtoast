@@ -213,4 +213,5 @@ benchmark_id: "dac-permission-modification-collected"
 benchmark_id: "successful-mounts-collected"
 benchmark_id: "session-initiation-info-collected"
 benchmark_id: "login-logout-events-collected"
+benchmark_id: "file-deletion-collected"
 
