@@ -220,5 +220,6 @@ benchmark_id: "attempts-to-use-setfacl-recorded"
 benchmark_id: "attempts-to-use-chacl-recorded"
 benchmark_id: "attempts-to-use-usermod-recorded"
 benchmark_id: "kernel-module-loading-unloading-collected-fallback"
+benchmark_id: "audit-configuration-immutable"
 
 
