@@ -208,4 +208,5 @@ benchmark_id: "actions-as-another-user-logged"
 benchmark_id: "ensure-events-modifying-system-network-env-collected"
 benchmark_id: "ensure-privileged-commands-are-collected"
 benchmark_id: "unsuccessful-file-access-attempts-collected"
+benchmark_id: "events-modifying-user-group-info-collected"
 
