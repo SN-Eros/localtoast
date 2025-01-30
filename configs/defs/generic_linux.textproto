@@ -10427,6 +10427,7 @@ benchmark_configs: {
   id: "audit-log-not-auto-deleted"
   compliance_note: {
     version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure audit logs are not automatically deleted"
     description:
       "The max_log_file_action setting determines how to handle the audit log file reaching the "
