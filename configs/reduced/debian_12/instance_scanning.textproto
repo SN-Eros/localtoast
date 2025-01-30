@@ -210,4 +210,5 @@ benchmark_id: "ensure-privileged-commands-are-collected"
 benchmark_id: "unsuccessful-file-access-attempts-collected"
 benchmark_id: "events-modifying-user-group-info-collected"
 benchmark_id: "dac-permission-modification-collected"
+benchmark_id: "successful-mounts-collected"
 
