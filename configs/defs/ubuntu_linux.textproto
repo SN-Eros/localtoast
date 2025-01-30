@@ -876,6 +876,7 @@ benchmark_configs: {
   id: "ensure-events-modifying-system-network-env-collected"
   compliance_note: {
     version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure events that modify the system's network environment are collected"
     description: "Record changes to network environment files or system calls. The parameters monitor the sethostname and setdomainname system calls and various network-related files."
     rationale: "Monitoring changes to network environments helps identify unauthorized alterations that could compromise security settings. Monitoring files like /etc/hosts or /etc/netplan/ ensures the detection of unauthorized changes to network configurations."
