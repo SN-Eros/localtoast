@@ -199,4 +199,5 @@ benchmark_id: "auditd-installed"
 benchmark_id: "auditd-service-enabled"
 benchmark_id: "audit-processes-prior-to-auditd-enabled"
 benchmark_id: "audit-backlog-limit-sufficient"
+benchmark_id: "audit-log-storage-size-configured"
 
