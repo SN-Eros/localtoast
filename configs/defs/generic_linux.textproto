@@ -12177,6 +12177,7 @@ benchmark_configs: {
   id: "audit-processes-prior-to-auditd-enabled"
   compliance_note: {
     version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure Auditing for Processes That Start Prior to Auditd Is Enabled"
     description: 
       "This configuration ensures that audit events for processes that start prior to auditd are captured, enabling early detection of potential malicious activity."
