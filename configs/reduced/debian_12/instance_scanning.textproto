@@ -1,4 +1,4 @@
-[version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
+version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
 
 benchmark_id: "cramfs-module-not-available"
 benchmark_id: "freevxfs-module-not-available"
@@ -193,3 +193,4 @@ benchmark_id: "ensure-systemd-journal-remote-not-enabled"
 benchmark_id: "ensure-journald-forwardtosyslog-disabled"
 benchmark_id: "journald-compress-large-log-files"
 benchmark_id: "ensure-journald-storage-configured"
+benchmark_id: "rsyslog-service-enabled"
