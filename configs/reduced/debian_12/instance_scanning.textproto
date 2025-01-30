@@ -197,3 +197,5 @@ benchmark_id: "rsyslog-service-enabled"
 benchmark_id: "journald-is-configured-to-send-logs-to-rsyslog"
 benchmark_id: "auditd-installed"
 benchmark_id: "auditd-service-enabled"
+benchmark_id: "audit-processes-prior-to-auditd-enabled"
+
