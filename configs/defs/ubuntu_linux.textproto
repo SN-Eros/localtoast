@@ -4910,6 +4910,7 @@ benchmark_configs: {
   id: "system-warns-on-audit-logs-low-space"
   compliance_note: {
     version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure System Warns When Audit Logs Are Low on Space"
     description: 
       "This configuration ensures that the system is configured to warn or take appropriate actions when audit logs are low on space, preserving the integrity and continuity of logging."

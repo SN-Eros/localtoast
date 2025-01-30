@@ -202,4 +202,5 @@ benchmark_id: "audit-backlog-limit-sufficient"
 benchmark_id: "audit-log-storage-size-configured"
 benchmark_id: "audit-log-not-auto-deleted"
 benchmark_id: "system-disabled-when-audit-logs-full"
+benchmark_id: "system-warns-on-audit-logs-low-space"
 
