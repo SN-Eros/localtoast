@@ -204,4 +204,5 @@ benchmark_id: "audit-log-not-auto-deleted"
 benchmark_id: "system-disabled-when-audit-logs-full"
 benchmark_id: "system-warns-on-audit-logs-low-space"
 benchmark_id: "changes-to-sudoers-collected"
+benchmark_id: "actions-as-another-user-logged"
 
