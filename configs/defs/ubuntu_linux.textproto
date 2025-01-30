@@ -4772,6 +4772,7 @@ benchmark_configs: {
   id: "ensure-cryptographic-mechanisms-audit-tools"
   compliance_note: {
     version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure cryptographic mechanisms are used to protect the integrity of audit tools"
     description: 
       "Audit tools include vendor-provided and open source tools needed to view and manipulate audit information. Protecting their integrity ensures audit data remains secure and trustworthy."
