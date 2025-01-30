@@ -11660,6 +11660,7 @@ benchmark_configs: {
   id: "dac-permission-modification-collected"
   compliance_note: {
     version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure discretionary access control permission modification events are collected"
     description:
       "Monitor changes to file permissions, attributes, ownership and group. "
