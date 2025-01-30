@@ -236,4 +236,4 @@ benchmark_id: "etc-shadow-permissions"
 benchmark_id: "etc-shadow-dash-permissions"
 benchmark_id: "etc-gshadow-permissions"
 benchmark_id: "etc-gshadow-dash-permissions"
-
+benchmark_id: "etc-shells-permissions"
