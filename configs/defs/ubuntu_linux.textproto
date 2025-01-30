@@ -2436,6 +2436,7 @@ benchmark_configs: {
   id: "ensure-systemd-journal-remote-not-enabled"
   compliance_note: {
     version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure systemd-journal-remote service is not in use"
     description:
       "The systemd-journal-remote service supports receiving messages from remote hosts, effectively turning the system into a log server. This is outside the operational boundary of a client system."
