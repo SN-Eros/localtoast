@@ -4056,6 +4056,7 @@ benchmark_configs: {
   id: "disable-gnome-automount-removable-media"
   compliance_note: {
     version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure GNOME Automounting of Removable Media is Disabled"
     description: 
       "By default, GNOME automatically mounts removable media when inserted as a convenience to the user. Disabling automounting enhances security by preventing unauthorized access to removable media."
