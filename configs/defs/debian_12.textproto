@@ -6254,3 +6254,131 @@ benchmark_configs: {
       "}"
   }
 }
+
+benchmark_configs: {
+  id: "systemd-timesyncd-enabled"
+  compliance_note: {
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
+    title: " Ensure systemd-timesyncd is enabled and running"
+    description:
+      "systemd-timesyncd is a daemon that has been added for synchronizing the system"
+      "clock across the network"
+    rationale:
+      "systemd-timesyncd needs to be enabled and running in order to synchronize the system"
+      "to a timeserver."
+      "Time synchronization is important to support time sensitive security mechanisms and to"
+      "ensure log files have consistent time records across the enterprise to aid in forensic"
+      "investigations"
+    remediation:
+      "- IF - systemd-timesyncd is in use on the system, run the following commands:"
+      "Run the following command to unmask systemd-timesyncd.service:"
+      "# systemctl unmask systemd-timesyncd.service"
+      "Run the following command to enable and start systemd-timesyncd.service:"
+      "# systemctl --now enable systemd-timesyncd.service"
+      "- OR -"
+      "If another time synchronization service is in use on the system, run the following"
+      "command to stop and mask systemd-timesyncd:"
+      "# systemctl --now mask systemd-timesyncd.service"
+    cis_benchmark: {
+      profile_level: 1
+      severity: LOW
+    }
+    scan_instructions:
+      "generic:{check_alternatives:{"
+      "  file_checks:{"
+      "    files_to_check:{single_file:{path:\"/lib/systemd/systemd-timesyncd\"}}"
+      "    existence:{should_exist: true}"
+      "  }"
+      "  file_checks:{"
+      "    files_to_check:{single_file:{path:\"/usr/sbin/chronyd\"}}"
+      "    existence:{should_exist: false}"
+      "  }"
+      "}}"
+  }
+}
+
+benchmark_configs: {
+  id: "chrony-enabled"
+  compliance_note: {
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
+    title: "Ensure time synchronization is in use"
+    description:
+      "chrony is a daemon for synchronizing the system clock across the network"
+    rationale:
+      "chrony needs to be enabled and running in order to synchronize the system to a"
+      "timeserver."
+      "Time synchronization is important to support time sensitive security mechanisms and to"
+      "ensure log files have consistent time records across the enterprise to aid in forensic"
+      "investigations"
+    remediation:
+      "- IF - chrony is in use on the system, run the following commands:"
+      "Run the following command to unmask chrony.service:"
+      "# systemctl unmask chrony.service"
+      "Run the following command to enable and start chrony.service:"
+      "# systemctl --now enable chrony.service"
+      "- OR -"
+      "If another time synchronization service is in use on the system, run the following"
+      "command to remove chrony:"
+      "# apt purge chrony"
+      "# apt autoremove chrony"
+    cis_benchmark: {
+      profile_level: 1
+      severity: LOW
+    }
+    scan_instructions:
+      "generic:{check_alternatives:{"
+      "  file_checks:{"
+      "    files_to_check:{single_file:{path:\"/usr/sbin/chronyd\"}}"
+      "    existence:{should_exist: true}"
+      "  }"
+      "  file_checks:{"
+      "    files_to_check:{single_file:{path:\"/lib/systemd/systemd-timesyncd\"}}"
+      "    existence:{should_exist: false}"
+      "  }"
+      "}}"
+  }
+}
+
+benchmark_configs: {
+  id: "ensure-using-single-firewall"
+  compliance_note: {
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
+    title: "Ensure a single firewall configuration utility is in use"
+    description:
+      "In Linux security, employing a single, effective firewall configuration utility ensures that"
+      "only legitimate traffic gets processed, reducing the system’s exposure to potential"
+      "threats. The choice between ufw, nftables, and iptables depends on organizational"
+      "needs."
+    rationale:
+      "Proper configuration of a single firewall utility minimizes cyber threats and protects"
+      "services and data, while avoiding vulnerabilities like open ports or exposed services."
+      "Standardizing on a single tool simplifies management, reduces errors, and fortifies"
+      "security across Linux systems."
+    remediation:
+      "Remediating to a single firewall configuration is a complex process and involves several"
+      "steps. The following provides the basic steps to follow for a single firewall configuration:"
+      "1. Determine which firewall utility best fits organizational needs"
+      "2. Follow the recommendations in the subsequent subsection for the single firewall"
+      "to be used"
+      "Note: Review the firewall subsection overview for the selected firewall to be"
+      "used, it contains a script to"
+      "simplify this process."
+      "3. Return to this recommendation to ensure a single firewall configuration utility is in"
+      "use"
+    cis_benchmark: {
+      profile_level: 1
+      severity: LOW
+    }
+    scan_instructions:
+      "generic:{check_alternatives:{"
+      "  file_checks:{"
+      "    files_to_check:{single_file:{path:\"/usr/sbin/chronyd\"}}"
+      "    existence:{should_exist: true}"
+      "  }"
+      "  file_checks:{"
+      "    files_to_check:{single_file:{path:\"/lib/systemd/systemd-timesyncd\"}}"
+      "    existence:{should_exist: false}"
+      "  }"
+      "}}"
+  }
+}
