@@ -3577,6 +3577,7 @@ benchmark_configs: {
   id: "ensure-gdm-autorun-never-is-not-overridden"
   compliance_note: {
     version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure GDM autorun-never is not overridden"
     description: 
       "The autorun-never setting allows the GNOME Desktop Display Manager to disable autorun through GDM. By using the lockdown mode in dconf, you can prevent users from changing specific settings."
