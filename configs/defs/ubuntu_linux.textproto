@@ -3371,6 +3371,7 @@ benchmark_configs: {
   id: "ensure-gdm-screen-locks-when-user-is-idle"
   compliance_note: {
     version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure GDM screen locks when the user is idle"
     description: 
       "GNOME Desktop Manager can make the screen lock automatically whenever the user is idle for some amount of time."
