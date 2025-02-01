@@ -6386,7 +6386,7 @@ benchmark_configs: {
       "}"
       "check_alternatives:{"
       "  file_checks:{"
-      "    files_to_check:{single_file:{path:\"/usr/sbin/iptables"}}"
+      "    files_to_check:{single_file:{path:\"/usr/sbin/iptables\"}}"
       "    existence:{should_exist: true}"
       "  }"
       "  file_checks:{"
@@ -6411,6 +6411,61 @@ benchmark_configs: {
       "    files_to_check:{single_file:{path:\"/usr/sbin/ufw\"}}"
       "    existence:{should_exist: false}"
       "  }"
+      "}}"
+  }
+}
+
+benchmark_configs: {
+  id: "gnome-automount-removable-media-not-overridden"
+  compliance_note: {
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
+    title: " Ensure GDM screen locks cannot be overridden"
+    description: 
+      "GNOME Desktop Manager can lock down specific settings by using the lockdown mode"
+      "in dconf to prevent users from changing specific settings."
+      "To lock down a dconf key or subpath, create a locks subdirectory in the keyfile directory."
+      "The files inside this directory contain a list of keys or subpaths to lock. Just as with the"
+      "keyfiles, you may add any number of files to this directory."
+    rationale: 
+      "GNOME Desktop Manager can lock down specific settings by using the lockdown mode"
+      "in dconf to prevent users from changing specific settings."
+      "To lock down a dconf key or subpath, create a locks subdirectory in the keyfile directory."
+      "The files inside this directory contain a list of keys or subpaths to lock. Just as with the"
+      "keyfiles, you may add any number of files to this directory."
+    remediation: 
+      "1. To prevent the user from overriding these settings, create the file"
+      "/etc/dconf/db/local.d/locks/00-screensaver with the following content:"
+      "# Lock desktop screensaver settings"
+      "/org/gnome/desktop/session/idle-delay"
+      "/org/gnome/desktop/screensaver/lock-delay"
+      "2. Update the system databases:"
+      "# dconf update"
+    cis_benchmark: {
+      profile_level: 1
+      severity: MEDIUM
+    }
+    scan_instructions:
+      "generic:{check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{path:\"/etc/dconf/db/local.d/locks/00-screensaver\"}}"
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \"/org/gnome/desktop/session/idle-delay.*\""
+      "          expected_regex: \"/org/gnome/desktop/session/idle-delay.*\""
+      "        }"
+      "      }"
+      "    }"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{path:\"/etc/dconf/db/local.d/locks/00-screensaver\"}}"
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \"/org/gnome/desktop/screensaver/lock-delay.*\""
+      "          expected_regex: \"/org/gnome/desktop/screensaver/lock-delay.*\""
+      "        }"
+      "      }"
+      "    }"
       "}}"
   }
 }
