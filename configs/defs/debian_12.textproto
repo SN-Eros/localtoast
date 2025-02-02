@@ -6588,6 +6588,46 @@ benchmark_configs: {
   compliance_note: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure audit log files mode is configured"
+    description: "Audit log files contain information about the system and system activity."
+    rationale:
+      "Access to audit records can reveal system and configuration data to attackers,""
+      "potentially compromising its confidentiality."
+    remediation:
+      "Run the following command to remove more permissive mode than 0640 from audit log"
+      "files:"
+      "# [ -f /etc/audit/auditd.conf ] && find "$(dirname $(awk -F "=""
+      "'/^\s*log_file/ {print $2}' /etc/audit/auditd.conf | xargs))" -type f -perm"
+      "/0137 -exec chmod u-x,g-wx,o-rwx {} +"
+  cis_benchmark: {
+    profile_level: 2
+    severity: MEDIUM
+  }
+  scan_instructions:
+    "generic:{check_alternatives:{"
+    "    file_checks:{"
+    "      files_to_check:{single_file:{path:\"/var/log/audit/audit.log\"}}"
+    "      existence:{should_exist:true}"
+    "    }"
+    "      file_checks:{"
+    "        files_to_check:{single_file:{"
+    "          path:\"/var/log/audit/audit.log\""
+    "        }}"
+    "        permission:{"
+    "          set_bits: 0640"
+    "          clear_bits: 0137"
+    "          bits_should_match: BOTH_SET_AND_CLEAR"
+    "        }"
+    "      }"
+    "    }"
+    "}"
+  }
+}
+
+benchmark_configs: {
+  id: "ensure-audit-log-owner-configured"
+  compliance_note: {
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
+    title: "Ensure audit log files mode is configured"
     description: "Audit configuration files must be configured with mode 0640 or more restrictive to prevent unauthorized access and protect the integrity of the audit system."
     rationale: "Restricting access to audit configuration files ensures that only authorized personnel can modify the settings, preventing the disabling of critical auditing or misconfigurations that may impact performance or investigation efforts."
     remediation:
@@ -6610,9 +6650,42 @@ benchmark_configs: {
     "          path:\"/var/log/audit/audit.log\""
     "        }}"
     "        permission:{"
-    "          set_bits: 0640"
-    "          clear_bits: 0137"
-    "          bits_should_match: BOTH_SET_AND_CLEAR"
+    "          user: {name: \"root\" should_own: true}"
+    "        }"
+    "      }"
+    "    }"
+    "}"
+  }
+}
+
+benchmark_configs: {
+  id: "ensure-audit-log-group-configured"
+  compliance_note: {
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
+    title: "Ensure audit log files mode is configured"
+    description: "Audit configuration files must be configured with mode 0640 or more restrictive to prevent unauthorized access and protect the integrity of the audit system."
+    rationale: "Restricting access to audit configuration files ensures that only authorized personnel can modify the settings, preventing the disabling of critical auditing or misconfigurations that may impact performance or investigation efforts."
+    remediation:
+      "Run the following command to set permissions on audit configuration files:"
+      "```bash\n"
+      "find /etc/audit/ -type f \\\\( -name '*.conf' -o -name '*.rules' \\\\) -exec chmod u-x,g-wx,o-rwx {} +\n"
+      "```"
+  cis_benchmark: {
+    profile_level: 2
+    severity: MEDIUM
+  }
+  scan_instructions:
+    "generic:{check_alternatives:{"
+    "    file_checks:{"
+    "      files_to_check:{single_file:{path:\"/var/log/audit/audit.log\"}}"
+    "      existence:{should_exist:true}"
+    "    }"
+    "      file_checks:{"
+    "        files_to_check:{single_file:{"
+    "          path:\"/var/log/audit/audit.log\""
+    "        }}"
+    "        permission:{"
+    "          group: {name: \"adm\" should_own: true}"
     "        }"
     "      }"
     "    }"
