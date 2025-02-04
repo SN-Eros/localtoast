@@ -7059,21 +7059,18 @@ benchmark_configs: {
     scan_instructions:
       "generic:{check_alternatives:{"        
       "  file_checks:{"
-      "    files_to_check:{single_file:{path:\"/home/$user\"}}"
+      "    files_to_check:{single_file:{path:\"$home\"}}"
       "    repeat_config: {type: FOR_EACH_USER_WITH_LOGIN"
-      "      opt_out: {wildcard: \"$user\", value: \"root\"}"
-      "      opt_out: {wildcard: \"$user\", value: \"sync\"}}"
+      "      opt_out: {wildcard: \"$home\", value: \"/bin\"}}"
       "    permission:{"
-      "      set_bits: 0750"
+      "      set_bits: 0700"
       "      bits_should_match: BOTH_SET_AND_CLEAR"
       "      user: {name: \"$user\" should_own: true}"
       "    }"
       "  }"
       "  file_checks:{"
-      "    files_to_check:{single_file:{path:\"/home/$user\"}}"
-      "    repeat_config: {type: FOR_EACH_USER_WITH_LOGIN"
-      "      opt_out: {wildcard: \"$user\", value: \"root\"}"
-      "      opt_out: {wildcard: \"$user\", value: \"sync\"}}"	
+      "    files_to_check:{single_file:{path:\"$home\"}}"
+      "    repeat_config: {type: FOR_EACH_USER_WITH_LOGIN}"
       "    existence:{should_exist:true}"
       "  }"
       "}}"
@@ -7106,6 +7103,63 @@ benchmark_configs: {
       "    permission:{"
       "      clear_bits: 0133"
       "    }"
+      "  }"
+      "}}"
+  }
+}
+
+benchmark_configs: {
+  id: "ensure-local-interactive-user-dot-files-configured"
+  compliance_note: {
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
+    title: "Ensure local interactive user dot files access is configured"
+    description:
+      "While the system administrator can establish secure permissions for users' \"dot\" files,"
+      "the users can easily override these."
+      "• .forward file specifies an email address to forward the user's mail to."
+      "• .rhost file provides the \"remote authentication\" database for the rcp, rlogin, and"
+      "rsh commands and the rcmd() function. These files bypass the standard"
+      "password-based user authentication mechanism. They specify remote hosts and"
+      "users that are considered trusted (i.e. are allowed to access the local system"
+      "without supplying a password)"
+      "• .netrc file contains data for logging into a remote host or passing authentication"
+      "to an API."
+      "• .bash_history file keeps track of the user’s commands."
+    rationale:
+      "User configuration files with excessive or incorrect access may enable malicious users"
+      "to steal or modify other users' data or to gain another user's system privileges."
+    remediation:
+      "Making global modifications to users' files without alerting the user community can result"
+      "in unexpected outages and unhappy users. Therefore, it is recommended that a"
+      "monitoring policy be established to report user dot file permissions and determine the"
+      "action to be taken in accordance with site policy."
+      "The following script will:"
+      "• remove excessive permissions on dot files within interactive users' home"
+      "directories"
+      "• change ownership of dot files within interactive users' home directories to the"
+      "user"
+      "• change group ownership of dot files within interactive users' home directories to"
+      "the user's primary group"
+      "• list .forward and .rhost files to be investigated and manually deleted"
+    cis_benchmark: {
+      profile_level: 1
+      severity: LOW
+    }
+    scan_instructions:
+      "generic:{check_alternatives:{"        
+      "  file_checks:{"
+      "    files_to_check:{single_file:{path:\"$home\"}}"
+      "    repeat_config: {type: FOR_EACH_USER_WITH_LOGIN}"
+      "    permission:{"
+      "      set_bits: 0750"
+      "      bits_should_match: BOTH_SET_AND_CLEAR"
+      "      user: {name: \"$user\" should_own: true}"
+      "    }"
+      "  }"
+      "  file_checks:{"
+      "    files_to_check:{single_file:{path:\"$home\"}}"
+      "    repeat_config: {type: FOR_EACH_USER_WITH_LOGIN}"
+      "    existence:{should_exist:true}"
       "  }"
       "}}"
   }
