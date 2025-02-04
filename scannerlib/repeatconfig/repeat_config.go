@@ -35,6 +35,7 @@ const (
 	gidWildcard      = "$gid"
 	homeDirWildcard  = "$home"
 	portWildcard     = "$port"
+	shellWildcard    = "$shell"
 	defaultUIDMin    = 1000
 )
 
@@ -174,6 +175,10 @@ func createRepeatConfigForEachUser(ctx context.Context, opt userRepeatConfigOpti
 				{
 					TextToReplace: homeDirWildcard,
 					ReplaceWith:   homeDir,
+				},
+				{
+					TextToReplace: shellWildcard,
+					ReplaceWith: shell,
 				},
 			},
 		})
