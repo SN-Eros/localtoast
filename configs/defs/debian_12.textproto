@@ -7148,19 +7148,85 @@ benchmark_configs: {
     scan_instructions:
       "generic:{check_alternatives:{"        
       "  file_checks:{"
-      "    files_to_check:{single_file:{path:\"$home\"}}"
-      "    repeat_config: {type: FOR_EACH_USER_WITH_LOGIN}"
+      "    files_to_check:{files_in_dir:{"
+      "        dir_path:\"$home\""
+      "        filename_regex: \"(.netrc|.forward|.rhost|.bash_history)\""
+      "        recursive: false"
+      "      }}"
+      "    repeat_config: {type: FOR_EACH_USER_WITH_LOGIN"
+      "      opt_out: {wildcard: \"$home\", value: \"/bin\"}}"
       "    permission:{"
-      "      set_bits: 0750"
+      "      set_bits: 0600"
       "      bits_should_match: BOTH_SET_AND_CLEAR"
       "      user: {name: \"$user\" should_own: true}"
+      "      group: {name: \"$user\" should_own: true}"
       "    }"
       "  }"
       "  file_checks:{"
-      "    files_to_check:{single_file:{path:\"$home\"}}"
+      "    files_to_check:{files_in_dir:{"
+      "        dir_path:\"$home\""
+      "        filename_regex: \"(.netrc|.forward|.rhost|.bash_history)\""
+      "        recursive: false"
+      "      }}"
       "    repeat_config: {type: FOR_EACH_USER_WITH_LOGIN}"
-      "    existence:{should_exist:true}"
-      "  }"
+      "    existence:{should_exist:false}"
+      "}}"
+  }
+}
+
+benchmark_configs: {
+  id: "ufw-default-deny-policy"
+  compliance_note: {
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    title: "Ensure ufw default deny firewall policy"
+    description: 
+      "A default deny policy on connections ensures that any unconfigured network usage will be rejected."
+    rationale: 
+      "With a default accept policy, the firewall will accept any packet that is not configured to be denied. It is easier to whitelist acceptable usage than to blacklist unacceptable usage."
+    remediation: 
+      "To implement a default deny policy, run:\n"
+      "```"
+      "# ufw default deny incoming\n"
+      "# ufw default deny outgoing\n"
+      "# ufw default deny routed\n"
+      "```"
+      "Note: Ensure necessary rules for specific services or protocols (e.g., HTTP, HTTPS, DNS) are added before applying the default deny policy."
+    cis_benchmark: {
+      profile_level: 1
+      severity: MEDIUM
+    }
+    scan_instructions:
+      "generic:{check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{path:\"/etc/ufw/ufw.conf\"}}"
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_STRICT_ORDER"
+      "        match_criteria:{"
+      "          filter_regex: \"DEFAULT_INPUT_POLICY=deny\""
+      "          expected_regex: \"DEFAULT_INPUT_POLICY=deny\""
+      "        }"
+      "      }"
+      "    }"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{path:\"/etc/ufw/ufw.conf\"}}"
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_STRICT_ORDER"
+      "        match_criteria:{"
+      "          filter_regex: \"DEFAULT_OUTPUT_POLICY=deny\""
+      "          expected_regex: \"DEFAULT_OUTPUT_POLICY=deny\""
+      "        }"
+      "      }"
+      "    }"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{path:\"/etc/ufw/ufw.conf\"}}"
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_STRICT_ORDER"
+      "        match_criteria:{"
+      "          filter_regex: \"DEFAULT_ROUTED_POLICY=deny\""
+      "          expected_regex: \"DEFAULT_ROUTED_POLICY=deny\""
+      "        }"
+      "      }"
+      "    }"
       "}}"
   }
 }
