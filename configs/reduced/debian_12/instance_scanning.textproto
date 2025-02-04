@@ -282,3 +282,4 @@ benchmark_id: "no-duplicate-group-names"
 benchmark_id: "ensure-local-interactive-user-home-dir-configured"
 benchmark_id: "ensure-local-interactive-user-dot-files-configured"
 
+benchmark_id: "ufw-open-ports-rules-configured"
