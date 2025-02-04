@@ -723,6 +723,7 @@ benchmark_configs: {
   id: "ip6tables-default-deny-policy"
   compliance_note: {
     version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure iptables Default Deny Firewall Policy"
     description: 
       "A default deny all policy on connections ensures that any unconfigured network usage will be rejected."
