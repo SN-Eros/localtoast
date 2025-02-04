@@ -4,22 +4,22 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure cramfs kernel module is not available"
     description:
-      "The cramfs filesystem type is a compressed read-only Linux filesystem embedded in"
-      "small footprint systems. A cramfs image can be used without having to first"
+      "The cramfs filesystem type is a compressed read-only Linux filesystem embedded in "
+      "small footprint systems. A cramfs image can be used without having to first "
       "decompress the image."
     rationale:
-      "Removing support for unneeded filesystem types reduces the local attack surface of the"
+      "Removing support for unneeded filesystem types reduces the local attack surface of the "
       "system. If this filesystem type is not needed, disable it."
     remediation:
-      "Run the following script to unload and disable the cramfs module:"
-      "- IF - the cramfs kernel module is available in ANY installed kernel:"		
-      "• Create a file ending in .conf with install cramfs /bin/false in the"
-      "/etc/modprobe.d/ directory"
-      "• Create a file ending in .conf with blacklist cramfs in the /etc/modprobe.d/"
-      "directory"
-      "• Run modprobe -r cramfs 2>/dev/null; rmmod cramfs 2>/dev/null to"
-      "remove cramfs from the kernel"
-      "- IF - the cramfs kernel module is not available on the system, or pre-compiled into the"
+      "Run the following script to unload and disable the cramfs module:\n"
+      "- IF - the cramfs kernel module is available in ANY installed kernel:\n"		
+      "• Create a file ending in .conf with install cramfs /bin/false in the "
+      "/etc/modprobe.d/ directory\n"
+      "• Create a file ending in .conf with blacklist cramfs in the /etc/modprobe.d/ "
+      "directory\n"
+      "• Run modprobe -r cramfs 2>/dev/null; rmmod cramfs 2>/dev/null to "
+      "remove cramfs from the kernel\n"
+      "- IF - the cramfs kernel module is not available on the system, or pre-compiled into the "
       "kernel, no remediation is necessary"
     cis_benchmark: {
       profile_level: 1
@@ -129,21 +129,21 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure freevxfs kernel module is not available"
     description:
-      "The freevxfs filesystem type is a free version of the Veritas type filesystem. This is the"
+      "The freevxfs filesystem type is a free version of the Veritas type filesystem. This is the "
       "primary filesystem type for HP-UX operating systems."
     rationale:
-      "Removing support for unneeded filesystem types reduces the local attack surface of the"
+      "Removing support for unneeded filesystem types reduces the local attack surface of the "
       "system. If this filesystem type is not needed, disable it."
     remediation:
-      "Run the following script to unload and disable the freevxfs module:"
-      "- IF - the freevxfs kernel module is available in ANY installed kernel:"
-      "• Create a file ending in .conf with install freevxfs /bin/false in the"
-      "/etc/modprobe.d/ directory"
-      "• Create a file ending in .conf with blacklist freevxfs in the"
-      "/etc/modprobe.d/ directory"
-      "• Run modprobe -r freevxfs 2>/dev/null; rmmod freevxfs 2>/dev/null"
-      "to remove freevxfs from the kernel"
-      "- IF - the freevxfs kernel module is not available on the system, or pre-compiled into"
+      "Run the following script to unload and disable the freevxfs module:\n"
+      "- IF - the freevxfs kernel module is available in ANY installed kernel:\n"
+      "• Create a file ending in .conf with install freevxfs /bin/false in the "
+      "/etc/modprobe.d/ directory\n"
+      "• Create a file ending in .conf with blacklist freevxfs in the "
+      "/etc/modprobe.d/ directory\n"
+      "• Run modprobe -r freevxfs 2>/dev/null; rmmod freevxfs 2>/dev/null "
+      "to remove freevxfs from the kernel\n"
+      "- IF - the freevxfs kernel module is not available on the system, or pre-compiled into "
       "the kernel, no remediation is necessary"
     cis_benchmark: {
       profile_level: 1
@@ -253,21 +253,21 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure hfs kernel module is not available"
     description:
-      "The hfs filesystem type is a hierarchical filesystem that allows you to mount Mac OS"
+      "The hfs filesystem type is a hierarchical filesystem that allows you to mount Mac OS "
       "filesystems."
     rationale:
-      "Removing support for unneeded filesystem types reduces the local attack surface of the"
+      "Removing support for unneeded filesystem types reduces the local attack surface of the "
       "system. If this filesystem type is not needed, disable it."
     remediation:
-      "Run the following script to unload and disable the hfs module:"
-      "- IF - the hfs kernel module is available in ANY installed kernel:"
-      "• Create a file ending in .conf with install hfs /bin/false in the"
-      "/etc/modprobe.d/ directory"
-      "• Create a file ending in .conf with blacklist hfs in the /etc/modprobe.d/"
-      "directory"
-      "• Run modprobe -r hfs 2>/dev/null; rmmod hfs 2>/dev/null to remove"
-      "hfs from the kernel"
-      "- IF - the hfs kernel module is not available on the system, or pre-compiled into the"
+      "Run the following script to unload and disable the hfs module:\n"
+      "- IF - the hfs kernel module is available in ANY installed kernel:\n"
+      "• Create a file ending in .conf with install hfs /bin/false in the "
+      "/etc/modprobe.d/ directory\n"
+      "• Create a file ending in .conf with blacklist hfs in the /etc/modprobe.d/ "
+      "directory\n"
+      "• Run modprobe -r hfs 2>/dev/null; rmmod hfs 2>/dev/null to remove "
+      "hfs from the kernel\n"
+      "- IF - the hfs kernel module is not available on the system, or pre-compiled into the "
       "kernel, no remediation is necessary"
     cis_benchmark: {
       profile_level: 1
@@ -377,21 +377,21 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure hfsplus kernel module is not available"
     description:
-      "The hfsplus filesystem type is a hierarchical filesystem designed to replace hfs that"
+      "The hfsplus filesystem type is a hierarchical filesystem designed to replace hfs that "
       "allows you to mount Mac OS filesystems."
     rationale:
-      "Removing support for unneeded filesystem types reduces the local attack surface of the"
+      "Removing support for unneeded filesystem types reduces the local attack surface of the "
       "system. If this filesystem type is not needed, disable it."
     remediation:
-      "Run the following script to unload and disable the hfsplus module:"
-      "- IF - the hfsplus kernel module is available in ANY installed kernel:"
-      "• Create a file ending in .conf with install hfsplus /bin/false in the"
-      "/etc/modprobe.d/ directory"
-      "• Create a file ending in .conf with blacklist hfsplus in the /etc/modprobe.d/"
-      "directory"
-      "• Run modprobe -r hfsplus 2>/dev/null; rmmod hfsplus 2>/dev/null to remove"
-      "hfsplus from the kernel"
-      "- IF - the hfsplus kernel module is not available on the system, or pre-compiled into the"
+      "Run the following script to unload and disable the hfsplus module:\n"
+      "- IF - the hfsplus kernel module is available in ANY installed kernel:\n"
+      "• Create a file ending in .conf with install hfsplus /bin/false in the "
+      "/etc/modprobe.d/ directory\n"
+      "• Create a file ending in .conf with blacklist hfsplus in the /etc/modprobe.d/ "
+      "directory\n"
+      "• Run modprobe -r hfsplus 2>/dev/null; rmmod hfsplus 2>/dev/null to remove "
+      "hfsplus from the kernel\n"
+      "- IF - the hfsplus kernel module is not available on the system, or pre-compiled into the "
       "kernel, no remediation is necessary"
     cis_benchmark: {
       profile_level: 1
@@ -501,21 +501,21 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure jffs2 kernel module is not available"
     description:
-      "The jffs2 (journaling flash filesystem 2) filesystem type is a log-structured filesystem"
+      "The jffs2 (journaling flash filesystem 2) filesystem type is a log-structured filesystem "
       "used in flash memory devices."
     rationale:
-      "Removing support for unneeded filesystem types reduces the local attack surface of the"
+      "Removing support for unneeded filesystem types reduces the local attack surface of the "
       "system. If this filesystem type is not needed, disable it."
     remediation:
-      "Run the following script to unload and disable the jffs2 module:"
-      "- IF - the jffs2 kernel module is available in ANY installed kernel:"
-      "• Create a file ending in .conf with install jffs2 /bin/false in the"
-      "/etc/modprobe.d/ directory"
-      "• Create a file ending in .conf with blacklist jffs2 in the /etc/modprobe.d/"
-      "directory"
-      "• Run modprobe -r jffs2 2>/dev/null; rmmod jffs2 2>/dev/null to remove"
-      "jffs2 from the kernel"
-      "- IF - the jffs2 kernel module is not available on the system, or pre-compiled into the"
+      "Run the following script to unload and disable the jffs2 module:\n"
+      "- IF - the jffs2 kernel module is available in ANY installed kernel:\n"
+      "• Create a file ending in .conf with install jffs2 /bin/false in the "
+      "/etc/modprobe.d/ directory\n"
+      "• Create a file ending in .conf with blacklist jffs2 in the /etc/modprobe.d/ "
+      "directory\n"
+      "• Run modprobe -r jffs2 2>/dev/null; rmmod jffs2 2>/dev/null to remove "
+      "jffs2 from the kernel\n"
+      "- IF - the jffs2 kernel module is not available on the system, or pre-compiled into the "
       "kernel, no remediation is necessary"
     cis_benchmark: {
       profile_level: 1
@@ -625,22 +625,22 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure overlayfs kernel module is not available"
     description:
-      "overlayfs is a Linux filesystem that layers multiple filesystems to create a single"
-      "unified view which allows a user to \"merge\" several mount points into a unified"
+      "overlayfs is a Linux filesystem that layers multiple filesystems to create a single "
+      "unified view which allows a user to \"merge\" several mount points into a unified "
       "filesystem."
     rationale:
       "The overlayfs has known CVE's: CVE-2023-32629, CVE-2023-2640, CVE-2023-"
-      "0386. Disabling the overlayfs reduces the local attack surface by removing support for"	
-      "unnecessary filesystem types and mitigates potential risks associated with unauthorized"
+      "0386. Disabling the overlayfs reduces the local attack surface by removing support for "	
+      "unnecessary filesystem types and mitigates potential risks associated with unauthorized "
       "execution of setuid files, enhancing the overall system security."
     remediation:
-      "Run the following script to verify:"
-      "- IF - the overlayfs kernel module is available in ANY installed kernel, verify:"
-      "• An entry including /bin/true or /bin/false exists in a file within the"
-      "/etc/modprobe.d/ directory"
-      "• The module is deny listed in a file within the /etc/modprobe.d/ directory"
-      "• The module is not loaded in the running kernel"
-      "- IF - the overlayfs kernel module is not available on the system, or pre-compiled into"
+      "Run the following script to verify:\n"
+      "- IF - the overlayfs kernel module is available in ANY installed kernel, verify:\n"
+      "• An entry including /bin/true or /bin/false exists in a file within the "
+      "/etc/modprobe.d/ directory\n"
+      "• The module is deny listed in a file within the /etc/modprobe.d/ directory\n"
+      "• The module is not loaded in the running kernel\n"
+      "- IF - the overlayfs kernel module is not available on the system, or pre-compiled into "
       "the kernel, no additional configuration is necessary"
     cis_benchmark: {
       profile_level: 2
@@ -762,7 +762,7 @@ benchmark_configs: {
       "with the lines that read install squashfs /bin/false and blacklist squashfs.\n"
       "Example: \n"
       "```\n"
-      "printf \"install squashfs /bin/false "
+      "printf \"install squashfs /bin/false\\n"
       "blacklist squashfs "
       "\" >> /etc/modprobe.d/squashfs.conf "
       "```\n"
@@ -878,23 +878,23 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure udf kernel module is not available"
     description:
-      "The udf filesystem type is the universal disk format used to implement ISO/IEC 13346"
-      "and ECMA-167 specifications. This is an open vendor filesystem type for data storage"
-      "on a broad range of media. This filesystem type is necessary to support writing DVDs"
+      "The udf filesystem type is the universal disk format used to implement ISO/IEC 13346 "
+      "and ECMA-167 specifications. This is an open vendor filesystem type for data storage "
+      "on a broad range of media. This filesystem type is necessary to support writing DVDs "
       "and newer optical disc formats."
     rationale:
-      "Removing support for unneeded filesystem types reduces the local attack surface of the"
+      "Removing support for unneeded filesystem types reduces the local attack surface of the "
       "system. If this filesystem type is not needed, disable it."
     remediation:
-      "Run the following script to unload and disable the udf module:"
-      "- IF - the udf kernel module is available in ANY installed kernel:"
-      "• Create a file ending in .conf with install udf /bin/false in the"
-      "/etc/modprobe.d/ directory"
-      "• Create a file ending in .conf with blacklist udf in the /etc/modprobe.d/"
-      "directory"
-      "• Run modprobe -r udf 2>/dev/null; rmmod udf 2>/dev/null to remove"
-      "udf from the kernel"
-      "- IF - the udf kernel module is not available on the system, or pre-compiled into the"
+      "Run the following script to unload and disable the udf module:\n"
+      "- IF - the udf kernel module is available in ANY installed kernel:\n"
+      "• Create a file ending in .conf with install udf /bin/false in the "
+      "/etc/modprobe.d/ directory\n"
+      "• Create a file ending in .conf with blacklist udf in the /etc/modprobe.d/ "
+      "directory\n"
+      "• Run modprobe -r udf 2>/dev/null; rmmod udf 2>/dev/null to remove "
+      "udf from the kernel\n"
+      "- IF - the udf kernel module is not available on the system, or pre-compiled into the "
       "kernel, no remediation is necessary"
     cis_benchmark: {
       profile_level: 2
@@ -1004,24 +1004,24 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure usb_storage kernel module is not available"
     description:
-      "USB storage provides a means to transfer and store files ensuring persistence and"
-      "availability of the files independent of network connection status. Its popularity and utility"
-      "has led to USB-based malware being a simple and common means for network"
-      "infiltration and a first step to establishing a persistent threat within a networked"
+      "USB storage provides a means to transfer and store files ensuring persistence and "
+      "availability of the files independent of network connection status. Its popularity and utility "
+      "has led to USB-based malware being a simple and common means for network "
+      "infiltration and a first step to establishing a persistent threat within a networked "
       "environment."
     rationale:
-      "Restricting USB access on the system will decrease the physical attack surface for a"
+      "Restricting USB access on the system will decrease the physical attack surface for a "
       "device and diminish the possible vectors to introduce malware."
     remediation:
-      "Run the following script to unload and disable the usb-storage module:"
-      "- IF - the usb-storage kernel module is available in ANY installed kernel:"
-      "• Create a file ending in .conf with install usb-storage /bin/false in the"
-      "/etc/modprobe.d/ directory"
-      "• Create a file ending in .conf with blacklist usb-storage in the"
-      "/etc/modprobe.d/ directory"
-      "• Run modprobe -r usb-storage 2>/dev/null; rmmod usb-storage"
-      "2>/dev/null to remove usb-storage from the kernel"
-      "- IF - the usb-storage kernel module is not available on the system, or pre-compiled"
+      "Run the following script to unload and disable the usb-storage module:\n"
+      "- IF - the usb-storage kernel module is available in ANY installed kernel:\n"
+      "• Create a file ending in .conf with install usb-storage /bin/false in the "
+      "/etc/modprobe.d/ directory\n"
+      "• Create a file ending in .conf with blacklist usb-storage in the "
+      "/etc/modprobe.d/ directory\n"
+      "• Run modprobe -r usb-storage 2>/dev/null; rmmod usb-storage "
+      "2>/dev/null to remove usb-storage from the kernel\n"
+      "- IF - the usb-storage kernel module is not available on the system, or pre-compiled "
       "into the kernel, no remediation is necessary"
     cis_benchmark: {
       profile_level: 2
@@ -1134,26 +1134,26 @@ benchmark_configs: {
       "The /tmp directory is a world-writable directory used for temporary "
       "storage by all users and some applications."
     rationale:
-      "Making /tmp its own file system allows an administrator to set additional mount options"
-      "such as the noexec option on the mount, making /tmp useless for an attacker to install"
-      "executable code. It would also prevent an attacker from establishing a hard link to a"
-      "system setuid program and wait for it to be updated. Once the program was updated,"
-      "the hard link would be broken, and the attacker would have his own copy of the"
-      "program. If the program happened to have a security vulnerability, the attacker could"
-      "continue to exploit the known flaw."
-      "This can be accomplished by either mounting tmpfs to /tmp, or creating a separate"
+      "Making /tmp its own file system allows an administrator to set additional mount options "
+      "such as the noexec option on the mount, making /tmp useless for an attacker to install "
+      "executable code. It would also prevent an attacker from establishing a hard link to a "
+      "system setuid program and wait for it to be updated. Once the program was updated, "
+      "the hard link would be broken, and the attacker would have his own copy of the "
+      "program. If the program happened to have a security vulnerability, the attacker could "
+      "continue to exploit the known flaw.\n"
+      "This can be accomplished by either mounting tmpfs to /tmp, or creating a separate "
       "partition for /tmp."
     remediation:
-      "First ensure that systemd is correctly configured to ensure that /tmp will be mounted at"""
-      "boot time."
-      "`# systemctl unmask tmp.mount`"
-      "For specific configuration requirements of the /tmp mount for your environment, modify"
-      "/etc/fstab."
-      "Example of using tmpfs with specific mount options:"
-      "`tmpfs /tmp tmpfs defaults,rw,nosuid,nodev,noexec,relatime,size=2G 0 0`"
-      "Note: the size=2G is an example of setting a specific size for tmpfs."
-      "Example of using a volume or disk with specific mount options. The source location of"
-      "the volume or disk will vary depending on your environment:"
+      "First ensure that systemd is correctly configured to ensure that /tmp will be mounted at "
+      "boot time.\n"
+      "`# systemctl unmask tmp.mount`\n"
+      "For specific configuration requirements of the /tmp mount for your environment, modify "
+      "/etc/fstab.\n"
+      "Example of using tmpfs with specific mount options:\n"
+      "`tmpfs /tmp tmpfs defaults,rw,nosuid,nodev,noexec,relatime,size=2G 0 0`\n"
+      "Note: the size=2G is an example of setting a specific size for tmpfs.\n"
+      "Example of using a volume or disk with specific mount options. The source location of "
+      "the volume or disk will vary depending on your environment:\n"
       "`<device> /tmp <fstype> defaults,nodev,nosuid,noexec 0 0`"
     cis_benchmark: {
       profile_level: 1
@@ -1214,7 +1214,7 @@ benchmark_configs: {
       "this option to ensure that users cannot attempt to create block or "
       "character special devices in /tmp ."
     remediation:
-      "- IF - a separate partition exists for /tmp."
+      "- IF - a separate partition exists for /tmp.\n"
       "Edit the /etc/fstab file and add nodev to the fourth field (mounting "
       "options) for the /tmp partition. See the fstab(5) manual page for "
       "more information.\n"
@@ -1297,18 +1297,18 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }  		   
     title: "Ensure nosuid option set on /tmp partition"
     description:
-      "The nosuid mount option specifies that the filesystem cannot contain"
+      "The nosuid mount option specifies that the filesystem cannot contain "
       "setuid files."
     rationale:
-      "Since the /tmp filesystem is only intended for temporary file storage, set this option to"
+      "Since the /tmp filesystem is only intended for temporary file storage, set this option to "
       "ensure that users cannot create setuid files in /tmp."
     remediation:
-      "- IF - a separate partition exists for /tmp."
-      "Edit the /etc/fstab file and add nosuid to the fourth field (mounting options) for the"
-      "/tmp partition."
-      "Example:"
-      "<device> /tmp <fstype> defaults,rw,nosuid,nodev,noexec,relatime 0 0"
-      "Run the following command to remount /tmp with the configured options:"
+      "- IF - a separate partition exists for /tmp.\n"
+      "Edit the /etc/fstab file and add nosuid to the fourth field (mounting options) for the "
+      "/tmp partition.\n"
+      "Example:\n"
+      "<device> /tmp <fstype> defaults,rw,nosuid,nodev,noexec,relatime 0 0\n"
+      "Run the following command to remount /tmp with the configured options:\n"
       "# mount -o remount /tmp"
     cis_benchmark: {
       profile_level: 1
@@ -1379,16 +1379,16 @@ benchmark_configs: {
       "The noexec mount option specifies that the filesystem cannot contain "
       "executable binaries."
     rationale:
-      "Since the /tmp filesystem is only intended for temporary file storage, set this option to"
+      "Since the /tmp filesystem is only intended for temporary file storage, set this option to "
       "ensure that users cannot run executable binaries from /tmp."
     remediation:
-      "- IF - a separate partition exists for /tmp."
-      "Edit the /etc/fstab file and add noexec to the fourth field (mounting options) for the"	
-      "/tmp partition."	   
-      "Example:"  
-      "<device> /tmp <fstype> defaults,rw,nosuid,nodev,noexec,relatime 0 0"	
-      "Run the following command to remount /tmp with the configured options:" 
-      "# mount -o remount /tmp"	 
+      "- IF - a separate partition exists for /tmp.\n"
+      "Edit the /etc/fstab file and add noexec to the fourth field (mounting options) for the "
+      "/tmp partition.\n"
+      "Example:\n"
+      "<device> /tmp <fstype> defaults,rw,nosuid,nodev,noexec,relatime 0 0\n"
+      "Run the following command to remount /tmp with the configured options:\n"
+      "# mount -o remount /tmp"
     cis_benchmark: {
       profile_level: 1
       severity: LOW
@@ -1455,22 +1455,22 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }  		   
     title: "Ensure /dev/shm/ is configured"
     description:
-      "The /dev/shm directory is a world-writable directory that can function as shared"
+      "The /dev/shm directory is a world-writable directory that can function as shared "
       "memory that facilitates inter process communication (IPC)."
     rationale:
-      "Making /dev/shm its own file system allows an administrator to set additional mount"
-      "options such as the noexec option on the mount, making /dev/shm useless for an"
-      "attacker to install executable code. It would also prevent an attacker from establishing a"
-      "hard link to a system setuid program and wait for it to be updated. Once the program"
-      "was updated, the hard link would be broken and the attacker would have his own copy"
-      "of the program. If the program happened to have a security vulnerability, the attacker"
-      "could continue to exploit the known flaw."
+      "Making /dev/shm its own file system allows an administrator to set additional mount "
+      "options such as the noexec option on the mount, making /dev/shm useless for an "
+      "attacker to install executable code. It would also prevent an attacker from establishing a "
+      "hard link to a system setuid program and wait for it to be updated. Once the program "
+      "was updated, the hard link would be broken and the attacker would have his own copy "
+      "of the program. If the program happened to have a security vulnerability, the attacker "
+      "could continue to exploit the known flaw.\n"
       "This can be accomplished by mounting tmpfs to /dev/shm."
     remediation:
-      "For specific configuration requirements of the /dev/shm mount for your environment,"
-      "modify /etc/fstab."
-      "Example:"
-      "tmpfs /dev/shm tmpfs"
+      "For specific configuration requirements of the /dev/shm mount for your environment, "
+      "modify /etc/fstab.\n"
+      "Example:\n"
+      "tmpfs /dev/shm tmpfs\n"
       "defaults,rw,nosuid,nodev,noexec,relatime,size=2G 0 0"
     cis_benchmark: {
       profile_level: 1
@@ -1526,17 +1526,17 @@ benchmark_configs: {
     description:
       "The nodev mount option specifies that the filesystem cannot contain special devices."
     rationale:
-      "Since the /dev/shm filesystem is not intended to support devices, set this option to"
+      "Since the /dev/shm filesystem is not intended to support devices, set this option to "
       "ensure that users cannot attempt to create special devices in /dev/shm partitions."
     remediation:
-      "- IF - a separate partition exists for /dev/shm."
-      "Edit the /etc/fstab file and add nodev to the fourth field (mounting options) for the"
-      "/dev/shm partition. See the fstab(5) manual page for more information."
-      "Example:"
-      "tmpfs /dev/shm tmpfs defaults,rw,nosuid,nodev,noexec,relatime 0 0"
-      "Run the following command to remount /dev/shm with the configured options:"
-      "# mount -o remount /dev/shm"
-      "Note: It is recommended to use tmpfs as the device/filesystem type as /dev/shm is"
+      "- IF - a separate partition exists for /dev/shm.\n"
+      "Edit the /etc/fstab file and add nodev to the fourth field (mounting options) for the "
+      "/dev/shm partition. See the fstab(5) manual page for more information.\n"
+      "Example:\n"
+      "tmpfs /dev/shm tmpfs defaults,rw,nosuid,nodev,noexec,relatime 0 0\n"
+      "Run the following command to remount /dev/shm with the configured options:\n"
+      "# mount -o remount /dev/shm\n"
+      "Note: It is recommended to use tmpfs as the device/filesystem type as /dev/shm is "
       "used as shared memory space by applications."
     cis_benchmark: {
       profile_level: 1
@@ -1606,17 +1606,17 @@ benchmark_configs: {
     description:
       "The nosuid mount option specifies that the filesystem cannot contain setuid files."
     rationale:
-      "Setting this option on a file system prevents users from introducing privileged programs"
+      "Setting this option on a file system prevents users from introducing privileged programs "
       "onto the system and allowing non-root users to execute them."
     remediation:
-      "- IF - a separate partition exists for /dev/shm."
-      "Edit the /etc/fstab file and add nosuid to the fourth field (mounting options) for the"
-      "/dev/shm partition. See the fstab(5) manual page for more information."
-      "Example:"
-      "tmpfs /dev/shm tmpfs defaults,rw,nosuid,nosuid,noexec,relatime 0 0"
-      "Run the following command to remount /dev/shm with the configured options:"
-      "# mount -o remount /dev/shm"
-      "Note: It is recommended to use tmpfs as the device/filesystem type as /dev/shm is"
+      "- IF - a separate partition exists for /dev/shm.\n"
+      "Edit the /etc/fstab file and add nosuid to the fourth field (mounting options) for the "
+      "/dev/shm partition. See the fstab(5) manual page for more information.\n"
+      "Example:\n"
+      "tmpfs /dev/shm tmpfs defaults,rw,nosuid,nosuid,noexec,relatime 0 0\n"
+      "Run the following command to remount /dev/shm with the configured options:\n"
+      "# mount -o remount /dev/shm\n"
+      "Note: It is recommended to use tmpfs as the device/filesystem type as /dev/shm is "
       "used as shared memory space by applications."
     cis_benchmark: {
       profile_level: 1
@@ -1686,18 +1686,18 @@ benchmark_configs: {
     description:
       "The noexec mount option specifies that the filesystem cannot contain executable binaries."
     rationale:
-      "Setting this option on a file system prevents users from executing programs from shared"
-      "memory. This deters users from introducing potentially malicious software on the"
+      "Setting this option on a file system prevents users from executing programs from shared "
+      "memory. This deters users from introducing potentially malicious software on the "
       "system."
     remediation:
-      "- IF - a separate partition exists for /dev/shm."
-      "Edit the /etc/fstab file and add noexec to the fourth field (mounting options) for the"
-      "/dev/shm partition."
-      "Example:"
-      "tmpfs /dev/shm tmpfs defaults,rw,noexec,nodev,noexec,relatime 0 0"
-      "Run the following command to remount /dev/shm with the configured options:"
-      "# mount -o remount /dev/shm"
-      "Note: It is recommended to use tmpfs as the device/filesystem type as /dev/shm is"
+      "- IF - a separate partition exists for /dev/shm.\n"
+      "Edit the /etc/fstab file and add noexec to the fourth field (mounting options) for the "
+      "/dev/shm partition.\n"
+      "Example:\n"
+      "tmpfs /dev/shm tmpfs defaults,rw,noexec,nodev,noexec,relatime 0 0\n"
+      "Run the following command to remount /dev/shm with the configured options:\n"
+      "# mount -o remount /dev/shm\n"
+      "Note: It is recommended to use tmpfs as the device/filesystem type as /dev/shm is "
       "used as shared memory space by applications."
     cis_benchmark: {
       profile_level: 1
@@ -1766,24 +1766,24 @@ benchmark_configs: {
     title: "Ensure separate partition exists for /home"
     description: "The /home directory is used to support disk storage needs of local users."
     rationale:
-      "The default installation only creates a single / partition. Since the /home directory"
-      "contains user generated data, there is a risk of resource exhaustion. It will essentially"
-      "have the whole disk available to fill up and impact the system as a whole. In addition,"
-      "other operations on the system could fill up the disk unrelated to /home and impact all"
-      "local users."
-      "Configuring /home as its own file system allows an administrator to set additional mount"
-      "options such as noexec/nosuid/nodev. These options limit an attacker's ability to"
-      "create exploits on the system. In the case of /home options such as"
-      "usrquota/grpquota may be considered to limit the impact that users can have on each"
-      "other with regards to disk resource exhaustion. Other options allow for specific"
-      "behavior. See man mount for exact details regarding filesystem-independent and"
-      "filesystem-specific options."
-      "As /home contains user data, care should be taken to ensure the security and integrity"
+      "The default installation only creates a single / partition. Since the /home directory "
+      "contains user generated data, there is a risk of resource exhaustion. It will essentially "
+      "have the whole disk available to fill up and impact the system as a whole. In addition, "
+      "other operations on the system could fill up the disk unrelated to /home and impact all "
+      "local users.\n"
+      "Configuring /home as its own file system allows an administrator to set additional mount "
+      "options such as noexec/nosuid/nodev. These options limit an attacker's ability to "
+      "create exploits on the system. In the case of /home options such as "
+      "usrquota/grpquota may be considered to limit the impact that users can have on each "
+      "other with regards to disk resource exhaustion. Other options allow for specific "
+      "behavior. See man mount for exact details regarding filesystem-independent and "
+      "filesystem-specific options.\n"
+      "As /home contains user data, care should be taken to ensure the security and integrity "
       "of the data and mount point."
     remediation:
-      "For new installations, during installation create a custom partition setup and specify a"
-      "separate partition for /home."
-      "For systems that were previously installed, create a new partition and configure"
+      "For new installations, during installation create a custom partition setup and specify a "
+      "separate partition for /home.\n"
+      "For systems that were previously installed, create a new partition and configure "
       "/etc/fstab as appropriate."
     cis_benchmark: {
       profile_level: 2
@@ -1841,15 +1841,15 @@ benchmark_configs: {
     description:
       "The nodev mount option specifies that the filesystem cannot contain special devices."
     rationale:
-      "Since the /home filesystem is not intended to support devices, set this option to ensure"
+      "Since the /home filesystem is not intended to support devices, set this option to ensure "
       "that users cannot create a block or character special devices in /home."
     remediation:
-      "- IF - a separate partition exists for /home."
-      "Edit the /etc/fstab file and add nodev to the fourth field (mounting options) for the"
-      "/home partition."
-      "Example:"
-      "<device> /home <fstype> defaults,rw,nosuid,nodev,noexec,relatime 0 0"
-      "Run the following command to remount /home with the configured options:"
+      "- IF - a separate partition exists for /home.\n"
+      "Edit the /etc/fstab file and add nodev to the fourth field (mounting options) for the "
+      "/home partition.\n"
+      "Example:\n"
+      "<device> /home <fstype> defaults,rw,nosuid,nodev,noexec,relatime 0 0\n"
+      "Run the following command to remount /home with the configured options:\n"
       "# mount -o remount /home"
     cis_benchmark: {
       profile_level: 1
@@ -1919,15 +1919,15 @@ benchmark_configs: {
     description:
       "The nosuid mount option specifies that the filesystem cannot contain setuid files."
     rationale:
-      "Since the /home filesystem is only intended for user file storage, set this option to"
+      "Since the /home filesystem is only intended for user file storage, set this option to "
       "ensure that users cannot create setuid files in /home."
     remediation:
-      "- IF - a separate partition exists for /home."
-      "Edit the /etc/fstab file and add nosuid to the fourth field (mounting options) for the"
-      "/home partition."
-      "Example:"
-      "<device> /home <fstype> defaults,rw,nosuid,nodev,noexec,relatime 0 0"
-      "Run the following command to remount /home with the configured options:"
+      "- IF - a separate partition exists for /home.\n"
+      "Edit the /etc/fstab file and add nosuid to the fourth field (mounting options) for the "
+      "/home partition.\n"
+      "Example:\n"
+      "<device> /home <fstype> defaults,rw,nosuid,nodev,noexec,relatime 0 0\n"
+      "Run the following command to remount /home with the configured options:\n"
       "# mount -o remount /home"
     cis_benchmark: {
       profile_level: 1
@@ -1998,26 +1998,26 @@ benchmark_configs: {
       "The /var directory is used by daemons and other system services to temporarily store dynamic data. "
       "Some directories created by these processes may be world-writable."
     rationale:
-      "The reasoning for mounting /var on a separate partition is as follows."
-      "The default installation only creates a single / partition. Since the /var directory may"
-      "contain world writable files and directories, there is a risk of resource exhaustion. It will"
-      "essentially have the whole disk available to fill up and impact the system. In addition,"
-      "other operations on the system could fill up the disk unrelated to /var and cause"
-      "unintended behavior across the system as the disk is full. See man auditd.conf for"
-      "details."
-      "Configuring /var as its own file system allows an administrator to set additional mount"
-      "options such as noexec/nosuid/nodev. These options limit an attacker's ability to"
-      "create exploits on the system. Other options allow for specific behavior. See man mount"
-      "for exact details regarding filesystem-independent and filesystem-specific options."
-      "An example of exploiting /var may be an attacker establishing a hard-link to a system"
-      "setuid program and waiting for it to be updated. Once the program is updated, the"
-      "hard-link can be broken and the attacker would have their own copy of the program. If"
-      "the program happened to have a security vulnerability, the attacker could continue to"
+      "The reasoning for mounting /var on a separate partition is as follows.\n"
+      "The default installation only creates a single / partition. Since the /var directory may "
+      "contain world writable files and directories, there is a risk of resource exhaustion. It will "
+      "essentially have the whole disk available to fill up and impact the system. In addition, "
+      "other operations on the system could fill up the disk unrelated to /var and cause "
+      "unintended behavior across the system as the disk is full. See man auditd.conf for "
+      "details.\n"
+      "Configuring /var as its own file system allows an administrator to set additional mount "
+      "options such as noexec/nosuid/nodev. These options limit an attacker's ability to "
+      "create exploits on the system. Other options allow for specific behavior. See man mount "
+      "for exact details regarding filesystem-independent and filesystem-specific options.\n"
+      "An example of exploiting /var may be an attacker establishing a hard-link to a system "
+      "setuid program and waiting for it to be updated. Once the program is updated, the "
+      "hard-link can be broken and the attacker would have their own copy of the program. If "
+      "the program happened to have a security vulnerability, the attacker could continue to "
       "exploit the known flaw."
     remediation:
-      "For new installations, during installation create a custom partition setup and specify a"
-      "separate partition for /var."
-      "For systems that were previously installed, create a new partition and configure"
+      "For new installations, during installation create a custom partition setup and specify a "
+      "separate partition for /var.\n"
+      "For systems that were previously installed, create a new partition and configure "
       "/etc/fstab as appropriate."
     cis_benchmark: {
       profile_level: 2
@@ -2075,15 +2075,15 @@ benchmark_configs: {
     description:
       "The nodev mount option specifies that the filesystem cannot contain special devices."
     rationale:
-      "Since the /var filesystem is not intended to support devices, set this option to ensure"
+      "Since the /var filesystem is not intended to support devices, set this option to ensure "
       "that users cannot create a block or character special devices in /var."
     remediation:
-      "- IF - a separate partition exists for /var."
-      "Edit the /etc/fstab file and add nodev to the fourth field (mounting options) for the"
-      "/var partition."
-      "Example:"
-      "<device> /var <fstype> defaults,rw,nosuid,nodev,noexec,relatime 0 0"
-      "Run the following command to remount /var with the configured options:"
+      "- IF - a separate partition exists for /var.\n"
+      "Edit the /etc/fstab file and add nodev to the fourth field (mounting options) for the "
+      "/var partition.\n"
+      "Example:\n"
+      "<device> /var <fstype> defaults,rw,nosuid,nodev,noexec,relatime 0 0\n"
+      "Run the following command to remount /var with the configured options:\n"
       "# mount -o remount /var"
     cis_benchmark: {
       profile_level: 1
@@ -2153,15 +2153,15 @@ benchmark_configs: {
     description:
       "The nosuid mount option specifies that the filesystem cannot contain setuid files."
     rationale:
-      "Since the /var filesystem is only intended for variable files such as logs, set this option"
+      "Since the /var filesystem is only intended for variable files such as logs, set this option "
       "to ensure that users cannot create setuid files in /var."
     remediation:
-      "- IF - a separate partition exists for /var."
-      "Edit the /etc/fstab file and add nosuid to the fourth field (mounting options) for the"
-      "/var partition."
-      "Example:"
-      "<device> /var <fstype> defaults,rw,nosuid,nodev,noexec,relatime 0 0"
-      "Run the following command to remount /var with the configured options:"
+      "- IF - a separate partition exists for /var.\n"
+      "Edit the /etc/fstab file and add nosuid to the fourth field (mounting options) for the "
+      "/var partition.\n"
+      "Example:\n"
+      "<device> /var <fstype> defaults,rw,nosuid,nodev,noexec,relatime 0 0\n"
+      "Run the following command to remount /var with the configured options:\n"
       "# mount -o remount /var"
     cis_benchmark: {
       profile_level: 1
@@ -2229,21 +2229,21 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure separate partition exists for /var/tmp"
     description:
-      "The /var/tmp directory is a world-writable directory used for temporary storage by all"
+      "The /var/tmp directory is a world-writable directory used for temporary storage by all "
       "users and some applications. Temporary files residing in /var/tmp are to be preserved"
       "between reboots."
     rationale:
-      "The default installation only creates a single / partition. Since the /var/tmp directory is"
-      "world-writable, there is a risk of resource exhaustion. In addition, other operations on"
-      "the system could fill up the disk unrelated to /var/tmp and cause potential disruption to"
-      "daemons as the disk is full."
-      "Configuring /var/tmp as its own file system allows an administrator to set additional"
-      "mount options such as noexec/nosuid/nodev. These options limit an attacker's ability"
+      "The default installation only creates a single / partition. Since the /var/tmp directory is "
+      "world-writable, there is a risk of resource exhaustion. In addition, other operations on "
+      "the system could fill up the disk unrelated to /var/tmp and cause potential disruption to "
+      "daemons as the disk is full.\n"
+      "Configuring /var/tmp as its own file system allows an administrator to set additional "
+      "mount options such as noexec/nosuid/nodev. These options limit an attacker's ability "
       "to create exploits on the system."
     remediation:
-      "For new installations, during installation create a custom partition setup and specify a"
-      "separate partition for /var/tmp."
-      "For systems that were previously installed, create a new partition and configure"
+      "For new installations, during installation create a custom partition setup and specify a "
+      "separate partition for /var/tmp.\n"
+      "For systems that were previously installed, create a new partition and configure "
       "/etc/fstab as appropriate."
     cis_benchmark: {
       profile_level: 2
@@ -2301,15 +2301,15 @@ benchmark_configs: {
     description:
       "The nodev mount option specifies that the filesystem cannot contain special devices."
     rationale:
-      "Since the /var/tmp filesystem is not intended to support devices, set this option to ensure"
+      "Since the /var/tmp filesystem is not intended to support devices, set this option to ensure "
       "that users cannot create a block or character special devices in /var/tmp."
     remediation:
-      "- IF - a separate partition exists for /var/tmp."
-      "Edit the /etc/fstab file and add nodev to the fourth field (mounting options) for the"
-      "/var/tmp partition."
-      "Example:"
-      "<device> /var/tmp <fstype> defaults,rw,nosuid,nodev,noexec,relatime 0 0"
-      "Run the following command to remount /var/tmp with the configured options:"
+      "- IF - a separate partition exists for /var/tmp.\n"
+      "Edit the /etc/fstab file and add nodev to the fourth field (mounting options) for the "
+      "/var/tmp partition.\n"
+      "Example:\n"
+      "<device> /var/tmp <fstype> defaults,rw,nosuid,nodev,noexec,relatime 0 0\n"
+      "Run the following command to remount /var/tmp with the configured options:\n"
       "# mount -o remount /var/tmp"
     cis_benchmark: {
       profile_level: 1
@@ -2379,15 +2379,15 @@ benchmark_configs: {
     description:
       "The nosuid mount option specifies that the filesystem cannot contain setuid files."
     rationale:
-      "Since the /var/tmp filesystem is only intended for temporary file storage, set this option"
+      "Since the /var/tmp filesystem is only intended for temporary file storage, set this option "
       "to ensure that users cannot create setuid files in /var/tmp."
     remediation:
-      "- IF - a separate partition exists for /var/tmp."
-      "Edit the /etc/fstab file and add nosuid to the fourth field (mounting options) for the"
-      "/var/tmp partition."
-      "Example:"
-      "<device> /var/tmp <fstype> defaults,rw,nosuid,nodev,noexec,relatime 0 0"
-      "Run the following command to remount /var/tmp with the configured options:"
+      "- IF - a separate partition exists for /var/tmp.\n"
+      "Edit the /etc/fstab file and add nosuid to the fourth field (mounting options) for the "
+      "/var/tmp partition.\n"
+      "Example:\n"
+      "<device> /var/tmp <fstype> defaults,rw,nosuid,nodev,noexec,relatime 0 0\n"
+      "Run the following command to remount /var/tmp with the configured options:\n"
       "# mount -o remount /var/tmp"
     cis_benchmark: {
       profile_level: 1
@@ -2457,15 +2457,15 @@ benchmark_configs: {
     description:
       "The noexec mount option specifies that the filesystem cannot contain executable binaries."
     rationale:
-      "Since the /var/tmp filesystem is only intended for temporary file storage, set this option"
+      "Since the /var/tmp filesystem is only intended for temporary file storage, set this option "
       "to ensure that users cannot run executable binaries from /var/tmp."
     remediation:
-      "- IF - a separate partition exists for /var/tmp."
-      "Edit the /etc/fstab file and add noexec to the fourth field (mounting options) for the"
-      "/var/tmp partition."
-      "Example:"
-      "<device> /var/tmp <fstype> defaults,rw,nosuid,nodev,noexec,relatime 0 0"
-      "Run the following command to remount /var/tmp with the configured options:"
+      "- IF - a separate partition exists for /var/tmp.\n"
+      "Edit the /etc/fstab file and add noexec to the fourth field (mounting options) for the "
+      "/var/tmp partition.\n"
+      "Example:\n"
+      "<device> /var/tmp <fstype> defaults,rw,nosuid,nodev,noexec,relatime 0 0\n"
+      "Run the following command to remount /var/tmp with the configured options:\n"
       "# mount -o remount /var/tmp"
     cis_benchmark: {
       profile_level: 1
@@ -2535,20 +2535,20 @@ benchmark_configs: {
     description:
       "The /var/log directory is used by system services to store log data."
     rationale:
-      "The default installation only creates a single / partition. Since the /var/log directory"
-      "contains log files which can grow quite large, there is a risk of resource exhaustion. It"
-      "will essentially have the whole disk available to fill up and impact the system as a whole."
-      "Configuring /var/log as its own file system allows an administrator to set additional"
-      "mount options such as noexec/nosuid/nodev. These options limit an attackers ability"
-      "to create exploits on the system. Other options allow for specific behavior. See man"
-      "mount for exact details regarding filesystem-independent and filesystem-specific"
-      "options."
-      "As /var/log contains log files, care should be taken to ensure the security and integrity"
+      "The default installation only creates a single / partition. Since the /var/log directory "
+      "contains log files which can grow quite large, there is a risk of resource exhaustion. It "
+      "will essentially have the whole disk available to fill up and impact the system as a whole.\n"
+      "Configuring /var/log as its own file system allows an administrator to set additional "
+      "mount options such as noexec/nosuid/nodev. These options limit an attackers ability "
+      "to create exploits on the system. Other options allow for specific behavior. See man "
+      "mount for exact details regarding filesystem-independent and filesystem-specific "
+      "options.\n"
+      "As /var/log contains log files, care should be taken to ensure the security and integrity "
       "of the data and mount point."
     remediation:
-      "For new installations, during installation create a custom partition setup and specify a"
-      "separate partition for /var/log ."
-      "For systems that were previously installed, create a new partition and configure"
+      "For new installations, during installation create a custom partition setup and specify a "
+      "separate partition for /var/log .\n"
+      "For systems that were previously installed, create a new partition and configure "
       "/etc/fstab as appropriate."
     cis_benchmark: {
       profile_level: 2
@@ -2606,15 +2606,15 @@ benchmark_configs: {
     description:
       "The nodev mount option specifies that the filesystem cannot contain special devices."
     rationale:
-      "Since the /var/log filesystem is not intended to support devices, set this option to"
+      "Since the /var/log filesystem is not intended to support devices, set this option to "
       "ensure that users cannot create a block or character special devices in /var/log."
     remediation:
-      "- IF - a separate partition exists for /var/log."
-      "Edit the /etc/fstab file and add nodev to the fourth field (mounting options) for the"
-      "/var/log partition."
-      "Example:"
-      "<device> /var/log <fstype> defaults,rw,nosuid,nodev,noexec,relatime 0 0"
-      "Run the following command to remount /var/log with the configured options:"
+      "- IF - a separate partition exists for /var/log.\n"
+      "Edit the /etc/fstab file and add nodev to the fourth field (mounting options) for the "
+      "/var/log partition.\n"
+      "Example:\n"
+      "<device> /var/log <fstype> defaults,rw,nosuid,nodev,noexec,relatime 0 0\n"
+      "Run the following command to remount /var/log with the configured options:\n"
       "# mount -o remount /var/log"
     cis_benchmark: {
       profile_level: 1
@@ -2684,15 +2684,15 @@ benchmark_configs: {
     description:
       "The nosuid mount option specifies that the filesystem cannot contain setuid files."
     rationale:
-      "Since the /var/log filesystem is only intended for log files, set this option to ensure"
+      "Since the /var/log filesystem is only intended for log files, set this option to ensure "
       "that users cannot create setuid files in /var/log."
     remediation:
-      "- IF - a separate partition exists for /var/log."
-      "Edit the /etc/fstab file and add nosuid to the fourth field (mounting options) for the"
-      "/var/log partition."
-      "Example:"
-      "<device> /var/log <fstype> defaults,rw,nosuid,nodev,noexec,relatime 0 0"
-      "Run the following command to remount /var/log with the configured options:"
+      "- IF - a separate partition exists for /var/log.\n"
+      "Edit the /etc/fstab file and add nosuid to the fourth field (mounting options) for the "
+      "/var/log partition.\n"
+      "Example:\n"
+      "<device> /var/log <fstype> defaults,rw,nosuid,nodev,noexec,relatime 0 0\n"
+      "Run the following command to remount /var/log with the configured options:\n"
       "# mount -o remount /var/log"
     cis_benchmark: {
       profile_level: 1
@@ -2762,15 +2762,15 @@ benchmark_configs: {
     description:
       "The noexec mount option specifies that the filesystem cannot contain executable binaries."
     rationale:
-      "Since the /var/log filesystem is only intended for log files, set this option to ensure"
+      "Since the /var/log filesystem is only intended for log files, set this option to ensure "
       "that users cannot run executable binaries from /var/log."
     remediation:
-      "- IF - a separate partition exists for /var/log."
-      "Edit the /etc/fstab file and add noexec to the fourth field (mounting options) for the"
-      "/var/log partition."
-      "Example:"
-      "<device> /var/log <fstype> defaults,rw,nosuid,nodev,noexec,relatime 0 0"
-      "Run the following command to remount /var/log with the configured options:"
+      "- IF - a separate partition exists for /var/log.\n"
+      "Edit the /etc/fstab file and add noexec to the fourth field (mounting options) for the "
+      "/var/log partition.\n"
+      "Example:\n"
+      "<device> /var/log <fstype> defaults,rw,nosuid,nodev,noexec,relatime 0 0\n"
+      "Run the following command to remount /var/log with the configured options:\n"
       "# mount -o remount /var/log"
     cis_benchmark: {
       profile_level: 1
@@ -2840,23 +2840,23 @@ benchmark_configs: {
     description:
       "The auditing daemon, auditd, stores log data in the /var/log/audit directory."
     rationale:
-      "The default installation only creates a single / partition. Since the /var/log/audit"
-      "directory contains the audit.log file which can grow quite large, there is a risk of"
-      "resource exhaustion. It will essentially have the whole disk available to fill up and impact"
-      "the system as a whole. In addition, other operations on the system could fill up the disk"
-      "unrelated to /var/log/audit and cause auditd to trigger its space_left_action as"
-      "the disk is full. See man auditd.conf for details."
-      "Configuring /var/log/audit as its own file system allows an administrator to set"
-      "additional mount options such as noexec/nosuid/nodev. These options limit an"
-      "attacker's ability to create exploits on the system. Other options allow for specific"
-      "behavior. See man mount for exact details regarding filesystem-independent and"
-      "filesystem-specific options."
-      "As /var/log/audit contains audit logs, care should be taken to ensure the security"
+      "The default installation only creates a single / partition. Since the /var/log/audit "
+      "directory contains the audit.log file which can grow quite large, there is a risk of "
+      "resource exhaustion. It will essentially have the whole disk available to fill up and impact "
+      "the system as a whole. In addition, other operations on the system could fill up the disk "
+      "unrelated to /var/log/audit and cause auditd to trigger its space_left_action as "
+      "the disk is full. See man auditd.conf for details.\n"
+      "Configuring /var/log/audit as its own file system allows an administrator to set "
+      "additional mount options such as noexec/nosuid/nodev. These options limit an "
+      "attacker's ability to create exploits on the system. Other options allow for specific "
+      "behavior. See man mount for exact details regarding filesystem-independent and "
+      "filesystem-specific options.\n"
+      "As /var/log/audit contains audit logs, care should be taken to ensure the security "
       "and integrity of the data and mount point."
     remediation:
-      "For new installations, during installation create a custom partition setup and specify a"
-      "separate partition for /var/log/audit."
-      "For systems that were previously installed, create a new partition and configure"
+      "For new installations, during installation create a custom partition setup and specify a "
+      "separate partition for /var/log/audit.\n"
+      "For systems that were previously installed, create a new partition and configure "
       "/etc/fstab as appropriate."
     cis_benchmark: {
       profile_level: 2
@@ -2914,17 +2914,17 @@ benchmark_configs: {
     description:
       "The nodev mount option specifies that the filesystem cannot contain special devices."
     rationale:
-      "Since the /var/log/audit filesystem is not intended to support devices, set this option"
+      "Since the /var/log/audit filesystem is not intended to support devices, set this option "
       "to ensure that users cannot create a block or character special devices in"
       "/var/log/audit."
     remediation:
-      "- IF - a separate partition exists for /var/log/audit."
-      "Edit the /etc/fstab file and add nodev to the fourth field (mounting options) for the"
-      "/var/log/audit partition."
-      "Example:"
-      "<device> /var/log/audit <fstype>"
-      "defaults,rw,nosuid,nodev,noexec,relatime 0 0"
-      "Run the following command to remount /var/log/audit with the configured options:"
+      "- IF - a separate partition exists for /var/log/audit.\n"
+      "Edit the /etc/fstab file and add nodev to the fourth field (mounting options) for the "
+      "/var/log/audit partition.\n"
+      "Example:\n"
+      "<device> /var/log/audit <fstype>\n"
+      "defaults,rw,nosuid,nodev,noexec,relatime 0 0\n"
+      "Run the following command to remount /var/log/audit with the configured options:\n"
       "# mount -o remount /var/log/audit"
     cis_benchmark: {
       profile_level: 1
@@ -2994,16 +2994,16 @@ benchmark_configs: {
     description:
       "The nosuid mount option specifies that the filesystem cannot contain setuid files."
     rationale:
-      "Since the /var/log/audit filesystem is only intended for variable files such as logs,"
+      "Since the /var/log/audit filesystem is only intended for variable files such as logs, "
       "set this option to ensure that users cannot create setuid files in /var/log/audit."
     remediation:
-      "- IF - a separate partition exists for /var/log/audit."
-      "Edit the /etc/fstab file and add nosuid to the fourth field (mounting options) for the"
-      "/var/log/audit partition."
-      "Example:"
-      "<device> /var/log/audit <fstype>"
-      "defaults,rw,nosuid,nodev,noexec,relatime 0 0"
-      "Run the following command to remount /var/log/audit with the configured options:"
+      "- IF - a separate partition exists for /var/log/audit.\n"
+      "Edit the /etc/fstab file and add nosuid to the fourth field (mounting options) for the "
+      "/var/log/audit partition.\n"
+      "Example:\n"
+      "<device> /var/log/audit <fstype>\n"
+      "defaults,rw,nosuid,nodev,noexec,relatime 0 0\n"
+      "Run the following command to remount /var/log/audit with the configured options:\n"
       "# mount -o remount /var/log/audit"
     cis_benchmark: {
       profile_level: 1
@@ -3073,16 +3073,16 @@ benchmark_configs: {
     description:
       "The noexec mount option specifies that the filesystem cannot contain executable binaries."
     rationale:
-      "Since the /var/log/audit filesystem is only intended for audit logs, set this option to"
+      "Since the /var/log/audit filesystem is only intended for audit logs, set this option to "
       "ensure that users cannot run executable binaries from /var/log/audit."
     remediation:
-      "- IF - a separate partition exists for /var/log/audit."
-      "Edit the /etc/fstab file and add noexec to the fourth field (mounting options) for the"
-      "/var/log/audit partition."
-      "Example:"
-      "<device> /var/log/audit <fstype>"
-      "defaults,rw,nosuid,nodev,noexec,relatime 0 0"
-      "Run the following command to remount /var/log/audit with the configured options:"
+      "- IF - a separate partition exists for /var/log/audit.\n"
+      "Edit the /etc/fstab file and add noexec to the fourth field (mounting options) for the "
+      "/var/log/audit partition.\n"
+      "Example:\n"
+      "<device> /var/log/audit <fstype>\n"
+      "defaults,rw,nosuid,nodev,noexec,relatime 0 0\n"
+      "Run the following command to remount /var/log/audit with the configured options:\n"
       "# mount -o remount /var/log/audit"
     cis_benchmark: {
       profile_level: 1
@@ -3152,10 +3152,10 @@ benchmark_configs: {
     description:
       "AppArmor provides Mandatory Access Controls."
     rationale:
-      "Without a Mandatory Access Control system installed only the default Discretionary"
+      "Without a Mandatory Access Control system installed only the default Discretionary "
       "Access Control system will be available."
     remediation:
-      "Install AppArmor."
+      "Install AppArmor.\n"
       "# apt install apparmor apparmor-utils"
     cis_benchmark: {
       profile_level: 1
@@ -3199,16 +3199,16 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }   
     title: "Ensure AppArmor is enabled in the bootloader configuration"
     description:
-      "Configure AppArmor to be enabled at boot time and verify that it has not been"
+      "Configure AppArmor to be enabled at boot time and verify that it has not been "
       "overwritten by the bootloader boot parameters."
     rationale:
-      "AppArmor must be enabled at boot time in your bootloader configuration to ensure that"
+      "AppArmor must be enabled at boot time in your bootloader configuration to ensure that "
       "the controls it provides are not overridden."
     remediation:
-      "Edit /etc/default/grub and add the apparmor=1 and security=apparmor"
-      "parameters to the GRUB_CMDLINE_LINUX= line"
-      "GRUB_CMDLINE_LINUX=\"apparmor=1 security=apparmor\""
-      "Run the following command to update the grub2 configuration:"
+      "Edit /etc/default/grub and add the apparmor=1 and security=apparmor "
+      "parameters to the GRUB_CMDLINE_LINUX= line\n"
+      "GRUB_CMDLINE_LINUX=\"apparmor=1 security=apparmor\"\n"
+      "Run the following command to update the grub2 configuration:\n"
       "# update-grub"
     cis_benchmark: {
       profile_level: 1
@@ -3343,43 +3343,43 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }   
     title: "Ensure ptrace_scope is restricted"
     description:
-      "The ptrace() system call provides a means by which one process (the \"tracer\") may"
-      "observe and control the execution of another process (the \"tracee\"), and examine and"
-      "change the tracee's memory and registers."
-      "The sysctl settings (writable only with CAP_SYS_PTRACE) are:"
-      "• 0 - classic ptrace permissions: a process can PTRACE_ATTACH to any other"
-      "process running under the same uid, as long as it is dumpable (i.e. did not"
-      "transition uids, start privileged, or have called prctl(PR_SET_DUMPABLE...)"
-      "already). Similarly, PTRACE_TRACEME is unchanged."
-      "• 1 - restricted ptrace: a process must have a predefined relationship with the"
-      "inferior it wants to call PTRACE_ATTACH on. By default, this relationship is that"
-      "of only its descendants when the above classic criteria is also met. To change"
-      "the relationship, an inferior can call prctl(PR_SET_PTRACER, debugger, ...) to"
-      "declare an allowed debugger PID to call PTRACE_ATTACH on the inferior."
-      "Using PTRACE_TRACEME is unchanged."
-      "• 2 - admin-only attach: only processes with CAP_SYS_PTRACE may use ptrace"
-      "with PTRACE_ATTACH, or through children calling PTRACE_TRACEME."
-      "• 3 - no attach: no processes may use ptrace with PTRACE_ATTACH nor via"
-      "PTRACE_TRACEME. Once set, this sysctl value cannot be changed."
+      "The ptrace() system call provides a means by which one process (the \"tracer\") may "
+      "observe and control the execution of another process (the \"tracee\"), and examine and "
+      "change the tracee's memory and registers.\n"
+      "The sysctl settings (writable only with CAP_SYS_PTRACE) are:\n"
+      "• 0 - classic ptrace permissions: a process can PTRACE_ATTACH to any other "
+      "process running under the same uid, as long as it is dumpable (i.e. did not "
+      "transition uids, start privileged, or have called prctl(PR_SET_DUMPABLE...) "
+      "already). Similarly, PTRACE_TRACEME is unchanged.\n"
+      "• 1 - restricted ptrace: a process must have a predefined relationship with the "
+      "inferior it wants to call PTRACE_ATTACH on. By default, this relationship is that "
+      "of only its descendants when the above classic criteria is also met. To change "
+      "the relationship, an inferior can call prctl(PR_SET_PTRACER, debugger, ...) to "
+      "declare an allowed debugger PID to call PTRACE_ATTACH on the inferior.\n"
+      "Using PTRACE_TRACEME is unchanged.\n"
+      "• 2 - admin-only attach: only processes with CAP_SYS_PTRACE may use ptrace "
+      "with PTRACE_ATTACH, or through children calling PTRACE_TRACEME.\n"
+      "• 3 - no attach: no processes may use ptrace with PTRACE_ATTACH nor via "
+      "PTRACE_TRACEME. Once set, this sysctl value cannot be changed.\n"
     rationale:
-      "If one application is compromised, it would be possible for an attacker to attach to other"
-      "running processes (e.g. Bash, Firefox, SSH sessions, GPG agent, etc) to extract	  "
-      "additional credentials and continue to expand the scope of their attack."
-      "Enabling restricted mode will limit the ability of a compromised process to"
-      "PTRACE_ATTACH on other processes running under the same user. With restricted"
+      "If one application is compromised, it would be possible for an attacker to attach to other "
+      "running processes (e.g. Bash, Firefox, SSH sessions, GPG agent, etc) to extract "
+      "additional credentials and continue to expand the scope of their attack.\n"
+      "Enabling restricted mode will limit the ability of a compromised process to "
+      "PTRACE_ATTACH on other processes running under the same user. With restricted "
       "mode, ptrace will continue to work with root user."
     remediation:
-      "Set the kernel.yama.ptrace_scope parameter in /etc/sysctl.conf or a file in"
-      "/etc/sysctl.d/ ending in .conf to a value of 1, 2, or 3:"
-      "kernel.yama.ptrace_scope = 1"
-      "- OR -"
-      "kernel.yama.ptrace_scope = 2"
-      "- OR -"
-      "kernel.yama.ptrace_scope = 3"
-      "Example:"
+      "Set the kernel.yama.ptrace_scope parameter in /etc/sysctl.conf or a file in "
+      "/etc/sysctl.d/ ending in .conf to a value of 1, 2, or 3:\n"
+      "kernel.yama.ptrace_scope = 1\n"
+      "- OR -\n"
+      "kernel.yama.ptrace_scope = 2\n"
+      "- OR -\n"
+      "kernel.yama.ptrace_scope = 3\n"
+      "Example:\n"
       "# printf \"%s\n\" \"kernel.yama.ptrace_scope = 1\" >> /etc/sysctl.d/60-"
-      "kernel_sysctl.conf"
-      "Run the following command to set the active kernel parameter:"
+      "kernel_sysctl.conf\n"
+      "Run the following command to set the active kernel parameter:\n"
       "# sysctl -w kernel.yama.ptrace_scope=1"
     cis_benchmark: {
       profile_level: 1
@@ -3542,14 +3542,16 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }   
     title: "Ensure message of the day is configured properly"
     description:
-      "The contents of the /etc/motd file are displayed to users after login and function as a"
-      "message of the day for authenticated users."
-      "Unix-based systems have typically displayed information about the OS release and"
-      "patch level upon logging in to the system. This information can be useful to developers"
-      "who are developing software for a particular OS platform. If mingetty(8) supports the"
-      "following options, they display operating system information: \\\\m - machine architecture"
-      "\\\\r - operating system release \\\\s - operating system name \\\\v - operating system"
-      "version"
+      "The contents of the /etc/motd file are displayed to users after login and function as a "
+      "message of the day for authenticated users.\n"
+      "Unix-based systems have typically displayed information about the OS release and "
+      "patch level upon logging in to the system. This information can be useful to developers "
+      "who are developing software for a particular OS platform. If mingetty(8) supports the "
+      "following options, they display operating system information:\n"
+      " - \\\\m - machine architecture\n"
+      " - \\\\r - operating system release\n"
+      " - \\\\s - operating system name\n"
+      " - \\\\v - operating system version"
     rationale:
       "Warning messages inform users who are attempting to login to the "
       "system of their legal status regarding the system and must include the "
@@ -3560,12 +3562,12 @@ benchmark_configs: {
       "system. Authorized users can easily get this information by running "
       "the \"uname -a\" command once they have logged in."
     remediation:
-      "Warning messages inform users who are attempting to login to the system of their legal"
-      "status regarding the system and must include the name of the organization that owns"
-      "the system and any monitoring policies that are in place. Displaying OS and patch level"
-      "information in login banners also has the side effect of providing detailed system"
-      "information to attackers attempting to target specific exploits of a system. Authorized"
-      "users can easily get this information by running the \" uname -a \" command once they"
+      "Warning messages inform users who are attempting to login to the system of their legal "
+      "status regarding the system and must include the name of the organization that owns "
+      "the system and any monitoring policies that are in place. Displaying OS and patch level "
+      "information in login banners also has the side effect of providing detailed system "
+      "information to attackers attempting to target specific exploits of a system. Authorized "
+      "users can easily get this information by running the \" uname -a \" command once they "
       "have logged in."
     cis_benchmark: {
       profile_level: 1
@@ -3622,14 +3624,16 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }   
     title: "Ensure local login warning banner is configured properly"
     description:
-      "The contents of the /etc/issue file are displayed to users after login and function as a"
-      "message of the day for authenticated users."
-      "Unix-based systems have typically displayed information about the OS release and"
-      "patch level upon logging in to the system. This information can be useful to developers"
-      "who are developing software for a particular OS platform. If mingetty(8) supports the"
-      "following options, they display operating system information: \\\\m - machine architecture"
-      "\\\\r - operating system release \\\\s - operating system name \\\\v - operating system"
-      "version"
+      "The contents of the /etc/issue file are displayed to users after login and function as a "
+      "message of the day for authenticated users.\n"
+      "Unix-based systems have typically displayed information about the OS release and "
+      "patch level upon logging in to the system. This information can be useful to developers "
+      "who are developing software for a particular OS platform. If mingetty(8) supports the "
+      "following options, they display operating system information:\n"
+      " - \\\\m - machine architecture\n"
+      " - \\\\r - operating system release\n"
+      " - \\\\s - operating system name\n"
+      " - \\\\v - operating system version"
     rationale:
       "Warning messages inform users who are attempting to login to the "
       "system of their legal status regarding the system and must include the "
@@ -3640,12 +3644,12 @@ benchmark_configs: {
       "system. Authorized users can easily get this information by running "
       "the \"uname -a\" command once they have logged in."
     remediation:
-      "Warning messages inform users who are attempting to login to the system of their legal"
-      "status regarding the system and must include the name of the organization that owns"
-      "the system and any monitoring policies that are in place. Displaying OS and patch level"
-      "information in login banners also has the side effect of providing detailed system"
-      "information to attackers attempting to target specific exploits of a system. Authorized"
-      "users can easily get this information by running the \" uname -a \" command once they"
+      "Warning messages inform users who are attempting to login to the system of their legal "
+      "status regarding the system and must include the name of the organization that owns "
+      "the system and any monitoring policies that are in place. Displaying OS and patch level "
+      "information in login banners also has the side effect of providing detailed system "
+      "information to attackers attempting to target specific exploits of a system. Authorized "
+      "users can easily get this information by running the \" uname -a \" command once they "
       "have logged in."
     cis_benchmark: {
       profile_level: 1
@@ -3681,14 +3685,16 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }   
     title: "Ensure remote login warning banner is configured properly"
     description:
-      "The contents of the /etc/issue.net file are displayed to users prior to login for remote"
-      "connections from configured services."
-      "Unix-based systems have typically displayed information about the OS release and"
-      "patch level upon logging in to the system. This information can be useful to developers"
-      "who are developing software for a particular OS platform. If mingetty(8) supports the"
-      "following options, they display operating system information: \\\\m - machine architecture"
-      "\\\\r - operating system release \\\\s - operating system name \\\\v - operating system"
-      "version"
+      "The contents of the /etc/issue.net file are displayed to users prior to login for remote "
+      "connections from configured services.\n"
+      "Unix-based systems have typically displayed information about the OS release and "
+      "patch level upon logging in to the system. This information can be useful to developers "
+      "who are developing software for a particular OS platform. If mingetty(8) supports the "
+      "following options, they display operating system information:\n"
+      " - \\\\m - machine architecture\n"
+      " - \\\\r - operating system release\n"
+      " - \\\\s - operating system name\n"
+      " - \\\\v - operating system version"
     rationale:
       "Warning messages inform users who are attempting to login to the "
       "system of their legal status regarding the system and must include the "
@@ -3699,12 +3705,12 @@ benchmark_configs: {
       "system. Authorized users can easily get this information by running "
       "the \"uname -a\" command once they have logged in."
     remediation:
-      "Warning messages inform users who are attempting to login to the system of their legal"
-      "status regarding the system and must include the name of the organization that owns"
-      "the system and any monitoring policies that are in place. Displaying OS and patch level"
-      "information in login banners also has the side effect of providing detailed system"
-      "information to attackers attempting to target specific exploits of a system. Authorized"
-      "users can easily get this information by running the \" uname -a \" command once they"
+      "Warning messages inform users who are attempting to login to the system of their legal "
+      "status regarding the system and must include the name of the organization that owns "
+      "the system and any monitoring policies that are in place. Displaying OS and patch level "
+      "information in login banners also has the side effect of providing detailed system "
+      "information to attackers attempting to target specific exploits of a system. Authorized "
+      "users can easily get this information by running the \" uname -a \" command once they "
       "have logged in."
     cis_benchmark: {
       profile_level: 1
@@ -3851,9 +3857,12 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure GDM is removed"
     description: 
-      "The GNOME Display Manager (GDM) is a program that manages graphical display servers and handles graphical user logins. If a Graphical User Interface (GUI) is not required, it should be removed to reduce the attack surface of the system."
+      "The GNOME Display Manager (GDM) is a program that manages graphical display "
+      "servers and handles graphical user logins. If a Graphical User Interface (GUI) "
+      "is not required, it should be removed to reduce the attack surface of the system."
     rationale: 
-      "Removing the GNOME Display manager will remove the Graphical User Interface (GUI) from the system."
+      "Removing the GNOME Display manager will remove the Graphical User Interface (GUI) "
+      "from the system."
     remediation: 
       "Run the following commands to uninstall gdm3 and remove unused dependencies:\n"
       "```\n"
@@ -3893,14 +3902,14 @@ benchmark_configs: {
       "USB drive or disc and have its contents available in system even if "
       "they lacked permissions to mount it themselves."
     remediation:
-      "Run the following commands to stop autofs.service and remove the autofs"
-      "package:"
-      "# systemctl stop autofs.service"
-      "# apt purge autofs"
-      "- OR -"
-      "- IF - the autofs package is required as a dependency:"
-      "Run the following commands to stop and mask autofs.service:"
-      "# systemctl stop autofs.service"
+      "Run the following commands to stop autofs.service and remove the autofs "
+      "package:\n"
+      "# systemctl stop autofs.service\n"
+      "# apt purge autofs\n"
+      "- OR -\n"
+      "- IF - the autofs package is required as a dependency:\n"
+      "Run the following commands to stop and mask autofs.service:\n"
+      "# systemctl stop autofs.service\n"
       "# systemctl mask autofs.service"
     cis_benchmark: {
       profile_level: 2
@@ -3940,25 +3949,25 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure avahi daemon services are not in use"
     description:
-      "Avahi is a free zeroconf implementation, including a system for multicast DNS/DNS-SD"
-      "service discovery. Avahi allows programs to publish and discover services and hosts"
-      "running on a local network with no specific configuration. For example, a user can plug"
-      "a computer into a network and Avahi automatically finds printers to print to, files to look"
+      "Avahi is a free zeroconf implementation, including a system for multicast DNS/DNS-SD "
+      "service discovery. Avahi allows programs to publish and discover services and hosts "
+      "running on a local network with no specific configuration. For example, a user can plug "
+      "a computer into a network and Avahi automatically finds printers to print to, files to look "
       "at and people to talk to, as well as network services running on the machine."
     rationale:
-      "Automatic discovery of network services is not normally required for system"
-      "functionality. It is recommended to remove this package to reduce the potential attack"
+      "Automatic discovery of network services is not normally required for system "
+      "functionality. It is recommended to remove this package to reduce the potential attack "
       "surface."
     remediation:
       "Run the following commands to stop avahi-daemon.socket and avahi-"
-      "daemon.service, and remove the avahi-daemon package:"
-      "# systemctl stop avahi-daemon.socket avahi-daemon.service"
-      "# apt purge avahi-daemon"
-      "- OR -"
-      "- IF - the avahi-daemon package is required as a dependency:"
+      "daemon.service, and remove the avahi-daemon package:\n"
+      "# systemctl stop avahi-daemon.socket avahi-daemon.service\n"
+      "# apt purge avahi-daemon\n"
+      "- OR -\n"
+      "- IF - the avahi-daemon package is required as a dependency:\n"
       "Run the following commands to stop and mask the avahi-daemon.socket and avahi-"
-      "daemon.service:"
-      "# systemctl stop avahi-daemon.socket avahi-daemon.service"
+      "daemon.service:\n"
+      "# systemctl stop avahi-daemon.socket avahi-daemon.service\n"
       "# systemctl mask avahi-daemon.socket avahi-daemon.service"
     cis_benchmark: {
       profile_level: 2
@@ -3998,23 +4007,23 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure dhcp server services are not in use"
     description:
-      "The Dynamic Host Configuration Protocol (DHCP) is a service that allows machines to"
-      "be dynamically assigned IP addresses. There are two versions of the DHCP protocol"
-      "DHCPv4 and DHCPv6. At startup the server may be started for one or the other via the -4"
+      "The Dynamic Host Configuration Protocol (DHCP) is a service that allows machines to "
+      "be dynamically assigned IP addresses. There are two versions of the DHCP protocol "
+      "DHCPv4 and DHCPv6. At startup the server may be started for one or the other via the -4 "
       "or -6 arguments."
     rationale:
-      "Unless a system is specifically set up to act as a DHCP server, it is recommended that"
+      "Unless a system is specifically set up to act as a DHCP server, it is recommended that "
       "this package be removed to reduce the potential attack surface."
     remediation:
       "Run the following commands to stop isc-dhcp-server.service and isc-dhcp-"
-      "server6.service and remove the isc-dhcp-server package:"
-      "# systemctl stop isc-dhcp-server.service isc-dhcp-server6.service"
-      "# apt purge isc-dhcp-server"
-      "- OR -"
-      "- IF - the isc-dhcp-server package is required as a dependency:"
+      "server6.service and remove the isc-dhcp-server package:\n"
+      "# systemctl stop isc-dhcp-server.service isc-dhcp-server6.service\n"
+      "# apt purge isc-dhcp-server\n"
+      "- OR -\n"
+      "- IF - the isc-dhcp-server package is required as a dependency:\n"
       "Run the following commands to stop and mask isc-dhcp-server.service and isc-"
-      "dhcp-server6.service:"
-      "# systemctl stop isc-dhcp-server.service isc-dhcp-server6.service"
+      "dhcp-server6.service:\n"
+      "# systemctl stop isc-dhcp-server.service isc-dhcp-server6.service\n"
       "# systemctl mask isc-dhcp-server isc-dhcp-server6.service"
     cis_benchmark: {
       profile_level: 1
@@ -4054,20 +4063,20 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure dns server services are not in use"
     description:
-      "The Domain Name System (DNS) is a hierarchical naming system that maps names to"
+      "The Domain Name System (DNS) is a hierarchical naming system that maps names to "
       "IP addresses for computers, services and other resources connected to a network."
     rationale:
-      "Unless a system is specifically designated to act as a DNS server, it is recommended"
+      "Unless a system is specifically designated to act as a DNS server, it is recommended "
       "that the package be deleted to reduce the potential attack surface."
     remediation:
-      "Run the following commands to stop named.service and remove the bind9 package:"
-      "# systemctl stop named.service"
-      "# apt purge bind9"
-      "- OR -"
-      "- IF - the bind9 package is required as a dependency:"
-      "Run the following commands to stop and mask bind9.service:"
-      "# systemctl stop named.service"
-      "# systemctl mask named.service"
+      "Run the following commands to stop named.service and remove the bind9 package:\n"
+      "# systemctl stop named.service\n"
+      "# apt purge bind9\n"
+      "- OR -\n"
+      "- IF - the bind9 package is required as a dependency:\n"
+      "Run the following commands to stop and mask bind9.service:\n"
+      "# systemctl stop named.service\n"
+      "# systemctl mask named.service\n"
     cis_benchmark: {
       profile_level: 1
       severity: LOW
@@ -4106,20 +4115,20 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure dnsmasq services are not in use"
     description:
-      "dnsmasq is a lightweight tool that provides DNS caching, DNS forwarding and DHCP"
+      "dnsmasq is a lightweight tool that provides DNS caching, DNS forwarding and DHCP "
       "(Dynamic Host Configuration Protocol) services."
     rationale:
-      "Unless a system is specifically designated to act as a DNS caching, DNS forwarding"
-      "and/or DHCP server, it is recommended that the package be removed to reduce the"
+      "Unless a system is specifically designated to act as a DNS caching, DNS forwarding "
+      "and/or DHCP server, it is recommended that the package be removed to reduce the "
       "potential attack surface."
     remediation:
-      "Run the following commands to stop dnsmasq.service and remove dnsmasq package:"
-      "# systemctl stop dnsmasq.service"
-      "# apt purge dnsmasq"
-      "- OR -"
-      "- IF - the dnsmasq package is required as a dependency:"
-      "Run the following commands to stop and mask the dnsmasq.service:"
-      "# systemctl stop dnsmasq.service"
+      "Run the following commands to stop dnsmasq.service and remove dnsmasq package:\n"
+      "# systemctl stop dnsmasq.service\n"
+      "# apt purge dnsmasq\n"
+      "- OR -\n"
+      "- IF - the dnsmasq package is required as a dependency:\n"
+      "Run the following commands to stop and mask the dnsmasq.service:\n"
+      "# systemctl stop dnsmasq.service\n"
       "# systemctl mask dnsmasq.service"
     cis_benchmark: {
       profile_level: 1
@@ -4159,22 +4168,22 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure ftp server services are not in use"
     description:
-      "The File Transfer Protocol (FTP) provides networked computers with the ability to"
+      "The File Transfer Protocol (FTP) provides networked computers with the ability to "
       "transfer files. vsftpd is the Very Secure File Transfer Protocol Daemon."
     rationale:
-      "FTP does not protect the confidentiality of data or authentication credentials. It is"
-      "recommended SFTP be used if file transfer is required. Unless there is a need to run"
-      "the system as a FTP server (for example, to allow anonymous downloads), it is"
+      "FTP does not protect the confidentiality of data or authentication credentials. It is "
+      "recommended SFTP be used if file transfer is required. Unless there is a need to run "
+      "the system as a FTP server (for example, to allow anonymous downloads), it is "
       "recommended that the package be deleted to reduce the potential attack surface."
     remediation:
-      "Run the following commands to stop vsftpd.service and remove the vsftpd"
-      "package:"
-      "# systemctl stop vsftpd.service"
-      "# apt purge vsftpd"
-      "- OR -"
-      "- IF - the vsftpd package is required as a dependency:"
-      "Run the following commands to stop and mask the vsftpd.service:"
-      "# systemctl stop vsftpd.service"
+      "Run the following commands to stop vsftpd.service and remove the vsftpd "
+      "package:\n"
+      "# systemctl stop vsftpd.service\n"
+      "# apt purge vsftpd\n"
+      "- OR -\n"
+      "- IF - the vsftpd package is required as a dependency:\n"
+      "Run the following commands to stop and mask the vsftpd.service:\n"
+      "# systemctl stop vsftpd.service\n"
       "# systemctl mask vsftpd.service"
     cis_benchmark: {
       profile_level: 1
@@ -4214,20 +4223,20 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure ldap server services are not in use"
     description:
-      "The Lightweight Directory Access Protocol (LDAP) was introduced as a replacement for"
+      "The Lightweight Directory Access Protocol (LDAP) was introduced as a replacement for "
       "NIS/YP. It is a service that provides a method for looking up information from a central"
       "database."
     rationale:
-      "If the system will not need to act as an LDAP server, it is recommended that the"
+      "If the system will not need to act as an LDAP server, it is recommended that the "
       "software be removed to reduce the potential attack surface."
     remediation:
-      "Run the following commands to stop slapd.service and remove the slapd package:"
-      "# systemctl stop slapd.service"
-      "# apt purge slapd"
-      "- OR -"
-      "- IF - the slapd package is required as a dependency:"
-      "Run the following commands to stop and mask slapd.service:"
-      "# systemctl stop slapd.service"
+      "Run the following commands to stop slapd.service and remove the slapd package:\n"
+      "# systemctl stop slapd.service\n"
+      "# apt purge slapd\n"
+      "- OR -\n"
+      "- IF - the slapd package is required as a dependency:\n"
+      "Run the following commands to stop and mask slapd.service:\n"
+      "# systemctl stop slapd.service\n"
       "# systemctl mask slapd.service"
     cis_benchmark: {
       profile_level: 1
@@ -4267,24 +4276,24 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure message access server services are not in use"
     description:
-      "dovecot-imapd and dovecot-pop3d are an open source IMAP and POP3 server for"
+      "dovecot-imapd and dovecot-pop3d are an open source IMAP and POP3 server for "
       "Linux based systems."
     rationale:
-      "Unless POP3 and/or IMAP servers are to be provided by this system, it is"
-      "recommended that the package be removed to reduce the potential attack surface."
-      "Note: Several IMAP/POP3 servers exist and can use other service names. These"
+      "Unless POP3 and/or IMAP servers are to be provided by this system, it is "
+      "recommended that the package be removed to reduce the potential attack surface.\n"
+      "Note: Several IMAP/POP3 servers exist and can use other service names. These "
       "should also be audited and the packages removed if not required."
     remediation:
-      "Run one of the following commands to remove dovecot-imapd and dovecot-pop3d:"
-      "Run the following commands to stop dovecot.socket and dovecot.service, and"
-      "remove the dovecot-imapd and dovecot-pop3d packages:"
-      "# systemctl stop dovecot.socket dovecot.service"
-      "# apt purge dovecot-imapd dovecot-pop3d"
-      "- OR -"
-      "- IF - a package is installed and is required for dependencies:"
-      "Run the following commands to stop and mask dovecot.socket and"
-      "dovecot.service:"
-      "# systemctl stop dovecot.socket dovecot.service"
+      "Run one of the following commands to remove dovecot-imapd and dovecot-pop3d:\n"
+      "Run the following commands to stop dovecot.socket and dovecot.service, and "
+      "remove the dovecot-imapd and dovecot-pop3d packages:\n"
+      "# systemctl stop dovecot.socket dovecot.service\n"
+      "# apt purge dovecot-imapd dovecot-pop3d\n"
+      "- OR -\n"
+      "- IF - a package is installed and is required for dependencies:\n"
+      "Run the following commands to stop and mask dovecot.socket and "
+      "dovecot.service:\n"
+      "# systemctl stop dovecot.socket dovecot.service\n"
       "# systemctl mask dovecot.socket dovecot.service"
     cis_benchmark: {
       profile_level: 1
@@ -4324,21 +4333,21 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: " Ensure network file system services are not in use"
     description:
-      "The Network File System (NFS) is one of the first and most widely distributed file"
-      "systems in the UNIX environment. It provides the ability for systems to mount file"
+      "The Network File System (NFS) is one of the first and most widely distributed file "
+      "systems in the UNIX environment. It provides the ability for systems to mount file "
       "systems of other servers through the network."
     rationale:
-      "If the system does not export NFS shares, it is recommended that the nfs-kernel-server"
+      "If the system does not export NFS shares, it is recommended that the nfs-kernel-server "
       "package be removed to reduce the remote attack surface."
     remediation:
       "Run the following command to stop nfs-server.service and remove nfs-kernel-"
-      "server package:"
-      "# systemctl stop nfs-server.service"
-      "# apt purge nfs-kernel-server"
-      "- OR -"
-      "- IF - the nfs-kernel-server package is required as a dependency:"
-      "Run the following commands to stop and mask the nfs-server.service:"
-      "# systemctl stop nfs-server.service"
+      "server package:\n"
+      "# systemctl stop nfs-server.service\n"
+      "# apt purge nfs-kernel-server\n"
+      "- OR -\n"
+      "- IF - the nfs-kernel-server package is required as a dependency:\n"
+      "Run the following commands to stop and mask the nfs-server.service:\n"
+      "# systemctl stop nfs-server.service\n"
       "# systemctl mask nfs-server.service"
     cis_benchmark: {
       profile_level: 1
@@ -4379,24 +4388,24 @@ benchmark_configs: {
     title: "Ensure nis server services are not in use"
     description:
       "The Network Information Service (NIS) (formally known as Yellow Pages) is a client-"
-      "server directory service protocol for distributing system configuration files. The NIS"
-      "server is a collection of programs that allow for the distribution of configuration files. The"
-      "NIS client (ypbind) was used to bind a machine to an NIS server and receive the"
+      "server directory service protocol for distributing system configuration files. The NIS "
+      "server is a collection of programs that allow for the distribution of configuration files. The "
+      "NIS client (ypbind) was used to bind a machine to an NIS server and receive the "
       "distributed configuration files."
     rationale:
-      "ypserv.service is inherently an insecure system that has been vulnerable to DOS"
-      "attacks, buffer overflows and has poor authentication for querying NIS maps. NIS"
-      "generally has been replaced by such protocols as Lightweight Directory Access"
-      "Protocol (LDAP). It is recommended that ypserv.service be removed and other, more"
+      "ypserv.service is inherently an insecure system that has been vulnerable to DOS "
+      "attacks, buffer overflows and has poor authentication for querying NIS maps. NIS "
+      "generally has been replaced by such protocols as Lightweight Directory Access "
+      "Protocol (LDAP). It is recommended that ypserv.service be removed and other, more "
       "secure services be used"
     remediation:
-      "Run the following commands to stop ypserv.service and remove ypserv package:"
-      "# systemctl stop ypserv.service"
-      "# apt purge ypserv"
-      "- OR -"
-      "- IF - the ypserv package is required as a dependency:"
-      "Run the following commands to stop and mask ypserv.service:"
-      "# systemctl stop ypserv.service"
+      "Run the following commands to stop ypserv.service and remove ypserv package:\n"
+      "# systemctl stop ypserv.service\n"
+      "# apt purge ypserv\n"
+      "- OR -\n"
+      "- IF - the ypserv package is required as a dependency:\n"
+      "Run the following commands to stop and mask ypserv.service:\n"
+      "# systemctl stop ypserv.service\n"
       "# systemctl mask ypserv.service"
     cis_benchmark: {
       profile_level: 1
@@ -4436,22 +4445,22 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure nis server services are not in use"
     description:
-      "The Common Unix Print System (CUPS) provides the ability to print to both local and"
-      "network printers. A system running CUPS can also accept print jobs from remote"
-      "systems and print them to local printers. It also provides a web based remote"
+      "The Common Unix Print System (CUPS) provides the ability to print to both local and "
+      "network printers. A system running CUPS can also accept print jobs from remote "
+      "systems and print them to local printers. It also provides a web based remote "
       "administration capability."
     rationale:
-      "If the system does not need to print jobs or accept print jobs from other systems, it is"
+      "If the system does not need to print jobs or accept print jobs from other systems, it is "
       "recommended that CUPS be removed to reduce the potential attack surface."
     remediation:
-      "Run the following commands to stop cups.socket and cups.service, and remove the"
-      "cups package:"
-      "# systemctl stop cups.socket cups.service"
-      "# apt purge cups"
-      "- OR -"
-      "- IF - the cups package is required as a dependency:"
-      "Run the following commands to stop and mask the cups.socket and cups.service:"
-      "# systemctl stop cups.socket cups.service"
+      "Run the following commands to stop cups.socket and cups.service, and remove the "
+      "cups package:\n"
+      "# systemctl stop cups.socket cups.service\n"
+      "# apt purge cups\n"
+      "- OR -\n"
+      "- IF - the cups package is required as a dependency:\n"
+      "Run the following commands to stop and mask the cups.socket and cups.service:\n"
+      "# systemctl stop cups.socket cups.service\n"
       "# systemctl mask cups.socket cups.service"
     cis_benchmark: {
       profile_level: 2
@@ -4491,22 +4500,22 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure nis server services are not in use"
     description:
-      "The Common Unix Print System (CUPS) provides the ability to print to both local and"
-      "network printers. A system running CUPS can also accept print jobs from remote"
-      "systems and print them to local printers. It also provides a web based remote"
+      "The Common Unix Print System (CUPS) provides the ability to print to both local and "
+      "network printers. A system running CUPS can also accept print jobs from remote "
+      "systems and print them to local printers. It also provides a web based remote "
       "administration capability."
     rationale:
-      "If the system does not need to print jobs or accept print jobs from other systems, it is"
+      "If the system does not need to print jobs or accept print jobs from other systems, it is "
       "recommended that CUPS be removed to reduce the potential attack surface."
     remediation:
-      "Run the following commands to stop cups.socket and cups.service, and remove the"
-      "cups package:"
-      "# systemctl stop cups.socket cups.service"
-      "# apt purge cups"
-      "- OR -"
-      "- IF - the cups package is required as a dependency:"
-      "Run the following commands to stop and mask the cups.socket and cups.service:"
-      "# systemctl stop cups.socket cups.service"
+      "Run the following commands to stop cups.socket and cups.service, and remove the "
+      "cups package:\n"
+      "# systemctl stop cups.socket cups.service\n"
+      "# apt purge cups\n"
+      "- OR -\n"
+      "- IF - the cups package is required as a dependency:\n"
+      "Run the following commands to stop and mask the cups.socket and cups.service:\n"
+      "# systemctl stop cups.socket cups.service\n"
       "# systemctl mask cups.socket cups.service"
     cis_benchmark: {
       profile_level: 2
@@ -4546,31 +4555,31 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure rpcbind services are not in use"
     description:
-      "The rpcbind utility maps RPC services to the ports on which they listen. RPC"
-      "processes notify rpcbind when they start, registering the ports they are listening on and"
-      "the RPC program numbers they expect to serve. The client system then contacts"
-      "rpcbind on the server with a particular RPC program number. The rpcbind.service"
-      "redirects the client to the proper port number so it can communicate with the requested"
-      "service."
-      "Portmapper is an RPC service, which always listens on tcp and udp 111, and is used to"
-      "map other RPC services (such as nfs, nlockmgr, quotad, mountd, etc.) to their"
-      "corresponding port number on the server. When a remote host makes an RPC call to"
+      "The rpcbind utility maps RPC services to the ports on which they listen. RPC "
+      "processes notify rpcbind when they start, registering the ports they are listening on and "
+      "the RPC program numbers they expect to serve. The client system then contacts "
+      "rpcbind on the server with a particular RPC program number. The rpcbind.service "
+      "redirects the client to the proper port number so it can communicate with the requested "
+      "service.\n"
+      "Portmapper is an RPC service, which always listens on tcp and udp 111, and is used to "
+      "map other RPC services (such as nfs, nlockmgr, quotad, mountd, etc.) to their "
+      "corresponding port number on the server. When a remote host makes an RPC call to "
       "that server, it first consults with portmap to determine where the RPC server is listening."
     rationale:
-      "A small request (~82 bytes via UDP) sent to the Portmapper generates a large"
-      "response (7x to 28x amplification), which makes it a suitable tool for DDoS attacks. If"
-      "rpcbind is not required, it is recommended to remove rpcbind package to reduce the"
+      "A small request (~82 bytes via UDP) sent to the Portmapper generates a large "
+      "response (7x to 28x amplification), which makes it a suitable tool for DDoS attacks. If "
+      "rpcbind is not required, it is recommended to remove rpcbind package to reduce the "
       "potential attack surface."
     remediation:
-      "Run the following commands to stop rpcbind.socket and rpcbind.service, and"
-      "remove the rpcbind package:"
-      "# systemctl stop rpcbind.socket rpcbind.service"
-      "# apt purge rpcbind"
-      "- OR -"
-      "- IF - the rpcbind package is required as a dependency:"
-      "Run the following commands to stop and mask the rpcbind.socket and"
-      "rpcbind.service:"
-      "# systemctl stop rpcbind.socket rpcbind.service"
+      "Run the following commands to stop rpcbind.socket and rpcbind.service, and "
+      "remove the rpcbind package:\n"
+      "# systemctl stop rpcbind.socket rpcbind.service\n"
+      "# apt purge rpcbind\n"
+      "- OR -\n"
+      "- IF - the rpcbind package is required as a dependency:\n"
+      "Run the following commands to stop and mask the rpcbind.socket and "
+      "rpcbind.service:\n"
+      "# systemctl stop rpcbind.socket rpcbind.service\n"
       "# systemctl mask rpcbind.socket rpcbind.service"
     cis_benchmark: {
       profile_level: 1
@@ -4610,19 +4619,19 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure rsync services are not in use"
     description:
-      "The rsync service can be used to synchronize files between systems over network"
+      "The rsync service can be used to synchronize files between systems over network "
       "links."
     rationale:
-      "rsync.service presents a security risk as the rsync protocol is unencrypted."
+      "rsync.service presents a security risk as the rsync protocol is unencrypted.\n"
       "The rsync package should be removed to reduce the attack area of the system."
     remediation:
-      "Run the following commands to stop rsync.service, and remove the rsync package:"
-      "# systemctl stop rsync.service"
-      "# apt purge rsync"
-      "- OR -"
-      "- IF - the rsync package is required as a dependency:"
-      "Run the following commands to stop and mask rsync.service:"
-      "# systemctl stop rsync.service"
+      "Run the following commands to stop rsync.service, and remove the rsync package:\n"
+      "# systemctl stop rsync.service\n"
+      "# apt purge rsync\n"
+      "- OR -\n"
+      "- IF - the rsync package is required as a dependency:\n"
+      "Run the following commands to stop and mask rsync.service:\n"
+      "# systemctl stop rsync.service\n"
       "# systemctl mask rsync.service"
     cis_benchmark: {
       profile_level: 1
@@ -4662,25 +4671,25 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure samba file server services are not in use"
     description:
-      "The Samba daemon allows system administrators to configure their Linux systems to"
-      "share file systems and directories with Windows desktops. Samba will advertise the file"
-      "systems and directories via the Server Message Block (SMB) protocol. Windows"
-      "desktop users will be able to mount these directories and file systems as letter drives on"
+      "The Samba daemon allows system administrators to configure their Linux systems to "
+      "share file systems and directories with Windows desktops. Samba will advertise the file "
+      "systems and directories via the Server Message Block (SMB) protocol. Windows "
+      "desktop users will be able to mount these directories and file systems as letter drives on "
       "their systems."
     rationale:
-      "The Samba daemon allows system administrators to configure their Linux systems to"
-      "share file systems and directories with Windows desktops. Samba will advertise the file"
-      "systems and directories via the Server Message Block (SMB) protocol. Windows"
-      "desktop users will be able to mount these directories and file systems as letter drives on"
+      "The Samba daemon allows system administrators to configure their Linux systems to "
+      "share file systems and directories with Windows desktops. Samba will advertise the file "
+      "systems and directories via the Server Message Block (SMB) protocol. Windows "
+      "desktop users will be able to mount these directories and file systems as letter drives on "
       "their systems."
     remediation:
-      "Run the following commands to stop smbd.service and remove samba package:"
-      "# systemctl stop smbd.service"
-      "# apt purge samba"
-      "- OR -"
-      "- IF - the samba package is required as a dependency:"
-      "Run the following commands to stop and mask the smbd.service:"
-      "# systemctl stop smbd.service"
+      "Run the following commands to stop smbd.service and remove samba package:\n"
+      "# systemctl stop smbd.service\n"
+      "# apt purge samba\n"
+      "- OR -\n"
+      "- IF - the samba package is required as a dependency:\n"
+      "Run the following commands to stop and mask the smbd.service:\n"
+      "# systemctl stop smbd.service\n"
       "# systemctl mask smbd.service"
     cis_benchmark: {
       profile_level: 1
@@ -4720,29 +4729,29 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure snmp services are not in use"
     description:
-      "Simple Network Management Protocol (SNMP) is a widely used protocol for monitoring"
-      "the health and welfare of network equipment, computer equipment and devices like"
+      "Simple Network Management Protocol (SNMP) is a widely used protocol for monitoring "
+      "the health and welfare of network equipment, computer equipment and devices like "
       "UPSs."
-      "Net-SNMP is a suite of applications used to implement SNMPv1 (RFC 1157), SNMPv2"
-      "(RFCs 1901-1908), and SNMPv3 (RFCs 3411-3418) using both IPv4 and IPv6."
-      "Support for SNMPv2 classic (a.k.a. \"SNMPv2 historic\" - RFCs 1441-1452) was dropped"
-      "with the 4.0 release of the UCD-snmp package."
-      "The Simple Network Management Protocol (SNMP) server is used to listen for SNMP"
-      "commands from an SNMP management system, execute the commands or collect the"
+      "Net-SNMP is a suite of applications used to implement SNMPv1 (RFC 1157), SNMPv2 "
+      "(RFCs 1901-1908), and SNMPv3 (RFCs 3411-3418) using both IPv4 and IPv6.\n"
+      "Support for SNMPv2 classic (a.k.a. \"SNMPv2 historic\" - RFCs 1441-1452) was dropped "
+      "with the 4.0 release of the UCD-snmp package.\n"
+      "The Simple Network Management Protocol (SNMP) server is used to listen for SNMP "
+      "commands from an SNMP management system, execute the commands or collect the "
       "information and then send results back to the requesting system."
     rationale:
-      "The SNMP server can communicate using SNMPv1, which transmits data in the clear"
-      "and does not require authentication to execute commands. SNMPv3 replaces the"
-      "simple/clear text password sharing used in SNMPv2 with more securely encoded"
-      "parameters. If the the SNMP service is not required, the snmpd package should be"
+      "The SNMP server can communicate using SNMPv1, which transmits data in the clear "
+      "and does not require authentication to execute commands. SNMPv3 replaces the "
+      "simple/clear text password sharing used in SNMPv2 with more securely encoded "
+      "parameters. If the the SNMP service is not required, the snmpd package should be "
       "removed to reduce the attack surface of the system."
     remediation:
-      "Run the following commands to stop snmpd.service and remove the snmpd package:"
-      "# systemctl stop snmpd.service"
-      "# apt purge snmpd"
-      "- OR - If the package is required for dependencies:"
-      "Run the following commands to stop and mask the snmpd.service:"
-      "# systemctl stop snmpd.service"
+      "Run the following commands to stop snmpd.service and remove the snmpd package:\n"
+      "# systemctl stop snmpd.service\n"
+      "# apt purge snmpd\n"
+      "- OR - If the package is required for dependencies:\n"
+      "Run the following commands to stop and mask the snmpd.service:\n"
+      "# systemctl stop snmpd.service\n"
       "# systemctl mask snmpd.service"
     cis_benchmark: {
       profile_level: 1
@@ -4782,23 +4791,23 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure tftp server services are not in use"
     description:
-      "Trivial File Transfer Protocol (TFTP) is a simple protocol for exchanging files between"
-      "two TCP/IP machines. TFTP servers allow connections from a TFTP Client for sending"
+      "Trivial File Transfer Protocol (TFTP) is a simple protocol for exchanging files between "
+      "two TCP/IP machines. TFTP servers allow connections from a TFTP Client for sending "
       "and receiving files."
     rationale:
-      "Unless there is a need to run the system as a TFTP server, it is recommended that the"
-      "package be removed to reduce the potential attack surface."
-      "TFTP does not have built-in encryption, access control or authentication. This makes it"
+      "Unless there is a need to run the system as a TFTP server, it is recommended that the "
+      "package be removed to reduce the potential attack surface.\n"
+      "TFTP does not have built-in encryption, access control or authentication. This makes it "
       "very easy for an attacker to exploit TFTP to gain access to files"
     remediation:
-      "Run the following commands to stop tftpd-hpa.service, and remove the tftpd-hpa"
-      "package:"
-      "# systemctl stop tftpd-hpa.service"
-      "# apt purge tftpd-hpa"
-      "- OR -"
-      "- IF - the tftpd-hpa package is required as a dependency:"
-      "Run the following commands to stop and mask tftpd-hpa.service:"
-      "# systemctl stop tftpd-hpa.service"
+      "Run the following commands to stop tftpd-hpa.service, and remove the tftpd-hpa "
+      "package:\n"
+      "# systemctl stop tftpd-hpa.service\n"
+      "# apt purge tftpd-hpa\n"
+      "- OR -\n"
+      "- IF - the tftpd-hpa package is required as a dependency:\n"
+      "Run the following commands to stop and mask tftpd-hpa.service:\n"
+      "# systemctl stop tftpd-hpa.service\n"
       "# systemctl mask tftpd-hpa.service"
     cis_benchmark: {
       profile_level: 1
@@ -4840,15 +4849,15 @@ benchmark_configs: {
     description:
       "Squid is a standard proxy server used in many distributions and environments."
     rationale:
-      "Unless a system is specifically set up to act as a proxy server, it is recommended that"
+      "Unless a system is specifically set up to act as a proxy server, it is recommended that "
       "the squid package be removed to reduce the potential attack surface."
     remediation:
-      "Run the following commands to stop squid.service and remove the squid package:"
-      "# systemctl stop squid.service"
-      "# apt purge squid"
-      "- OR - If the squid package is required as a dependency:"
-      "Run the following commands to stop and mask the squid.service:"
-      "# systemctl stop squid.service"
+      "Run the following commands to stop squid.service and remove the squid package:\n"
+      "# systemctl stop squid.service\n"
+      "# apt purge squid\n"
+      "- OR - If the squid package is required as a dependency:\n"
+      "Run the following commands to stop and mask the squid.service:\n"
+      "# systemctl stop squid.service\n"
       "# systemctl mask squid.service"
     cis_benchmark: {
       profile_level: 1
@@ -4890,21 +4899,21 @@ benchmark_configs: {
     description:
       "Web servers provide the ability to host web site content."
     rationale:
-      "Unless there is a local site approved requirement to run a web server service on the"
+      "Unless there is a local site approved requirement to run a web server service on the "
       "system, web server packages should be removed to reduce the potential attack surface."
     remediation:
-      "Run the following commands to stop httpd.socket, httpd.service, and"
-      "nginx.service, and remove apache2 and nginx packages:"
-      "# systemctl stop apache2.socket apache2.service nginx.service"
-      "# apt purge apache2 nginx"
-      "- OR -"
-      "- IF - a package is installed and is required for dependencies:"
-      "Run the following commands to stop and mask apache2.socket, apache2.service,"
-      "and nginx.service:"
-      "# systemctl stop apache2.socket apache2.service nginx.service"
-      "# systemctl mask apache2.socket apache2.service nginx.service"
-      "Note: Other web server packages may exist. If not required and authorized by local site"
-      "policy, they should also be removed. If the package is required for a dependency, the"
+      "Run the following commands to stop httpd.socket, httpd.service, and "
+      "nginx.service, and remove apache2 and nginx packages:\n"
+      "# systemctl stop apache2.socket apache2.service nginx.service\n"
+      "# apt purge apache2 nginx\n"
+      "- OR -\n"
+      "- IF - a package is installed and is required for dependencies:\n"
+      "Run the following commands to stop and mask apache2.socket, apache2.service, "
+      "and nginx.service:\n"
+      "# systemctl stop apache2.socket apache2.service nginx.service\n"
+      "# systemctl mask apache2.socket apache2.service nginx.service\n"
+      "Note: Other web server packages may exist. If not required and authorized by local site "
+      "policy, they should also be removed. If the package is required for a dependency, the "
       "service and socket should be stopped and masked."
     cis_benchmark: {
       profile_level: 1
@@ -4944,22 +4953,22 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure xinetd services are not in use"
     description:
-      "The eXtended InterNET Daemon (xinetd) is an open source super daemon that"
-      "replaced the original inetd daemon. The xinetd daemon listens for well known"
-      "services and dispatches the appropriate daemon to properly respond to service"
+      "The eXtended InterNET Daemon (xinetd) is an open source super daemon that "
+      "replaced the original inetd daemon. The xinetd daemon listens for well known "
+      "services and dispatches the appropriate daemon to properly respond to service "
       "requests."
     rationale:
-      "If there are no xinetd services required, it is recommended that the package be"
+      "If there are no xinetd services required, it is recommended that the package be "
       "removed to reduce the attack surface are of the system."
     remediation:
-      "Run the following commands to stop xinetd.service, and remove the xinetd"
-      "package:"
-      "# systemctl stop xinetd.service"
-      "# apt purge xinetd"
-      "-OR-"
-      "-IF- the xinetd package is required as a dependency:"
-      "Run the following commands to stop and mask the xinetd.service:"
-      "# systemctl stop xinetd.service"
+      "Run the following commands to stop xinetd.service, and remove the xinetd "
+      "package:\n"
+      "# systemctl stop xinetd.service\n"
+      "# apt purge xinetd\n"
+      "-OR-\n"
+      "-IF- the xinetd package is required as a dependency:\n"
+      "Run the following commands to stop and mask the xinetd.service:\n"
+      "# systemctl stop xinetd.service\n"
       "# systemctl mask xinetd.service"
     cis_benchmark: {
       profile_level: 1
@@ -4999,17 +5008,17 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure X window server services are not in use"
     description:
-      "The X Window System provides a Graphical User Interface (GUI) where users can have"
-      "multiple windows in which to run programs and various add on. The X Windows system"
-      "is typically used on workstations where users login, but not on servers where users"
+      "The X Window System provides a Graphical User Interface (GUI) where users can have "
+      "multiple windows in which to run programs and various add on. The X Windows system "
+      "is typically used on workstations where users login, but not on servers where users "
       "typically do not login."
     rationale:
-      "Unless your organization specifically requires graphical login access via X Windows,"
+      "Unless your organization specifically requires graphical login access via X Windows, "
       "remove it to reduce the potential attack surface."
     remediation:
-      "- IF - a Graphical Desktop Manager or X-Windows server is not required and approved"
-      "by local site policy:"
-      "Run the following command to remove the X Windows Server package:"
+      "- IF - a Graphical Desktop Manager or X-Windows server is not required and approved "
+      "by local site policy:\n"
+      "Run the following command to remove the X Windows Server package:\n"
       "# apt purge xserver-common"
     cis_benchmark: {
       profile_level: 2
@@ -5037,19 +5046,19 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure FTP client is not installed"
     description: 
-      "tnftp an enhanced FTP client, is the user interface to the Internet standard File"
-      "Transfer Protocol. The program allows a user to transfer files to and from a remote"
+      "tnftp an enhanced FTP client, is the user interface to the Internet standard File "
+      "Transfer Protocol. The program allows a user to transfer files to and from a remote "
       "network site."
     rationale: 
-      "Unless there is a need to run the system using Internet standard File Transfer Protocol"
-      "(for example, to allow anonymous downloads), it is recommended that the package be"
+      "Unless there is a need to run the system using Internet standard File Transfer Protocol "
+      "(for example, to allow anonymous downloads), it is recommended that the package be "
       "removed to reduce the potential attack surface."
     remediation: 
       "Run the following command to uninstall tnftp & ftp:\n"
       "```\n"
       "# apt purge ftp\n"
       "# apt purge tnftp\n"
-      "```"
+      "```\n"
       "Ensure alternative secure protocols like SFTP are used if file transfer is required."
     cis_benchmark: {
       profile_level: 1
@@ -5074,9 +5083,12 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure a single time synchronization daemon is in use"
     description:
-      "System time should be synchronized between all systems in an environment. This is typically done by establishing an authoritative time server or set of servers and having all systems synchronize their clocks to them."
+      "System time should be synchronized between all systems in an environment. This is typically "
+      "done by establishing an authoritative time server or set of servers and having all systems "
+      "synchronize their clocks to them."
     rationale:
-      "Time synchronization is important to support time-sensitive security mechanisms and ensures log files have consistent time records across the enterprise, which aids in forensic investigations."
+      "Time synchronization is important to support time-sensitive security mechanisms and ensures "
+      "log files have consistent time records across the enterprise, which aids in forensic investigations."
     remediation:
       "On physical systems, and virtual systems where host-based time synchronization is not available:\n"
       "1. Select one of the two time synchronization daemons; chrony or systemd-timesyncd.\n"
@@ -5131,23 +5143,23 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure a single time synchronization daemon is in use"
     description:
-      "systemd-timesyncd is a daemon that has been added for synchronizing the system"
+      "systemd-timesyncd is a daemon that has been added for synchronizing the system "
       "clock across the network"
     rationale:
-      "systemd-timesyncd needs to be enabled and running in order to synchronize the system"
-      "to a timeserver."
-      "Time synchronization is important to support time sensitive security mechanisms and to"
-      "ensure log files have consistent time records across the enterprise to aid in forensic"
+      "systemd-timesyncd needs to be enabled and running in order to synchronize the system "
+      "to a timeserver.\n"
+      "Time synchronization is important to support time sensitive security mechanisms and to "
+      "ensure log files have consistent time records across the enterprise to aid in forensic "
       "investigations"
     remediation:
-      "- IF - systemd-timesyncd is in use on the system, run the following commands:"
-      "Run the following command to unmask systemd-timesyncd.service:"
-      "# systemctl unmask systemd-timesyncd.service"
-      "Run the following command to enable and start systemd-timesyncd.service:"
-      "# systemctl --now enable systemd-timesyncd.service"
-      "- OR -"
-      "If another time synchronization service is in use on the system, run the following"
-      "command to stop and mask systemd-timesyncd:"
+      "- IF - systemd-timesyncd is in use on the system, run the following commands:\n"
+      "Run the following command to unmask systemd-timesyncd.service:\n"
+      "# systemctl unmask systemd-timesyncd.service\n"
+      "Run the following command to enable and start systemd-timesyncd.service:\n"
+      "# systemctl --now enable systemd-timesyncd.service\n"
+      "- OR -\n"
+      "If another time synchronization service is in use on the system, run the following "
+      "command to stop and mask systemd-timesyncd:\n"
       "# systemctl --now mask systemd-timesyncd.service"
     cis_benchmark: {
       profile_level: 1
@@ -5188,36 +5200,37 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure chrony is configured"
     description:
-      "• server"
-      "o The server directive specifies an NTP server which can be used as a time"
-      "source. The client-server relationship is strictly hierarchical: a client might"
-      "synchronize its system time to that of the server, but the server’s system"
-      "time will never be influenced by that of a client."
-      "o This directive can be used multiple times to specify multiple servers."
+      "• server\n"
+      "o The server directive specifies an NTP server which can be used as a time "
+      "source. The client-server relationship is strictly hierarchical: a client might "
+      "synchronize its system time to that of the server, but the server’s system "
+      "time will never be influenced by that of a client.\n"
+      "o This directive can be used multiple times to specify multiple servers.\n"
       "o The directive is immediately followed by either the name of the server, or"
-      "its IP address."
-      "• pool"
-      "o The syntax of this directive is similar to that for the server directive, except"
-      "that it is used to specify a pool of NTP servers rather than a single NTP"
-      "server. The pool name is expected to resolve to multiple addresses which"
-      "might change over time."
-      "o This directive can be used multiple times to specify multiple pools."
+      "its IP address.\n"
+      "• pool\n"
+      "o The syntax of this directive is similar to that for the server directive, except "
+      "that it is used to specify a pool of NTP servers rather than a single NTP "
+      "server. The pool name is expected to resolve to multiple addresses which "
+      "might change over time.\n"
+      "o This directive can be used multiple times to specify multiple pools.\n"
       "o All options valid in the server directive can be used in this directive too."
     rationale:
-      "Time synchronization is important to support time sensitive security mechanisms and to"
-      "ensure log files have consistent time records across the enterprise to aid in forensic"
+      "Time synchronization is important to support time sensitive security mechanisms and to "
+      "ensure log files have consistent time records across the enterprise to aid in forensic "
       "investigations"
     remediation:
-      "Edit /etc/chrony/chrony.conf or a file ending in .sources in"
-      "/etc/chrony/sources.d/ and add or edit server or pool lines as appropriate"
-      "according to local site policy:"
-      "Edit the Chrony configuration and add or edit the server and/or pool lines returned by"
-      "the Audit Procedure as appropriate according to local site policy"
-      "<[server|pool]> <[remote-server|remote-pool]>"
-      "Example script to add a drop-in configuration for the pool directive:"
-      "#!/usr/bin/env bash"
-      "{"
-      "[ ! -d \"/etc/chrony/sources.d/\" ] && mkdir /etc/chrony/sources.d/"
+      "Edit /etc/chrony/chrony.conf or a file ending in .sources in "
+      "/etc/chrony/sources.d/ and add or edit server or pool lines as appropriate "
+      "according to local site policy:\n"
+      "Edit the Chrony configuration and add or edit the server and/or pool lines returned by "
+      "the Audit Procedure as appropriate according to local site policy\n"
+      "<[server|pool]> <[remote-server|remote-pool]>\n"
+      "Example script to add a drop-in configuration for the pool directive:\n"
+      "```\n"
+      "#!/usr/bin/env bash\n"
+      "{\n"
+      "[ ! -d \"/etc/chrony/sources.d/\" ] && mkdir /etc/chrony/sources.d/\n"
       "printf '%s\n' \"\" \"#The maxsources option is unique to the pool directive\""
       "\"pool time.nist.gov iburst maxsources 4\" >> /etc/chrony/sources.d/60-"
       "sources.sources"
@@ -5233,7 +5246,8 @@ benchmark_configs: {
       "sources.sources"
       "chronyc reload sources &>/dev/null"
       "}"
-      "Run the following command to reload the chronyd config:"
+      "```\n"
+      "Run the following command to reload the chronyd config:\n"
       "# systemctl reload-or-restart chronyd"
     cis_benchmark: {
       profile_level: 1
@@ -5321,23 +5335,23 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure dccp kernel module is not available"
     description:
-      "The Datagram Congestion Control Protocol (DCCP) is a transport layer protocol that"
-      "supports streaming media and telephony. DCCP provides a way to gain access to"
-      "congestion control, without having to do it at the application layer, but does not provide"
+      "The Datagram Congestion Control Protocol (DCCP) is a transport layer protocol that "
+      "supports streaming media and telephony. DCCP provides a way to gain access to "
+      "congestion control, without having to do it at the application layer, but does not provide "
       "in-sequence delivery."
     rationale:
-      "- IF - the protocol is not required, it is recommended that the drivers not be installed to"
+      "- IF - the protocol is not required, it is recommended that the drivers not be installed to "
       "reduce the potential attack surface."
     remediation:
-      "Run the following script to unload and disable the dccp module:"
-      "- IF - the dccp kernel module is available in ANY installed kernel:"
-      "• Create a file ending in .conf with install dccp /bin/false in the"
-      "/etc/modprobe.d/ directory"
-      "• Create a file ending in .conf with blacklist dccp in the /etc/modprobe.d/"
-      "directory"
-      "• Run modprobe -r dccp 2>/dev/null; rmmod dccp 2>/dev/null to remove"
-      "dccp from the kernel"
-      "- IF - the dccp kernel module is not available on the system, or pre-compiled into the"
+      "Run the following script to unload and disable the dccp module:\n"
+      "- IF - the dccp kernel module is available in ANY installed kernel:\n"
+      "• Create a file ending in .conf with install dccp /bin/false in the "
+      "/etc/modprobe.d/ directory\n"
+      "• Create a file ending in .conf with blacklist dccp in the /etc/modprobe.d/ "
+      "directory\n"
+      "• Run modprobe -r dccp 2>/dev/null; rmmod dccp 2>/dev/null to remove "
+      "dccp from the kernel\n"
+      "- IF - the dccp kernel module is not available on the system, or pre-compiled into the "
       "kernel, no remediation is necessary"
           cis_benchmark: {
       profile_level: 2
@@ -5447,21 +5461,21 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure tipc kernel module is not available"
     description:
-      "The Transparent Inter-Process Communication (TIPC) protocol is designed to provide"
+      "The Transparent Inter-Process Communication (TIPC) protocol is designed to provide "
       "communication between cluster nodes."
     rationale:
-      "- IF - the protocol is not being used, it is recommended that kernel module not be"
+      "- IF - the protocol is not being used, it is recommended that kernel module not be "
       "loaded, disabling the service to reduce the potential attack surface."
     remediation:
-      "Run the following script to unload and disable the tipc module:"
-      "- IF - the tipc kernel module is available in ANY installed kernel:"
-      "• Create a file ending in .conf with install tipc /bin/false in the"
-      "/etc/modprobe.d/ directory"
-      "• Create a file ending in .conf with blacklist tipc in the /etc/modprobe.d/"
-      "directory"
-      "• Run modprobe -r tipc 2>/dev/null; rmmod tipc 2>/dev/null to remove"
-      "tipc from the kernel"
-      "- IF - the tipc kernel module is not available on the system, or pre-compiled into the"
+      "Run the following script to unload and disable the tipc module:\n"
+      "- IF - the tipc kernel module is available in ANY installed kernel:\n"
+      "• Create a file ending in .conf with install tipc /bin/false in the "
+      "/etc/modprobe.d/ directory\n"
+      "• Create a file ending in .conf with blacklist tipc in the /etc/modprobe.d/ "
+      "directory\n"
+      "• Run modprobe -r tipc 2>/dev/null; rmmod tipc 2>/dev/null to remove "
+      "tipc from the kernel\n"
+      "- IF - the tipc kernel module is not available on the system, or pre-compiled into the "
       "kernel, no remediation is necessary"
     cis_benchmark: {
       profile_level: 2
@@ -5571,22 +5585,22 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure rds kernel module is not available"
     description:
-      "The Reliable Datagram Sockets (RDS) protocol is a transport layer protocol designed to"
-      "provide low-latency, high-bandwidth communications between cluster nodes. It was"
+      "The Reliable Datagram Sockets (RDS) protocol is a transport layer protocol designed to "
+      "provide low-latency, high-bandwidth communications between cluster nodes. It was "
       "developed by the Oracle Corporation."
     rationale:
-      "- IF - the protocol is not being used, it is recommended that kernel module not be"
+      "- IF - the protocol is not being used, it is recommended that kernel module not be "
       "loaded, disabling the service to reduce the potential attack surface."
     remediation:
-      "Run the following script to unload and disable the rds module:"
-      "- IF - the rds kernel module is available in ANY installed kernel:"
-      "• Create a file ending in .conf with install rds /bin/false in the"
-      "/etc/modprobe.d/ directory"
-      "• Create a file ending in .conf with blacklist rds in the /etc/modprobe.d/"
-      "directory"
-      "• Run modprobe -r rds 2>/dev/null; rmmod rds 2>/dev/null to remove"
-      "rds from the kernel"
-      "- IF - the rds kernel module is not available on the system, or pre-compiled into the"
+      "Run the following script to unload and disable the rds module:\n"
+      "- IF - the rds kernel module is available in ANY installed kernel:\n"
+      "• Create a file ending in .conf with install rds /bin/false in the "
+      "/etc/modprobe.d/ directory\n"
+      "• Create a file ending in .conf with blacklist rds in the /etc/modprobe.d/ "
+      "directory\n"
+      "• Run modprobe -r rds 2>/dev/null; rmmod rds 2>/dev/null to remove "
+      "rds from the kernel\n"
+      "- IF - the rds kernel module is not available on the system, or pre-compiled into the "
       "kernel, no remediation is necessary"
     cis_benchmark: {
       profile_level: 2
@@ -5696,24 +5710,24 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure sctp kernel module is not available"
     description:
-      "The Stream Control Transmission Protocol (SCTP) is a transport layer protocol used to"
-      "support message oriented communication, with several streams of messages in one"
-      "connection. It serves a similar function as TCP and UDP, incorporating features of both."
-      "It is message-oriented like UDP, and ensures reliable in-sequence transport of"
+      "The Stream Control Transmission Protocol (SCTP) is a transport layer protocol used to "
+      "support message oriented communication, with several streams of messages in one "
+      "connection. It serves a similar function as TCP and UDP, incorporating features of both.\n"
+      "It is message-oriented like UDP, and ensures reliable in-sequence transport of "
       "messages with congestion control like TCP."
     rationale:
-      "- IF - the protocol is not being used, it is recommended that kernel module not be"
+      "- IF - the protocol is not being used, it is recommended that kernel module not be "
       "loaded, disabling the service to reduce the potential attack surface."
     remediation:
-      "Run the following script to unload and disable the sctp module:"
-      "- IF - the sctp kernel module is available in ANY installed kernel:"
-      "• Create a file ending in .conf with install sctp /bin/false in the"
-      "/etc/modprobe.d/ directory"
-      "• Create a file ending in .conf with blacklist sctp in the /etc/modprobe.d/"
-      "directory"
-      "• Run modprobe -r sctp 2>/dev/null; rmmod sctp 2>/dev/null to remove"
-      "sctp from the kernel"
-      "- IF - the sctp kernel module is not available on the system, or pre-compiled into the"
+      "Run the following script to unload and disable the sctp module:\n"
+      "- IF - the sctp kernel module is available in ANY installed kernel:\n"
+      "• Create a file ending in .conf with install sctp /bin/false in the "
+      "/etc/modprobe.d/ directory\n"
+      "• Create a file ending in .conf with blacklist sctp in the /etc/modprobe.d/ "
+      "directory\n"
+      "• Run modprobe -r sctp 2>/dev/null; rmmod sctp 2>/dev/null to remove "
+      "sctp from the kernel\n"
+      "- IF - the sctp kernel module is not available on the system, or pre-compiled into the "
       "kernel, no remediation is necessary"
     cis_benchmark: {
       profile_level: 2
@@ -5823,17 +5837,19 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure ufw loopback traffic is configured"
     description: 
-      "Configure the loopback interface to accept traffic and configure all other interfaces to deny traffic to the loopback network (127.0.0.0/8 for IPv4 and ::1/128 for IPv6)."
+      "Configure the loopback interface to accept traffic and configure all other interfaces to "
+      "deny traffic to the loopback network (127.0.0.0/8 for IPv4 and ::1/128 for IPv6)."
     rationale: 
-      "Loopback traffic is critical to system operation and should only be allowed on the loopback interface. Denying loopback traffic on other interfaces is an anti-spoofing measure."
+      "Loopback traffic is critical to system operation and should only be allowed on the loopback "
+      "interface. Denying loopback traffic on other interfaces is an anti-spoofing measure."
     remediation: 
       "To implement the loopback rules, run:\n"
-      "```"
+      "```\n"
       "# ufw allow in on lo\n"
       "# ufw allow out on lo\n"
       "# ufw deny in from 127.0.0.0/8\n"
       "# ufw deny in from ::1\n"
-      "```"
+      "```\n"
       "Note: Ensure ufw rules are applied in the correct order to achieve the desired effect."
     cis_benchmark: {
       profile_level: 1
@@ -5891,17 +5907,17 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure nftables is installed"
     description:
-      "nftables provides a new in-kernel packet classification framework that is based on a"
-      "network-specific Virtual Machine (VM) and a new nft userspace command line tool."
-      "nftables reuses the existing Netfilter subsystems such as the existing hook"
-      "infrastructure, the connection tracking system, NAT, userspace queuing and logging"
+      "nftables provides a new in-kernel packet classification framework that is based on a "
+      "network-specific Virtual Machine (VM) and a new nft userspace command line tool.\n"
+      "nftables reuses the existing Netfilter subsystems such as the existing hook "
+      "infrastructure, the connection tracking system, NAT, userspace queuing and logging "
       "subsystem."
     rationale:
-      "nftables is a subsystem of the Linux kernel that can protect against threats originating"
-      "from within a corporate network to include malicious mobile code and poorly configured"
+      "nftables is a subsystem of the Linux kernel that can protect against threats originating "
+      "from within a corporate network to include malicious mobile code and poorly configured "
       "software on a host."
     remediation:
-      "Run the following command to install nftables:"
+      "Run the following command to install nftables:\n"
       "# apt install nftables"
     cis_benchmark: {
       profile_level: 1
@@ -5929,19 +5945,21 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure nftables Base Chains Exist"
     description: 
-      "Chains are containers for rules in nftables. Base chains are entry points for packets from the networking stack, and their absence can result in packets not being processed as intended."
+      "Chains are containers for rules in nftables. Base chains are entry points for packets from "
+      "the networking stack, and their absence can result in packets not being processed as intended."
     rationale: 
-      "Base chains with appropriate hooks ensure that packets flowing through input, forward, and output chains are processed as expected, providing the foundation for proper firewall functionality."
+      "Base chains with appropriate hooks ensure that packets flowing through input, forward, and output "
+      "chains are processed as expected, providing the foundation for proper firewall functionality."
     remediation: 
-      "Run the following command to create the base chains:"
-      "```"
-      "# nft create chain inet <table name> <base chain name> { type filter hook <(input|forward|output)> priority 0 ; }"
-      "```"
-      "Example:"
-      "```"
-      "# nft create chain inet filter input { type filter hook input priority 0 ; }"
-      "# nft create chain inet filter forward { type filter hook forward priority 0 ; }"
-      "# nft create chain inet filter output { type filter hook output priority 0 ; }"
+      "Run the following command to create the base chains:\n"
+      "```\n"
+      "# nft create chain inet <table name> <base chain name> { type filter hook <(input|forward|output)> priority 0 ; }\n"
+      "```\n"
+      "Example:\n"
+      "```\n"
+      "# nft create chain inet filter input { type filter hook input priority 0 ; }\n"
+      "# nft create chain inet filter forward { type filter hook forward priority 0 ; }\n"
+      "# nft create chain inet filter output { type filter hook output priority 0 ; }\n"
       "```"
     cis_benchmark: {
       profile_level: 1
@@ -5989,18 +6007,20 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure nftables Loopback Traffic is Configured"
     description: 
-      "Configuring loopback traffic ensures that internal communication between processes on the machine is maintained while preventing spoofing attacks by dropping loopback traffic on other interfaces."
+      "Configuring loopback traffic ensures that internal communication between processes on the machine is "
+      "maintained while preventing spoofing attacks by dropping loopback traffic on other interfaces."
     rationale: 
-      "The loopback interface is critical for system operation as it handles communication within the system itself. Blocking loopback traffic on non-loopback interfaces prevents potential spoofing attacks."
+      "The loopback interface is critical for system operation as it handles communication within the system "
+      "itself. Blocking loopback traffic on non-loopback interfaces prevents potential spoofing attacks."
     remediation: 
-      "Run the following commands to configure loopback traffic rules:"
-      "```"
-      "# nft add rule inet filter input iif lo accept"
-      "# nft add rule inet filter input ip saddr 127.0.0.0/8 counter drop"
-      "```"
-      "If IPv6 is enabled on the system, run:"
-      "```"
-      "# nft add rule inet filter input ip6 saddr ::1 counter drop"
+      "Run the following commands to configure loopback traffic rules:\n"
+      "```\n"
+      "# nft add rule inet filter input iif lo accept\n"
+      "# nft add rule inet filter input ip saddr 127.0.0.0/8 counter drop\n"
+      "```\n"
+      "If IPv6 is enabled on the system, run:\n"
+      "```\n"
+      "# nft add rule inet filter input ip6 saddr ::1 counter drop\n"
       "```"
     cis_benchmark: {
       profile_level: 1
@@ -6048,20 +6068,21 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure nftables default deny firewall policy"
     description: 
-      "Base chain policy is the default verdict that will be applied to packets reaching the end of the chain. Setting a default deny policy helps ensure only explicitly allowed traffic is permitted."
+      "Base chain policy is the default verdict that will be applied to packets reaching the end of the chain.\n"
+      "Setting a default deny policy helps ensure only explicitly allowed traffic is permitted."
     rationale: 
-      "There are two policies: accept (Default) and drop. If the policy is set to accept, the"
+      "There are two policies: accept (Default) and drop. If the policy is set to accept, the "
       "firewall will accept any packet that is not configured to be denied and the packet will"
-      "continue transversing the network stack."
+      "continue transversing the network stack.\n"
       "It is easier to allow list acceptable usage than to deny list unacceptable usage."
     remediation: 
-      "Run the following command for the base chains with the input, forward, and output"
-      "hooks to implement a default DROP policy:"
-      "# nft chain <table family> <table name> <chain name> { policy drop \\\\; }"
-      "Example:"
-      "# nft chain inet filter input { policy drop \\\\; }"
-      "# nft chain inet filter forward { policy drop \\\\; }"
-      "# nft chain inet filter output { policy drop \\\\; }"
+      "Run the following command for the base chains with the input, forward, and output "
+      "hooks to implement a default DROP policy:\n"
+      "# nft chain <table family> <table name> <chain name> { policy drop \\\\; }\n"
+      "Example:\n"
+      "# nft chain inet filter input { policy drop \\\\; }\n"
+      "# nft chain inet filter forward { policy drop \\\\; }\n"
+      "# nft chain inet filter output { policy drop \\\\; }\n"
     cis_benchmark: {
       profile_level: 1
       severity: MEDIUM
@@ -6109,9 +6130,9 @@ benchmark_configs: {
     title: "Ensure nftables rules are permanent"
     description:
       "nftables is a subsystem of the Linux kernel providing filtering and classification of network "
-      "packets/datagrams/frames."
+      "packets/datagrams/frames.\n"
       "The nftables service reads the /etc/sysconfig/nftables.conf file for a nftables file or "
-      "files to include in the nftables ruleset."
+      "files to include in the nftables ruleset.\n"
       "A nftables ruleset containing the input, forward, and output base chains allow network "
       "traffic to be filtered."
     rationale:
@@ -6165,14 +6186,15 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure iptables packages are installed"
     description: 
-      "iptables is a utility program that allows a system administrator to configure the tables provided by the Linux kernel firewall, implemented as different Netfilter modules, and the chains and rules it stores."
+      "iptables is a utility program that allows a system administrator to configure the tables provided by the "
+      "Linux kernel firewall, implemented as different Netfilter modules, and the chains and rules it stores."
     rationale: 
       "A method of configuring and maintaining firewall rules is necessary to configure a Host Based Firewall."
     remediation: 
       "To install iptables and iptables-persistent, run:\n"
-      "```"
+      "```\n"
       "# apt install iptables iptables-persistent\n"
-      "```"
+      "```\n"
       "Ensure proper configuration of firewall rules after installation."
     cis_benchmark: {
       profile_level: 1
@@ -6204,15 +6226,15 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure nftables is not in use with iptable"
     description:
-      "nftables is a subsystem of the Linux kernel providing filtering and classification of"
+      "nftables is a subsystem of the Linux kernel providing filtering and classification of "
       "network packets/datagrams/frames and is the successor to iptables."
     rationale: "Running both iptables and nftables may lead to conflict."
     remediation:
-      "Run the following command to remove nftables:"
-      "# apt purge nftables"
-      "- OR -"
-      "Run the following commands to stop and mask nftables.service:"
-      "# systemctl stop nftables.service"
+      "Run the following command to remove nftables:\n"
+      "# apt purge nftables\n"
+      "- OR -\n"
+      "Run the following commands to stop and mask nftables.service:\n"
+      "# systemctl stop nftables.service\n"
       "# systemctl mask nftables.service"
     cis_benchmark: {
       profile_level: 1
@@ -6261,23 +6283,23 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: " Ensure systemd-timesyncd is enabled and running"
     description:
-      "systemd-timesyncd is a daemon that has been added for synchronizing the system"
+      "systemd-timesyncd is a daemon that has been added for synchronizing the system "
       "clock across the network"
     rationale:
-      "systemd-timesyncd needs to be enabled and running in order to synchronize the system"
-      "to a timeserver."
-      "Time synchronization is important to support time sensitive security mechanisms and to"
-      "ensure log files have consistent time records across the enterprise to aid in forensic"
+      "systemd-timesyncd needs to be enabled and running in order to synchronize the system "
+      "to a timeserver.\n"
+      "Time synchronization is important to support time sensitive security mechanisms and to "
+      "ensure log files have consistent time records across the enterprise to aid in forensic "
       "investigations"
     remediation:
-      "- IF - systemd-timesyncd is in use on the system, run the following commands:"
-      "Run the following command to unmask systemd-timesyncd.service:"
-      "# systemctl unmask systemd-timesyncd.service"
-      "Run the following command to enable and start systemd-timesyncd.service:"
-      "# systemctl --now enable systemd-timesyncd.service"
-      "- OR -"
-      "If another time synchronization service is in use on the system, run the following"
-      "command to stop and mask systemd-timesyncd:"
+      "- IF - systemd-timesyncd is in use on the system, run the following commands:\n"
+      "Run the following command to unmask systemd-timesyncd.service:\n"
+      "# systemctl unmask systemd-timesyncd.service\n"
+      "Run the following command to enable and start systemd-timesyncd.service:\n"
+      "# systemctl --now enable systemd-timesyncd.service\n"
+      "- OR -\n"
+      "If another time synchronization service is in use on the system, run the following "
+      "command to stop and mask systemd-timesyncd:\n"
       "# systemctl --now mask systemd-timesyncd.service"
     cis_benchmark: {
       profile_level: 1
@@ -6305,22 +6327,22 @@ benchmark_configs: {
     description:
       "chrony is a daemon for synchronizing the system clock across the network"
     rationale:
-      "chrony needs to be enabled and running in order to synchronize the system to a"
-      "timeserver."
-      "Time synchronization is important to support time sensitive security mechanisms and to"
-      "ensure log files have consistent time records across the enterprise to aid in forensic"
+      "chrony needs to be enabled and running in order to synchronize the system to a "
+      "timeserver.\n"
+      "Time synchronization is important to support time sensitive security mechanisms and to "
+      "ensure log files have consistent time records across the enterprise to aid in forensic "
       "investigations"
     remediation:
-      "- IF - chrony is in use on the system, run the following commands:"
-      "Run the following command to unmask chrony.service:"
-      "# systemctl unmask chrony.service"
-      "Run the following command to enable and start chrony.service:"
-      "# systemctl --now enable chrony.service"
-      "- OR -"
-      "If another time synchronization service is in use on the system, run the following"
-      "command to remove chrony:"
-      "# apt purge chrony"
-      "# apt autoremove chrony"
+      "- IF - chrony is in use on the system, run the following commands:\n"
+      "Run the following command to unmask chrony.service:\n"
+      "# systemctl unmask chrony.service\n"
+      "Run the following command to enable and start chrony.service:\n"
+      "# systemctl --now enable chrony.service\n"
+      "- OR -\n"
+      "If another time synchronization service is in use on the system, run the following "
+      "command to remove chrony:\n"
+      "# apt purge chrony\n"
+      "# apt autoremove chrony\n"
     cis_benchmark: {
       profile_level: 1
       severity: LOW
@@ -6345,25 +6367,25 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure a single firewall configuration utility is in use"
     description:
-      "In Linux security, employing a single, effective firewall configuration utility ensures that"
-      "only legitimate traffic gets processed, reducing the system’s exposure to potential"
-      "threats. The choice between ufw, nftables, and iptables depends on organizational"
+      "In Linux security, employing a single, effective firewall configuration utility ensures that "
+      "only legitimate traffic gets processed, reducing the system’s exposure to potential "
+      "threats. The choice between ufw, nftables, and iptables depends on organizational "
       "needs."
     rationale:
-      "Proper configuration of a single firewall utility minimizes cyber threats and protects"
-      "services and data, while avoiding vulnerabilities like open ports or exposed services."
-      "Standardizing on a single tool simplifies management, reduces errors, and fortifies"
+      "Proper configuration of a single firewall utility minimizes cyber threats and protects "
+      "services and data, while avoiding vulnerabilities like open ports or exposed services.\n"
+      "Standardizing on a single tool simplifies management, reduces errors, and fortifies "
       "security across Linux systems."
     remediation:
-      "Remediating to a single firewall configuration is a complex process and involves several"
-      "steps. The following provides the basic steps to follow for a single firewall configuration:"
-      "1. Determine which firewall utility best fits organizational needs"
-      "2. Follow the recommendations in the subsequent subsection for the single firewall"
-      "to be used"
-      "Note: Review the firewall subsection overview for the selected firewall to be"
-      "used, it contains a script to"
-      "simplify this process."
-      "3. Return to this recommendation to ensure a single firewall configuration utility is in"
+      "Remediating to a single firewall configuration is a complex process and involves several "
+      "steps. The following provides the basic steps to follow for a single firewall configuration:\n"
+      "1. Determine which firewall utility best fits organizational needs\n"
+      "2. Follow the recommendations in the subsequent subsection for the single firewall "
+      "to be used\n"
+      "Note: Review the firewall subsection overview for the selected firewall to be "
+      "used, it contains a script to "
+      "simplify this process.\n"
+      "3. Return to this recommendation to ensure a single firewall configuration utility is in "
       "use"
     cis_benchmark: {
       profile_level: 1
@@ -6421,24 +6443,24 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: " Ensure GDM screen locks cannot be overridden"
     description: 
-      "GNOME Desktop Manager can lock down specific settings by using the lockdown mode"
-      "in dconf to prevent users from changing specific settings."
-      "To lock down a dconf key or subpath, create a locks subdirectory in the keyfile directory."
-      "The files inside this directory contain a list of keys or subpaths to lock. Just as with the"
+      "GNOME Desktop Manager can lock down specific settings by using the lockdown mode "
+      "in dconf to prevent users from changing specific settings.\n"
+      "To lock down a dconf key or subpath, create a locks subdirectory in the keyfile directory.\n"
+      "The files inside this directory contain a list of keys or subpaths to lock. Just as with the "
       "keyfiles, you may add any number of files to this directory."
     rationale: 
-      "GNOME Desktop Manager can lock down specific settings by using the lockdown mode"
-      "in dconf to prevent users from changing specific settings."
-      "To lock down a dconf key or subpath, create a locks subdirectory in the keyfile directory."
-      "The files inside this directory contain a list of keys or subpaths to lock. Just as with the"
+      "GNOME Desktop Manager can lock down specific settings by using the lockdown mode "
+      "in dconf to prevent users from changing specific settings.\n"
+      "To lock down a dconf key or subpath, create a locks subdirectory in the keyfile directory.\n"
+      "The files inside this directory contain a list of keys or subpaths to lock. Just as with the "
       "keyfiles, you may add any number of files to this directory."
     remediation: 
-      "1. To prevent the user from overriding these settings, create the file"
-      "/etc/dconf/db/local.d/locks/00-screensaver with the following content:"
-      "# Lock desktop screensaver settings"
-      "/org/gnome/desktop/session/idle-delay"
-      "/org/gnome/desktop/screensaver/lock-delay"
-      "2. Update the system databases:"
+      "1. To prevent the user from overriding these settings, create the file "
+      "/etc/dconf/db/local.d/locks/00-screensaver with the following content:\n"
+      "# Lock desktop screensaver settings\n"
+      "/org/gnome/desktop/session/idle-delay\n"
+      "/org/gnome/desktop/screensaver/lock-delay\n"
+      "2. Update the system databases:\n"
       "# dconf update"
     cis_benchmark: {
       profile_level: 1
@@ -6476,10 +6498,11 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure group root is the only GID 0 group"
     description: 
-      "Using GID 0 for the root group helps prevent root group owned files from accidentally"
+      "Using GID 0 for the root group helps prevent root group owned files from accidentally "
       "becoming accessible to non-privileged users."
     rationale: 
-      "Restricting GID 0 to the root account minimizes the risk of unauthorized access and ensures critical system files are properly secured."
+      "Restricting GID 0 to the root account minimizes the risk of unauthorized access and ensures critical system "
+      "files are properly secured."
     remediation: 
       "Run the following commands to ensure the root user and group GID are correctly set and no other users have GID 0:\n"
       "usermod -g 0 root\n"
@@ -6512,18 +6535,18 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure only one logging system is in use"
     description: 
-      "Best practices recommend that a single centralized logging system be used for log"
-      "management, choose a single service either rsyslog - OR - journald to be used as a"
+      "Best practices recommend that a single centralized logging system be used for log "
+      "management, choose a single service either rsyslog - OR - journald to be used as a "
       "single centralized logging system."
     rationale: 
-      "Configuring only one logging service either rsyslog - OR - journald avoids"
-      "redundancy, optimizes resources, simplifies configuration and management, and"
+      "Configuring only one logging service either rsyslog - OR - journald avoids "
+      "redundancy, optimizes resources, simplifies configuration and management, and "
       "ensures consistency."
     remediation: 
-      "1. Determine whether to use journald - OR - rsyslog depending on site needs"
-      "2. Configure systemd-jounald.service"
-      "3. Configure only ONE either journald - OR - rsyslog and complete the"
-      "recommendations in that subsection"
+      "1. Determine whether to use journald - OR - rsyslog depending on site needs\n"
+      "2. Configure systemd-jounald.service\n"
+      "3. Configure only ONE either journald - OR - rsyslog and complete the "
+      "recommendations in that subsection\n"
       "4. Return to this recommendation to ensure only one logging system is in use"
     cis_benchmark: {
       profile_level: 1
@@ -6559,14 +6582,14 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: " Ensure rsyslog is installed"
     description: 
-      "The rsyslog software is recommended in environments where journald does not"
+      "The rsyslog software is recommended in environments where journald does not "
       "meet operation requirements."
     rationale: 
-      "The security enhancements of rsyslog such as connection-oriented (i.e. TCP)"
-      "transmission of logs, the option to log to database formats, and the encryption of log"
+      "The security enhancements of rsyslog such as connection-oriented (i.e. TCP) "
+      "transmission of logs, the option to log to database formats, and the encryption of log "
       "data en route to a central logging server) justify installing and configuring the package."
     remediation: 
-      "Run the following command to install rsyslog:"
+      "Run the following command to install rsyslog:\n"
       "# apt install rsyslog"
     cis_benchmark: {
       profile_level: 1
@@ -6590,11 +6613,11 @@ benchmark_configs: {
     title: "Ensure audit log files mode is configured"
     description: "Audit log files contain information about the system and system activity."
     rationale:
-      "Access to audit records can reveal system and configuration data to attackers,"
+      "Access to audit records can reveal system and configuration data to attackers, "
       "potentially compromising its confidentiality."
     remediation:
-      "Run the following command to remove more permissive mode than 0640 from audit log"
-      "files:"
+      "Run the following command to remove more permissive mode than 0640 from audit log "
+      "files:\n"
       "# [ -f /etc/audit/auditd.conf ] && find \"$(dirname $(awk -F \"=\""
       "/0137 -exec chmod u-x,g-wx,o-rwx {} +"
   cis_benchmark: {
@@ -6627,17 +6650,19 @@ benchmark_configs: {
   compliance_note: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure audit log files owner is configured"
-    description: "Audit configuration files must be configured with mode 0640 or more restrictive to prevent unauthorized access and protect the integrity of the audit system."
-    rationale: "Access to audit records can reveal system and configuration data to attackers,potentially compromising its confidentiality."
+    description: "Audit configuration files must be configured with mode 0640 or more restrictive to prevent "
+    "unauthorized access and protect the integrity of the audit system.\n"
+    rationale: "Access to audit records can reveal system and configuration data to attackers, potentially "
+    "compromising its confidentiality."
     remediation:
-      "Run the following command to configure the audit log files to be group owned by adm:"
-      "# find $(dirname $(awk -F\"=\" '/^\\\\s*log_file/ {print $2}'"
+      "Run the following command to configure the audit log files to be group owned by adm:\n"
+      "# find $(dirname $(awk -F\"=\" '/^\\\\s*log_file/ {print $2}'\n"
       "/etc/audit/auditd.conf | xargs)) -type f \\\\( ! -group adm -a ! -group root \\\\)"
-      "-exec chgrp adm {} +"
-      "Run the following command to set the log_group parameter in the audit configuration"
-      "file to log_group = adm:"
-      "/etc/audit/auditd.conf"
-      "Run the following command to restart the audit daemon to reload the configuration file:"
+      "-exec chgrp adm {} +\n"
+      "Run the following command to set the log_group parameter in the audit configuration "
+      "file to log_group = adm:\n"
+      "/etc/audit/auditd.conf\n"
+      "Run the following command to restart the audit daemon to reload the configuration file:\n"
       "# systemctl restart audit"
   cis_benchmark: {
     profile_level: 2
@@ -6668,14 +6693,16 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure audit log files group owner is configured"
     description: "Audit log files contain information about the system and system activity."
-    rationale: "Restricting access to audit configuration files ensures that only authorized personnel can modify the settings, preventing the disabling of critical auditing or misconfigurations that may impact performance or investigation efforts."
+    rationale: "Restricting access to audit configuration files ensures that only authorized personnel can modify "
+    "the settings, preventing the disabling of critical auditing or misconfigurations that may impact performance "
+    "or investigation efforts."
     remediation:
-     "Run the following command to configure the audit log files to be group owned by adm:"
-     "-exec chgrp adm {} +"
-     "Run the following command to set the log_group parameter in the audit configuration"
-     "file to log_group = adm:"
-     "/etc/audit/auditd.conf"
-     "Run the following command to restart the audit daemon to reload the configuration file:"
+     "Run the following command to configure the audit log files to be group owned by adm:\n"
+     "-exec chgrp adm {} +\n"
+     "Run the following command to set the log_group parameter in the audit configuration\n"
+     "file to log_group = adm:\n"
+     "/etc/audit/auditd.conf\n"
+     "Run the following command to restart the audit daemon to reload the configuration file:\n"
      "# systemctl restart audit"
   cis_benchmark: {
     profile_level: 2
@@ -6706,14 +6733,14 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure audit configuration files owner is configured"
     description:
-      "Access to the audit configuration files could allow unauthorized personnel to prevent the"
-      "auditing of critical events."
-      "Misconfigured audit configuration files may prevent the auditing of critical events or"
-      "impact the system's performance by overwhelming the audit log. Misconfiguration of the"
-      "audit configuration files may also make it more difficult to establish and investigate"
+      "Access to the audit configuration files could allow unauthorized personnel to prevent the "
+      "auditing of critical events.\n"
+      "Misconfigured audit configuration files may prevent the auditing of critical events or "
+      "impact the system's performance by overwhelming the audit log. Misconfiguration of the "
+      "audit configuration files may also make it more difficult to establish and investigate "
       "events relating to an incident."
     remediation:
-      "Run the following command to set permissions on audit configuration files:"
+      "Run the following command to set permissions on audit configuration files:\n"
       "```bash\n"
       "find /etc/audit/ -type f \\\\( -name '*.conf' -o -name '*.rules' \\\\) -exec chmod u-x,g-wx,o-rwx {} +\n"
       "```"
@@ -6746,14 +6773,14 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure audit configuration files owner is configured"
     description:
-      "Access to the audit configuration files could allow unauthorized personnel to prevent the"
-      "auditing of critical events."
-      "Misconfigured audit configuration files may prevent the auditing of critical events or"
-      "impact the system's performance by overwhelming the audit log. Misconfiguration of the"
-      "audit configuration files may also make it more difficult to establish and investigate"
+      "Access to the audit configuration files could allow unauthorized personnel to prevent the "
+      "auditing of critical events.\n"
+      "Misconfigured audit configuration files may prevent the auditing of critical events or "
+      "impact the system's performance by overwhelming the audit log. Misconfiguration of the "
+      "audit configuration files may also make it more difficult to establish and investigate "
       "events relating to an incident."
     remediation:
-      "Run the following command to set permissions on audit configuration files:"
+      "Run the following command to set permissions on audit configuration files:\n"
       "```bash\n"
       "find /etc/audit/ -type f \\\\( -name '*.conf' -o -name '*.rules' \\\\) -exec chmod u-x,g-wx,o-rwx {} +\n"
       "```"
@@ -6786,35 +6813,35 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure rsyslog log file creation mode is configured"
     description:
-      "rsyslog will create logfiles that do not already exist on the system."""
-      "The global() configuration object umask, available in rsyslog 8.26.0+, sets the"
-      "rsyslogd process’ umask. If not specified, the system-provided default is used. The"
-      "value given must always be a 4-digit octal number, with the initial digit being zero."
-      "The legacy $umask parameter sets the rsyslogd process' umask. If not specified, the"
-      "system-provided default is used. The value given must always be a 4-digit octal"
-      "number, with the initial digit being zero."
-      "The legacy $FileCreateMode parameter allows the setting of the mode with which"
-      "rsyslogd creates new files. If not specified, the value 0644 is used. The value given"
-      "must always be a 4-digit octal number, with the initial digit being zero. Please note that"
-      "the actual permission depend on rsyslogd process umask. If in doubt, use $umask"
-      "0000 right at the beginning of the configuration file to remove any restrictions."
-      "The legacy $FileCreateMode may be specified multiple times. If so, it specifies the"
-      "creation mode for all selector lines that follow until the next $FileCreateMode"
+      "rsyslog will create logfiles that do not already exist on the system.\n"
+      "The global() configuration object umask, available in rsyslog 8.26.0+, sets the "
+      "rsyslogd process’ umask. If not specified, the system-provided default is used. The "
+      "value given must always be a 4-digit octal number, with the initial digit being zero.\n"
+      "The legacy $umask parameter sets the rsyslogd process' umask. If not specified, the "
+      "system-provided default is used. The value given must always be a 4-digit octal "
+      "number, with the initial digit being zero.\n"
+      "The legacy $FileCreateMode parameter allows the setting of the mode with which "
+      "rsyslogd creates new files. If not specified, the value 0644 is used. The value given "
+      "must always be a 4-digit octal number, with the initial digit being zero. Please note that "
+      "the actual permission depend on rsyslogd process umask. If in doubt, use $umask "
+      "0000 right at the beginning of the configuration file to remove any restrictions.\n"
+      "The legacy $FileCreateMode may be specified multiple times. If so, it specifies the "
+      "creation mode for all selector lines that follow until the next $FileCreateMode "
       "parameter. Order of lines is vitally important."
     rationale:
-      "It is important to ensure that log files have the correct permissions to ensure that"
+      "It is important to ensure that log files have the correct permissions to ensure that "
       "sensitive data is archived and protected."
     remediation:
-      "Edit either /etc/rsyslog.conf or a dedicated .conf file in /etc/rsyslog.d/ and set"
-      "$FileCreateMode to 0640 or more restrictive:"
-      "$FileCreateMode 0640"
-      "Example script to create a drop-in configuration file in the default include location:"
-      "#!/usr/bin/env bash"
-      "{"
-      "[ ! -d \"/etc/rsyslog.d/\" ] && mkdir /etc/rsyslog.d/"
-      "printf '%s\n' \"\" \"\\\\$FileCreateMode 0640\" >> /etc/rsyslog.d/60-rsyslog.conf"
-      "}"
-      "Reload the service:"
+      "Edit either /etc/rsyslog.conf or a dedicated .conf file in /etc/rsyslog.d/ and set "
+      "$FileCreateMode to 0640 or more restrictive:\n"
+      "$FileCreateMode 0640\n"
+      "Example script to create a drop-in configuration file in the default include location:\n"
+      "#!/usr/bin/env bash\n"
+      "{\n"
+      "[ ! -d \"/etc/rsyslog.d/\" ] && mkdir /etc/rsyslog.d/\n"
+      "printf '%s\n' \"\" \"\\\\$FileCreateMode 0640\" >> /etc/rsyslog.d/60-rsyslog.conf\n"
+      "}\n"
+      "Reload the service:\n"
       "# systemctl reload-or-restart rsyslog"
     cis_benchmark: {
       profile_level: 1
@@ -6863,22 +6890,24 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure rsyslog is not configured to receive logs from a remote client"
     description:
-      "rsyslog supports the ability to receive messages from remote hosts, thus acting as a"
+      "rsyslog supports the ability to receive messages from remote hosts, thus acting as a "
       "log server. Clients should not receive data from other hosts."
     rationale:
-      "If a client is configured to also receive data, thus turning it into a server, the client"
+      "If a client is configured to also receive data, thus turning it into a server, the client "
       "system is acting outside its operational boundary."
     remediation:
-      "Unless the system's primary function is to serve as a logfile server , modify the files"
-      "returned by the Audit Procedure and remove the specific lines highlighted by the audit."
-      "Verify none of the following entries are present in the rsyslog configuration."
-      "advanced format"
-      "module(load=\"imtcp\")"
-      "input(type=\"imtcp\" port=\"514\")"
-      "deprecated legacy format"
-      "$ModLoad imtcp"
-      "$InputTCPServerRun"
-      "Reload the service:"
+      "Unless the system's primary function is to serve as a logfile server , modify the files "
+      "returned by the Audit Procedure and remove the specific lines highlighted by the audit.\n"
+      "Verify none of the following entries are present in the rsyslog configuration.\n"
+      "```\n"
+      "advanced format\n"
+      "module(load=\"imtcp\")\n"
+      "input(type=\"imtcp\" port=\"514\")\n"
+      "deprecated legacy format\n"
+      "$ModLoad imtcp\n"
+      "$InputTCPServerRun\n"
+      "```\n"
+      "Reload the service:\n"
       "# systemctl reload-or-restart rsyslog"
     cis_benchmark: {
       profile_level: 1
@@ -6953,17 +6982,17 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: " Ensure /etc/shadow password fields are not empty"
     description: 
-      "An account with an empty password field means that anybody may log in as that user"
+      "An account with an empty password field means that anybody may log in as that user "
       "without providing a password."
     rationale: 
-      "All accounts must have passwords or be locked to prevent the account from being used"
+      "All accounts must have passwords or be locked to prevent the account from being used "
       "by an unauthorized user."
     remediation: 
-      "If any accounts in the /etc/shadow file do not have a password, run the following"
-      "command to lock the account until it can be determined why it does not have a"
-      "password:"
-      "# passwd -l <username>"
-      "Also, check to see if the account is logged in and investigate what it is being used for to"
+      "If any accounts in the /etc/shadow file do not have a password, run the following "
+      "command to lock the account until it can be determined why it does not have a "
+      "password:\n"
+      "# passwd -l <username>\n"
+      "Also, check to see if the account is logged in and investigate what it is being used for to "
       "determine if it needs to be forced off."
     cis_benchmark: {
       profile_level: 1
@@ -6993,12 +7022,14 @@ benchmark_configs: {
     description:
       "AppArmor profiles define what resources applications are able to access."
     rationale:
-      "Security configuration requirements vary from site to site. "
-      "Some sites may mandate a policy that is stricter than the default policy, which is perfectly acceptable. "
+      "Security configuration requirements vary from site to site.\n"
+      "Some sites may mandate a policy that is stricter than the default policy, which is perfectly acceptable.\n"
       "This item is intended to ensure that any policies that exist on the system are activated."
     remediation:
       "Run the following command to set all profiles to enforce mode: \n"
-      "```# enforce /etc/apparmor.d/*```\n "
+      "```\n"
+      "# enforce /etc/apparmor.d/*\n"
+      "```\n "
       "Any unconfined processes may need to have a profile created or activated for them and then be restarted."
     cis_benchmark: {
       profile_level: 2
@@ -7030,27 +7061,27 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure local interactive user home directories are configured"
     description:
-      "The user home directory is space defined for the particular user to set local environment"
-      "variables and to store personal files. While the system administrator can establish"
-      "secure permissions for users' home directories, the users can easily override these."
-      "Users can be defined in /etc/passwd without a home directory or with a home directory"
+      "The user home directory is space defined for the particular user to set local environment "
+      "variables and to store personal files. While the system administrator can establish "
+      "secure permissions for users' home directories, the users can easily override these.\n"
+      "Users can be defined in /etc/passwd without a home directory or with a home directory "
       "that does not actually exist."
     rationale:
-      "Since the user is accountable for files stored in the user home directory, the user must"
-      "be the owner of the directory. Group or world-writable user home directories may enable"
-      "malicious users to steal or modify other users' data or to gain another user's system"
-      "privileges. If the user's home directory does not exist or is unassigned, the user will be"
-      "placed in \"/\" and will not be able to write any files or have local environment variables"
+      "Since the user is accountable for files stored in the user home directory, the user must "
+      "be the owner of the directory. Group or world-writable user home directories may enable "
+      "malicious users to steal or modify other users' data or to gain another user's system "
+      "privileges. If the user's home directory does not exist or is unassigned, the user will be "
+      "placed in \"/\" and will not be able to write any files or have local environment variables "
       "set."
     remediation:
-      "If a local interactive users' home directory is undefined and/or doesn't exist, follow local"
-      "site policy and perform one of the following:"
-      "• Lock the user account"
-      "• Remove the user from the system"
-      "• create a directory for the user. If undefined, edit /etc/passwd and add the"
-      "absolute path to the directory to the last field of the user."
-      "Run the following script to:"
-      "• Remove excessive permissions from local interactive users home directories"
+      "If a local interactive users' home directory is undefined and/or doesn't exist, follow local "
+      "site policy and perform one of the following:\n"
+      "• Lock the user account\n"
+      "• Remove the user from the system\n"
+      "• create a directory for the user. If undefined, edit /etc/passwd and add the "
+      "absolute path to the directory to the last field of the user.\n"
+      "Run the following script to:\n"
+      "• Remove excessive permissions from local interactive users home directories\n"
       "• Update the home directory's owner"
     cis_benchmark: {
       profile_level: 1
@@ -7084,13 +7115,13 @@ benchmark_configs: {
     title: "Ensure the audit log file directory mode is configured"
     description: "The audit log directory contains audit log files."
     rationale:
-      "Audit information includes all information including: audit records, audit settings and"
-      "audit reports. This information is needed to successfully audit system activity. This"
-      "information must be protected from unauthorized modification or deletion. If this"
-      "information were to be compromised, forensic analysis and discovery of the true source"
+      "Audit information includes all information including: audit records, audit settings and "
+      "audit reports. This information is needed to successfully audit system activity. This "
+      "information must be protected from unauthorized modification or deletion. If this "
+      "information were to be compromised, forensic analysis and discovery of the true source "
       "of potentially malicious system activity is impossible to achieve."
     remediation:
-      "Run the following command to configure the audit log directory to have a mode of"
+      "Run the following command to configure the audit log directory to have a mode of "
       "\"0750\" or less permissive:"
     cis_benchmark: {
       profile_level: 1
@@ -7114,32 +7145,32 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure local interactive user dot files access is configured"
     description:
-      "While the system administrator can establish secure permissions for users' \"dot\" files,"
-      "the users can easily override these."
-      "• .forward file specifies an email address to forward the user's mail to."
-      "• .rhost file provides the \"remote authentication\" database for the rcp, rlogin, and"
-      "rsh commands and the rcmd() function. These files bypass the standard"
-      "password-based user authentication mechanism. They specify remote hosts and"
-      "users that are considered trusted (i.e. are allowed to access the local system"
-      "without supplying a password)"
-      "• .netrc file contains data for logging into a remote host or passing authentication"
-      "to an API."
+      "While the system administrator can establish secure permissions for users' \"dot\" files, "
+      "the users can easily override these.\n"
+      "• .forward file specifies an email address to forward the user's mail to\n."
+      "• .rhost file provides the \"remote authentication\" database for the rcp, rlogin, and "
+      "rsh commands and the rcmd() function. These files bypass the standard "
+      "password-based user authentication mechanism. They specify remote hosts and "
+      "users that are considered trusted (i.e. are allowed to access the local system "
+      "without supplying a password)\n"
+      "• .netrc file contains data for logging into a remote host or passing authentication "
+      "to an API.\n"
       "• .bash_history file keeps track of the user’s commands."
     rationale:
-      "User configuration files with excessive or incorrect access may enable malicious users"
+      "User configuration files with excessive or incorrect access may enable malicious users "
       "to steal or modify other users' data or to gain another user's system privileges."
     remediation:
-      "Making global modifications to users' files without alerting the user community can result"
-      "in unexpected outages and unhappy users. Therefore, it is recommended that a"
-      "monitoring policy be established to report user dot file permissions and determine the"
-      "action to be taken in accordance with site policy."
-      "The following script will:"
-      "• remove excessive permissions on dot files within interactive users' home"
-      "directories"
-      "• change ownership of dot files within interactive users' home directories to the"
-      "user"
-      "• change group ownership of dot files within interactive users' home directories to"
-      "the user's primary group"
+      "Making global modifications to users' files without alerting the user community can result "
+      "in unexpected outages and unhappy users. Therefore, it is recommended that a "
+      "monitoring policy be established to report user dot file permissions and determine the "
+      "action to be taken in accordance with site policy.\n"
+      "The following script will:\n"
+      "• remove excessive permissions on dot files within interactive users' home "
+      "directories\n"
+      "• change ownership of dot files within interactive users' home directories to the "
+      "user\n"
+      "• change group ownership of dot files within interactive users' home directories to "
+      "the user's primary group\n"
       "• list .forward and .rhost files to be investigated and manually deleted"
     cis_benchmark: {
       profile_level: 1
@@ -7239,26 +7270,30 @@ benchmark_configs: {
     description: 
       "Services and ports can be accepted or explicitly rejected."
     rationale: 
-      "To reduce the attack surface of a system, all services and ports should be blocked"
-      "unless required."
-      "• Any ports that have been opened on non-loopback addresses need firewall rules"
-      "to govern traffic."
-      "• Without a firewall rule configured for open ports, the default firewall policy will"
-      "drop all packets to these ports."
-      "• Required ports should have a firewall rule created to allow approved connections"
-      "in accordance with local site policy."
+      "To reduce the attack surface of a system, all services and ports should be blocked "
+      "unless required.\n"
+      "• Any ports that have been opened on non-loopback addresses need firewall rules "
+      "to govern traffic.\n"
+      "• Without a firewall rule configured for open ports, the default firewall policy will "
+      "drop all packets to these ports.\n"
+      "• Required ports should have a firewall rule created to allow approved connections "
+      "in accordance with local site policy.\n"
       "• Unapproved ports should have an explicit deny rule created."
     remediation: 
-      "For each port identified in the audit which does not have a firewall rule, evaluate the"
-      "service listening on the port and add a rule for accepting or denying inbound"
-      "connections in accordance with local site policy:"
-      "Examples:"
-      "# ufw allow in <port>/<tcp or udp protocol>"
-      "# ufw deny in <port>/<tcp or udp protocol>"
-      "Note: Examples create rules for from any, to any. More specific rules should be"
-      "concentered when allowing inbound traffic e.g only traffic from this network."
-      "Example to allow traffic on port 443 using the tcp protocol from the 192.168.1.0 network:"
-      "ufw allow from 192.168.1.0/24 to any proto tcp port 443"
+      "For each port identified in the audit which does not have a firewall rule, evaluate the "
+      "service listening on the port and add a rule for accepting or denying inbound "
+      "connections in accordance with local site policy:\n"
+      "Examples:\n"
+      "```\n"
+      "# ufw allow in <port>/<tcp or udp protocol>\n"
+      "# ufw deny in <port>/<tcp or udp protocol>\n"
+      "```\n"
+      "Note: Examples create rules for from any, to any. More specific rules should be "
+      "concentered when allowing inbound traffic e.g only traffic from this network.\n"
+      "Example to allow traffic on port 443 using the tcp protocol from the 192.168.1.0 network:\n"
+      "```\n"
+      "ufw allow from 192.168.1.0/24 to any proto tcp port 443\n"
+      "```"
     cis_benchmark: {
       profile_level: 1
       severity: MEDIUM
