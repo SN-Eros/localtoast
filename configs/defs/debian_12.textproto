@@ -7057,10 +7057,23 @@ benchmark_configs: {
       severity: LOW
     }
     scan_instructions:
-      "generic:{check_alternatives:{"
+      "generic:{check_alternatives:{"        
       "  file_checks:{"
-      "    repeat_config:{type: FOR_EACH_USER_WITH_LOGIN}"
-      "    files_to_check:{files_in_dir:\"/home/$user\"}"	
+      "    files_to_check:{single_file:{path:\"/home/$user\"}}"
+      "    repeat_config: {type: FOR_EACH_USER_WITH_LOGIN"
+      "      opt_out: {wildcard: \"$user\", value: \"root\"}"
+      "      opt_out: {wildcard: \"$user\", value: \"sync\"}}"
+      "    permission:{"
+      "      set_bits: 0750"
+      "      bits_should_match: BOTH_SET_AND_CLEAR"
+      "      user: {name: \"$user\" should_own: true}"
+      "    }"
+      "  }"
+      "  file_checks:{"
+      "    files_to_check:{single_file:{path:\"/home/$user\"}}"
+      "    repeat_config: {type: FOR_EACH_USER_WITH_LOGIN"
+      "      opt_out: {wildcard: \"$user\", value: \"root\"}"
+      "      opt_out: {wildcard: \"$user\", value: \"sync\"}}"	
       "    existence:{should_exist:true}"
       "  }"
       "}}"
@@ -7082,8 +7095,6 @@ benchmark_configs: {
     remediation:
       "Run the following command to configure the audit log directory to have a mode of"
       "\"0750\" or less permissive:"
-      "# chmod g-w,o-rwx "$(dirname "$(awk -F= '/^\s*log_file\s*/{print $2}'"
-      "/etc/audit/auditd.conf | xargs)")""
     cis_benchmark: {
       profile_level: 1
       severity: LOW
