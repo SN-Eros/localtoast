@@ -285,9 +285,9 @@ benchmark_configs: {
       "could continue to exploit the known flaw."
     remediation:
       "Modify /etc/fstab to ensure /dev/shm is configured as a separate partition with appropriate options:\n"
-      "```"
+      "```\n"
       "tmpfs /dev/shm tmpfs defaults,rw,nosuid,nodev,noexec,relatime,size=2G 0 0\n"
-      "```"
+      "```\n"
     cis_benchmark: {
       profile_level: 1
       severity: MEDIUM
@@ -390,14 +390,14 @@ benchmark_configs: {
     rationale:
       "Enabling restricted mode limits the ability of compromised processes to attach to other processes running under the same user, reducing the scope of potential attacks."
     remediation:
-      "Set the following parameter in `/etc/sysctl.conf` or a file in `/etc/sysctl.d/` ending in `.conf`:"
-      "```"
-      "kernel.yama.ptrace_scope = 1"
-      "```"
-      "Run the following command to set the active kernel parameter:"
-      "```"
-      "sysctl -w kernel.yama.ptrace_scope=1"
-      "```"
+      "Set the following parameter in `/etc/sysctl.conf` or a file in `/etc/sysctl.d/` ending in `.conf`:\n"
+      "```\n"
+      "kernel.yama.ptrace_scope = 1\n"
+      "```\n"
+      "Run the following command to set the active kernel parameter:\n"
+      "```\n"
+      "sysctl -w kernel.yama.ptrace_scope=1\n"
+      "```\n"
     cis_benchmark: {
       profile_level: 1
       severity: HIGH
@@ -450,16 +450,16 @@ benchmark_configs: {
     rationale: 
       "Base chains with appropriate hooks ensure that packets flowing through input, forward, and output chains are processed as expected, providing the foundation for proper firewall functionality."
     remediation: 
-      "Run the following command to create the base chains:"
-      "```"
-      "# nft create chain inet <table name> <base chain name> { type filter hook <(input|forward|output)> priority 0 ; }"
-      "```"
-      "Example:"
-      "```"
-      "# nft create chain inet filter input { type filter hook input priority 0 ; }"
-      "# nft create chain inet filter forward { type filter hook forward priority 0 ; }"
-      "# nft create chain inet filter output { type filter hook output priority 0 ; }"
-      "```"
+      "Run the following command to create the base chains:\n"
+      "```\n"
+      "# nft create chain inet <table name> <base chain name> { type filter hook <(input|forward|output)> priority 0 ; }\n"
+      "```\n"
+      "Example:\n"
+      "```\n"
+      "# nft create chain inet filter input { type filter hook input priority 0 ; }\n"
+      "# nft create chain inet filter forward { type filter hook forward priority 0 ; }\n"
+      "# nft create chain inet filter output { type filter hook output priority 0 ; }\n"
+      "```\n"
     cis_benchmark: {
       profile_level: 1
       severity: MEDIUM
@@ -509,15 +509,15 @@ benchmark_configs: {
     rationale: 
       "The loopback interface is critical for system operation as it handles communication within the system itself. Blocking loopback traffic on non-loopback interfaces prevents potential spoofing attacks."
     remediation: 
-      "Run the following commands to configure loopback traffic rules:"
-      "```"
-      "# nft add rule inet filter input iif lo accept"
-      "# nft add rule inet filter input ip saddr 127.0.0.0/8 counter drop"
-      "```"
-      "If IPv6 is enabled on the system, run:"
-      "```"
-      "# nft add rule inet filter input ip6 saddr ::1 counter drop"
-      "```"
+      "Run the following commands to configure loopback traffic rules:\n"
+      "```\n"
+      "# nft add rule inet filter input iif lo accept\n"
+      "# nft add rule inet filter input ip saddr 127.0.0.0/8 counter drop\n"
+      "```\n"
+      "If IPv6 is enabled on the system, run:\n"
+      "```\n"
+      "# nft add rule inet filter input ip6 saddr ::1 counter drop\n"
+      "```\n"
     cis_benchmark: {
       profile_level: 1
       severity: MEDIUM
@@ -563,16 +563,16 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure nftables service is enabled"
     description: 
-      "The nftables service allows for the loading of nftables rulesets during boot, or starting on"
+      "The nftables service allows for the loading of nftables rulesets during boot, or starting on "
       "the nftables service"
     rationale:
-      "The nftables service restores the nftables rules from the rules files referenced in the"
+      "The nftables service restores the nftables rules from the rules files referenced in the "
       "/etc/nftables.conf file during boot or the starting of the nftables service"
     remediation:
-      "Run the following command to enable the nftables service:"
-      "```"
+      "Run the following command to enable the nftables service:\n"
+      "```\n"
       "# systemctl enable nftables "
-      "```"
+      "```\n"
     cis_benchmark: {
       profile_level: 1
       severity: LOW
@@ -603,13 +603,13 @@ benchmark_configs: {
       "Running both the nftables service and ufw may lead to conflict and unexpected results. Ensuring only one is active prevents issues."
     remediation: 
       "To remove or disable UFW, run one of the following:\n"
-      "```"
+      "```\n"
       "# apt purge ufw\n"
       "-OR-\n"
       "# ufw disable\n"
       "# systemctl stop ufw.service\n"
       "# systemctl mask ufw.service\n"
-      "```"
+      "```\n"
       "Note: Run `ufw disable` before `systemctl mask ufw.service` to ensure proper disabling of UFW."
     cis_benchmark: {
       profile_level: 1
@@ -638,12 +638,12 @@ benchmark_configs: {
     rationale: 
       "With a default accept policy, the firewall will accept any packet that is not configured to be denied. It is easier to whitelist acceptable usage than to blacklist unacceptable usage."
     remediation: 
-      "Run the following commands to implement a default DROP policy:"
-      "```"
+      "Run the following commands to implement a default DROP policy:\n"
+      "```\n"
       "# iptables -P INPUT DROP"
       "# iptables -P OUTPUT DROP"
       "# iptables -P FORWARD DROP"
-      "```"
+      "```\n"
       "Note: Changing firewall settings while connected over network can result in being locked out of the system."
     cis_benchmark: {
       profile_level: 1
@@ -725,12 +725,12 @@ benchmark_configs: {
     rationale: 
       "With a default accept policy, the firewall will accept any packet that is not configured to be denied. It is easier to whitelist acceptable usage than to blacklist unacceptable usage."
     remediation: 
-      "Run the following commands to implement a default DROP policy:"
-      "```"
-      "# ip6tables -P INPUT DROP"
-      "# ip6tables -P OUTPUT DROP"
-      "# ip6tables -P FORWARD DROP"
-      "```"
+      "Run the following commands to implement a default DROP policy:\n"
+      "```\n"
+      "# ip6tables -P INPUT DROP\n"
+      "# ip6tables -P OUTPUT DROP\n"
+      "# ip6tables -P FORWARD DROP\n"
+      "```\n"
       "Note: Changing firewall settings while connected over network can result in being locked out of the system."
     cis_benchmark: {
       profile_level: 1
@@ -769,12 +769,12 @@ benchmark_configs: {
     rationale: 
       "Loopback traffic is generated between processes on the machine and is typically critical to the operation of the system. The loopback interface is the only place that loopback network (::1) traffic should be seen; all other interfaces should ignore traffic on this network as an anti-spoofing measure."
     remediation: 
-      "Run the following commands to implement the loopback rules:"
-      "```"
-      "# ip6tables -A INPUT -i lo -j ACCEPT"
-      "# ip6tables -A OUTPUT -o lo -j ACCEPT"
-      "# ip6tables -A INPUT -s ::1 -j DROP"
-      "```"
+      "Run the following commands to implement the loopback rules:\n"
+      "```\n"
+      "# ip6tables -A INPUT -i lo -j ACCEPT\n"
+      "# ip6tables -A OUTPUT -o lo -j ACCEPT\n"
+      "# ip6tables -A INPUT -s ::1 -j DROP\n"
+      "```\n"
       "Note: Changing firewall settings while connected over the network can result in being locked out of the system."
     cis_benchmark: {
       profile_level: 1
@@ -819,7 +819,7 @@ benchmark_configs: {
     remediation:
       "Run the following command to install systemd-journal-remote:\n"
       "```\n"
-      "apt install systemd-journal-remote"
+      "apt install systemd-journal-remote\n"
       "```\n"
     cis_benchmark: {
       profile_level: 1
@@ -876,7 +876,7 @@ benchmark_configs: {
     rationale: "Monitoring changes to network environments helps identify unauthorized alterations that could compromise security settings. Monitoring files like /etc/hosts or /etc/netplan/ ensures the detection of unauthorized changes to network configurations."
     remediation:
       "Edit or create a file in the /etc/audit/rules.d/ directory, ending in .rules extension, with the relevant rules:\n"
-      "```"
+      "```\n"
       "-a always,exit -F arch=b64 -S sethostname,setdomainname -k system-locale\n"
       "-a always,exit -F arch=b32 -S sethostname,setdomainname -k system-locale\n"
       "-w /etc/issue -p wa -k system-locale\n"
@@ -885,7 +885,7 @@ benchmark_configs: {
       "-w /etc/networks -p wa -k system-locale\n"
       "-w /etc/network/ -p wa -k system-locale\n"
       "-w /etc/netplan/ -p wa -k system-locale\n"
-      "```"
+      "```\n"
       "Merge and load the rules:\n"
       "# augenrules --load\n"
       "Check if reboot is required:\n"
@@ -949,12 +949,12 @@ benchmark_configs: {
     rationale: "Monitoring privileged commands by non-privileged users helps identify potential unauthorized activities and access attempts."
     remediation:
       "Edit or create a file in the /etc/audit/rules.d/ directory, ending in .rules extension, with the relevant rules:\n"
-      "```"
+      "```\n"
       "# Identify all privileged commands and monitor their execution\n"
       "UID_MIN=$(awk '/^\\\\s*UID_MIN/{print $2}' /etc/login.defs)\n"
       "AUDIT_RULE_FILE=/etc/audit/rules.d/50-privileged.rules\n"
       "find / -xdev -perm /6000 -type f 2>/dev/null | awk -v UID_MIN=${UID_MIN} '{ print \"-a always,exit -F path=\" $1 \" -F perm=x -F auid>=\" UID_MIN \" -F auid!=unset -k privileged\" }' > ${AUDIT_RULE_FILE}\n"
-      "```"
+      "```\n"
       "Merge and load the rules:\n"
       "# augenrules --load\n"
       "Check if reboot is required:\n"
@@ -992,10 +992,10 @@ benchmark_configs: {
     description: "Audit configuration files must be configured with mode 0640 or more restrictive to prevent unauthorized access and protect the integrity of the audit system."
     rationale: "Restricting access to audit configuration files ensures that only authorized personnel can modify the settings, preventing the disabling of critical auditing or misconfigurations that may impact performance or investigation efforts."
     remediation:
-      "Run the following command to set permissions on audit configuration files:"
-      "```bash\n"
+      "Run the following command to set permissions on audit configuration files:\n"
+      "```\nbash\n"
       "find /etc/audit/ -type f \\\\( -name '*.conf' -o -name '*.rules' \\\\) -exec chmod u-x,g-wx,o-rwx {} +\n"
-      "```"
+      "```\n"
   cis_benchmark: {
     profile_level: 2
     severity: MEDIUM
@@ -1029,10 +1029,10 @@ benchmark_configs: {
     rationale:
       "Protecting audit tools ensures the integrity of audit information and prevents unauthorized operations on log data."
     remediation:
-      "Run the following command to set permissions on audit tools:"
-      "```bash"
-      "chmod go-w \\\\/sbin/auditctl \\\\/sbin/aureport \\\\/sbin/ausearch \\\\/sbin/autrace \\\\/sbin/auditd \\\\/sbin/augenrules"
-      "```"
+      "Run the following command to set permissions on audit tools:\n"
+      "```\nbash\n"
+      "chmod go-w \\\\/sbin/auditctl \\\\/sbin/aureport \\\\/sbin/ausearch \\\\/sbin/autrace \\\\/sbin/auditd \\\\/sbin/augenrules\n"
+      "```\n"
   cis_benchmark: {
     profile_level: 2
     severity: MEDIUM
@@ -1070,9 +1070,9 @@ benchmark_configs: {
     rationale: "Protecting audit tools from unauthorized access or modification is critical to maintaining the integrity of the audit system and ensuring accurate logging of events."
     remediation:
       "Run the following command to set the correct ownership for the audit tools:\n"
-      "```bash\n"
+      "```\nbash\n"
       "chown root:root /sbin/auditctl /sbin/aureport /sbin/ausearch /sbin/autrace /sbin/auditd /sbin/augenrules\n"
-      "```"
+      "```\n"
     cis_benchmark: {
       profile_level: 2
       severity: HIGH
@@ -1128,9 +1128,9 @@ benchmark_configs: {
     rationale: "Protecting audit tools from unauthorized access or modification is critical to maintaining the integrity of the audit system and ensuring accurate logging of events. Ensuring the correct group ownership prevents unauthorized users from altering critical audit files."
     remediation:
       "Run the following command to set the correct group ownership for the audit tools:\n"
-      "```bash\n"
+      "```\nbash\n"
       "chgrp root /sbin/auditctl /sbin/aureport /sbin/ausearch /sbin/autrace /sbin/auditd /sbin/augenrules\n"
-      "```"
+      "```\n"
     cis_benchmark: {
       profile_level: 2
       severity: HIGH
@@ -1183,15 +1183,14 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure permissions on /etc/shells are configured"
     description: 
-      "/etc/shells is a text file which contains the full pathnames of valid login shells. This file"
+      "/etc/shells is a text file which contains the full pathnames of valid login shells. This file "
       "is consulted by chsh and available to be queried by other programs."
     rationale:
-      "It is critical to ensure that the /etc/shells file is protected from unauthorized access."
+      "It is critical to ensure that the /etc/shells file is protected from unauthorized access. "
       "Although it is protected by default, the file permissions could be changed either "
       "inadvertently or through malicious actions. "
-      "actions."
     remediation:
-      "Run the following commands to remove excess permissions, set owner, and set group on /etc/shells:"
+      "Run the following commands to remove excess permissions, set owner, and set group on /etc/shells:\n"
       "```\n"
       "# chmod u-x,go-wx /etc/shells\n"
       "# chown root:root /etc/shells\n"
@@ -1231,12 +1230,12 @@ benchmark_configs: {
       "Although it is protected by default, the file permissions could be changed either inadvertently or through malicious actions."
     remediation:
       "Run the following commands to remove excess permissions, set owner, and set group on /etc/security/opasswd and /etc/security/opasswd.old if they exist:\n"
-      "```"
+      "```\n"
       "# [ -e \"/etc/security/opasswd\" ] && chmod u-x,go-rwx /etc/security/opasswd\n"
       "# [ -e \"/etc/security/opasswd\" ] && chown root:root /etc/security/opasswd\n"
       "# [ -e \"/etc/security/opasswd.old\" ] && chmod u-x,go-rwx /etc/security/opasswd.old\n"
       "# [ -e \"/etc/security/opasswd.old\" ] && chown root:root /etc/security/opasswd.old\n"
-      "```"
+      "```\n"
     cis_benchmark: {
       profile_level: 1
       severity: HIGH
@@ -2072,7 +2071,7 @@ benchmark_configs: {
       "access to another user."
     remediation:
       "If the currently configured time out is larger than 15 minutes, edit the file listed in the audit "
-      "section with ```visudo -f <PATH TO FILE>``` and modify the entry ```timestamp_timeout=``` to 15 "
+      "section with ```\nvisudo -f <PATH TO FILE>```\n and modify the entry ```\ntimestamp_timeout=```\n to 15 "
       "minutes or less as per your site policy. The value is in minutes. This particular entry may "
       "appear on its own, or on the sameline as env_reset. See the following two examples:\n"
       "1. Same line\n"
@@ -2151,7 +2150,7 @@ benchmark_configs: {
       "If the version of libpam-modules on the system is less than version 1.5.2-6, run the following command to update to the latest version:\n"
       "```\n"
       "apt update && apt upgrade libpam-modules\n"
-      "```"
+      "```\n"
     cis_benchmark: {
       profile_level: 1
       severity: MEDIUM
@@ -2187,7 +2186,7 @@ benchmark_configs: {
       "Strong passwords reduce the risk of systems being hacked through brute force methods."
     remediation: 
       "Run the following command to install libpam-pwquality:\n"
-      "```apt install libpam-pwquality```"
+      "```\napt install libpam-pwquality```\n"
     cis_benchmark: {
       profile_level: 1
       severity: MEDIUM
@@ -2271,7 +2270,17 @@ benchmark_configs: {
     rationale:
       "Use of a unique, complex password helps to increase the time and resources required to compromise the password."
     remediation:
-      "Run the following script to verify the pam_pwquality.so line exists in a pam-auth-update profile:\n# grep -P -- '\\bpam_pwquality\\.so\\b' /usr/share/pam-configs/*\n\nIf similar output is returned, update the /etc/pam.d/common-password file:\n# pam-auth-update --enable {PROFILE_NAME}\n\nIf not, create a pam-auth-update profile for pwquality and enable it:\n#!/usr/bin/env bash\n{\narr=('Name: Pwquality password strength checking' 'Default: yes' 'Priority: 1024' 'Conflicts: cracklib' 'Password-Type: Primary' 'Password:' '\\nrequisite\npam_pwquality.so retry=3' 'Password-Initial:requisite')\nprintf '%s\\n' \"${arr[@]}\" > /usr/share/pam-configs/pwquality\n}"
+      "Run the following script to verify the pam_pwquality.so line exists in a pam-auth-update profile:\n"
+      "# grep -P -- '\\bpam_pwquality\\.so\\b' /usr/share/pam-configs/*\n\n"
+      "If similar output is returned, update the /etc/pam.d/common-password file:\n"
+      "# pam-auth-update --enable {PROFILE_NAME}\n\n"
+      "If not, create a pam-auth-update profile for pwquality and enable it:\n"
+      "#!/usr/bin/env bash\n"
+      "{\n"
+      "arr=('Name: Pwquality password strength checking' 'Default: yes' 'Priority: 1024' 'Conflicts: cracklib' 'Password-Type: Primary' 'Password:' '\\n"
+      "requisite\npam_pwquality.so retry=3' 'Password-Initial:requisite')\n"
+      "printf '%s\\n' \"${arr[@]}\" > /usr/share/pam-configs/pwquality\n"
+      "}"
     cis_benchmark: {
       profile_level: 1
       severity: MEDIUM
@@ -2417,7 +2426,7 @@ benchmark_configs: {
       "```\n"
       "# systemctl disable systemd-journal-remote.socket systemd-journal-remote.service\n"
       "# systemctl stop systemd-journal-remote.socket systemd-journal-remote.service\n"
-      "```"
+      "```\n"
     cis_benchmark: {
       profile_level: 1
       severity: LOW
@@ -2494,7 +2503,7 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure successful and unsuccessful attempts to use the usermod command are recorded"
     description:
-      "The operating system must generate audit records for successful/unsuccessful uses of the"
+      "The operating system must generate audit records for successful/unsuccessful uses of the "
       "usermod command"
     rationale:
       "The usermod command modifies the system account files to reflect the changes that are "
@@ -2513,9 +2522,9 @@ benchmark_configs: {
       "# {\n"
       "UID_MIN=$(awk '/^\\\\s*UID_MIN/{print $2}' /etc/login.defs)"
       "[ -n \"${UID_MIN}\" ] && printf \""
-      "-a always,exit -F path=/usr/sbin/usermod -F perm=x -F auid>=${UID_MIN} -F"
-      "auid!=unset -k usermod"
-      "\" >> /etc/audit/rules.d/50-usermod.rules \\"
+      "-a always,exit -F path=/usr/sbin/usermod -F perm=x -F auid>=${UID_MIN} -F "
+      "auid!=unset -k usermod "
+      "\" >> /etc/audit/rules.d/50-usermod.rules \ \n"
       "|| printf \"ERROR: Variable 'UID_MIN' is unset.\\\n\"\n"
       "}\n"
       "```\n"
@@ -2526,7 +2535,7 @@ benchmark_configs: {
       "```\n"
       "Check if reboot is required.\n"
       "```\n"
-      "# if [[ $(auditctl -s | grep \"enabled\") =~ \"2\" ]]; then printf \"Reboot\""
+      "# if [[ $(auditctl -s | grep \"enabled\") =~ \"2\" ]]; then printf \"Reboot\" "
       "required to load rules\\\\n\"; fi\n"
       "```\n"
       "32 Bit systems\n"
@@ -2764,7 +2773,7 @@ benchmark_configs: {
       "Audit records can be generated from various components within the information system "
       "(e.g., module or policy filter)."
     remediation:
-      "Create audit rules"
+      "Create audit rules\n"
       "Edit or create a file in the /etc/audit/rules.d/ directory, ending in .rules extension, with "
       "the relevant rules to monitor successful and unsuccessful attempts to use the chcon "
       "command.\n"
@@ -2774,9 +2783,9 @@ benchmark_configs: {
       "# {\n"
       "UID_MIN=$(awk '/^\\\\s*UID_MIN/{print $2}' /etc/login.defs)"
       "[ -n \"${UID_MIN}\" ] && printf \""
-      "-a always,exit -F path=/usr/bin/chcon -F perm=x -F auid>=${UID_MIN} -F"
+      "-a always,exit -F path=/usr/bin/chcon -F perm=x -F auid>=${UID_MIN} -F "
       "auid!=unset -k perm_chng"
-      "\" >> /etc/audit/rules.d/50-perm_chng.rules \\"
+      "\" >> /etc/audit/rules.d/50-perm_chng.rules \ \n"
       "|| printf \"ERROR: Variable 'UID_MIN' is unset.\\\n\"\n"
       "}\n"
       "```\n"
@@ -2787,7 +2796,7 @@ benchmark_configs: {
       "```\n"
       "Check if reboot is required.\n"
       "```\n"
-      "# if [[ $(auditctl -s | grep \"enabled\") =~ \"2\" ]]; then printf \"Reboot\""
+      "# if [[ $(auditctl -s | grep \"enabled\") =~ \"2\" ]]; then printf \"Reboot\" "
       "required to load rules\\\\n\"; fi\n"
       "```\n"
       "32 Bit systems\n"
@@ -3586,14 +3595,14 @@ benchmark_configs: {
       "Unless the system is designated for DNS or DHCP services, dnsmasq should be disabled or removed to reduce security risks."
     remediation: 
       "1. Stop and mask the dnsmasq service to ensure it does not run:\n"
-      "```"
+      "```\n"
       "# systemctl stop dnsmasq.service\n"
       "# systemctl mask dnsmasq.service\n"
-      "```"
+      "```\n"
       "2. Remove the dnsmasq package if it is not required as a dependency:\n"
-      "```"
+      "```\n"
       "# apt purge dnsmasq\n"
-      "```"
+      "```\n"
       "Note: If dnsmasq is required for dependencies, ensure the service is stopped and masked."
     cis_benchmark: {
       profile_level: 1
@@ -3619,14 +3628,14 @@ benchmark_configs: {
       "Unless there is a local site-approved requirement to run a web server, these packages should be removed or disabled to reduce the potential attack surface."
     remediation:
       "1. Stop and mask the web server services to ensure they do not run:\n"
-      "````\n"
+      "```\n`\n"
       "# systemctl stop apache2.socket apache2.service nginx.service\n"
       "# systemctl mask apache2.socket apache2.service nginx.service\n"
-      "````\n"
+      "```\n`\n"
       "2. Remove the web server packages if they are not required as dependencies:\n"
-      "````\n"
+      "```\n`\n"
       "# apt purge apache2 nginx\n"
-      "````\n"
+      "```\n`\n"
       "Note: If web servers are required for dependencies, ensure the services and sockets are stopped and masked."
     cis_benchmark: {
       profile_level: 1
@@ -3684,9 +3693,9 @@ benchmark_configs: {
       "Running both ufw and the services included in the iptables-persistent package may lead to conflict. Removing iptables-persistent prevents potential issues."
     remediation: 
       "To remove the iptables-persistent package, run:\n"
-      "````\n"
+      "```\n`\n"
       "# apt purge iptables-persistent\n"
-      "````\n"
+      "```\n`\n"
       "Note: Ensure ufw is the only active firewall utility on the system."
     cis_benchmark: {
       profile_level: 1
@@ -3724,12 +3733,12 @@ benchmark_configs: {
       "Loopback traffic is critical to system operation and should only be allowed on the loopback interface. Denying loopback traffic on other interfaces is an anti-spoofing measure."
     remediation: 
       "To implement the loopback rules, run:\n"
-      "```"
+      "```\n"
       "# ufw allow in on lo\n"
       "# ufw allow out on lo\n"
       "# ufw deny in from 127.0.0.0/8\n"
       "# ufw deny in from ::1\n"
-      "```"
+      "```\n"
       "Note: Ensure ufw rules are applied in the correct order to achieve the desired effect."
     cis_benchmark: {
       profile_level: 1
@@ -3791,11 +3800,11 @@ benchmark_configs: {
       "With a default accept policy, the firewall will accept any packet that is not configured to be denied. It is easier to whitelist acceptable usage than to blacklist unacceptable usage."
     remediation: 
       "To implement a default deny policy, run:\n"
-      "```"
+      "```\n"
       "# ufw default deny incoming\n"
       "# ufw default deny outgoing\n"
       "# ufw default deny routed\n"
-      "```"
+      "```\n"
       "Note: Ensure necessary rules for specific services or protocols (e.g., HTTP, HTTPS, DNS) are added before applying the default deny policy."
     cis_benchmark: {
       profile_level: 1
@@ -3847,13 +3856,13 @@ benchmark_configs: {
       "nftables does not have any default tables. Without a table, nftables will not filter network traffic, leaving the system unprotected."
     remediation: 
       "To create a table in nftables, run:\n"
-      "```"
+      "```\n"
       "# nft create table inet <table name>\n"
-      "```"
+      "```\n"
       "Example:\n"
-      "```"
+      "```\n"
       "# nft create table inet filter\n"
-      "```"
+      "```\n"
       "Note: Adding rules to a running nftables can cause loss of connectivity. Ensure proper configuration before creating tables."
     cis_benchmark: {
       profile_level: 1
@@ -3885,11 +3894,11 @@ benchmark_configs: {
       "If the policy is set to accept, the firewall will accept any packet not configured to be denied. It is easier to whitelist acceptable usage than to blacklist unacceptable usage."
     remediation: 
       "To set the default deny policy for base chains, run:\n"
-      "```"
+      "```\n"
       "# nft chain inet filter input { policy drop }\n"
       "# nft chain inet filter forward { policy drop  }\n"
       "# nft chain inet filter output { policy drop  }\n"
-      "```"
+      "```\n"
       "Note: Adding a drop policy can result in loss of connectivity. Ensure necessary rules, such as allowing SSH, are added beforehand."
     cis_benchmark: {
       profile_level: 1
@@ -3941,9 +3950,9 @@ benchmark_configs: {
       "A method of configuring and maintaining firewall rules is necessary to configure a Host Based Firewall."
     remediation: 
       "To install iptables and iptables-persistent, run:\n"
-      "```"
+      "```\n"
       "# apt install iptables iptables-persistent\n"
-      "```"
+      "```\n"
       "Ensure proper configuration of firewall rules after installation."
     cis_benchmark: {
       profile_level: 1
@@ -3974,18 +3983,18 @@ benchmark_configs: {
     remediation: 
       "To disable Apport Error Reporting, follow these steps:\n"
       "1. Edit `/etc/default/apport` and set the `enabled` parameter to `0`:\n"
-      "```"
+      "```\n"
       "enabled=0\n"
-      "```"
+      "```\n"
       "2. Run the following commands to stop and mask the Apport service:\n"
-      "```"
+      "```\n"
       "# systemctl stop apport.service\n"
       "# systemctl mask apport.service\n"
-      "```"
+      "```\n"
       "3. Alternatively, remove the apport package entirely:\n"
-      "```"
+      "```\n"
       "# apt purge apport\n"
-      "```"
+      "```\n"
       "Ensure all steps are in compliance with organizational policies."
     cis_benchmark: {
       profile_level: 1
@@ -4022,15 +4031,15 @@ benchmark_configs: {
     remediation: 
         "To disable automounting of removable media:\n"
         "1. Create the file /etc/dconf/db/local.d/locks/00-media-automount with the following content:\n"
-        "```"
+        "```\n"
         "[org/gnome/desktop/media-handling]\n"
         "automount=false\n"
         "automount-open=false\n"
-        "```"
+        "```\n"
         "2. Update the system's databases:\n"
-        "```"
+        "```\n"
         "# dconf update\n"
-        "```"
+        "```\n"
     cis_benchmark: {
       profile_level: 1
       severity: MEDIUM
@@ -4070,8 +4079,8 @@ benchmark_configs: {
     rationale: 
       "Using complex passwords with enforced character changes increases the time and resources required to compromise passwords through brute-force attacks, enhancing overall security."
     remediation: 
-      "Create or modify a `.conf` file in `/etc/security/pwquality.conf.d/` or edit `/etc/security/pwquality.conf` to include the following configuration:"
-      "```difok = 2```"
+      "Create or modify a `.conf` file in `/etc/security/pwquality.conf.d/` or edit `/etc/security/pwquality.conf` to include the following configuration:\n"
+      "```difok = 2```\n"
       "Ensure the setting conforms to local site policy."
     cis_benchmark: {
       profile_level: 1
@@ -4102,10 +4111,10 @@ benchmark_configs: {
     rationale: 
       "Using a minimum password length policy helps to protect systems from password attacks by increasing the complexity and reducing the predictability of passwords."
     remediation: 
-      "Create or modify a `.conf` file in `/etc/security/pwquality.conf.d/` or edit `/etc/security/pwquality.conf` to include the following configuration:"
-      "```"
+      "Create or modify a `.conf` file in `/etc/security/pwquality.conf.d/` or edit `/etc/security/pwquality.conf` to include the following configuration:\n"
+      "```\n"
       "minlen = 14"
-      "```"
+      "```\n"
       "Ensure the setting conforms to local site policy."
     cis_benchmark: {
       profile_level: 1
@@ -4136,10 +4145,10 @@ benchmark_configs: {
     rationale: 
       "Using a policy to limit consecutive characters increases the complexity and reduces predictability of passwords, enhancing overall security against brute-force attacks."
     remediation: 
-      "Create or modify a `.conf` file in `/etc/security/pwquality.conf.d/` or edit `/etc/security/pwquality.conf` to include the following configuration:"
-      "```"
+      "Create or modify a `.conf` file in `/etc/security/pwquality.conf.d/` or edit `/etc/security/pwquality.conf` to include the following configuration:\n"
+      "```\n"
       "maxrepeat = 3"
-      "```"
+      "```\n"
       "Ensure the setting conforms to local site policy."
     cis_benchmark: {
       profile_level: 1
@@ -4170,10 +4179,10 @@ benchmark_configs: {
     rationale: 
       "Using a policy to limit monotonic character sequences increases the complexity and reduces predictability of passwords, enhancing overall security against brute-force attacks."
     remediation: 
-      "Create or modify a `.conf` file in `/etc/security/pwquality.conf.d/` or edit `/etc/security/pwquality.conf` to include the following configuration:"
-      "```"
+      "Create or modify a `.conf` file in `/etc/security/pwquality.conf.d/` or edit `/etc/security/pwquality.conf` to include the following configuration:\n"
+      "```\n"
       "maxsequence = 3"
-      "```"
+      "```\n"
       "Ensure the setting conforms to local site policy."
     cis_benchmark: {
       profile_level: 1
@@ -4204,10 +4213,10 @@ benchmark_configs: {
     rationale: 
       "Using a policy to enable dictionary checks increases the security of passwords by reducing the chance of using dictionary words or predictable combinations, mitigating brute-force attacks."
     remediation: 
-      "Edit any file ending in `.conf` in `/etc/security/pwquality.conf.d/` or the file `/etc/security/pwquality.conf` and ensure the following configuration is included:"
-      "```"
+      "Edit any file ending in `.conf` in `/etc/security/pwquality.conf.d/` or the file `/etc/security/pwquality.conf` and ensure the following configuration is included:\n"
+      "```\n"
       "dictcheck = 1"
-      "```"
+      "```\n"
       "Ensure the setting conforms to local site policy."
     cis_benchmark: {
       profile_level: 1
@@ -4238,10 +4247,10 @@ benchmark_configs: {
     rationale: 
       "Enforcing password quality checks reduces the risk of password compromise by ensuring all passwords meet security policies."
     remediation: 
-      "Edit any file ending in `.conf` in `/etc/security/pwquality.conf.d/` or the file `/etc/security/pwquality.conf` to remove or comment out any line containing `enforcing = 0`:"
-      "```"
+      "Edit any file ending in `.conf` in `/etc/security/pwquality.conf.d/` or the file `/etc/security/pwquality.conf` to remove or comment out any line containing `enforcing = 0`:\n"
+      "```\n"
       "# sed -ri 's/^\\h*enforcing\\h*=\\h*0/# &/' /etc/security/pwquality.conf"
-      "```"
+      "```\n"
       "Remove the `enforcing=0` argument from the `pam_pwquality.so` module in PAM files if present."
     cis_benchmark: {
       profile_level: 1
@@ -4272,10 +4281,10 @@ benchmark_configs: {
     rationale: 
       "Enforcing password quality checks for the root user ensures that even administrative accounts adhere to password policies, reducing the risk of password compromise."
     remediation: 
-      "Edit any file ending in `.conf` in `/etc/security/pwquality.conf.d/` or the file `/etc/security/pwquality.conf` to include the following configuration:"
-      "```"
+      "Edit any file ending in `.conf` in `/etc/security/pwquality.conf.d/` or the file `/etc/security/pwquality.conf` to include the following configuration:\n"
+      "```\n"
       "enforce_for_root"
-      "```"
+      "```\n"
     cis_benchmark: {
       profile_level: 1
       severity: HIGH
@@ -4305,10 +4314,10 @@ benchmark_configs: {
     rationale: 
       "Remembering previous passwords reduces the likelihood of attackers successfully compromising accounts by reusing previous passwords, enhancing password security."
     remediation: 
-      "Edit the `/etc/pam.d/common-password` file and ensure the `pam_pwhistory` module line includes:"
-      "```"
-      "remember=<N>"
-      "```"
+      "Edit the `/etc/pam.d/common-password` file and ensure the `pam_pwhistory` module line includes:\n"
+      "```\n"
+      "remember=<N>\n"
+      "```\n"
       "where `<N>` is 24 or more, based on local site policy."
     cis_benchmark: {
       profile_level: 1
@@ -4339,10 +4348,10 @@ benchmark_configs: {
     rationale: 
       "Requiring the root user not to reuse their passwords enhances overall system security by reducing the risk of password reuse attacks."
     remediation: 
-      "Edit the `/etc/pam.d/common-password` file and ensure the `pam_pwhistory` module line includes:"
-      "```"
-      "enforce_for_root"
-      "```"
+      "Edit the `/etc/pam.d/common-password` file and ensure the `pam_pwhistory` module line includes:\n"
+      "```\n"
+      "enforce_for_root\n"
+      "```\n"
     cis_benchmark: {
       profile_level: 1
       severity: MEDIUM
@@ -4372,10 +4381,10 @@ benchmark_configs: {
     rationale: 
       "The use_authtok option ensures consistent password validation across multiple pam modules, enhancing security during password changes."
     remediation: 
-      "Edit the `/etc/pam.d/common-password` file and ensure the `pam_pwhistory` module line includes:"
-      "```"
-      "use_authtok"
-      "```"
+      "Edit the `/etc/pam.d/common-password` file and ensure the `pam_pwhistory` module line includes:\n"
+      "```\n"
+      "use_authtok\n"
+      "```\n"
     cis_benchmark: {
       profile_level: 1
       severity: MEDIUM
@@ -4589,10 +4598,10 @@ benchmark_configs: {
     rationale: 
       "Setting a secure umask ensures that newly created files and directories have restricted permissions, reducing the risk of unauthorized access."
     remediation: 
-      "Edit the `/root/.bash_profile` and `/root/.bashrc` files and ensure the following configuration is included:"
-      "```"
+      "Edit the `/root/.bash_profile` and `/root/.bashrc` files and ensure the following configuration is included:\n"
+      "```\n"
       "umask 0027"
-      "```"
+      "```\n"
       "Remove or comment out any other umask settings that are less restrictive."
     cis_benchmark: {
       profile_level: 1
@@ -4713,7 +4722,7 @@ benchmark_configs: {
     rationale: 
       "Attackers may modify or replace audit tools to hide or erase activity from logs. Cryptographic signatures enable detection of unauthorized changes."
     remediation: 
-      "Configure AIDE to monitor audit tool files with cryptographic integrity checks. Edit /etc/aide/aide.conf and add or update the following entries:\n\n" 
+      "Configure AIDE to monitor audit tool files with cryptographic integrity checks. Edit /etc/aide/aide.conf and add or update the following entries:\n" 
       "# Audit Tools\n" 
       "/sbin/auditctl p+i+n+u+g+s+b+acl+xattrs+sha512\n" 
       "/sbin/auditd p+i+n+u+g+s+b+acl+xattrs+sha512\n" 
@@ -4750,7 +4759,7 @@ benchmark_configs: {
     rationale: 
       "Logs should be handled exclusively by journald to prevent unnecessary forwarding and enhance security."
     remediation: 
-      "Set the following parameter in the [Journal] section of /etc/systemd/journald.conf or a file in /etc/systemd/journald.conf.d/ ending in .conf:\n\n" 
+      "Set the following parameter in the [Journal] section of /etc/systemd/journald.conf or a file in /etc/systemd/journald.conf.d/ ending in .conf:\n" 
       "[Journal]\n" 
       "ForwardToSyslog=no\n\n" 
       "After updating the configuration, reload or restart systemd-journald:\n\n" 
@@ -4860,11 +4869,11 @@ benchmark_configs: {
     rationale: 
       "Configuring the system to handle low audit log space helps prevent loss of critical audit data and enhances the reliability of audit records in monitoring and detecting security events."
     remediation: 
-      "Edit `/etc/audit/auditd.conf` to set the `space_left_action` parameter to `email`, `exec`, `single`, or `halt` and the `admin_space_left_action` parameter to `single` or `halt`:"
-      "```"
+      "Edit `/etc/audit/auditd.conf` to set the `space_left_action` parameter to `email`, `exec`, `single`, or `halt` and the `admin_space_left_action` parameter to `single` or `halt`:\n"
+      "```\n"
       "space_left_action = email"
       "admin_space_left_action = single"
-      "```"
+      "```\n"
     cis_benchmark: {
       profile_level: 2
       severity: HIGH
@@ -4905,14 +4914,14 @@ benchmark_configs: {
       "A small request sent to the Portmapper generates a large response, making it a suitable tool for DDoS attacks. If rpcbind is not required, removing it reduces the potential attack surface."
     remediation: 
       "1. Stop and mask the rpcbind.socket and rpcbind.service to ensure they do not run:\n"
-      "```"
+      "```\n"
       "# systemctl stop rpcbind.socket rpcbind.service\n"
       "# systemctl mask rpcbind.socket rpcbind.service\n"
-      "```"
+      "```\n"
       "2. Remove the rpcbind package if it is not required as a dependency:\n"
-      "```"
+      "```\n"
       "# apt purge rpcbind\n"
-      "```"
+      "```\n"
       "Note: If rpcbind is required for dependencies, ensure the socket and service are stopped and masked."
     cis_benchmark: {
       profile_level: 1
@@ -4978,9 +4987,9 @@ benchmark_configs: {
       "Access to root should be secured at all times."
     remediation: 
       "Run the following command to set a password for the root user:\n"
-      "```"
+      "```\n"
       "# passwd root\n"
-      "```"
+      "```\n"
       "Note: Ensure no automated processes rely on root access without authentication."
     cis_benchmark: {
       profile_level: 1
@@ -5064,7 +5073,7 @@ benchmark_configs: {
       "Run the following command to uninstall FTP:\n"
       "```\n"
       "# apt purge ftp\n"
-      "```"
+      "```\n"
       "Ensure alternative secure protocols like SFTP are used if file transfer is required."
     cis_benchmark: {
       profile_level: 1
@@ -5156,7 +5165,7 @@ benchmark_configs: {
       "```\n"
       "# apt purge chrony\n"
       "# apt autoremove chrony\n"
-      "```"
+      "```\n"
     cis_benchmark: {
       profile_level: 1
       severity: MEDIUM
@@ -5285,11 +5294,11 @@ benchmark_configs: {
       "The `ufw` service must be enabled and running to ensure proper system protection by the firewall."
     remediation: 
       "To unmask, enable, and start the `ufw` daemon:\n"
-      "```"
+      "```\n"
       "# systemctl unmask ufw.service\n"
       "# systemctl --now enable ufw.service\n"
       "# ufw enable\n"
-      "```"
+      "```\n"
       "Note: Ensure to configure rules to avoid being locked out of the system, especially when connected over SSH."
     cis_benchmark: {
       profile_level: 1
@@ -5338,13 +5347,13 @@ benchmark_configs: {
       "Running iptables.persistent with UFW enabled may lead to conflict and unexpected results. Ensuring only one is active prevents issues."
     remediation: 
       "To remove or disable UFW, run one of the following:\n"
-      "```"
+      "```\n"
       "# apt purge ufw\n"
       "-OR-\n"
       "# ufw disable\n"
       "# systemctl stop ufw.service\n"
       "# systemctl mask ufw.service\n"
-      "```"
+      "```\n"
       "Note: Run `ufw disable` before `systemctl mask ufw.service` to ensure proper disabling of UFW."
     cis_benchmark: {
       profile_level: 1
@@ -5597,16 +5606,16 @@ benchmark_configs: {
       "Disabling xinetd helps reduce the attack surface by ensuring unnecessary "
       "services are not available."
     remediation:
-      "Run the following commands to stop xinetd.service, and remove the xinetd package:"
-      "```"
+      "Run the following commands to stop xinetd.service, and remove the xinetd package:\n"
+      "```\n"
       "# systemctl stop xinetd.service"
       "# apt purge xinetd"
-      "```"
-      "-OR-IF- the xinetd package is required as a dependency:"
-      "```"
+      "```\n"
+      "-OR-IF- the xinetd package is required as a dependency:\n"
+      "```\n"
       "# systemctl stop xinetd.service"
       "# systemctl mask xinetd.service"
-      "```"
+      "```\n"
     cis_benchmark: {
       profile_level: 1
       severity: MEDIUM
@@ -5652,14 +5661,14 @@ benchmark_configs: {
       "file to control who can run cron jobs enforces this policy. It is easier to manage an allow list than a deny "
       "list. In a deny list, you could potentially add a user ID to the system and forget to add it to the deny files."
     remediation:
-      "Run the following commands to ensure proper configuration of cron access:"
-      "```"
+      "Run the following commands to ensure proper configuration of cron access:\n"
+      "```\n"
       "# [ ! -e \"/etc/cron.allow\" ] && touch /etc/cron.allow"
       "# chown root:root /etc/cron.allow"
       "# chmod u-x,g-wx,o-rwx /etc/cron.allow"
       "# [ -e \"/etc/cron.deny\" ] && chown root:root /etc/cron.deny"
       "# [ -e \"/etc/cron.deny\" ] && chmod u-x,g-wx,o-rwx /etc/cron.deny"
-      "```"
+      "```\n"
     cis_benchmark: {
       profile_level: 1
       severity: LOW
