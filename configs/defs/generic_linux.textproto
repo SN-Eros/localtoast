@@ -6377,9 +6377,7 @@ benchmark_configs: {
   id: "dhcp-server-disabled"
   compliance_note: {
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
-    version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
-    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }    
     title: "Ensure DHCP Server is not enabled"
     description:
       "The Dynamic Host Configuration Protocol (DHCP) is a service that "
@@ -6682,7 +6680,12 @@ benchmark_configs: {
       severity: LOW
     }
     scan_instructions:
-      "generic:{check_alternatives:{"
+      "scan_type_specific:{"
+      "instance_scanning:{check_alternatives:{"
+      "  file_checks:{"
+      "    files_to_check:{process_path:{proc_name:\"squid\"}}"
+      "    existence:{should_exist: false}"
+      "  }"
       "  file_checks:{"
       "    files_to_check:{files_in_dir:{"
       "      dir_path:\"/etc/systemd/system\""
@@ -6691,9 +6694,22 @@ benchmark_configs: {
       "    }}"
       "    existence:{should_exist: false}"
       "    non_compliance_msg: \"a config file in /etc/systemd/system enables squid\""
-      "    file_display_command: \"find /etc/systemd/system -name squid.service\""
+      "    file_display_command: \"find /etc/systemd/system -name 'squid.service'\""
+      "  }"
+      "}"
+      "image_scanning:{check_alternatives:{"
+      "  file_checks:{"
+      "    files_to_check:{files_in_dir:{"
+      "      dir_path:\"/etc/systemd/system\""
+      "      recursive: true"
+      "      filename_regex: \"squid.service\""
+      "    }}"
+      "    existence:{should_exist: false}"
+      "    non_compliance_msg: \"a config file in /etc/systemd/system enables squid\""
+      "    file_display_command: \"find /etc/systemd/system -name 'squid.service'\""
       "  }"
       "}}"
+      "}"
   }
 }
 benchmark_configs: {
@@ -6727,7 +6743,12 @@ benchmark_configs: {
       severity: LOW
     }
     scan_instructions:
-      "generic:{check_alternatives:{"
+      "scan_type_specific:{"
+      "instance_scanning:{check_alternatives:{"
+      "  file_checks:{"
+      "    files_to_check:{process_path:{proc_name:\"snmpd\"}}"
+      "    existence:{should_exist: false}"
+      "  }"
       "  file_checks:{"
       "    files_to_check:{files_in_dir:{"
       "      dir_path:\"/etc/systemd/system\""
@@ -6736,9 +6757,22 @@ benchmark_configs: {
       "    }}"
       "    existence:{should_exist: false}"
       "    non_compliance_msg: \"a config file in /etc/systemd/system enables snmpd\""
-      "    file_display_command: \"find /etc/systemd/system -name snmpd.service\""
+      "    file_display_command: \"find /etc/systemd/system -name 'snmpd.service'\""
+      "  }"
+      "}"
+      "image_scanning:{check_alternatives:{"
+      "  file_checks:{"
+      "    files_to_check:{files_in_dir:{"
+      "      dir_path:\"/etc/systemd/system\""
+      "      recursive: true"
+      "      filename_regex: \"snmpd.service\""
+      "    }}"
+      "    existence:{should_exist: false}"
+      "    non_compliance_msg: \"a config file in /etc/systemd/system enables snmpd\""
+      "    file_display_command: \"find /etc/systemd/system -name 'snmpd.service'\""
       "  }"
       "}}"
+      "}"
   }
 }
 benchmark_configs: {
