@@ -3275,11 +3275,11 @@ benchmark_configs: {
   }
 }
 
-
 benchmark_configs: {
   id: "dhcp-server-service-disabled"
   compliance_note: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure dhcp server services are not in use"
     description:
       "The Dynamic Host Configuration Protocol (DHCP) is a service that allows machines to "
@@ -3305,30 +3305,36 @@ benchmark_configs: {
       severity: LOW
     }
     scan_instructions:
-      "generic:{check_alternatives:{"
+      "scan_type_specific:{"
+      "instance_scanning:{check_alternatives:{"
       "  file_checks:{"
-      "    files_to_check:{single_file:{path:\"/var/lib/dpkg/status\"}}"
-      "    content_entry:{"
-      "      match_type: NONE_MATCH"
-      "      match_criteria: {"
-      "        filter_regex: \"Package: isc-dhcp-server.*\""
-      "        expected_regex: \"Package: isc-dhcp-server.*\""
-      "      }"
-      "    }"
+      "    files_to_check:{process_path:{proc_name:\"isc-dhcp-server\"}}"
+      "    existence:{should_exist: false}"
       "  }"
-      "}"
-      "check_alternatives:{"
       "  file_checks:{"
       "    files_to_check:{files_in_dir:{"
       "      dir_path:\"/etc/systemd/system\""
       "      recursive: true"
-      "      filename_regex: \"isc-dhcp-server*[0-9]*.service\""
+      "      filename_regex: \"isc-dhcp-server.service\""
+      "    }}"
+      "    existence:{should_exist: false}"
+      "    non_compliance_msg: \"a config file in /etc/systemd/system enables isc-dhcp-server\""
+      "    file_display_command: \"find /etc/systemd/system -name 'isc-dhcp-server.service'\""
+      "  }"
+      "}"
+      "image_scanning:{check_alternatives:{"
+      "  file_checks:{"
+      "    files_to_check:{files_in_dir:{"
+      "      dir_path:\"/etc/systemd/system\""
+      "      recursive: true"
+      "      filename_regex: \"isc-dhcp-server.service\""
       "    }}"
       "    existence:{should_exist: false}"
       "    non_compliance_msg: \"a config file in /etc/systemd/system enables isc-dhcp-server\""
       "    file_display_command: \"find /etc/systemd/system -name 'isc-dhcp-server.service'\""
       "  }"
       "}}"
+      "}"
   }
 }
 
@@ -3336,6 +3342,7 @@ benchmark_configs: {
   id: "dns-server-service-disabled"
   compliance_note: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure dns server services are not in use"
     description:
       "The Domain Name System (DNS) is a hierarchical naming system that maps names to "
@@ -3357,19 +3364,12 @@ benchmark_configs: {
       severity: LOW
     }
     scan_instructions:
-      "generic:{check_alternatives:{"
+      "scan_type_specific:{"
+      "instance_scanning:{check_alternatives:{"
       "  file_checks:{"
-      "    files_to_check:{single_file:{path:\"/var/lib/dpkg/status\"}}"
-      "    content_entry:{"
-      "      match_type: NONE_MATCH"
-      "      match_criteria: {"
-      "        filter_regex: \"Package: bind9\""
-      "        expected_regex: \"Package: bind9.*\""
-      "      }"
-      "    }"
+      "    files_to_check:{process_path:{proc_name:\"bind9\"}}"
+      "    existence:{should_exist: false}"
       "  }"
-      "}"
-      "check_alternatives:{"
       "  file_checks:{"
       "    files_to_check:{files_in_dir:{"
       "      dir_path:\"/etc/systemd/system\""
@@ -3377,10 +3377,23 @@ benchmark_configs: {
       "      filename_regex: \"bind9.service\""
       "    }}"
       "    existence:{should_exist: false}"
-      "    non_compliance_msg: \"a config file in /etc/systemd/system enables bind9.service\""
+      "    non_compliance_msg: \"a config file in /etc/systemd/system enables bind9\""
+      "    file_display_command: \"find /etc/systemd/system -name 'bind9.service'\""
+      "  }"
+      "}"
+      "image_scanning:{check_alternatives:{"
+      "  file_checks:{"
+      "    files_to_check:{files_in_dir:{"
+      "      dir_path:\"/etc/systemd/system\""
+      "      recursive: true"
+      "      filename_regex: \"bind9.service\""
+      "    }}"
+      "    existence:{should_exist: false}"
+      "    non_compliance_msg: \"a config file in /etc/systemd/system enables bind9\""
       "    file_display_command: \"find /etc/systemd/system -name 'bind9.service'\""
       "  }"
       "}}"
+      "}"
   }
 }
 
@@ -3411,19 +3424,12 @@ benchmark_configs: {
       severity: LOW
     }
     scan_instructions:
-      "generic:{check_alternatives:{"
+      "scan_type_specific:{"
+      "instance_scanning:{check_alternatives:{"
       "  file_checks:{"
-      "    files_to_check:{single_file:{path:\"/var/lib/dpkg/status\"}}"
-      "    content_entry:{"
-      "      match_type: NONE_MATCH"
-      "      match_criteria: {"
-      "        filter_regex: \"Package: dnsmasq.*\""
-      "        expected_regex: \"Package: dnsmasq.*\""
-      "      }"
-      "    }"
+      "    files_to_check:{process_path:{proc_name:\"dnsmasq\"}}"
+      "    existence:{should_exist: false}"
       "  }"
-      "}"
-      "check_alternatives:{"
       "  file_checks:{"
       "    files_to_check:{files_in_dir:{"
       "      dir_path:\"/etc/systemd/system\""
@@ -3431,10 +3437,23 @@ benchmark_configs: {
       "      filename_regex: \"dnsmasq.service\""
       "    }}"
       "    existence:{should_exist: false}"
-      "    non_compliance_msg: \"a config file in /etc/systemd/system enables dnsmasq.service\""
+      "    non_compliance_msg: \"a config file in /etc/systemd/system enables dnsmasq\""
+      "    file_display_command: \"find /etc/systemd/system -name 'dnsmasq.service'\""
+      "  }"
+      "}"
+      "image_scanning:{check_alternatives:{"
+      "  file_checks:{"
+      "    files_to_check:{files_in_dir:{"
+      "      dir_path:\"/etc/systemd/system\""
+      "      recursive: true"
+      "      filename_regex: \"dnsmasq.service\""
+      "    }}"
+      "    existence:{should_exist: false}"
+      "    non_compliance_msg: \"a config file in /etc/systemd/system enables dnsmasq\""
       "    file_display_command: \"find /etc/systemd/system -name 'dnsmasq.service'\""
       "  }"
       "}}"
+      "}"
   }
 }
 
@@ -3442,6 +3461,7 @@ benchmark_configs: {
   id: "message-access-server-service-disabled"
   compliance_note: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure message access server services are not in use"
     description:
       "dovecot-imapd and dovecot-pop3d are an open source IMAP and POP3 server for "
@@ -3468,30 +3488,36 @@ benchmark_configs: {
       severity: LOW
     }
     scan_instructions:
-      "generic:{check_alternatives:{"
+      "scan_type_specific:{"
+      "instance_scanning:{check_alternatives:{"
       "  file_checks:{"
-      "    files_to_check:{single_file:{path:\"/var/lib/dpkg/status\"}}"
-      "    content_entry:{"
-      "      match_type: NONE_MATCH"
-      "      match_criteria: {"
-      "        filter_regex: \"Package: dovecot-.*\""
-      "        expected_regex: \"Package: dovecot-(imapd|pop3d)\""
-      "      }"
-      "    }"
+      "    files_to_check:{process_path:{proc_name:\"dovecot\"}}"
+      "    existence:{should_exist: false}"
       "  }"
-      "}"
-      "check_alternatives:{"
       "  file_checks:{"
       "    files_to_check:{files_in_dir:{"
       "      dir_path:\"/etc/systemd/system\""
       "      recursive: true"
-      "      filename_regex: \"dovecot.(socket|service)\""
+      "      filename_regex: \"dovecot.(service|socket)\""
       "    }}"
       "    existence:{should_exist: false}"
-      "    non_compliance_msg: \"a config file in /etc/systemd/system enables dovecot.service\""
+      "    non_compliance_msg: \"a config file in /etc/systemd/system enables dovecot\""
+      "    file_display_command: \"find /etc/systemd/system -name 'dovecot.service'\""
+      "  }"
+      "}"
+      "image_scanning:{check_alternatives:{"
+      "  file_checks:{"
+      "    files_to_check:{files_in_dir:{"
+      "      dir_path:\"/etc/systemd/system\""
+      "      recursive: true"
+      "      filename_regex: \"dovecot.(service|socket)\""
+      "    }}"
+      "    existence:{should_exist: false}"
+      "    non_compliance_msg: \"a config file in /etc/systemd/system enables dovecot\""
       "    file_display_command: \"find /etc/systemd/system -name 'dovecot.service'\""
       "  }"
       "}}"
+      "}"
   }
 }
 
@@ -3499,6 +3525,7 @@ benchmark_configs: {
   id: "network-fs-service-disabled"
   compliance_note: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: " Ensure network file system services are not in use"
     description:
       "The Network File System (NFS) is one of the first and most widely distributed file "
@@ -3522,30 +3549,36 @@ benchmark_configs: {
       severity: LOW
     }
     scan_instructions:
-      "generic:{check_alternatives:{"
+      "scan_type_specific:{"
+      "instance_scanning:{check_alternatives:{"
       "  file_checks:{"
-      "    files_to_check:{single_file:{path:\"/var/lib/dpkg/status\"}}"
-      "    content_entry:{"
-      "      match_type: NONE_MATCH"
-      "      match_criteria: {"
-      "        filter_regex: \"Package: nfs-kernel-server.*\""
-      "        expected_regex: \"Package: nfs-kernel-server\""
-      "      }"
-      "    }"
+      "    files_to_check:{process_path:{proc_name:\"nfs-kernel-server\"}}"
+      "    existence:{should_exist: false}"
       "  }"
-      "}"
-      "check_alternatives:{"
       "  file_checks:{"
       "    files_to_check:{files_in_dir:{"
       "      dir_path:\"/etc/systemd/system\""
       "      recursive: true"
-      "      filename_regex: \"nfs-server.service\""
+      "      filename_regex: \"nfs-kernel-server.(service|socket)\""
       "    }}"
       "    existence:{should_exist: false}"
-      "    non_compliance_msg: \"a config file in /etc/systemd/system enables nfs-server.service\""
-      "    file_display_command: \"find /etc/systemd/system -name 'nfs-server.service'\""
+      "    non_compliance_msg: \"a config file in /etc/systemd/system enables nfs-kernel-server\""
+      "    file_display_command: \"find /etc/systemd/system -name 'nfs-kernel-server.service'\""
+      "  }"
+      "}"
+      "image_scanning:{check_alternatives:{"
+      "  file_checks:{"
+      "    files_to_check:{files_in_dir:{"
+      "      dir_path:\"/etc/systemd/system\""
+      "      recursive: true"
+      "      filename_regex: \"nfs-kernel-server.(service|socket)\""
+      "    }}"
+      "    existence:{should_exist: false}"
+      "    non_compliance_msg: \"a config file in /etc/systemd/system enables nfs-kernel-server\""
+      "    file_display_command: \"find /etc/systemd/system -name 'nfs-kernel-server.service'\""
       "  }"
       "}}"
+      "}"
   }
 }
 
@@ -3553,6 +3586,7 @@ benchmark_configs: {
   id: "rpcbind-service-disabled"
   compliance_note: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure rpcbind services are not in use"
     description:
       "The rpcbind utility maps RPC services to the ports on which they listen. RPC "
@@ -3586,19 +3620,12 @@ benchmark_configs: {
       severity: LOW
     }
     scan_instructions:
-      "generic:{check_alternatives:{"
+      "scan_type_specific:{"
+      "instance_scanning:{check_alternatives:{"
       "  file_checks:{"
-      "    files_to_check:{single_file:{path:\"/var/lib/dpkg/status\"}}"
-      "    content_entry:{"
-      "      match_type: NONE_MATCH"
-      "      match_criteria: {"
-      "        filter_regex: \"Package: rpcbind.*\""
-      "        expected_regex: \"Package: rpcbind\""
-      "      }"
-      "    }"
+      "    files_to_check:{process_path:{proc_name:\"rpcbind\"}}"
+      "    existence:{should_exist: false}"
       "  }"
-      "}"
-      "check_alternatives:{"
       "  file_checks:{"
       "    files_to_check:{files_in_dir:{"
       "      dir_path:\"/etc/systemd/system\""
@@ -3606,10 +3633,23 @@ benchmark_configs: {
       "      filename_regex: \"rpcbind.(service|socket)\""
       "    }}"
       "    existence:{should_exist: false}"
-      "    non_compliance_msg: \"a config file in /etc/systemd/system enables rpcbind.service\""
+      "    non_compliance_msg: \"a config file in /etc/systemd/system enables rpcbind\""
+      "    file_display_command: \"find /etc/systemd/system -name 'rpcbind.service'\""
+      "  }"
+      "}"
+      "image_scanning:{check_alternatives:{"
+      "  file_checks:{"
+      "    files_to_check:{files_in_dir:{"
+      "      dir_path:\"/etc/systemd/system\""
+      "      recursive: true"
+      "      filename_regex: \"rpcbind.(service|socket)\""
+      "    }}"
+      "    existence:{should_exist: false}"
+      "    non_compliance_msg: \"a config file in /etc/systemd/system enables rpcbind\""
       "    file_display_command: \"find /etc/systemd/system -name 'rpcbind.service'\""
       "  }"
       "}}"
+      "}"
   }
 }
 
@@ -3617,6 +3657,7 @@ benchmark_configs: {
   id: "rsync-service-disabled"
   compliance_note: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure rsync services are not in use"
     description:
       "The rsync service can be used to synchronize files between systems over network "
@@ -3638,30 +3679,36 @@ benchmark_configs: {
       severity: LOW
     }
     scan_instructions:
-      "generic:{check_alternatives:{"
+      "scan_type_specific:{"
+      "instance_scanning:{check_alternatives:{"
       "  file_checks:{"
-      "    files_to_check:{single_file:{path:\"/var/lib/dpkg/status\"}}"
-      "    content_entry:{"
-      "      match_type: NONE_MATCH"
-      "      match_criteria: {"
-      "        filter_regex: \"Package: rsync.*\""
-      "        expected_regex: \"Package: rsync\""
-      "      }"
-      "    }"
+      "    files_to_check:{process_path:{proc_name:\"rsync\"}}"
+      "    existence:{should_exist: false}"
       "  }"
-      "}"
-      "check_alternatives:{"
       "  file_checks:{"
       "    files_to_check:{files_in_dir:{"
       "      dir_path:\"/etc/systemd/system\""
       "      recursive: true"
-      "      filename_regex: \"rsync.service\""
+      "      filename_regex: \"rsync.(service|socket)\""
       "    }}"
       "    existence:{should_exist: false}"
-      "    non_compliance_msg: \"a config file in /etc/systemd/system enables rsync.service\""
+      "    non_compliance_msg: \"a config file in /etc/systemd/system enables rsync\""
+      "    file_display_command: \"find /etc/systemd/system -name 'rsync.service'\""
+      "  }"
+      "}"
+      "image_scanning:{check_alternatives:{"
+      "  file_checks:{"
+      "    files_to_check:{files_in_dir:{"
+      "      dir_path:\"/etc/systemd/system\""
+      "      recursive: true"
+      "      filename_regex: \"rsync.(service|socket)\""
+      "    }}"
+      "    existence:{should_exist: false}"
+      "    non_compliance_msg: \"a config file in /etc/systemd/system enables rsync\""
       "    file_display_command: \"find /etc/systemd/system -name 'rsync.service'\""
       "  }"
       "}}"
+      "}"
   }
 }
 
@@ -3697,19 +3744,12 @@ benchmark_configs: {
       severity: LOW
     }
     scan_instructions:
-      "generic:{check_alternatives:{"
+      "scan_type_specific:{"
+      "instance_scanning:{check_alternatives:{"
       "  file_checks:{"
-      "    files_to_check:{single_file:{path:\"/var/lib/dpkg/status\"}}"
-      "    content_entry:{"
-      "      match_type: NONE_MATCH"
-      "      match_criteria: {"
-      "        filter_regex: \"Package: samba.*\""
-      "        expected_regex: \"Package: samba\""
-      "      }"
-      "    }"
+      "    files_to_check:{process_path:{proc_name:\"smbd\"}}"
+      "    existence:{should_exist: false}"
       "  }"
-      "}"
-      "check_alternatives:{"
       "  file_checks:{"
       "    files_to_check:{files_in_dir:{"
       "      dir_path:\"/etc/systemd/system\""
@@ -3717,10 +3757,23 @@ benchmark_configs: {
       "      filename_regex: \"smbd.service\""
       "    }}"
       "    existence:{should_exist: false}"
-      "    non_compliance_msg: \"a config file in /etc/systemd/system enables smbd.service\""
+      "    non_compliance_msg: \"a config file in /etc/systemd/system enables smbd\""
+      "    file_display_command: \"find /etc/systemd/system -name 'smbd.service'\""
+      "  }"
+      "}"
+      "image_scanning:{check_alternatives:{"
+      "  file_checks:{"
+      "    files_to_check:{files_in_dir:{"
+      "      dir_path:\"/etc/systemd/system\""
+      "      recursive: true"
+      "      filename_regex: \"smbd.service\""
+      "    }}"
+      "    existence:{should_exist: false}"
+      "    non_compliance_msg: \"a config file in /etc/systemd/system enables smbd\""
       "    file_display_command: \"find /etc/systemd/system -name 'smbd.service'\""
       "  }"
       "}}"
+      "}"
   }
 }
 
@@ -3754,19 +3807,12 @@ benchmark_configs: {
       severity: LOW
     }
     scan_instructions:
-      "generic:{check_alternatives:{"
+      "scan_type_specific:{"
+      "instance_scanning:{check_alternatives:{"
       "  file_checks:{"
-      "    files_to_check:{single_file:{path:\"/var/lib/dpkg/status\"}}"
-      "    content_entry:{"
-      "      match_type: NONE_MATCH"
-      "      match_criteria: {"
-      "        filter_regex: \"Package: tftpd-hpa.*\""
-      "        expected_regex: \"Package: tftpd-hpa\""
-      "      }"
-      "    }"
+      "    files_to_check:{process_path:{proc_name:\"tftpd-hpa\"}}"
+      "    existence:{should_exist: false}"
       "  }"
-      "}"
-      "check_alternatives:{"
       "  file_checks:{"
       "    files_to_check:{files_in_dir:{"
       "      dir_path:\"/etc/systemd/system\""
@@ -3774,10 +3820,23 @@ benchmark_configs: {
       "      filename_regex: \"tftpd-hpa.service\""
       "    }}"
       "    existence:{should_exist: false}"
-      "    non_compliance_msg: \"a config file in /etc/systemd/system enables tftpd-hpa.service\""
+      "    non_compliance_msg: \"a config file in /etc/systemd/system enables tftpd-hpa\""
+      "    file_display_command: \"find /etc/systemd/system -name 'tftpd-hpa.service'\""
+      "  }"
+      "}"
+      "image_scanning:{check_alternatives:{"
+      "  file_checks:{"
+      "    files_to_check:{files_in_dir:{"
+      "      dir_path:\"/etc/systemd/system\""
+      "      recursive: true"
+      "      filename_regex: \"tftpd-hpa.service\""
+      "    }}"
+      "    existence:{should_exist: false}"
+      "    non_compliance_msg: \"a config file in /etc/systemd/system enables tftpd-hpa\""
       "    file_display_command: \"find /etc/systemd/system -name 'tftpd-hpa.service'\""
       "  }"
       "}}"
+      "}"
   }
 }
 
@@ -3785,6 +3844,7 @@ benchmark_configs: {
   id: "web-server-service-disabled"
   compliance_note: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure web server services are not in use"
     description:
       "Web servers provide the ability to host web site content."
@@ -3810,30 +3870,36 @@ benchmark_configs: {
       severity: LOW
     }
     scan_instructions:
-      "generic:{check_alternatives:{"
+      "scan_type_specific:{"
+      "instance_scanning:{check_alternatives:{"
       "  file_checks:{"
-      "    files_to_check:{single_file:{path:\"/var/lib/dpkg/status\"}}"
-      "    content_entry:{"
-      "      match_type: NONE_MATCH"
-      "      match_criteria: {"
-      "        filter_regex: \"Package: (apache2|nginx).*\""
-      "        expected_regex: \"Package: (apache2|nginx)\""
-      "      }"
-      "    }"
+      "    files_to_check:{process_path:{proc_name:\"(nginx|apache2)\"}}"
+      "    existence:{should_exist: false}"
       "  }"
-      "}"
-      "check_alternatives:{"
       "  file_checks:{"
       "    files_to_check:{files_in_dir:{"
       "      dir_path:\"/etc/systemd/system\""
       "      recursive: true"
-      "      filename_regex: \"(apache2|nginx).(service|socket)\""
+      "      filename_regex: \"(nginx|apache2).service\""
       "    }}"
       "    existence:{should_exist: false}"
-      "    non_compliance_msg: \"a config file in /etc/systemd/system enables apache2.service or nginx.service\""
-      "    file_display_command: \"find /etc/systemd/system -name '(nginx|apache2).(socket|service)'\""
+      "    non_compliance_msg: \"a config file in /etc/systemd/system enables (nginx|apache2)\""
+      "    file_display_command: \"find /etc/systemd/system -name '(nginx|apache2).service'\""
+      "  }"
+      "}"
+      "image_scanning:{check_alternatives:{"
+      "  file_checks:{"
+      "    files_to_check:{files_in_dir:{"
+      "      dir_path:\"/etc/systemd/system\""
+      "      recursive: true"
+      "      filename_regex: \"(nginx|apache2).service\""
+      "    }}"
+      "    existence:{should_exist: false}"
+      "    non_compliance_msg: \"a config file in /etc/systemd/system enables (nginx|apache2)\""
+      "    file_display_command: \"find /etc/systemd/system -name '(nginx|apache2).service'\""
       "  }"
       "}}"
+      "}"
   }
 }
 
@@ -3841,6 +3907,7 @@ benchmark_configs: {
   id: "xinetd-service-disabled"
   compliance_note: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure xinetd services are not in use"
     description:
       "The eXtended InterNET Daemon (xinetd) is an open source super daemon that "
@@ -3865,19 +3932,12 @@ benchmark_configs: {
       severity: LOW
     }
     scan_instructions:
-      "generic:{check_alternatives:{"
+      "scan_type_specific:{"
+      "instance_scanning:{check_alternatives:{"
       "  file_checks:{"
-      "    files_to_check:{single_file:{path:\"/var/lib/dpkg/status\"}}"
-      "    content_entry:{"
-      "      match_type: NONE_MATCH"
-      "      match_criteria: {"
-      "        filter_regex: \"Package: xinetd.*\""
-      "        expected_regex: \"Package: xinetd\""
-      "      }"
-      "    }"
+      "    files_to_check:{process_path:{proc_name:\"xinetd\"}}"
+      "    existence:{should_exist: false}"
       "  }"
-      "}"
-      "check_alternatives:{"
       "  file_checks:{"
       "    files_to_check:{files_in_dir:{"
       "      dir_path:\"/etc/systemd/system\""
@@ -3885,10 +3945,23 @@ benchmark_configs: {
       "      filename_regex: \"xinetd.service\""
       "    }}"
       "    existence:{should_exist: false}"
-      "    non_compliance_msg: \"a config file in /etc/systemd/system enables xinetd.service\""
+      "    non_compliance_msg: \"a config file in /etc/systemd/system enables xinetd\""
+      "    file_display_command: \"find /etc/systemd/system -name 'xinetd.service'\""
+      "  }"
+      "}"
+      "image_scanning:{check_alternatives:{"
+      "  file_checks:{"
+      "    files_to_check:{files_in_dir:{"
+      "      dir_path:\"/etc/systemd/system\""
+      "      recursive: true"
+      "      filename_regex: \"xinetd.service\""
+      "    }}"
+      "    existence:{should_exist: false}"
+      "    non_compliance_msg: \"a config file in /etc/systemd/system enables xinetd\""
       "    file_display_command: \"find /etc/systemd/system -name 'xinetd.service'\""
       "  }"
       "}}"
+      "}"
   }
 }
 
