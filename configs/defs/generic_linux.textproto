@@ -1023,6 +1023,8 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:cos:cos_linux:113" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:117" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Disable Automounting"
     description:
       "autofs allows automatic mounting of devices, typically including CD/"
@@ -1169,6 +1171,8 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:9" version: "1.0.0" benchmark_document: "CIS Debian Linux 9" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:10" version: "1.0.0" benchmark_document: "CIS Debian Linux 10" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }   
     title: "Ensure address space layout randomization (ASLR) is enabled"
     description:
       "Address space layout randomization (ASLR) is an exploit mitigation "
@@ -1273,109 +1277,7 @@ benchmark_configs: {
       "}}"
   }
 }
-benchmark_configs: {
-  id: "local-login-warning-configured"
-  compliance_note: {
-    version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
-    version: { cpe_uri: "cpe:/o:cos:cos_linux:89" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
-    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
-    title: "Ensure local login warning banner is configured properly"
-    description:
-      "The contents of the /etc/issue file are displayed to users prior to "
-      "login for local terminals. Unix-based systems have typically "
-      "displayed information about the OS release and patch level upon "
-      "logging in to the system. This information can be useful to "
-      "developers who are developing software for a particular OS platform. "
-      "If mingetty(8) supports the following options, they display operating "
-      "system information: \\m - machine architecture \\r - operating system "
-      "release \\s - operating system name \\v - operating system version - or "
-      "the operating system's name"
-    rationale:
-      "Warning messages inform users who are attempting to login to the "
-      "system of their legal status regarding the system and must include "
-      "the name of the organization that owns the system and any monitoring "
-      "policies that are in place. Displaying OS and patch level information "
-      "in login banners also has the side effect of providing detailed "
-      "system information to attackers attempting to target specific "
-      "exploits of a system. Authorized users can easily get this "
-      "information by running the \" uname -a \" command once they have logged in."
-    remediation:
-      "Make sure the /etc/issue file is empty. Alternatively, edit the /etc/issue "
-      "file with the appropriate contents according to your site policy, remove "
-      "any instances of \\m , \\r , \\s , \\v or references to the OS platform, "
-      "and (when applicable) opt the file out from scanning to prevent further "
-      "compliance reports."
-    cis_benchmark: {
-      profile_level: 1
-      severity: LOW
-    }
-    scan_instructions:
-      "generic:{check_alternatives:{"
-      "  file_checks:{"
-      "    files_to_check:{single_file:{path:\"/etc/issue\"}}"
-      "    content:{content:\"\"}"
-      "  }"
-      "}"
-      "check_alternatives:{"
-      "  file_checks:{"
-      "    files_to_check:{single_file:{path:\"/etc/issue\"}}"
-      "    existence:{should_exist:false}"
-      "  }"
-      "}}"
-  }
-}
-benchmark_configs: {
-  id: "remote-login-warning-configured"
-  compliance_note: {
-    version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
-    version: { cpe_uri: "cpe:/o:cos:cos_linux:89" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
-    title: "Ensure remote login warning banner is configured properly"
-    description:
-      "The contents of the /etc/issue.net file are displayed to users prior to "
-      "login for remote connections from configured services."
-      "Unix-based systems have typically displayed information about the OS "
-      "release and patch level upon logging in to the system. This "
-      "information can be useful to developers who are developing software "
-      "for a particular OS platform. If mingetty(8) supports the following "
-      "options, they display operating system information: \\m - machine "
-      "architecture \\r - operating system release \\s - operating system "
-      "name \\v - operating system version"
-    rationale:
-      "Warning messages inform users who are attempting to login to the "
-      "system of their legal status regarding the system and must include "
-      "the name of the organization that owns the system and any monitoring "
-      "policies that are in place. Displaying OS and patch level information "
-      "in login banners also has the side effect of providing detailed "
-      "system information to attackers attempting to target specific "
-      "exploits of a system. Authorized users can easily get this "
-      "information by running the \" uname -a \" command once they have logged "
-      "in."
-    remediation:
-      "Make sure the /etc/issue.net file is empty or deleted. Alternatively, "
-      "edit the /etc/issue.net file with the appropriate contents according "
-      "to your site policy, remove any instances of \\m , \\r , \\s , \\v "
-      "or references to the OS platform and (when applicable) opt the file "
-      "out from scanning to prevent further compliance reports."
-    cis_benchmark: {
-      profile_level: 1
-      severity: LOW
-    }
-    scan_instructions:
-      "generic:{check_alternatives:{"
-      "  file_checks:{"
-      "    files_to_check:{single_file:{path:\"/etc/issue.net\"}}"
-      "    content:{content:\"\"}"
-      "  }"
-      "}"
-      "check_alternatives:{"
-      "  file_checks:{"
-      "    files_to_check:{single_file:{path:\"/etc/issue.net\"}}"
-      "    existence:{should_exist:false}"
-      "  }"
-      "}}"
-  }
-}
+
 benchmark_configs: {
   id: "etc-issue-permissions"
   compliance_note: {
@@ -1384,6 +1286,8 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:9" version: "1.0.0" benchmark_document: "CIS Debian Linux 9" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:10" version: "1.0.0" benchmark_document: "CIS Debian Linux 10" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure permissions on /etc/issue are configured"
     description:
       "The contents of the /etc/issue file are displayed to users prior to "
@@ -5862,6 +5766,8 @@ benchmark_configs: {
   compliance_note: {
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }   
     title: "Ensure core dumps are restricted"
     description:
       "A core dump is the memory of an executable program. It is generally "
@@ -6066,7 +5972,10 @@ benchmark_configs: {
   id: "motd-permissions"
   compliance_note: {
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
-    title: "Ensure permissions on /etc/motd are configured"
+    version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }   
+    title: "Ensure permissions on /etc/motd are configured
     description:
       "The contents of the /etc/motd file are displayed to users after login "
       "and function as a message of the day for authenticated users."
@@ -6103,6 +6012,8 @@ benchmark_configs: {
   compliance_note: {
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }   
     title: "Ensure permissions on /etc/issue.net are configured"
     description:
       "The contents of the /etc/issue.net file are displayed to users prior "
@@ -6424,6 +6335,8 @@ benchmark_configs: {
   compliance_note: {
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure CUPS is not enabled"
     description:
       "The Common Unix Print System (CUPS) provides the ability to print to "
@@ -6465,6 +6378,8 @@ benchmark_configs: {
   compliance_note: {
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure DHCP Server is not enabled"
     description:
       "The Dynamic Host Configuration Protocol (DHCP) is a service that "
@@ -6504,6 +6419,8 @@ benchmark_configs: {
   compliance_note: {
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure LDAP Server is not enabled"
     description:
       "The Lightweight Directory Access Protocol (LDAP) was introduced as a "
@@ -6584,6 +6501,8 @@ benchmark_configs: {
   compliance_note: {
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure FTP Server is not enabled"
     description:
       "The File Transfer Protocol (FTP) provides networked computers with the "
@@ -6742,6 +6661,8 @@ benchmark_configs: {
   compliance_note: {
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure HTTP Proxy Server is not enabled"
     description:
       "Squid is a standard proxy server used in many distributions and "
@@ -6780,6 +6701,8 @@ benchmark_configs: {
   compliance_note: {
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure SNMP Server is not enabled"
     description:
       "The Simple Network Management Protocol (SNMP) server is used to listen "
@@ -6823,6 +6746,8 @@ benchmark_configs: {
   compliance_note: {
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure NIS Server is not enabled"
     description:
       "The Network Information Service (NIS) (formally known as Yellow Pages) "
@@ -9159,6 +9084,8 @@ benchmark_configs: {
   compliance_note: {
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
+    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure nftables rules are permanent"
     description:
       "nftables is a subsystem of the Linux kernel providing filtering and classification of network "
@@ -9800,6 +9727,7 @@ benchmark_configs: {
   id: "var-nodev"
   compliance_note: {
     version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure nodev option set on /var partition"
     description:
       "The nodev mount option specifies that the filesystem cannot contain "
@@ -9852,6 +9780,7 @@ benchmark_configs: {
   id: "separate-partition-var-tmp"
   compliance_note: {
     version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure separate partition exists for /var/tmp"
     description: "The /var/tmp directory is a world-writable directory used for temporary storage by all users and some applications."
     rationale:
@@ -9932,55 +9861,14 @@ benchmark_configs: {
   }
 }
 benchmark_configs: {
-  id: "separate-partition-var-log-audit"
-  compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
-    title: "Ensure separate partition exists for /var/log/audit"
-    description: "The auditing daemon, auditd , stores log data in the /var/log/audit directory."
-    rationale:
-      "There are two important reasons to ensure that data gathered by auditd is stored on a separate partition: "
-      "protection against resource exhaustion (since the audit.log file can grow quite large) and protection of audit data. "
-      "The audit daemon calculates how much free space is left and performs actions based on the results. "
-      "If other processes (such as syslog ) consume space in the same partition as auditd , it may not perform as desired."
-    remediation:
-      "For new installations, during installation create a custom partition setup and specify a separate partition for /var/log/audit .\n"
-      "For systems that were previously installed, create a new partition and configure /etc/fstab as appropriate."
-    cis_benchmark: {
-      profile_level: 2
-      severity: LOW
-    }
-    scan_instructions:
-      "scan_type_specific:{instance_scanning:{"
-      "    check_alternatives:{"
-      "      file_checks:{"
-      "        files_to_check:{single_file:{path:\"/proc/self/mountinfo\"}}"
-      "        content_entry:{"
-      "          match_type: ALL_MATCH_ANY_ORDER"
-      "          match_criteria: {"
-      "            filter_regex: \".* /var/log/audit .* - .*\""
-      "            expected_regex: \".* /var/log/audit .* - .*\""
-      "          }"
-      "        }"
-      "      }"
-      "    }"
-      "    check_alternatives:{"
-      "     file_checks:{"
-      "       files_to_check:{single_file:{path:\"/proc/self/mountinfo\"}}"
-      "       existence:{should_exist: false}"
-      "     }"
-      "    }"
-      "  }"
-      "}"
-  }
-}
-benchmark_configs: {
   id: "avahi-disabled"
   compliance_note: {
     version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure Avahi Server is not enabled"
     description:
       "Avahi is a free zeroconf implementation, including a system for "
-      "multicast DNS/DNS-SD service discovery. Avahi allows programs to "
+      "multicast DNSo-SD service discovery. Avahi allows programs to "
       "publish and discover services and hosts running on a local network "
       "with no specific configuration. For example, a user can plug a computer "
       "into a network and Avahi automatically finds printers to print to, "
@@ -10016,79 +9904,7 @@ benchmark_configs: {
       "}}"
   }
 }
-benchmark_configs: {
-  id: "tftp-server-disabled"
-  compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
-    title: "Ensure tftp server is not enabled"
-    description:
-      "Trivial File Transfer Protocol (TFTP) is a simple file transfer "
-      "protocol, typically used to automatically transfer configuration or "
-      "boot machines from a boot server. The packages tftp and atftp are both "
-      "used to define and support a TFTP serve"
-    rationale:
-      "TFTP does not support authentication nor does it ensure the "
-      "confidentiality or integrity of data. It is recommended that TFTP be "
-      "removed, unless there is a specific need for TFTP. In that case, "
-      "extreme caution must be used when configuring the services."
-    remediation:
-      "Comment out or remove any lines starting with tftp from "
-      "/etc/inetd.conf and /etc/inetd.d/*.\n"
-      "Set disable = yes on all tftp services in /etc/xinetd.conf and "
-      "/etc/xinetd.d/*."
-    cis_benchmark: {
-      profile_level: 1
-      severity: LOW
-    }
-    scan_instructions:
-      "generic:{check_alternatives:{"
-      "  file_checks:{"
-      "    files_to_check:{files_in_dir:{"
-      "      dir_path:\"/etc\""
-      "      filename_regex: \"inetd\\\\..*\""
-      "      recursive: false"
-      "    }}"
-      "    content_entry: {"
-      "      match_type: NONE_MATCH"
-      "      match_criteria: {"
-      "        filter_regex: \"tftp.*\""
-      "        expected_regex: \"tftp.*\""
-      "      }"
-      "    }"
-      "    non_compliance_msg: \"a config file enables tftp\""
-      "    file_display_command: \"grep -R '^tftp' /etc/inetd.*\""
-      "  }"
-      "  file_checks:{"
-      "    files_to_check:{single_file:{path:\"/etc/xinetd.conf\"}}"
-      "    files_to_check:{files_in_dir:{"
-      "      dir_path:\"/etc/xinetd.d\""
-      "      recursive: true"
-      "    }}"
-      "    content_entry: {"
-      "      match_type: NONE_MATCH"
-      "      delimiter: \"}\""  # Each service config is contained within a "{}".
-      "      match_criteria: {"
-      "        filter_regex: \".*service tftp.*disable\\\\s+=\\\\sno.*\""
-      "        expected_regex: \".*service tftp.*disable\\\\s+=\\\\sno.*\""
-      "      }"
-      "    }"
-      "    non_compliance_msg: \"a config file in enables tftp\""
-      "    file_display_command: \"grep -l 'tftp' /etc/xinetd.conf /etc/xinetd.d/*\""
-      "  }"
-      "}"
-      "check_alternatives:{"
-      "  file_checks:{"
-      "    files_to_check:{files_in_dir:{"
-      "      dir_path:\"/etc\""
-      "      filename_regex: \"inetd\\\\..*\""
-      "      recursive: false"
-      "    }}"
-      "    files_to_check:{single_file:{path:\"/etc/xinetd.conf\"}}"
-      "    existence:{should_exist: false}"
-      "  }"
-      "}}"
-  }
-}
+
 benchmark_configs: {
   id: "x-not-installed"
   compliance_note: {
@@ -10655,59 +10471,7 @@ benchmark_configs: {
       "}"
   }
 }
-benchmark_configs: {
-  id: "apparmor-not-disabled-in-bootloader"
-  compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
-    title: "Ensure AppArmor is not disabled in bootloader configuration"
-    description:
-      "Configure AppArmor to be enabled at boot time and verify that "
-      "it has not been overwritten by the bootloader boot parameters."
-    rationale:
-      "AppArmor must be enabled at boot time in your bootloader configuration "
-      "to ensure that the controls it provides are not overridden."
-    remediation:
-      "For grub based systems edit /boot/grub/menu.lst and remove all instances of apparmor=0 on all kernel lines. \n"
-      "For grub2 based systems edit /etc/default/grub and remove all instances "
-      "of apparmor=0 from all CMDLINE_LINUX parameters: \n"
-      "```GRUB_CMDLINE_LINUX_DEFAULT=\"quiet\" \n"
-      "GRUB_CMDLINE_LINUX=\"\" ```\n"
-      "Run the following command to update the grub2 configuration: \n"
-      "```# update-grub```\n "
-      "Notes: This recommendation is designed around the grub bootloader, "
-      "if LILO or another bootloader is in use in your environment enact equivalent settings. \n"
-      "Replace /boot/grub/menu.lst with the appropriate grub configuration file for your environment."
-    cis_benchmark: {
-      profile_level: 2
-      severity: LOW
-    }
-    scan_instructions:
-      "generic:{"
-      " check_alternatives:{"
-      "    file_checks:{"
-      "      files_to_check:{single_file:{path:\"/etc/default/grub\"}}"
-      "      content_entry:{"
-      "        match_type: NONE_MATCH"
-      "        match_criteria: {"
-      "          filter_regex: \"\\\\s*kernel.*apparmor=[0-9]+.*\""
-      "          expected_regex: \"\\\\s*kernel.*apparmor=0.*\""
-      "        }"
-      "        match_criteria: {"
-      "          filter_regex: \"\\\\s*linux.*apparmor=[0-9]+.*\""
-      "          expected_regex: \"\\\\s*linux.*apparmor=0.*\""
-      "        }"
-      "      }"
-      "    }"
-      " }"
-      " check_alternatives:{"
-      "  file_checks:{"
-      "    files_to_check:{single_file:{path:\"/etc/default/grub\"}}"
-      "    existence:{should_exist: false}"
-      "  }"
-      " }"
-      "}"
-  }
-}
+
 benchmark_configs: {
   id: "enforcing-apparmor-profiles"
   compliance_note: {
@@ -10899,87 +10663,7 @@ benchmark_configs: {
       "  }}"
   }
 }
-benchmark_configs: {
-  id: "tipc-disabled"
-  compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
-    title: "Ensure TIPC is disabled"
-    description:
-      "The Transparent Inter-Process Communication (TIPC) protocol is designed "
-      "to provide communication between cluster nodes."
-    rationale:
-      "If the protocol is not being used, it is recommended that kernel module "
-      "not be loaded, disabling the service to reduce the potential attack surface."
-    remediation:
-      "Edit or create a file in the /etc/modprobe.d/ directory ending in .conf \n"
-      "Example: vim /etc/modprobe.d/tipc.conf \n"
-      "and add the following line: \n"
-      "```install tipc /bin/true```"
-    cis_benchmark: {
-      profile_level: 2
-      severity: LOW
-    }
-    scan_instructions:
-      "scan_type_specific:{instance_scanning:{"
-      "  check_alternatives:{"
-      "    file_checks:{"
-      "      files_to_check:{single_file:{path:\"/proc/modules\"}}"
-      "      content_entry:{"
-      "        match_type: NONE_MATCH"
-      "        match_criteria: {"
-      "          filter_regex: \"tipc\\\\s+.*\""
-      "          expected_regex: \"tipc .*\""
-      "        }"
-      "      }"
-      "    }"
-      "    file_checks:{"
-      "      files_to_check:{files_in_dir:{"
-      "        dir_path:\"/etc/modprobe.d\""
-      "        filename_regex: \".*\\\\.conf\""
-      "        recursive: true"
-      "      }}"
-      "      content_entry:{"
-      "        match_type: ALL_MATCH_ANY_ORDER"
-      "        match_criteria: {"
-      "          filter_regex: \"install tipc .*\""
-      "          expected_regex: \"install tipc /bin/(true|false)\""
-      "        }"
-      "      }"
-      "    }"
-      "  }"
-      "  check_alternatives:{"
-      "    file_checks:{"
-      "      files_to_check:{single_file:{path:\"/etc/modprobe.d\"}}"
-      "      existence:{should_exist: false}"
-      "    }"
-      "  }"
-      "}"
-      "image_scanning:{"
-      "  check_alternatives:{"
-      "    file_checks:{"
-      "      files_to_check:{files_in_dir:{"
-      "        dir_path:\"/etc/modprobe.d\""
-      "        filename_regex: \".*\\\\.conf\""
-      "        recursive: true"
-      "      }}"
-      "      content_entry:{"
-      "        match_type: ALL_MATCH_ANY_ORDER"
-      "        match_criteria: {"
-      "          filter_regex: \"install tipc .*\""
-      "          expected_regex: \"install tipc /bin/(true|false)\""
-      "        }"
-      "      }"
-      "    }"
-      "  }"
-      "  check_alternatives:{"
-      "    file_checks:{"
-      "      files_to_check:{single_file:{path:\"/etc/modprobe.d\"}}"
-      "      existence:{should_exist: false}"
-      "    }"
-      "  }"
-      "}}"
-  }
-}
+
 benchmark_configs: {
   id: "rds-disabled"
   compliance_note: {
@@ -11062,90 +10746,7 @@ benchmark_configs: {
       "}}"
   }
 }
-benchmark_configs: {
-  id: "sctp-disabled"
-  compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
-    title: "Ensure SCTP is disabled"
-    description:
-      "The Stream Control Transmission Protocol (SCTP) is a transport layer protocol used "
-      "to support message oriented communication, with several streams of messages in one connection. "
-      "It serves a similar function as TCP and UDP, incorporating features of both. "
-      "It is message-oriented like UDP, and ensures reliable in-sequence transport "
-      "of messages with congestion control like TCP."
-    rationale:
-      "If the protocol is not being used, it is recommended that kernel module "
-      "not be loaded, disabling the service to reduce the potential attack surface."
-    remediation:
-      "Edit or create a file in the /etc/modprobe.d/ directory ending in .conf \n"
-      "Example: vim /etc/modprobe.d/sctp.conf \n"
-      "and add the following line: \n"
-      "```install sctp /bin/true```"
-    cis_benchmark: {
-      profile_level: 2
-      severity: LOW
-    }
-    scan_instructions:
-      "scan_type_specific:{instance_scanning:{"
-      "  check_alternatives:{"
-      "    file_checks:{"
-      "      files_to_check:{single_file:{path:\"/proc/modules\"}}"
-      "      content_entry:{"
-      "        match_type: NONE_MATCH"
-      "        match_criteria: {"
-      "          filter_regex: \"sctp\\\\s+.*\""
-      "          expected_regex: \"sctp .*\""
-      "        }"
-      "      }"
-      "    }"
-      "    file_checks:{"
-      "      files_to_check:{files_in_dir:{"
-      "        dir_path:\"/etc/modprobe.d\""
-      "        filename_regex: \".*\\\\.conf\""
-      "        recursive: true"
-      "      }}"
-      "      content_entry:{"
-      "        match_type: ALL_MATCH_ANY_ORDER"
-      "        match_criteria: {"
-      "          filter_regex: \"install sctp .*\""
-      "          expected_regex: \"install sctp /bin/(true|false)\""
-      "        }"
-      "      }"
-      "    }"
-      "  }"
-      "  check_alternatives:{"
-      "    file_checks:{"
-      "      files_to_check:{single_file:{path:\"/etc/modprobe.d\"}}"
-      "      existence:{should_exist: false}"
-      "    }"
-      "  }"
-      "}"
-      "image_scanning:{"
-      "  check_alternatives:{"
-      "    file_checks:{"
-      "      files_to_check:{files_in_dir:{"
-      "        dir_path:\"/etc/modprobe.d\""
-      "        filename_regex: \".*\\\\.conf\""
-      "        recursive: true"
-      "      }}"
-      "      content_entry:{"
-      "        match_type: ALL_MATCH_ANY_ORDER"
-      "        match_criteria: {"
-      "          filter_regex: \"install sctp .*\""
-      "          expected_regex: \"install sctp /bin/(true|false)\""
-      "        }"
-      "      }"
-      "    }"
-      "  }"
-      "  check_alternatives:{"
-      "    file_checks:{"
-      "      files_to_check:{single_file:{path:\"/etc/modprobe.d\"}}"
-      "      existence:{should_exist: false}"
-      "    }"
-      "  }"
-      "}}"
-  }
-}
+
 benchmark_configs: {
   id: "etc-passwd-dash-permissions"
   compliance_note: {
