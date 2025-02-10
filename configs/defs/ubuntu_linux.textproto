@@ -65,9 +65,11 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }   
     title: "Ensure ptrace_scope is restricted"
     description:
-      "This configuration ensures that the ptrace() system call is restricted to limit the ability of compromised processes to attach to other processes running under the same user, enhancing system security."
+      "This configuration ensures that the ptrace() system call is restricted to limit the ability of compromised "
+      "processes to attach to other processes running under the same user, enhancing system security."
     rationale:
-      "Enabling restricted mode limits the ability of compromised processes to attach to other processes running under the same user, reducing the scope of potential attacks."
+      "Enabling restricted mode limits the ability of compromised processes to attach to other processes running "
+      "under the same user, reducing the scope of potential attacks."
     remediation:
       "Set the following parameter in `/etc/sysctl.conf` or a file in `/etc/sysctl.d/` ending in `.conf`:\n"
       "```\n"
@@ -125,9 +127,11 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure nftables Base Chains Exist"
     description: 
-      "Chains are containers for rules in nftables. Base chains are entry points for packets from the networking stack, and their absence can result in packets not being processed as intended."
+      "Chains are containers for rules in nftables. Base chains are entry points for packets from the networking stack, "
+      "and their absence can result in packets not being processed as intended."
     rationale: 
-      "Base chains with appropriate hooks ensure that packets flowing through input, forward, and output chains are processed as expected, providing the foundation for proper firewall functionality."
+      "Base chains with appropriate hooks ensure that packets flowing through input, forward, and output chains are "
+      "processed as expected, providing the foundation for proper firewall functionality."
     remediation: 
       "Run the following command to create the base chains:\n"
       "```\n"
@@ -221,14 +225,18 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure ufw is uninstalled or disabled with nftables"
     description: 
-      "Uncomplicated Firewall (UFW) is a program for managing a Netfilter firewall designed to be easy to use. Running both the nftables service and UFW may lead to conflict and unexpected results."
+      "Uncomplicated Firewall (UFW) is a program for managing a Netfilter firewall designed to be easy to use. Running "
+      "both the nftables service and UFW may lead to conflict and unexpected results."
     rationale: 
-      "Running both the nftables service and ufw may lead to conflict and unexpected results. Ensuring only one is active prevents issues."
+      "Running both the nftables service and ufw may lead to conflict and unexpected results. Ensuring only one is "
+      "active prevents issues."
     remediation: 
       "To remove or disable UFW, run one of the following:\n"
       "```\n"
       "# apt purge ufw\n"
+      "```\n"
       "-OR-\n"
+      "```\n"
       "# ufw disable\n"
       "# systemctl stop ufw.service\n"
       "# systemctl mask ufw.service\n"
@@ -260,13 +268,14 @@ benchmark_configs: {
     description: 
       "A default deny all policy on connections ensures that any unconfigured network usage will be rejected."
     rationale: 
-      "With a default accept policy, the firewall will accept any packet that is not configured to be denied. It is easier to whitelist acceptable usage than to blacklist unacceptable usage."
+      "With a default accept policy, the firewall will accept any packet that is not configured to be denied. It is "
+      "easier to whitelist acceptable usage than to blacklist unacceptable usage."
     remediation: 
       "Run the following commands to implement a default DROP policy:\n"
       "```\n"
-      "# iptables -P INPUT DROP"
-      "# iptables -P OUTPUT DROP"
-      "# iptables -P FORWARD DROP"
+      "# iptables -P INPUT DROP\n"
+      "# iptables -P OUTPUT DROP\n"
+      "# iptables -P FORWARD DROP\n"
       "```\n"
       "Note: Changing firewall settings while connected over network can result in being locked out of the system."
     cis_benchmark: {
@@ -303,14 +312,18 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure iptables Loopback Traffic is Configured"
     description: 
-      "Configure the loopback interface to accept traffic and deny traffic to the loopback network on all other interfaces (127.0.0.0/8)."
+      "Configure the loopback interface to accept traffic and deny traffic to the loopback network on all other interfaces "
+      "(127.0.0.0/8)."
     rationale: 
-      "Loopback traffic is critical for internal communication between processes on a machine. Denying loopback traffic on other interfaces prevents spoofing attacks."
+      "Loopback traffic is critical for internal communication between processes on a machine. Denying loopback traffic "
+      "on other interfaces prevents spoofing attacks."
     remediation: 
       "Run the following commands to implement the loopback rules:\n"
+      "```\n"
       "# iptables -A INPUT -i lo -j ACCEPT\n"
       "# iptables -A OUTPUT -o lo -j ACCEPT\n"
       "# iptables -A INPUT -s 127.0.0.0/8 -j DROP\n"
+      "```\n"
       "Note: Changing firewall settings while connected over a network can result in being locked out of the system."
     cis_benchmark: {
       profile_level: 1
@@ -349,7 +362,8 @@ benchmark_configs: {
     description: 
       "A default deny all policy on connections ensures that any unconfigured network usage will be rejected."
     rationale: 
-      "With a default accept policy, the firewall will accept any packet that is not configured to be denied. It is easier to whitelist acceptable usage than to blacklist unacceptable usage."
+      "With a default accept policy, the firewall will accept any packet that is not configured to be denied. It is easier "
+      "to whitelist acceptable usage than to blacklist unacceptable usage."
     remediation: 
       "Run the following commands to implement a default DROP policy:\n"
       "```\n"
@@ -392,9 +406,12 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure ip6tables Loopback Traffic is Configured"
     description: 
-      "Configure the loopback interface to accept traffic. Configure all other interfaces to deny traffic to the loopback network (::1)."
+      "Configure the loopback interface to accept traffic. Configure all other interfaces to deny traffic to the loopback "
+      "network (::1)."
     rationale: 
-      "Loopback traffic is generated between processes on the machine and is typically critical to the operation of the system. The loopback interface is the only place that loopback network (::1) traffic should be seen; all other interfaces should ignore traffic on this network as an anti-spoofing measure."
+      "Loopback traffic is generated between processes on the machine and is typically critical to the operation of the system. "
+      "The loopback interface is the only place that loopback network (::1) traffic should be seen; all other interfaces "
+      "should ignore traffic on this network as an anti-spoofing measure."
     remediation: 
       "Run the following commands to implement the loopback rules:\n"
       "```\n"
@@ -502,8 +519,11 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure events that modify the system's network environment are collected"
-    description: "Record changes to network environment files or system calls. The parameters monitor the sethostname and setdomainname system calls and various network-related files."
-    rationale: "Monitoring changes to network environments helps identify unauthorized alterations that could compromise security settings. Monitoring files like /etc/hosts or /etc/netplan/ ensures the detection of unauthorized changes to network configurations."
+    description: "Record changes to network environment files or system calls. The parameters monitor the sethostname "
+    "and setdomainname system calls and various network-related files.\n"
+    rationale: "Monitoring changes to network environments helps identify unauthorized alterations that could compromise "
+    "security settings. Monitoring files like /etc/hosts or /etc/netplan/ ensures the detection of unauthorized changes "
+    "to network configurations."
     remediation:
       "Edit or create a file in the /etc/audit/rules.d/ directory, ending in .rules extension, with the relevant rules:\n"
       "```\n"
@@ -577,7 +597,8 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure use of privileged commands are collected"
     description: "Monitor privileged programs with setuid and/or setgid bit set to detect unauthorized use."
-    rationale: "Monitoring privileged commands by non-privileged users helps identify potential unauthorized activities and access attempts."
+    rationale: "Monitoring privileged commands by non-privileged users helps identify potential unauthorized activities "
+    "and access attempts."
     remediation:
       "Edit or create a file in the /etc/audit/rules.d/ directory, ending in .rules extension, with the relevant rules:\n"
       "```\n"
@@ -635,8 +656,11 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure audit configuration files mode is configured"
-    description: "Audit configuration files must be configured with mode 0640 or more restrictive to prevent unauthorized access and protect the integrity of the audit system."
-    rationale: "Restricting access to audit configuration files ensures that only authorized personnel can modify the settings, preventing the disabling of critical auditing or misconfigurations that may impact performance or investigation efforts."
+    description: "Audit configuration files must be configured with mode 0640 or more restrictive to prevent unauthorized "
+    "access and protect the integrity of the audit system."
+    rationale: "Restricting access to audit configuration files ensures that only authorized personnel can modify the "
+    "settings, preventing the disabling of critical auditing or misconfigurations that may impact performance or "
+    "investigation efforts."
     remediation:
       "Run the following command to set permissions on audit configuration files:\n"
       "```bash\n"
@@ -714,8 +738,10 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure audit tools owner is configured"
-    description: "Audit tools must be owned by the root user to ensure their integrity and prevent unauthorized access or modifications."
-    rationale: "Protecting audit tools from unauthorized access or modification is critical to maintaining the integrity of the audit system and ensuring accurate logging of events."
+    description: "Audit tools must be owned by the root user to ensure their integrity and prevent unauthorized access "
+    "or modifications.\n"
+    rationale: "Protecting audit tools from unauthorized access or modification is critical to maintaining the integrity "
+    "of the audit system and ensuring accurate logging of events."
     remediation:
       "Run the following command to set the correct ownership for the audit tools:\n"
       "```bash\n"
@@ -773,8 +799,11 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure audit tools group owner is configured"
-    description: "Audit tools must be owned by the root group to ensure their integrity and prevent unauthorized access or modifications."
-    rationale: "Protecting audit tools from unauthorized access or modification is critical to maintaining the integrity of the audit system and ensuring accurate logging of events. Ensuring the correct group ownership prevents unauthorized users from altering critical audit files."
+    description: "Audit tools must be owned by the root group to ensure their integrity and prevent unauthorized access "
+    "or modifications."
+    rationale: "Protecting audit tools from unauthorized access or modification is critical to maintaining the integrity "
+    "of the audit system and ensuring accurate logging of events. Ensuring the correct group ownership prevents unauthorized "
+    "users from altering critical audit files."
     remediation:
       "Run the following command to set the correct group ownership for the audit tools:\n"
       "```bash\n"
@@ -875,12 +904,14 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure permissions on /etc/security/opasswd are configured"
     description:
-      "/etc/security/opasswd and its backup /etc/security/opasswd.old hold user's previous passwords if pam_unix or pam_pwhistory is in use on the system."
+      "/etc/security/opasswd and its backup /etc/security/opasswd.old hold user's previous passwords if pam_unix or "
+      "pam_pwhistory is in use on the system."
     rationale:
       "It is critical to ensure that /etc/security/opasswd is protected from unauthorized access. "
       "Although it is protected by default, the file permissions could be changed either inadvertently or through malicious actions."
     remediation:
-      "Run the following commands to remove excess permissions, set owner, and set group on /etc/security/opasswd and /etc/security/opasswd.old if they exist:\n"
+      "Run the following commands to remove excess permissions, set owner, and set group on /etc/security/opasswd and "
+      "/etc/security/opasswd.old if they exist:\n"
       "```\n"
       "# [ -e \"/etc/security/opasswd\" ] && chmod u-x,go-rwx /etc/security/opasswd\n"
       "# [ -e \"/etc/security/opasswd\" ] && chown root:root /etc/security/opasswd\n"
@@ -1135,7 +1166,8 @@ benchmark_configs: {
       "This ensures restricted configurations and reduces potential security risks associated with SSH forwarding."
     rationale:
       "Disabling forwarding features prevents potential exploitation by attackers, including unauthorized access, data exfiltration, "
-      "and creating backdoors. Forwarding features such as X11, ssh-agent, and port forwarding can introduce significant risks to organizational security."
+      "and creating backdoors. Forwarding features such as X11, ssh-agent, and port forwarding can introduce significant "
+      "risks to organizational security."
     remediation:
       "Edit the /etc/ssh/sshd_config file to set the DisableForwarding parameter to 'yes':\n"
       "```\n"
@@ -1461,8 +1493,15 @@ benchmark_configs: {
       "access to another user."
     remediation:
       "If the currently configured time out is larger than 15 minutes, edit the file listed in the audit "
-      "section with ```\nvisudo -f <PATH TO FILE>```\n and modify the entry ```\ntimestamp_timeout=```\n to 15 "
-      "minutes or less as per your site policy. The value is in minutes. This particular entry may "
+      "section with "
+      "```\n"
+      "visudo -f <PATH TO FILE>"
+      "```\n "
+      "and modify the entry "
+      "```\n"
+      "timestamp_timeout="
+      "```\n "
+      "to 15 minutes or less as per your site policy. The value is in minutes. This particular entry may "
       "appear on its own, or on the sameline as env_reset. See the following two examples:\n"
       "1. Same line\n"
       "```\n"
@@ -1534,11 +1573,13 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure libpam-modules is installed"
     description:
-      "Pluggable Authentication Modules for PAM. Ensures the system has full functionality and access to the PAM options covered by this Benchmark."
+      "Pluggable Authentication Modules for PAM. Ensures the system has full functionality and access to the PAM options "
+      "covered by this Benchmark."
     rationale:
       "To ensure the system has full functionality and access to the PAM options covered by this Benchmark."
     remediation:
-      "If the version of libpam-modules on the system is less than version 1.5.2-6, run the following command to update to the latest version:\n"
+      "If the version of libpam-modules on the system is less than version 1.5.2-6, run the following command to update to "
+      "the latest version:\n"
       "```\n"
       "apt update && apt upgrade libpam-modules\n"
       "```\n"
@@ -1573,12 +1614,15 @@ benchmark_configs: {
     title: 
       "Ensure libpam-pwquality is installed"
     description: 
-      "libpwquality provides common functions for password quality checking and scoring based on their apparent randomness. It helps in strengthening passwords to reduce brute force attacks."
+      "libpwquality provides common functions for password quality checking and scoring based on their apparent randomness. "
+      "It helps in strengthening passwords to reduce brute force attacks."
     rationale: 
       "Strong passwords reduce the risk of systems being hacked through brute force methods."
     remediation: 
       "Run the following command to install libpam-pwquality:\n"
-      "```\napt install libpam-pwquality```\n"
+      "```\n"
+      "apt install libpam-pwquality\n"
+      "```"
     cis_benchmark: {
       profile_level: 1
       severity: MEDIUM
@@ -1607,18 +1651,25 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure pam_faillock module is enabled"
     description:
-      "The pam_faillock.so module maintains a list of failed authentication attempts per user during a specified interval and locks the account in case there were more than the configured number of consecutive failed authentications (defined by the deny parameter in the faillock configuration). It stores the failure records into per-user files in the tally directory."
+      "The pam_faillock.so module maintains a list of failed authentication attempts per user during a specified interval "
+      "and locks the account in case there were more than the configured number of consecutive failed authentications "
+      "(defined by the deny parameter in the faillock configuration). It stores the failure records into per-user files "
+      "in the tally directory."
     rationale:
-      "Locking out user IDs after n unsuccessful consecutive login attempts mitigates brute-force password attacks against your systems."
+      "Locking out user IDs after n unsuccessful consecutive login attempts mitigates brute-force password attacks "
+      "against your systems."
     remediation:
-      "Create two pam-auth-update profiles in /usr/share/pam-configs/:\n\n"
+      "Create two pam-auth-update profiles in /usr/share/pam-configs/:\n"
       "First profile:\n"
+      "```\n"
       "Name: Enable pam_faillock to deny access\n"
       "Default: yes\n"
       "Priority: 0\n"
       "Auth-Type: Primary\n"
       "Auth: [default=die] pam_faillock.so authfail\n\n"
+      "```\n"
       "Second profile:\n"
+      "```\n"
       "Name: Notify of failed login attempts and reset count upon success\n"
       "Default: yes\n"
       "Priority: 1024\n"
@@ -1626,9 +1677,12 @@ benchmark_configs: {
       "Auth: requisite pam_faillock.so preauth\n"
       "Account-Type: Primary\n"
       "Account: required pam_faillock.so\n\n"
+      "```\n"
       "After creating the profiles, run the following commands to update PAM files:\n"
+      "```\n"
       "# pam-auth-update --enable faillock\n"
       "# pam-auth-update --enable faillock_notify"
+      "```"
     cis_benchmark: {
       profile_level: 1
       severity: MEDIUM
@@ -1660,21 +1714,28 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure pam_pwquality module is enabled"
     description:
-      "The pam_pwquality.so module performs password quality checking. This module can be plugged into the password stack of a given service to provide strength-checking for passwords. The code was originally based on pam_cracklib module and the module is backwards compatible with its options."
+      "The pam_pwquality.so module performs password quality checking. This module can be plugged into the password "
+      "stack of a given service to provide strength-checking for passwords. The code was originally based on pam_cracklib "
+      "module and the module is backwards compatible with its options."
     rationale:
       "Use of a unique, complex password helps to increase the time and resources required to compromise the password."
     remediation:
       "Run the following script to verify the pam_pwquality.so line exists in a pam-auth-update profile:\n"
+      "```\n"
       "# grep -P -- '\\bpam_pwquality\\.so\\b' /usr/share/pam-configs/*\n\n"
+      "```\n"
       "If similar output is returned, update the /etc/pam.d/common-password file:\n"
+      "```\n"
       "# pam-auth-update --enable {PROFILE_NAME}\n\n"
+      "```\n"
       "If not, create a pam-auth-update profile for pwquality and enable it:\n"
+      "```\n"
       "#!/usr/bin/env bash\n"
       "{\n"
-      "arr=('Name: Pwquality password strength checking' 'Default: yes' 'Priority: 1024' 'Conflicts: cracklib' 'Password-Type: Primary' 'Password:' '\\n"
-      "requisite\npam_pwquality.so retry=3' 'Password-Initial:requisite')\n"
+      "arr=('Name: Pwquality password strength checking' 'Default: yes' 'Priority: 1024' 'Conflicts: cracklib' 'Password-Type: Primary' 'Password:' 'requisite\\tpam_pwquality.so retry=3' 'Password-Initial:' 'requisite')\n"
       "printf '%s\\n' \"${arr[@]}\" > /usr/share/pam-configs/pwquality\n"
       "}"
+      "```"
     cis_benchmark: {
       profile_level: 1
       severity: MEDIUM
@@ -1719,22 +1780,31 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure pam_pwhistory module is enabled"
     description:
-      "The pam_pwhistory.so module saves the last passwords for each user in order to force password change history and prevent users from alternating between the same passwords too frequently."
+      "The pam_pwhistory.so module saves the last passwords for each user in order to force password change history "
+      "and prevent users from alternating between the same passwords too frequently."
     rationale:
       "Use of unique, complex passwords helps to increase the time and resources required to compromise the password."
     remediation:
       "Run the following script to verify the pam_pwhistory.so line exists in a pam-auth-update profile:\n"
+      "```\n"
       "# grep -P -- '\\bpam_pwhistory\\.so\\b' /usr/share/pam-configs/*\n\n"
+      "```\n"
       "If similar output is returned, update the /etc/pam.d/common-password file:\n"
+      "```\n"
       "# pam-auth-update --enable {PROFILE_NAME}\n\n"
+      "```\n"
       "If not, create a pam-auth-update profile for pwhistory and enable it:\n"
+      "```\n"
       "#!/usr/bin/env bash\n"
       "{\n"
-      "arr=('Name: pwhistory password history checking' 'Default: yes' 'Priority: 1024' 'Password-Type: Primary' 'Password:' '\nrequisite pam_pwhistory.so remember=24 enforce_for_root try_first_pass use_authtok')\n"
+      "arr=('Name: pwhistory password history checking' 'Default: yes' 'Priority: 1024' 'Password-Type: Primary' 'Password:' '\\trequisite\\tpam_pwhistory.so remember=24 enforce_for_root try_first_pass use_authtok')\n"
       "printf '%s\\n' \"${arr[@]}\" > /usr/share/pam-configs/pwhistory\n"
       "}"
+      "```\n"
       "Run the following command to update /etc/pam.d/common-password with the pwhistory profile:\n"
-      "# pam-auth-update --enable pwhistory"
+      "```\n"
+      "# pam-auth-update --enable pwhistory\n"
+      "```\n"
     cis_benchmark: {
       profile_level: 1
       severity: MEDIUM
@@ -1779,11 +1849,14 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure password failed attempts lockout is configured"
     description:
-      "The deny=<n> option will deny access if the number of consecutive authentication failures for this user during the recent interval exceeds."
+      "The deny=<n> option will deny access if the number of consecutive authentication failures for this user during "
+      "the recent interval exceeds."
     rationale:
-      "Locking out user IDs after n unsuccessful consecutive login attempts mitigates brute force password attacks against your systems."
+      "Locking out user IDs after n unsuccessful consecutive login attempts mitigates brute force password attacks against "
+      "your systems."
     remediation:
-      "Set the deny option in /etc/security/faillock.conf to 5 or lower to restrict the number of consecutive authentication failures allowed."
+      "Set the deny option in /etc/security/faillock.conf to 5 or lower to restrict the number of consecutive authentication "
+      "failures allowed."
     cis_benchmark: {
       profile_level: 1
       severity: LOW
@@ -1815,9 +1888,11 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure systemd-journal-remote service is not in use"
     description:
-      "The systemd-journal-remote service supports receiving messages from remote hosts, effectively turning the system into a log server. This is outside the operational boundary of a client system."
+      "The systemd-journal-remote service supports receiving messages from remote hosts, effectively turning the system "
+      "into a log server. This is outside the operational boundary of a client system."
     rationale:
-      "Ensuring that client systems are not configured to act as log servers reduces the attack surface and prevents unauthorized use."
+      "Ensuring that client systems are not configured to act as log servers reduces the attack surface and prevents "
+      "unauthorized use."
     remediation:
       "Run the following commands to ensure the services are not enabled or active:\n"
       "```\n"
@@ -1868,8 +1943,10 @@ benchmark_configs: {
     remediation:
       "If any accounts in the /etc/passwd file do not have a single x in the password field, run the "
       "following command to set these accounts to use shadowed passwords:\n"
+      "```\n"
       "# sed -e\n"
       "'s/\"\\ ([a-2zA-20-9 ]*\\):[\":]1*:/\\1:x:/' -i /etc/passwd\n"
+      "```\n"
       "Investigate to determine if the account is logged in and what it is being used for, to "
       "determine if it needs to be forced off."
     cis_benchmark: {
@@ -2692,7 +2769,8 @@ benchmark_configs: {
     description: 
       "GNOME Desktop Manager can make the screen lock automatically whenever the user is idle for some amount of time."
     rationale: 
-      "Setting a lock-out value reduces the window of opportunity for unauthorized user access to another user's session that has been left unattended."
+      "Setting a lock-out value reduces the window of opportunity for unauthorized user access to another user's session "
+      "that has been left unattended."
     remediation: 
       "Run the following commands to enable screen locks when the user is idle:\n"
       "```\n"
@@ -2700,8 +2778,10 @@ benchmark_configs: {
       "# gsettings set org.gnome.desktop.session idle-delay 900\n"
       "```\n"
       "- OR1. Create or edit the user profile in the /etc/dconf/profile/ and verify it includes the following:\n"
+      "```\n"
       "  user-db:user\n"
       "  system-db:{NAME_OF_DCONF_DATABASE}\n"
+      "```\n"
       "Note: local is the name of a dconf database used in the examples.\n"
       "2. Create the directory /etc/dconf/db/local.d/ if it doesn't already exist:\n"
       "3. Create the key file /etc/dconf/db/local.d/00-screensaver to provide information for the local database:\n"
@@ -2714,7 +2794,9 @@ benchmark_configs: {
       "lock-delay=uint32 0\n"
       "```\n"
       "4. Run the following command to update the system databases:\n"
+      "```\n"
       "# dconf update\n"
+      "```\n"
       "5. Users must log out and back in again before the system-wide settings take effect."
     cis_benchmark: {
       profile_level: 1
@@ -2948,9 +3030,11 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure ufw is installed"
     description:
-      "The Uncomplicated Firewall (ufw) is a frontend for iptables and is particularly well-suited for host-based firewalls. It provides a framework for managing Netfilter and a command-line interface for firewall configuration."
+      "The Uncomplicated Firewall (ufw) is a frontend for iptables and is particularly well-suited for host-based firewalls. "
+      "It provides a framework for managing Netfilter and a command-line interface for firewall configuration."
     rationale:
-      "A firewall utility is required to configure the Linux kernel's Netfilter framework, providing protection against internal threats and malicious mobile code."
+      "A firewall utility is required to configure the Linux kernel's Netfilter framework, providing protection against "
+      "internal threats and malicious mobile code."
     remediation:
       "To install Uncomplicated Firewall (ufw), run:\n"
       "```\n"
@@ -3020,7 +3104,8 @@ benchmark_configs: {
     description: 
       "A default deny policy on connections ensures that any unconfigured network usage will be rejected."
     rationale: 
-      "With a default accept policy, the firewall will accept any packet that is not configured to be denied. It is easier to whitelist acceptable usage than to blacklist unacceptable usage."
+      "With a default accept policy, the firewall will accept any packet that is not configured to be denied. It is "
+      "easier to whitelist acceptable usage than to blacklist unacceptable usage."
     remediation: 
       "To implement a default deny policy, run:\n"
       "```\n"
@@ -3028,7 +3113,8 @@ benchmark_configs: {
       "# ufw default deny outgoing\n"
       "# ufw default deny routed\n"
       "```\n"
-      "Note: Ensure necessary rules for specific services or protocols (e.g., HTTP, HTTPS, DNS) are added before applying the default deny policy."
+      "Note: Ensure necessary rules for specific services or protocols (e.g., HTTP, HTTPS, DNS) are added before applying "
+      "the default deny policy."
     cis_benchmark: {
       profile_level: 1
       severity: MEDIUM
@@ -3075,9 +3161,11 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure a nftables table exists"
     description: 
-      "Tables hold chains in nftables. Each table only has one address family and only applies to packets of this family. Without a table, nftables will not filter network traffic."
+      "Tables hold chains in nftables. Each table only has one address family and only applies to packets of this family. "
+      "Without a table, nftables will not filter network traffic."
     rationale: 
-      "nftables does not have any default tables. Without a table, nftables will not filter network traffic, leaving the system unprotected."
+      "nftables does not have any default tables. Without a table, nftables will not filter network traffic, leaving the "
+      "system unprotected."
     remediation: 
       "To create a table in nftables, run:\n"
       "```\n"
@@ -3087,7 +3175,8 @@ benchmark_configs: {
       "```\n"
       "# nft create table inet filter\n"
       "```\n"
-      "Note: Adding rules to a running nftables can cause loss of connectivity. Ensure proper configuration before creating tables."
+      "Note: Adding rules to a running nftables can cause loss of connectivity. Ensure proper configuration before "
+      "creating tables."
     cis_benchmark: {
       profile_level: 1
       severity: MEDIUM
@@ -3113,9 +3202,11 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure Apport Error Reporting Service is disabled"
     description: 
-      "The Apport Error Reporting Service automatically generates crash reports for debugging. Disabling this service prevents collection of potentially sensitive data such as core dumps, stack traces, and log files."
+      "The Apport Error Reporting Service automatically generates crash reports for debugging. Disabling this service "
+      "prevents collection of potentially sensitive data such as core dumps, stack traces, and log files."
     rationale: 
-      "Apport collects potentially sensitive data, such as passwords, credit card numbers, serial numbers, and other private material. Disabling it reduces the risk of exposing sensitive information."
+      "Apport collects potentially sensitive data, such as passwords, credit card numbers, serial numbers, and other "
+      "private material. Disabling it reduces the risk of exposing sensitive information."
     remediation: 
       "To disable Apport Error Reporting, follow these steps:\n"
       "1. Edit `/etc/default/apport` and set the `enabled` parameter to `0`:\n"
@@ -3162,9 +3253,14 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }	
     title: "Ensure GDM disabling automatic mounting of removable media is not overridden"
     description: 
-        "By default, GNOME automatically mounts removable media when inserted as a convenience to the user. Disabling automounting enhances security by preventing unauthorized access to removable media. By using the lockdown mode in dconf, you can prevent users from changing specific settings. To lock down a dconf key or subpath, create a locks subdirectory in the keyfile directory. The files inside this directory contain a list of keys or subpaths to lock. Just as with the keyfiles, you may add any number of files to this directory."
+        "By default, GNOME automatically mounts removable media when inserted as a convenience to the user. Disabling "
+        "automounting enhances security by preventing unauthorized access to removable media. By using the lockdown mode "
+        "in dconf, you can prevent users from changing specific settings. To lock down a dconf key or subpath, create a "
+        "locks subdirectory in the keyfile directory. The files inside this directory contain a list of keys or subpaths "
+        "to lock. Just as with the keyfiles, you may add any number of files to this directory."
     rationale: 
-        "With automounting enabled, anyone with physical access could attach a USB drive or disc and have its contents available in the system even if they lacked permissions to mount it themselves."
+        "With automounting enabled, anyone with physical access could attach a USB drive or disc and have its contents "
+        "available in the system even if they lacked permissions to mount it themselves."
     remediation: 
         "To disable automounting of removable media:\n"
         "1. Create the file /etc/dconf/db/local.d/locks/00-media-automount with the following content:\n"
@@ -3213,12 +3309,17 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure Password Number of Changed Characters is Configured"
     description: 
-      "The configuration ensures that a specified number of characters in a new password differ from the old password, enhancing password complexity and security."
+      "The configuration ensures that a specified number of characters in a new password differ from the old password, "
+      "enhancing password complexity and security."
     rationale: 
-      "Using complex passwords with enforced character changes increases the time and resources required to compromise passwords through brute-force attacks, enhancing overall security."
+      "Using complex passwords with enforced character changes increases the time and resources required to compromise "
+      "passwords through brute-force attacks, enhancing overall security."
     remediation: 
-      "Create or modify a `.conf` file in `/etc/security/pwquality.conf.d/` or edit `/etc/security/pwquality.conf` to include the following configuration:\n"
-      "```difok = 2```\n"
+      "Create or modify a `.conf` file in `/etc/security/pwquality.conf.d/` or edit `/etc/security/pwquality.conf` to "
+      "include the following configuration:\n"
+      "```\n"
+      "difok = 2\n"
+      "```\n"
       "Ensure the setting conforms to local site policy."
     cis_benchmark: {
       profile_level: 1
@@ -3248,9 +3349,11 @@ benchmark_configs: {
     description: 
       "The configuration ensures that the minimum password length is enforced to enhance password security."
     rationale: 
-      "Using a minimum password length policy helps to protect systems from password attacks by increasing the complexity and reducing the predictability of passwords."
+      "Using a minimum password length policy helps to protect systems from password attacks by increasing the complexity "
+      "and reducing the predictability of passwords."
     remediation: 
-      "Create or modify a `.conf` file in `/etc/security/pwquality.conf.d/` or edit `/etc/security/pwquality.conf` to include the following configuration:\n"
+      "Create or modify a `.conf` file in `/etc/security/pwquality.conf.d/` or edit `/etc/security/pwquality.conf` to "
+      "include the following configuration:\n"
       "```\n"
       "minlen = 14"
       "```\n"
@@ -3281,11 +3384,14 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure Password Same Consecutive Characters is Configured"
     description: 
-      "The configuration ensures that the maximum number of allowed same consecutive characters in a new password is limited, enhancing password complexity and security."
+      "The configuration ensures that the maximum number of allowed same consecutive characters in a new password is "
+      "limited, enhancing password complexity and security."
     rationale: 
-      "Using a policy to limit consecutive characters increases the complexity and reduces predictability of passwords, enhancing overall security against brute-force attacks."
+      "Using a policy to limit consecutive characters increases the complexity and reduces predictability of passwords, "
+      "enhancing overall security against brute-force attacks."
     remediation: 
-      "Create or modify a `.conf` file in `/etc/security/pwquality.conf.d/` or edit `/etc/security/pwquality.conf` to include the following configuration:\n"
+      "Create or modify a `.conf` file in `/etc/security/pwquality.conf.d/` or edit `/etc/security/pwquality.conf` to "
+      "include the following configuration:\n"
       "```\n"
       "maxrepeat = 3"
       "```\n"
@@ -3316,11 +3422,14 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure Password Maximum Sequential Characters is Configured"
     description: 
-      "The configuration ensures that the maximum length of monotonic character sequences in the new password is limited, enhancing password complexity and security."
+      "The configuration ensures that the maximum length of monotonic character sequences in the new password is limited, "
+      "enhancing password complexity and security."
     rationale: 
-      "Using a policy to limit monotonic character sequences increases the complexity and reduces predictability of passwords, enhancing overall security against brute-force attacks."
+      "Using a policy to limit monotonic character sequences increases the complexity and reduces predictability of passwords, "
+      "enhancing overall security against brute-force attacks."
     remediation: 
-      "Create or modify a `.conf` file in `/etc/security/pwquality.conf.d/` or edit `/etc/security/pwquality.conf` to include the following configuration:\n"
+      "Create or modify a `.conf` file in `/etc/security/pwquality.conf.d/` or edit `/etc/security/pwquality.conf` to include "
+      "the following configuration:\n"
       "```\n"
       "maxsequence = 3"
       "```\n"
@@ -3351,11 +3460,14 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure Password Dictionary Check is Enabled"
     description: 
-      "The configuration ensures that passwords are checked against a dictionary to avoid the use of weak or predictable passwords, enhancing password security."
+      "The configuration ensures that passwords are checked against a dictionary to avoid the use of weak or predictable "
+      "passwords, enhancing password security."
     rationale: 
-      "Using a policy to enable dictionary checks increases the security of passwords by reducing the chance of using dictionary words or predictable combinations, mitigating brute-force attacks."
+      "Using a policy to enable dictionary checks increases the security of passwords by reducing the chance of using "
+      "dictionary words or predictable combinations, mitigating brute-force attacks."
     remediation: 
-      "Edit any file ending in `.conf` in `/etc/security/pwquality.conf.d/` or the file `/etc/security/pwquality.conf` and ensure the following configuration is included:\n"
+      "Edit any file ending in `.conf` in `/etc/security/pwquality.conf.d/` or the file `/etc/security/pwquality.conf` "
+      "and ensure the following configuration is included:\n"
       "```\n"
       "dictcheck = 1"
       "```\n"
@@ -3386,13 +3498,16 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure Password Quality Checking is Enforced"
     description: 
-      "The configuration ensures that the pam_pwquality module enforces password quality checks by rejecting passwords that fail configured policies."
+      "The configuration ensures that the pam_pwquality module enforces password quality checks by rejecting passwords "
+      "that fail configured policies."
     rationale: 
-      "Enforcing password quality checks reduces the risk of password compromise by ensuring all passwords meet security policies."
+      "Enforcing password quality checks reduces the risk of password compromise by ensuring all passwords meet "
+      "security policies."
     remediation: 
-      "Edit any file ending in `.conf` in `/etc/security/pwquality.conf.d/` or the file `/etc/security/pwquality.conf` to remove or comment out any line containing `enforcing = 0`:\n"
+      "Edit any file ending in `.conf` in `/etc/security/pwquality.conf.d/` or the file `/etc/security/pwquality.conf` "
+      "to remove or comment out any line containing `enforcing = 0`:\n"
       "```\n"
-      "# sed -ri 's/^\\h*enforcing\\h*=\\h*0/# &/' /etc/security/pwquality.conf"
+      "# sed -ri 's/^\\h*enforcing\\h*=\\h*0/# &/' /etc/security/pwquality.conf\n"
       "```\n"
       "Remove the `enforcing=0` argument from the `pam_pwquality.so` module in PAM files if present."
     cis_benchmark: {
@@ -3423,11 +3538,13 @@ benchmark_configs: {
     description: 
       "The configuration ensures that the pam_pwquality module enforces password quality checks for the root user."
     rationale: 
-      "Enforcing password quality checks for the root user ensures that even administrative accounts adhere to password policies, reducing the risk of password compromise."
+      "Enforcing password quality checks for the root user ensures that even administrative accounts adhere to password "
+      "policies, reducing the risk of password compromise."
     remediation: 
-      "Edit any file ending in `.conf` in `/etc/security/pwquality.conf.d/` or the file `/etc/security/pwquality.conf` to include the following configuration:\n"
+      "Edit any file ending in `.conf` in `/etc/security/pwquality.conf.d/` or the file `/etc/security/pwquality.conf` "
+      "to include the following configuration:\n"
       "```\n"
-      "enforce_for_root"
+      "enforce_for_root\n"
       "```\n"
     cis_benchmark: {
       profile_level: 1
@@ -3455,9 +3572,11 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure Password History Remember is Configured"
     description: 
-      "The configuration ensures that the pam_pwhistory module enforces a specific number of old passwords remembered, preventing users from reusing recent passwords."
+      "The configuration ensures that the pam_pwhistory module enforces a specific number of old passwords remembered, "
+      "preventing users from reusing recent passwords."
     rationale: 
-      "Remembering previous passwords reduces the likelihood of attackers successfully compromising accounts by reusing previous passwords, enhancing password security."
+      "Remembering previous passwords reduces the likelihood of attackers successfully compromising accounts by reusing "
+      "previous passwords, enhancing password security."
     remediation: 
       "Edit the `/etc/pam.d/common-password` file and ensure the `pam_pwhistory` module line includes:\n"
       "```\n"
@@ -3490,9 +3609,11 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure Password History is Enforced for the Root User"
     description: 
-      "The configuration ensures that the pam_pwhistory module enforces password history for the root user as well, preventing root from reusing recent passwords."
+      "The configuration ensures that the pam_pwhistory module enforces password history for the root user as well, "
+      "preventing root from reusing recent passwords."
     rationale: 
-      "Requiring the root user not to reuse their passwords enhances overall system security by reducing the risk of password reuse attacks."
+      "Requiring the root user not to reuse their passwords enhances overall system security by reducing the risk of "
+      "password reuse attacks."
     remediation: 
       "Edit the `/etc/pam.d/common-password` file and ensure the `pam_pwhistory` module line includes:\n"
       "```\n"
@@ -3524,9 +3645,11 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure pam_pwhistory Includes use_authtok"
     description: 
-      "The configuration ensures that the pam_pwhistory module enforces the use_authtok argument, enabling multiple pam modules to validate a new password before it is accepted."
+      "The configuration ensures that the pam_pwhistory module enforces the use_authtok argument, enabling multiple pam "
+      "modules to validate a new password before it is accepted."
     rationale: 
-      "The use_authtok option ensures consistent password validation across multiple pam modules, enhancing security during password changes."
+      "The use_authtok option ensures consistent password validation across multiple pam modules, enhancing security during "
+      "password changes."
     remediation: 
       "Edit the `/etc/pam.d/common-password` file and ensure the `pam_pwhistory` module line includes:\n"
       "```\n"
@@ -3560,9 +3683,12 @@ benchmark_configs: {
     description: 
       "The configuration ensures that the pam_unix module does not include the `nullok` argument, which permits blank passwords."
     rationale: 
-      "Excluding the `nullok` argument ensures that blank passwords are not permitted, enhancing security by enforcing the use of strong passwords."
+      "Excluding the `nullok` argument ensures that blank passwords are not permitted, enhancing security by enforcing the "
+      "use of strong passwords."
     remediation: 
-      "Edit any `pam_unix` lines in `/etc/pam.d/common-password`, `/etc/pam.d/common-auth`, `/etc/pam.d/common-account`, `/etc/pam.d/common-session`, and `/etc/pam.d/common-session-noninteractive` to remove the `nullok` argument. Ensure no `pam_unix.so` line includes the `nullok` argument."
+      "Edit any `pam_unix` lines in `/etc/pam.d/common-password`, `/etc/pam.d/common-auth`, `/etc/pam.d/common-account`, "
+      "`/etc/pam.d/common-session`, and `/etc/pam.d/common-session-noninteractive` to remove the `nullok` argument.\n"
+      "Ensure no `pam_unix.so` line includes the `nullok` argument."
     cis_benchmark: {
       profile_level: 1
       severity: HIGH
@@ -3589,11 +3715,15 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure pam_unix Does Not Include remember"
     description: 
-      "The configuration ensures that the pam_unix module does not include the `remember` argument, which stores passwords using the MD5 hash. Instead, the pam_pwhistory module should be used for enhanced security."
+      "The configuration ensures that the pam_unix module does not include the `remember` argument, which stores passwords "
+      "using the MD5 hash. Instead, the pam_pwhistory module should be used for enhanced security."
     rationale: 
-      "Removing the `remember` argument from pam_unix ensures stronger password hashing algorithms are used, providing additional protection against password recovery attacks."
+      "Removing the `remember` argument from pam_unix ensures stronger password hashing algorithms are used, providing "
+      "additional protection against password recovery attacks."
     remediation: 
-      "Edit any `pam_unix` lines in `/etc/pam.d/common-password`, `/etc/pam.d/common-auth`, `/etc/pam.d/common-account`, `/etc/pam.d/common-session`, and `/etc/pam.d/common-session-noninteractive` to remove the `remember` argument. Ensure no `pam_unix.so` line includes the `remember` argument."
+      "Edit any `pam_unix` lines in `/etc/pam.d/common-password`, `/etc/pam.d/common-auth`, `/etc/pam.d/common-account`, "
+      "`/etc/pam.d/common-session`, and `/etc/pam.d/common-session-noninteractive` to remove the `remember` argument.\n"
+      "Ensure no `pam_unix.so` line includes the `remember` argument."
     cis_benchmark: {
       profile_level: 1
       severity: HIGH
@@ -3620,11 +3750,14 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure pam_unix Includes a Strong Password Hashing Algorithm"
     description: 
-      "The configuration ensures that the pam_unix module uses a strong password hashing algorithm, such as SHA-512 or yescrypt, to enhance password security."
+      "The configuration ensures that the pam_unix module uses a strong password hashing algorithm, such as SHA-512 or "
+      "yescrypt, to enhance password security."
     rationale: 
-      "Using strong hashing algorithms like SHA-512 or yescrypt provides additional protection against password recovery attacks by increasing the computational effort required to break the password hashes."
+      "Using strong hashing algorithms like SHA-512 or yescrypt provides additional protection against password recovery "
+      "attacks by increasing the computational effort required to break the password hashes."
     remediation: 
-      "Edit any `pam_unix` lines in `/etc/pam.d/common-password` to include either the `sha512` or `yescrypt` hashing algorithm. Ensure the configuration meets local site policy."
+      "Edit any `pam_unix` lines in `/etc/pam.d/common-password` to include either the `sha512` or `yescrypt` hashing "
+      "algorithm. Ensure the configuration meets local site policy."
     cis_benchmark: {
       profile_level: 1
       severity: HIGH
@@ -3651,11 +3784,14 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure pam_unix Includes use_authtok"
     description: 
-      "The configuration ensures that the pam_unix module uses the `use_authtok` argument to enforce the use of a password previously provided by a stacked PAM module."
+      "The configuration ensures that the pam_unix module uses the `use_authtok` argument to enforce the use of a password "
+      "previously provided by a stacked PAM module."
     rationale: 
-      "The `use_authtok` argument ensures consistency across PAM modules during password changes, enforcing security policies defined by other modules in the PAM stack."
+      "The `use_authtok` argument ensures consistency across PAM modules during password changes, enforcing security policies "
+      "defined by other modules in the PAM stack."
     remediation: 
-      "Edit any `pam_unix` lines in `/etc/pam.d/common-password` to include the `use_authtok` argument. Ensure the configuration meets local site policy."
+      "Edit any `pam_unix` lines in `/etc/pam.d/common-password` to include the `use_authtok` argument. Ensure the "
+      "configuration meets local site policy."
     cis_benchmark: {
       profile_level: 1
       severity: MEDIUM
@@ -3682,9 +3818,11 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure Strong Password Hashing Algorithm is Configured in /etc/login.defs"
     description: 
-      "The configuration ensures that /etc/login.defs specifies a strong password hashing algorithm, such as SHA-512 or YESCRYPT, to enhance group password security."
+      "The configuration ensures that /etc/login.defs specifies a strong password hashing algorithm, such as SHA-512 or "
+      "YESCRYPT, to enhance group password security."
     rationale: 
-      "Specifying strong hashing algorithms like SHA-512 or YESCRYPT in /etc/login.defs increases security by ensuring newly created group passwords use secure hashing."
+      "Specifying strong hashing algorithms like SHA-512 or YESCRYPT in /etc/login.defs increases security by ensuring newly "
+      "created group passwords use secure hashing."
     remediation: 
       "Edit /etc/login.defs and set the ENCRYPT_METHOD parameter to SHA512 or YESCRYPT. Ensure consistency with PAM configuration."
     cis_benchmark: {
@@ -3714,13 +3852,17 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure Root is the Only GID 0 Account"
     description: 
-      "The configuration ensures that the root user's primary GID is 0 and no other user accounts have GID 0 as their primary GID, enhancing system security."
+      "The configuration ensures that the root user's primary GID is 0 and no other user accounts have GID 0 as their "
+      "primary GID, enhancing system security."
     rationale: 
-      "Restricting GID 0 to the root account minimizes the risk of unauthorized access and ensures critical system files are properly secured."
+      "Restricting GID 0 to the root account minimizes the risk of unauthorized access and ensures critical system files "
+      "are properly secured."
     remediation: 
       "Run the following commands to ensure the root user and group GID are correctly set and no other users have GID 0:\n"
+      "```\n"
       "usermod -g 0 root\n"
       "groupmod -g 0 root\n"
+      "```\n"
       "Remove or reassign GID 0 from any other users."
     cis_benchmark: {
       profile_level: 1
@@ -3748,13 +3890,15 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure root user umask is configured"
     description: 
-      "The configuration ensures that the root user's umask is set to a secure value to enforce permissions for newly created files and directories."
+      "The configuration ensures that the root user's umask is set to a secure value to enforce permissions for newly "
+      "created files and directories."
     rationale: 
-      "Setting a secure umask ensures that newly created files and directories have restricted permissions, reducing the risk of unauthorized access."
+      "Setting a secure umask ensures that newly created files and directories have restricted permissions, reducing "
+      "the risk of unauthorized access."
     remediation: 
       "Edit the `/root/.bash_profile` and `/root/.bashrc` files and ensure the following configuration is included:\n"
       "```\n"
-      "umask 0027"
+      "umask 0027\n"
       "```\n"
       "Remove or comment out any other umask settings that are less restrictive."
     cis_benchmark: {
@@ -3793,9 +3937,11 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure nologin is not listed in /etc/shells"
     description: 
-      "/etc/shells is a text file which contains the full pathnames of valid login shells. This file is consulted by chsh and available to be queried by other programs."
+      "/etc/shells is a text file which contains the full pathnames of valid login shells. This file is consulted by "
+      "chsh and available to be queried by other programs."
     rationale: 
-      "Having nologin listed in /etc/shells allows users configured with nologin as their shell to be treated as unrestricted users, which is not expected behavior."
+      "Having nologin listed in /etc/shells allows users configured with nologin as their shell to be treated as unrestricted "
+      "users, which is not expected behavior."
     remediation: 
       "Edit /etc/shells and remove any lines that include nologin."
     cis_benchmark: {
@@ -3824,11 +3970,14 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure default user umask is configured"
     description: 
-      "The user file-creation mode mask (umask) determines the default permissions for newly created files and directories, ensuring they have appropriate restrictions."
+      "The user file-creation mode mask (umask) determines the default permissions for newly created files and directories, "
+      "ensuring they have appropriate restrictions."
     rationale: 
-      "Setting a secure default umask ensures that newly created files and directories have restricted permissions, reducing the risk of unauthorized access or modification."
+      "Setting a secure default umask ensures that newly created files and directories have restricted permissions, reducing "
+      "the risk of unauthorized access or modification."
     remediation: 
-      "Edit configuration files to set the default umask to 027 or a more restrictive value. Suggested files include /etc/profile, /etc/bashrc, and scripts in /etc/profile.d."
+      "Edit configuration files to set the default umask to 027 or a more restrictive value. Suggested files include "
+      "/etc/profile, /etc/bashrc, and scripts in /etc/profile.d."
     cis_benchmark: {
       profile_level: 1
       severity: HIGH
@@ -3875,18 +4024,23 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure cryptographic mechanisms are used to protect the integrity of audit tools"
     description: 
-      "Audit tools include vendor-provided and open source tools needed to view and manipulate audit information. Protecting their integrity ensures audit data remains secure and trustworthy."
+      "Audit tools include vendor-provided and open source tools needed to view and manipulate audit information. "
+      "Protecting their integrity ensures audit data remains secure and trustworthy."
     rationale: 
-      "Attackers may modify or replace audit tools to hide or erase activity from logs. Cryptographic signatures enable detection of unauthorized changes."
+      "Attackers may modify or replace audit tools to hide or erase activity from logs. Cryptographic signatures enable "
+      "detection of unauthorized changes."
     remediation: 
-      "Configure AIDE to monitor audit tool files with cryptographic integrity checks. Edit /etc/aide/aide.conf and add or update the following entries:\n" 
+      "Configure AIDE to monitor audit tool files with cryptographic integrity checks. Edit /etc/aide/aide.conf and add "
+      "or update the following entries:\n" 
+      "```\n"
       "# Audit Tools\n" 
       "/sbin/auditctl p+i+n+u+g+s+b+acl+xattrs+sha512\n" 
       "/sbin/auditd p+i+n+u+g+s+b+acl+xattrs+sha512\n" 
       "/sbin/ausearch p+i+n+u+g+s+b+acl+xattrs+sha512\n" 
       "/sbin/aureport p+i+n+u+g+s+b+acl+xattrs+sha512\n" 
       "/sbin/autrace p+i+n+u+g+s+b+acl+xattrs+sha512\n" 
-      "/sbin/augenrules p+i+n+u+g+s+b+acl+xattrs+sha512"
+      "/sbin/augenrules p+i+n+u+g+s+b+acl+xattrs+sha512\n"
+      "```\n"
     cis_benchmark: {
       profile_level: 2
       severity: MEDIUM
@@ -3917,11 +4071,16 @@ benchmark_configs: {
     rationale: 
       "Logs should be handled exclusively by journald to prevent unnecessary forwarding and enhance security."
     remediation: 
-      "Set the following parameter in the [Journal] section of /etc/systemd/journald.conf or a file in /etc/systemd/journald.conf.d/ ending in .conf:\n" 
+      "Set the following parameter in the [Journal] section of /etc/systemd/journald.conf or a file in "
+      "/etc/systemd/journald.conf.d/ ending in .conf:\n" 
+      "```\n"
       "[Journal]\n" 
       "ForwardToSyslog=no\n\n" 
+      "```\n"
       "After updating the configuration, reload or restart systemd-journald:\n\n" 
-      "# systemctl reload-or-restart systemd-journald"
+      "```\n"
+      "# systemctl reload-or-restart systemd-journald\n"
+      "```\n"
     cis_benchmark: {
       profile_level: 1
       severity: MEDIUM
@@ -3958,15 +4117,22 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure journald Storage is configured"
     description: 
-      "Data from journald may be stored in volatile memory or persisted locally on the server. Logs in memory will be lost upon a system reboot. By persisting logs to local disk on the server, they are protected from loss due to a reboot."
+      "Data from journald may be stored in volatile memory or persisted locally on the server. Logs in memory will be "
+      "lost upon a system reboot. By persisting logs to local disk on the server, they are protected from loss due to a reboot."
     rationale: 
-      "Writing log data to disk provides the ability to forensically reconstruct events which may have impacted the operations or security of a system even after a system crash or reboot."
+      "Writing log data to disk provides the ability to forensically reconstruct events which may have impacted the operations "
+      "or security of a system even after a system crash or reboot."
     remediation: 
-      "Set the following parameter in the [Journal] section of /etc/systemd/journald.conf or a file in /etc/systemd/journald.conf.d/ ending in .conf:\n\n" 
+      "Set the following parameter in the [Journal] section of /etc/systemd/journald.conf or a file in "
+      "/etc/systemd/journald.conf.d/ ending in .conf:\n" 
+      "```\n"
       "[Journal]\n" 
-      "Storage=persistent\n\n" 
-      "After updating the configuration, reload or restart systemd-journald:\n\n" 
-      "# systemctl reload-or-restart systemd-journald"
+      "Storage=persistent\n" 
+      "```\n"
+      "After updating the configuration, reload or restart systemd-journald:\n" 
+      "```\n"
+      "# systemctl reload-or-restart systemd-journald\n"
+      "```\n"
     cis_benchmark: {
       profile_level: 1
       severity: MEDIUM
@@ -3993,11 +4159,14 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure Audit Backlog Limit is Sufficient"
     description: 
-      "This configuration ensures that the audit subsystem's queue for audit events has a sufficient backlog limit to prevent loss of audit data during high activity periods."
+      "This configuration ensures that the audit subsystem's queue for audit events has a sufficient backlog limit to "
+      "prevent loss of audit data during high activity periods."
     rationale: 
-      "Setting a sufficient audit backlog limit minimizes the risk of losing critical audit data, enhancing the reliability of audit records in detecting potential malicious activities."
+      "Setting a sufficient audit backlog limit minimizes the risk of losing critical audit data, enhancing the reliability "
+      "of audit records in detecting potential malicious activities."
     remediation: 
-      "Edit `/etc/default/grub` to include `audit_backlog_limit=8192` or a higher value in the `GRUB_CMDLINE_LINUX` configuration. Update the GRUB configuration with the command `update-grub`."
+      "Edit `/etc/default/grub` to include `audit_backlog_limit=8192` or a higher value in the `GRUB_CMDLINE_LINUX` "
+      "configuration. Update the GRUB configuration with the command `update-grub`."
     cis_benchmark: {
       profile_level: 2
       severity: HIGH
@@ -4026,14 +4195,17 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure System Warns When Audit Logs Are Low on Space"
     description: 
-      "This configuration ensures that the system is configured to warn or take appropriate actions when audit logs are low on space, preserving the integrity and continuity of logging."
+      "This configuration ensures that the system is configured to warn or take appropriate actions when audit logs are "
+      "low on space, preserving the integrity and continuity of logging."
     rationale: 
-      "Configuring the system to handle low audit log space helps prevent loss of critical audit data and enhances the reliability of audit records in monitoring and detecting security events."
+      "Configuring the system to handle low audit log space helps prevent loss of critical audit data and enhances the "
+      "reliability of audit records in monitoring and detecting security events."
     remediation: 
-      "Edit `/etc/audit/auditd.conf` to set the `space_left_action` parameter to `email`, `exec`, `single`, or `halt` and the `admin_space_left_action` parameter to `single` or `halt`:\n"
+      "Edit `/etc/audit/auditd.conf` to set the `space_left_action` parameter to `email`, `exec`, `single`, or `halt` "
+      "and the `admin_space_left_action` parameter to `single` or `halt`:\n"
       "```\n"
-      "space_left_action = email"
-      "admin_space_left_action = single"
+      "space_left_action = email\n"
+      "admin_space_left_action = single\n"
       "```\n"
     cis_benchmark: {
       profile_level: 2
@@ -4070,9 +4242,11 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure_rpcbind_services_are_not_in_use"
     description: 
-      "The rpcbind utility maps RPC services to the ports on which they listen. RPC processes notify rpcbind when they start, registering the ports they are listening on and the RPC program numbers they expect to serve."
+      "The rpcbind utility maps RPC services to the ports on which they listen. RPC processes notify rpcbind when they "
+      "start, registering the ports they are listening on and the RPC program numbers they expect to serve."
     rationale: 
-      "A small request sent to the Portmapper generates a large response, making it a suitable tool for DDoS attacks. If rpcbind is not required, removing it reduces the potential attack surface."
+      "A small request sent to the Portmapper generates a large response, making it a suitable tool for DDoS attacks. "
+      "If rpcbind is not required, removing it reduces the potential attack surface."
     remediation: 
       "1. Stop and mask the rpcbind.socket and rpcbind.service to ensure they do not run:\n"
       "```\n"
@@ -4104,16 +4278,23 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure password failed attempts lockout includes root account"
     description: 
-      "even_deny_root - Root account can become locked as well as regular accounts. root_unlock_time=n - This option implies even_deny_root option. Allow access after n seconds to root account after the account is locked. In case the option is not specified the value is the same as of the unlock_time option."
+      "even_deny_root - Root account can become locked as well as regular accounts. root_unlock_time=n - This option "
+      "implies even_deny_root option. Allow access after n seconds to root account after the account is locked. \n"
+      "In case the option is not specified the value is the same as of the unlock_time option."
     rationale: 
-      "Locking out user IDs after n unsuccessful consecutive login attempts mitigates brute force password attacks against your systems."
+      "Locking out user IDs after n unsuccessful consecutive login attempts mitigates brute force password attacks "
+      "against your systems."
     remediation: 
       "Edit /etc/security/faillock.conf:\n"
       "• Remove or update any line containing root_unlock_time, - OR - set it to a value of 60 or more\n"
       "• Update or add the following line:\n"
+      "```\n"
       "even_deny_root\n"
+      "```\n"
       "\nRun the following command:\n"
+      "```\n"
       "# grep -Pl '\\bpam_faillock\\.so\\h+([^#\\n\\r]+\\h+)?(even_deny_root|root_unlock_time)' /usr/share/pam-configs/*\n"
+      "```\n"
       "Edit any returned files and remove the even_deny_root and root_unlock_time arguments from the pam_faillock.so line(s):"
     cis_benchmark: {
       profile_level: 2
@@ -4153,7 +4334,8 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure root password is set"
     description: 
-      "There are a number of methods to access the root account directly. Without a password set, any user would be able to gain access and control over the entire system."
+      "There are a number of methods to access the root account directly. Without a password set, any user would be able "
+      "to gain access and control over the entire system."
     rationale: 
       "Access to root should be secured at all times."
     remediation: 
@@ -4238,9 +4420,14 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure FTP client is not installed"
     description: 
-      "FTP (File Transfer Protocol) is a traditional and widely used standard tool for transferring files between a server and clients over a network. However, FTP does not protect the confidentiality of data or authentication credentials. It is recommended to use SFTP if file transfer is required. Unless the system needs to run as an FTP server, it is recommended to remove the FTP package to reduce the potential attack surface."
+      "FTP (File Transfer Protocol) is a traditional and widely used standard tool for transferring files between a server "
+      "and clients over a network. However, FTP does not protect the confidentiality of data or authentication credentials. \n"
+      "It is recommended to use SFTP if file transfer is required.\n"
+      "Unless the system needs to run as an FTP server, it is recommended to remove the FTP package to reduce the potential "
+      "attack surface."
     rationale: 
-      "FTP does not protect data confidentiality or authentication credentials, making it vulnerable to interception. Removing unnecessary FTP clients reduces potential security risks."
+      "FTP does not protect data confidentiality or authentication credentials, making it vulnerable to interception. "
+      "Removing unnecessary FTP clients reduces potential security risks."
     remediation: 
       "Run the following command to uninstall FTP:\n"
       "```\n"
@@ -4270,23 +4457,25 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure a single time synchronization daemon is in use"
     description:
-      "System time should be synchronized between all systems in an environment. This is typically done by establishing an authoritative time server or set of servers and having all systems synchronize their clocks to them."
+      "System time should be synchronized between all systems in an environment. This is typically done by establishing "
+      "an authoritative time server or set of servers and having all systems synchronize their clocks to them."
     rationale:
-      "Time synchronization is important to support time-sensitive security mechanisms and ensures log files have consistent time records across the enterprise, which aids in forensic investigations."
+      "Time synchronization is important to support time-sensitive security mechanisms and ensures log files have consistent "
+      "time records across the enterprise, which aids in forensic investigations."
     remediation:
       "On physical systems, and virtual systems where host-based time synchronization is not available:\n"
       "1. Select one of the two time synchronization daemons; chrony or systemd-timesyncd.\n"
       "   - To use chrony:\n"
-      "     ```\n"
+      "```\n"
       "     # apt install chrony\n"
       "     # systemctl stop systemd-timesyncd.service\n"
       "     # systemctl mask systemd-timesyncd.service\n"
-      "     ```\n"
+      "```\n"
       "   - To use systemd-timesyncd:\n"
-      "     ```\n"
+      "```\n"
       "     # apt purge chrony\n"
       "     # apt autoremove chrony\n"
-      "     ```\n"
+      "```\n"
       "Avoid enabling both daemons simultaneously, as this may lead to unreliable results."
     cis_benchmark: {
       profile_level: 1
@@ -4327,7 +4516,8 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure chrony is running as user _chrony"
     description:
-      "The chrony package is installed with a dedicated user account _chrony. This account is granted the access required by the chronyd service."
+      "The chrony package is installed with a dedicated user account _chrony. This account is granted the access required "
+      "by the chronyd service."
     rationale:
       "The chronyd service should run with only the required privileges."
     remediation:
@@ -4401,9 +4591,11 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure Bluetooth Services Are Not in Use"
     description:
-      "Bluetooth is a short-range wireless technology standard that is used for exchanging data between devices over short distances. If Bluetooth is not needed, it should be disabled to reduce the potential attack surface."
+      "Bluetooth is a short-range wireless technology standard that is used for exchanging data between devices over short "
+      "distances. If Bluetooth is not needed, it should be disabled to reduce the potential attack surface."
     rationale:
-      "Disabling Bluetooth services prevents attackers from exploiting vulnerabilities in Bluetooth technology, such as bluesnarfing, and reduces the risk of data corruption, theft, or loss due to malicious activity."
+      "Disabling Bluetooth services prevents attackers from exploiting vulnerabilities in Bluetooth technology, such as "
+      "bluesnarfing, and reduces the risk of data corruption, theft, or loss due to malicious activity."
     remediation:
       "Run the following commands to stop the Bluetooth service and remove the bluez package:\n"
       "```\n"
@@ -4465,7 +4657,8 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure ufw Service is Enabled"
     description: 
-      "Uncomplicated Firewall (ufw) is a frontend for iptables that provides a framework for managing Netfilter, offering both command-line and GUI interfaces for firewall management."
+      "Uncomplicated Firewall (ufw) is a frontend for iptables that provides a framework for managing Netfilter, offering "
+      "both command-line and GUI interfaces for firewall management."
     rationale: 
       "The `ufw` service must be enabled and running to ensure proper system protection by the firewall."
     remediation: 
@@ -4519,14 +4712,18 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure ufw is uninstalled or disabled with iptables"
     description: 
-      "Uncomplicated Firewall (UFW) is a program for managing a Netfilter firewall designed to be easy to use. Running iptables.persistent with ufw enabled may lead to conflict and unexpected results."
+      "Uncomplicated Firewall (UFW) is a program for managing a Netfilter firewall designed to be easy to use. Running "
+      "iptables.persistent with ufw enabled may lead to conflict and unexpected results."
     rationale: 
-      "Running iptables.persistent with UFW enabled may lead to conflict and unexpected results. Ensuring only one is active prevents issues."
+      "Running iptables.persistent with UFW enabled may lead to conflict and unexpected results. Ensuring only one is "
+      "active prevents issues."
     remediation: 
       "To remove or disable UFW, run one of the following:\n"
       "```\n"
       "# apt purge ufw\n"
+      "```\n"
       "-OR-\n"
+      "```\n"
       "# ufw disable\n"
       "# systemctl stop ufw.service\n"
       "# systemctl mask ufw.service\n"
@@ -4588,16 +4785,20 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure sshd Ciphers are configured"
     description: 
-      "This variable limits the ciphers that SSH can use during communication. The only strong ciphers currently FIPS 140 compliant are:\n"
+      "This variable limits the ciphers that SSH can use during communication. The only strong ciphers currently FIPS 140 "
+      "compliant are:\n"
       "- aes256-gcm@openssh.com\n"
       "- aes128-gcm@openssh.com\n"
       "- aes256-ctr\n"
       "- aes192-ctr\n"
       "- aes128-ctr."
     rationale: 
-      "Weak ciphers cannot be relied upon to provide confidentiality or integrity. For example, Triple DES ciphers are vulnerable to the \"Sweet32\" attack, and block cipher algorithms in CBC mode make systems susceptible to plain text recovery attacks."
+      "Weak ciphers cannot be relied upon to provide confidentiality or integrity. For example, Triple DES ciphers are "
+      "vulnerable to the \"Sweet32\" attack, and block cipher algorithms in CBC mode make systems susceptible to plain text "
+      "recovery attacks."
     remediation: 
-      "Edit the `/etc/ssh/sshd_config` file and modify the Ciphers line to exclude weak ciphers. Use a comma-separated list prefixed by `-` to explicitly deny ciphers:\n"
+      "Edit the `/etc/ssh/sshd_config` file and modify the Ciphers line to exclude weak ciphers. Use a comma-separated list "
+      "prefixed by `-` to explicitly deny ciphers:\n"
       "```\n"
       "Ciphers -3des-cbc,aes128-cbc,aes192-cbc,aes256-cbc\n"
       "```\n"
@@ -4837,11 +5038,11 @@ benchmark_configs: {
     remediation:
       "Run the following commands to ensure proper configuration of cron access:\n"
       "```\n"
-      "# [ ! -e \"/etc/cron.allow\" ] && touch /etc/cron.allow"
-      "# chown root:root /etc/cron.allow"
-      "# chmod u-x,g-wx,o-rwx /etc/cron.allow"
-      "# [ -e \"/etc/cron.deny\" ] && chown root:root /etc/cron.deny"
-      "# [ -e \"/etc/cron.deny\" ] && chmod u-x,g-wx,o-rwx /etc/cron.deny"
+      "# [ ! -e \"/etc/cron.allow\" ] && touch /etc/cron.allow\n"
+      "# chown root:root /etc/cron.allow\n"
+      "# chmod u-x,g-wx,o-rwx /etc/cron.allow\n"
+      "# [ -e \"/etc/cron.deny\" ] && chown root:root /etc/cron.deny\n"
+      "# [ -e \"/etc/cron.deny\" ] && chmod u-x,g-wx,o-rwx /etc/cron.deny\n"
       "```\n"
     cis_benchmark: {
       profile_level: 1
