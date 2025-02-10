@@ -5975,7 +5975,7 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }   
-    title: "Ensure permissions on /etc/motd are configured
+    title: "Ensure permissions on /etc/motd are configured"
     description:
       "The contents of the /etc/motd file are displayed to users after login "
       "and function as a message of the day for authenticated users."
@@ -6696,7 +6696,7 @@ benchmark_configs: {
       "    non_compliance_msg: \"a config file in /etc/systemd/system enables squid\""
       "    file_display_command: \"find /etc/systemd/system -name 'squid.service'\""
       "  }"
-      "}"
+      "}}"
       "image_scanning:{check_alternatives:{"
       "  file_checks:{"
       "    files_to_check:{files_in_dir:{"
@@ -6759,7 +6759,7 @@ benchmark_configs: {
       "    non_compliance_msg: \"a config file in /etc/systemd/system enables snmpd\""
       "    file_display_command: \"find /etc/systemd/system -name 'snmpd.service'\""
       "  }"
-      "}"
+      "}}"
       "image_scanning:{check_alternatives:{"
       "  file_checks:{"
       "    files_to_check:{files_in_dir:{"
@@ -9721,6 +9721,7 @@ benchmark_configs: {
   id: "separate-partition-var"
   compliance_note: {
     version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure separate partition exists for /var"
     description:
       "The /var directory is used by daemons and other system services to temporarily store dynamic data. "
