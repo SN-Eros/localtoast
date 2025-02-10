@@ -519,7 +519,7 @@ benchmark_configs: {
       "Merge and load the rules:\n"
       "# augenrules --load\n"
       "Check if reboot is required:\n"
-      "# if [[ $(auditctl -s | grep \"enabled\") =~ \"2\" ]]; then printf \"Reboot required to load rules\n\"; fi"
+      "# if [[ $(auditctl -s | grep \"enabled\") =~ \"2\" ]]; then printf \"Reboot required to load rules\\\n\"; fi"
   
   cis_benchmark: {
     profile_level: 2
@@ -589,7 +589,7 @@ benchmark_configs: {
       "Merge and load the rules:\n"
       "# augenrules --load\n"
       "Check if reboot is required:\n"
-      "# if [[ $(auditctl -s | grep \"enabled\") =~ \"2\" ]]; then printf \"Reboot required to load rules\n\"; fi"
+      "# if [[ $(auditctl -s | grep \"enabled\") =~ \"2\" ]]; then printf \"Reboot required to load rules\\\n\"; fi"
   cis_benchmark: {
     profile_level: 2
     severity: MEDIUM
@@ -639,7 +639,7 @@ benchmark_configs: {
     rationale: "Restricting access to audit configuration files ensures that only authorized personnel can modify the settings, preventing the disabling of critical auditing or misconfigurations that may impact performance or investigation efforts."
     remediation:
       "Run the following command to set permissions on audit configuration files:\n"
-      "```\nbash\n"
+      "```bash\n"
       "find /etc/audit/ -type f \\\\( -name '*.conf' -o -name '*.rules' \\\\) -exec chmod u-x,g-wx,o-rwx {} +\n"
       "```\n"
   cis_benchmark: {
@@ -677,7 +677,7 @@ benchmark_configs: {
       "Protecting audit tools ensures the integrity of audit information and prevents unauthorized operations on log data."
     remediation:
       "Run the following command to set permissions on audit tools:\n"
-      "```\nbash\n"
+      "```bash\n"
       "chmod go-w \\\\/sbin/auditctl \\\\/sbin/aureport \\\\/sbin/ausearch \\\\/sbin/autrace \\\\/sbin/auditd \\\\/sbin/augenrules\n"
       "```\n"
   cis_benchmark: {
@@ -718,7 +718,7 @@ benchmark_configs: {
     rationale: "Protecting audit tools from unauthorized access or modification is critical to maintaining the integrity of the audit system and ensuring accurate logging of events."
     remediation:
       "Run the following command to set the correct ownership for the audit tools:\n"
-      "```\nbash\n"
+      "```bash\n"
       "chown root:root /sbin/auditctl /sbin/aureport /sbin/ausearch /sbin/autrace /sbin/auditd /sbin/augenrules\n"
       "```\n"
     cis_benchmark: {
@@ -777,7 +777,7 @@ benchmark_configs: {
     rationale: "Protecting audit tools from unauthorized access or modification is critical to maintaining the integrity of the audit system and ensuring accurate logging of events. Ensuring the correct group ownership prevents unauthorized users from altering critical audit files."
     remediation:
       "Run the following command to set the correct group ownership for the audit tools:\n"
-      "```\nbash\n"
+      "```bash\n"
       "chgrp root /sbin/auditctl /sbin/aureport /sbin/ausearch /sbin/autrace /sbin/auditd /sbin/augenrules\n"
       "```\n"
     cis_benchmark: {
