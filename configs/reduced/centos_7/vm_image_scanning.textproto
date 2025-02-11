@@ -1,7 +1,7 @@
 version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
 benchmark_id: "cramfs-module-not-available"
 benchmark_id: "squashfs-module-not-available"
-benchmark_id: "udf-mounting-disabled"
+benchmark_id: "udf-module-not-available"
 benchmark_id: "tmp-configured"
 benchmark_id: "tmp-noexec"
 benchmark_id: "tmp-nodev"
