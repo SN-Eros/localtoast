@@ -4426,7 +4426,7 @@ benchmark_configs: {
       "        group_criteria:{"
       "          group_index: 1"
       "          type: VERSION_GREATER_THAN"
-      "          version: \"1.4.0-9\"" 
+      "          version: \"1.5.2-5\"" 
       "        }"
       "      }"
       "    }"
