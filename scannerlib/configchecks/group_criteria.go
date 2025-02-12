@@ -60,10 +60,8 @@ func newGroupCriteria(regex string, numSubexp int, gcs []*ipb.GroupCriterion, ma
 			}
 			m = &uniqueMatcher{seen: make(map[string]bool)}
 		case ipb.GroupCriterion_VERSION_LESS_THAN:
-			fmt.Println("less")
 			m = &lessThanVersionMatcher{cmpStr: gc.GetVersion()}
 		case ipb.GroupCriterion_VERSION_GREATER_THAN:
-			fmt.Println("greater")
 			m = &greaterThanVersionMatcher{cmpStr: gc.GetVersion()}
 		default:
 			return nil, fmt.Errorf("unrecognized group criterion type %v", t)
@@ -164,9 +162,6 @@ func (m *lessThanVersionMatcher) match(group string) bool {
 	for i:=0; i< min_len; i++ {
 		chunks_group[i] = fmt.Sprintf("%06s", chunks_group[i])
 		chunks_version[i] = fmt.Sprintf("%06s", chunks_version[i])
-
-		fmt.Println(chunks_group[i], " < ", chunks_version[i], " = ",  chunks_group[i] < chunks_version[i])
-		
 		if chunks_group[i] == chunks_version[i] {
 			continue
 		}
@@ -201,8 +196,6 @@ func (m *greaterThanVersionMatcher) match(group string) bool {
 		chunks_group[i] = fmt.Sprintf("%06s", chunks_group[i])
 		chunks_version[i] = fmt.Sprintf("%06s", chunks_version[i])
 
-		fmt.Println(chunks_group[i], " > ", chunks_version[i], " = ",  chunks_group[i] > chunks_version[i])
-		
 		if chunks_group[i] == chunks_version[i] {
 			continue
 		}
