@@ -1,0 +1,4291 @@
+
+benchmark_configs: {
+  id: "freevxfs-module-not-available"
+  compliance_note: {
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    title: "Ensure freevxfs kernel module is not available"
+    description:
+      "The freevxfs filesystem type is a free version of the Veritas type filesystem. This is the "
+      "primary filesystem type for HP-UX operating systems."
+    rationale:
+      "Removing support for unneeded filesystem types reduces the local attack surface of the "
+      "system. If this filesystem type is not needed, disable it."
+    remediation:
+      "Run the following script to unload and disable the freevxfs module:\n"
+      "- IF - the freevxfs kernel module is available in ANY installed kernel:\n"
+      "• Create a file ending in .conf with install freevxfs /bin/false in the "
+      "/etc/modprobe.d/ directory\n"
+      "• Create a file ending in .conf with blacklist freevxfs in the "
+      "/etc/modprobe.d/ directory\n"
+      "• Run modprobe -r freevxfs 2>/dev/null; rmmod freevxfs 2>/dev/null "
+      "to remove freevxfs from the kernel\n"
+      "- IF - the freevxfs kernel module is not available on the system, or pre-compiled into "
+      "the kernel, no remediation is necessary"
+    cis_benchmark: {
+      profile_level: 1
+      severity: LOW
+    }
+    scan_instructions:
+      "scan_type_specific:{instance_scanning:{"
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{files_in_dir:{"
+      "        dir_path:\"/lib/modules/\""
+      "        filename_regex: \"freevxfs.ko\""
+      "        recursive: true"
+      "      }}"
+      "      existence:{should_exist: false}"
+      "    }"      
+      "  }"
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{files_in_dir:{"
+      "        dir_path:\"/etc/modprobe.d\""
+      "        filename_regex: \".*\\\\.conf\""
+      "        recursive: true"
+      "      }}"
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \"install freevxfs .*\""
+      "          expected_regex: \"install freevxfs /bin/(true|false)\""
+      "        }"
+      "      }"
+      "    }"
+      "    file_checks:{"
+      "      files_to_check:{files_in_dir:{"
+      "        dir_path:\"/etc/modprobe.d\""
+      "        filename_regex: \".*\\\\.conf\""
+      "        recursive: true"
+      "      }}"
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \"blacklist freevxfs.*\""
+      "          expected_regex: \"blacklist freevxfs.*\""
+      "        }"
+      "      }"
+      "    }"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{path:\"/proc/modules\"}}"
+      "      content_entry:{"
+      "        match_type: NONE_MATCH"
+      "        match_criteria: {"
+      "          filter_regex: \"freevxfs .*\""
+      "          expected_regex: \"freevxfs .*\""
+      "        }"
+      "      }"
+      "    }"
+      "  }"
+      "}"
+      "image_scanning:{"
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{files_in_dir:{"
+      "        dir_path:\"/lib/modules/\""
+      "        filename_regex: \"freevxfs.ko\""
+      "        recursive: true"
+      "      }}"
+      "      existence:{should_exist: false}"
+      "    }"      
+      "  }"	  
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{files_in_dir:{"
+      "        dir_path:\"/etc/modprobe.d\""
+      "        filename_regex: \".*\\\\.conf\""
+      "        recursive: true"
+      "      }}"
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \"install freevxfs .*\""
+      "          expected_regex: \"install freevxfs /bin/(true|false)\""
+      "        }"
+      "      }"
+      "    }"
+      "    file_checks:{"
+      "      files_to_check:{files_in_dir:{"
+      "        dir_path:\"/etc/modprobe.d\""
+      "        filename_regex: \".*\\\\.conf\""
+      "        recursive: true"
+      "      }}"
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \"blacklist freevxfs.*\""
+      "          expected_regex: \"blacklist freevxfs.*\""
+      "        }"
+      "      }"
+      "    }"
+      "  }"
+      "}}"
+  }
+}
+
+benchmark_configs: {
+  id: "hfs-module-not-available"
+  compliance_note: {
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    title: "Ensure hfs kernel module is not available"
+    description:
+      "The hfs filesystem type is a hierarchical filesystem that allows you to mount Mac OS "
+      "filesystems."
+    rationale:
+      "Removing support for unneeded filesystem types reduces the local attack surface of the "
+      "system. If this filesystem type is not needed, disable it."
+    remediation:
+      "Run the following script to unload and disable the hfs module:\n"
+      "- IF - the hfs kernel module is available in ANY installed kernel:\n"
+      "• Create a file ending in .conf with install hfs /bin/false in the "
+      "/etc/modprobe.d/ directory\n"
+      "• Create a file ending in .conf with blacklist hfs in the /etc/modprobe.d/ "
+      "directory\n"
+      "• Run modprobe -r hfs 2>/dev/null; rmmod hfs 2>/dev/null to remove "
+      "hfs from the kernel\n"
+      "- IF - the hfs kernel module is not available on the system, or pre-compiled into the "
+      "kernel, no remediation is necessary"
+    cis_benchmark: {
+      profile_level: 1
+      severity: LOW
+    }
+    scan_instructions:
+      "scan_type_specific:{instance_scanning:{"
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{files_in_dir:{"
+      "        dir_path:\"/lib/modules/\""
+      "        filename_regex: \"hfs.ko\""
+      "        recursive: true"
+      "      }}"
+      "      existence:{should_exist: false}"
+      "    }"      
+      "  }"
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{files_in_dir:{"
+      "        dir_path:\"/etc/modprobe.d\""
+      "        filename_regex: \".*\\\\.conf\""
+      "        recursive: true"
+      "      }}"
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \"install hfs .*\""
+      "          expected_regex: \"install hfs /bin/(true|false)\""
+      "        }"
+      "      }"
+      "    }"
+      "    file_checks:{"
+      "      files_to_check:{files_in_dir:{"
+      "        dir_path:\"/etc/modprobe.d\""
+      "        filename_regex: \".*\\\\.conf\""
+      "        recursive: true"
+      "      }}"
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \"blacklist hfs.*\""
+      "          expected_regex: \"blacklist hfs.*\""
+      "        }"
+      "      }"
+      "    }"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{path:\"/proc/modules\"}}"
+      "      content_entry:{"
+      "        match_type: NONE_MATCH"
+      "        match_criteria: {"
+      "          filter_regex: \"hfs .*\""
+      "          expected_regex: \"hfs .*\""
+      "        }"
+      "      }"
+      "    }"
+      "  }"
+      "}"
+      "image_scanning:{"
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{files_in_dir:{"
+      "        dir_path:\"/lib/modules/\""
+      "        filename_regex: \"hfs.ko\""
+      "        recursive: true"
+      "      }}"
+      "      existence:{should_exist: false}"
+      "    }"      
+      "  }"	  
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{files_in_dir:{"
+      "        dir_path:\"/etc/modprobe.d\""
+      "        filename_regex: \".*\\\\.conf\""
+      "        recursive: true"
+      "      }}"
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \"install hfs .*\""
+      "          expected_regex: \"install hfs /bin/(true|false)\""
+      "        }"
+      "      }"
+      "    }"
+      "    file_checks:{"
+      "      files_to_check:{files_in_dir:{"
+      "        dir_path:\"/etc/modprobe.d\""
+      "        filename_regex: \".*\\\\.conf\""
+      "        recursive: true"
+      "      }}"
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \"blacklist hfs.*\""
+      "          expected_regex: \"blacklist hfs.*\""
+      "        }"
+      "      }"
+      "    }"
+      "  }"
+      "}}"
+  }
+}
+
+benchmark_configs: {
+  id: "hfsplus-module-not-available"
+  compliance_note: {
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    title: "Ensure hfsplus kernel module is not available"
+    description:
+      "The hfsplus filesystem type is a hierarchical filesystem designed to replace hfs that "
+      "allows you to mount Mac OS filesystems."
+    rationale:
+      "Removing support for unneeded filesystem types reduces the local attack surface of the "
+      "system. If this filesystem type is not needed, disable it."
+    remediation:
+      "Run the following script to unload and disable the hfsplus module:\n"
+      "- IF - the hfsplus kernel module is available in ANY installed kernel:\n"
+      "• Create a file ending in .conf with install hfsplus /bin/false in the "
+      "/etc/modprobe.d/ directory\n"
+      "• Create a file ending in .conf with blacklist hfsplus in the /etc/modprobe.d/ "
+      "directory\n"
+      "• Run modprobe -r hfsplus 2>/dev/null; rmmod hfsplus 2>/dev/null to remove "
+      "hfsplus from the kernel\n"
+      "- IF - the hfsplus kernel module is not available on the system, or pre-compiled into the "
+      "kernel, no remediation is necessary"
+    cis_benchmark: {
+      profile_level: 1
+      severity: LOW
+    }
+    scan_instructions:
+      "scan_type_specific:{instance_scanning:{"
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{files_in_dir:{"
+      "        dir_path:\"/lib/modules/\""
+      "        filename_regex: \"hfsplus.ko\""
+      "        recursive: true"
+      "      }}"
+      "      existence:{should_exist: false}"
+      "    }"      
+      "  }"
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{files_in_dir:{"
+      "        dir_path:\"/etc/modprobe.d\""
+      "        filename_regex: \".*\\\\.conf\""
+      "        recursive: true"
+      "      }}"
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \"install hfsplus .*\""
+      "          expected_regex: \"install hfsplus /bin/(true|false)\""
+      "        }"
+      "      }"
+      "    }"
+      "    file_checks:{"
+      "      files_to_check:{files_in_dir:{"
+      "        dir_path:\"/etc/modprobe.d\""
+      "        filename_regex: \".*\\\\.conf\""
+      "        recursive: true"
+      "      }}"
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \"blacklist hfsplus.*\""
+      "          expected_regex: \"blacklist hfsplus.*\""
+      "        }"
+      "      }"
+      "    }"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{path:\"/proc/modules\"}}"
+      "      content_entry:{"
+      "        match_type: NONE_MATCH"
+      "        match_criteria: {"
+      "          filter_regex: \"hfsplus .*\""
+      "          expected_regex: \"hfsplus .*\""
+      "        }"
+      "      }"
+      "    }"
+      "  }"
+      "}"
+      "image_scanning:{"
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{files_in_dir:{"
+      "        dir_path:\"/lib/modules/\""
+      "        filename_regex: \"hfsplus.ko\""
+      "        recursive: true"
+      "      }}"
+      "      existence:{should_exist: false}"
+      "    }"      
+      "  }"	  
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{files_in_dir:{"
+      "        dir_path:\"/etc/modprobe.d\""
+      "        filename_regex: \".*\\\\.conf\""
+      "        recursive: true"
+      "      }}"
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \"install hfsplus .*\""
+      "          expected_regex: \"install hfsplus /bin/(true|false)\""
+      "        }"
+      "      }"
+      "    }"
+      "    file_checks:{"
+      "      files_to_check:{files_in_dir:{"
+      "        dir_path:\"/etc/modprobe.d\""
+      "        filename_regex: \".*\\\\.conf\""
+      "        recursive: true"
+      "      }}"
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \"blacklist hfsplus.*\""
+      "          expected_regex: \"blacklist hfsplus.*\""
+      "        }"
+      "      }"
+      "    }"
+      "  }"
+      "}}"
+  }
+}
+
+benchmark_configs: {
+  id: "jffs2-module-not-available"
+  compliance_note: {
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    title: "Ensure jffs2 kernel module is not available"
+    description:
+      "The jffs2 (journaling flash filesystem 2) filesystem type is a log-structured filesystem "
+      "used in flash memory devices."
+    rationale:
+      "Removing support for unneeded filesystem types reduces the local attack surface of the "
+      "system. If this filesystem type is not needed, disable it."
+    remediation:
+      "Run the following script to unload and disable the jffs2 module:\n"
+      "- IF - the jffs2 kernel module is available in ANY installed kernel:\n"
+      "• Create a file ending in .conf with install jffs2 /bin/false in the "
+      "/etc/modprobe.d/ directory\n"
+      "• Create a file ending in .conf with blacklist jffs2 in the /etc/modprobe.d/ "
+      "directory\n"
+      "• Run modprobe -r jffs2 2>/dev/null; rmmod jffs2 2>/dev/null to remove "
+      "jffs2 from the kernel\n"
+      "- IF - the jffs2 kernel module is not available on the system, or pre-compiled into the "
+      "kernel, no remediation is necessary"
+    cis_benchmark: {
+      profile_level: 1
+      severity: LOW
+    }
+    scan_instructions:
+      "scan_type_specific:{instance_scanning:{"
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{files_in_dir:{"
+      "        dir_path:\"/lib/modules/\""
+      "        filename_regex: \"jffs2.ko\""
+      "        recursive: true"
+      "      }}"
+      "      existence:{should_exist: false}"
+      "    }"      
+      "  }"
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{files_in_dir:{"
+      "        dir_path:\"/etc/modprobe.d\""
+      "        filename_regex: \".*\\\\.conf\""
+      "        recursive: true"
+      "      }}"
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \"install jffs2 .*\""
+      "          expected_regex: \"install jffs2 /bin/(true|false)\""
+      "        }"
+      "      }"
+      "    }"
+      "    file_checks:{"
+      "      files_to_check:{files_in_dir:{"
+      "        dir_path:\"/etc/modprobe.d\""
+      "        filename_regex: \".*\\\\.conf\""
+      "        recursive: true"
+      "      }}"
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \"blacklist jffs2.*\""
+      "          expected_regex: \"blacklist jffs2.*\""
+      "        }"
+      "      }"
+      "    }"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{path:\"/proc/modules\"}}"
+      "      content_entry:{"
+      "        match_type: NONE_MATCH"
+      "        match_criteria: {"
+      "          filter_regex: \"jffs2 .*\""
+      "          expected_regex: \"jffs2 .*\""
+      "        }"
+      "      }"
+      "    }"
+      "  }"
+      "}"
+      "image_scanning:{"
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{files_in_dir:{"
+      "        dir_path:\"/lib/modules/\""
+      "        filename_regex: \"jffs2.ko\""
+      "        recursive: true"
+      "      }}"
+      "      existence:{should_exist: false}"
+      "    }"      
+      "  }"	  
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{files_in_dir:{"
+      "        dir_path:\"/etc/modprobe.d\""
+      "        filename_regex: \".*\\\\.conf\""
+      "        recursive: true"
+      "      }}"
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \"install jffs2 .*\""
+      "          expected_regex: \"install jffs2 /bin/(true|false)\""
+      "        }"
+      "      }"
+      "    }"
+      "    file_checks:{"
+      "      files_to_check:{files_in_dir:{"
+      "        dir_path:\"/etc/modprobe.d\""
+      "        filename_regex: \".*\\\\.conf\""
+      "        recursive: true"
+      "      }}"
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \"blacklist jffs2.*\""
+      "          expected_regex: \"blacklist jffs2.*\""
+      "        }"
+      "      }"
+      "    }"
+      "  }"
+      "}}"
+  }
+}
+
+benchmark_configs: {
+  id: "overlayfs-module-not-available"
+  compliance_note: {
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    title: "Ensure overlayfs kernel module is not available"
+    description:
+      "overlayfs is a Linux filesystem that layers multiple filesystems to create a single "
+      "unified view which allows a user to \"merge\" several mount points into a unified "
+      "filesystem."
+    rationale:
+      "The overlayfs has known CVE's: CVE-2023-32629, CVE-2023-2640, CVE-2023-"
+      "0386. Disabling the overlayfs reduces the local attack surface by removing support for "	
+      "unnecessary filesystem types and mitigates potential risks associated with unauthorized "
+      "execution of setuid files, enhancing the overall system security."
+    remediation:
+      "Run the following script to verify:\n"
+      "- IF - the overlayfs kernel module is available in ANY installed kernel, verify:\n"
+      "• An entry including /bin/true or /bin/false exists in a file within the "
+      "/etc/modprobe.d/ directory\n"
+      "• The module is deny listed in a file within the /etc/modprobe.d/ directory\n"
+      "• The module is not loaded in the running kernel\n"
+      "- IF - the overlayfs kernel module is not available on the system, or pre-compiled into "
+      "the kernel, no additional configuration is necessary"
+    cis_benchmark: {
+      profile_level: 2
+      severity: LOW
+    }
+    scan_instructions:
+      "scan_type_specific:{instance_scanning:{"
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{files_in_dir:{"
+      "        dir_path:\"/lib/modules/\""
+      "        filename_regex: \"overlayfs.ko\""
+      "        recursive: true"
+      "      }}"
+      "      existence:{should_exist: false}"
+      "    }"      
+      "  }"
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{files_in_dir:{"
+      "        dir_path:\"/etc/modprobe.d\""
+      "        filename_regex: \".*\\\\.conf\""
+      "        recursive: true"
+      "      }}"
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \"install overlayfs .*\""
+      "          expected_regex: \"install overlayfs /bin/(true|false)\""
+      "        }"
+      "      }"
+      "    }"
+      "    file_checks:{"
+      "      files_to_check:{files_in_dir:{"
+      "        dir_path:\"/etc/modprobe.d\""
+      "        filename_regex: \".*\\\\.conf\""
+      "        recursive: true"
+      "      }}"
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \"blacklist overlayfs.*\""
+      "          expected_regex: \"blacklist overlayfs.*\""
+      "        }"
+      "      }"
+      "    }"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{path:\"/proc/modules\"}}"
+      "      content_entry:{"
+      "        match_type: NONE_MATCH"
+      "        match_criteria: {"
+      "          filter_regex: \"overlayfs .*\""
+      "          expected_regex: \"overlayfs .*\""
+      "        }"
+      "      }"
+      "    }"
+      "  }"
+      "}"
+      "image_scanning:{"
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{files_in_dir:{"
+      "        dir_path:\"/lib/modules/\""
+      "        filename_regex: \"overlayfs.ko\""
+      "        recursive: true"
+      "      }}"
+      "      existence:{should_exist: false}"
+      "    }"      
+      "  }"	  
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{files_in_dir:{"
+      "        dir_path:\"/etc/modprobe.d\""
+      "        filename_regex: \".*\\\\.conf\""
+      "        recursive: true"
+      "      }}"
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \"install overlayfs .*\""
+      "          expected_regex: \"install overlayfs /bin/(true|false)\""
+      "        }"
+      "      }"
+      "    }"
+      "    file_checks:{"
+      "      files_to_check:{files_in_dir:{"
+      "        dir_path:\"/etc/modprobe.d\""
+      "        filename_regex: \".*\\\\.conf\""
+      "        recursive: true"
+      "      }}"
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \"blacklist overlayfs.*\""
+      "          expected_regex: \"blacklist overlayfs.*\""
+      "        }"
+      "      }"
+      "    }"
+      "  }"
+      "}}"
+  }
+}
+
+
+
+benchmark_configs: {
+  id: "usb_storage-module-not-available"
+  compliance_note: {
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    title: "Ensure usb_storage kernel module is not available"
+    description:
+      "USB storage provides a means to transfer and store files ensuring persistence and "
+      "availability of the files independent of network connection status. Its popularity and utility "
+      "has led to USB-based malware being a simple and common means for network "
+      "infiltration and a first step to establishing a persistent threat within a networked "
+      "environment."
+    rationale:
+      "Restricting USB access on the system will decrease the physical attack surface for a "
+      "device and diminish the possible vectors to introduce malware."
+    remediation:
+      "Run the following script to unload and disable the usb-storage module:\n"
+      "- IF - the usb-storage kernel module is available in ANY installed kernel:\n"
+      "• Create a file ending in .conf with install usb-storage /bin/false in the "
+      "/etc/modprobe.d/ directory\n"
+      "• Create a file ending in .conf with blacklist usb-storage in the "
+      "/etc/modprobe.d/ directory\n"
+      "• Run modprobe -r usb-storage 2>/dev/null; rmmod usb-storage "
+      "2>/dev/null to remove usb-storage from the kernel\n"
+      "- IF - the usb-storage kernel module is not available on the system, or pre-compiled "
+      "into the kernel, no remediation is necessary"
+    cis_benchmark: {
+      profile_level: 2
+      severity: LOW
+    }
+    scan_instructions:
+      "scan_type_specific:{instance_scanning:{"
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{files_in_dir:{"
+      "        dir_path:\"/lib/modules/\""
+      "        filename_regex: \"usb_storage.ko\""
+      "        recursive: true"
+      "      }}"
+      "      existence:{should_exist: false}"
+      "    }"      
+      "  }"
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{files_in_dir:{"
+      "        dir_path:\"/etc/modprobe.d\""
+      "        filename_regex: \".*\\\\.conf\""
+      "        recursive: true"
+      "      }}"
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \"install usb_storage .*\""
+      "          expected_regex: \"install usb_storage /bin/(true|false)\""
+      "        }"
+      "      }"
+      "    }"
+      "    file_checks:{"
+      "      files_to_check:{files_in_dir:{"
+      "        dir_path:\"/etc/modprobe.d\""
+      "        filename_regex: \".*\\\\.conf\""
+      "        recursive: true"
+      "      }}"
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \"blacklist usb_storage.*\""
+      "          expected_regex: \"blacklist usb_storage.*\""
+      "        }"
+      "      }"
+      "    }"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{path:\"/proc/modules\"}}"
+      "      content_entry:{"
+      "        match_type: NONE_MATCH"
+      "        match_criteria: {"
+      "          filter_regex: \"usb_storage .*\""
+      "          expected_regex: \"usb_storage .*\""
+      "        }"
+      "      }"
+      "    }"
+      "  }"
+      "}"
+      "image_scanning:{"
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{files_in_dir:{"
+      "        dir_path:\"/lib/modules/\""
+      "        filename_regex: \"usb_storage.ko\""
+      "        recursive: true"
+      "      }}"
+      "      existence:{should_exist: false}"
+      "    }"      
+      "  }"	  
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{files_in_dir:{"
+      "        dir_path:\"/etc/modprobe.d\""
+      "        filename_regex: \".*\\\\.conf\""
+      "        recursive: true"
+      "      }}"
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \"install usb_storage .*\""
+      "          expected_regex: \"install usb_storage /bin/(true|false)\""
+      "        }"
+      "      }"
+      "    }"
+      "    file_checks:{"
+      "      files_to_check:{files_in_dir:{"
+      "        dir_path:\"/etc/modprobe.d\""
+      "        filename_regex: \".*\\\\.conf\""
+      "        recursive: true"
+      "      }}"
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \"blacklist usb_storage.*\""
+      "          expected_regex: \"blacklist usb_storage.*\""
+      "        }"
+      "      }"
+      "    }"
+      "  }"
+      "}}"
+  }
+}
+
+benchmark_configs: {
+  id: "shm-nodev"
+  compliance_note: {
+    version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:89" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    title: "Ensure nodev option set on /dev/shm partition"
+    description:
+      "The nodev mount option specifies that the filesystem cannot contain special devices."
+    rationale:
+      "Since the /dev/shm filesystem is not intended to support devices, set this option to "
+      "ensure that users cannot attempt to create special devices in /dev/shm partitions."
+    remediation:
+      "- IF - a separate partition exists for /dev/shm.\n"
+      "Edit the /etc/fstab file and add nodev to the fourth field (mounting options) for the "
+      "/dev/shm partition. See the fstab(5) manual page for more information.\n"
+      "Example:\n"
+      "tmpfs /dev/shm tmpfs defaults,rw,nosuid,nodev,noexec,relatime 0 0\n"
+      "Run the following command to remount /dev/shm with the configured options:\n"
+      "# mount -o remount /dev/shm\n"
+      "Note: It is recommended to use tmpfs as the device/filesystem type as /dev/shm is "
+      "used as shared memory space by applications."
+    cis_benchmark: {
+      profile_level: 1
+      severity: LOW
+    }
+    scan_instructions:
+      "scan_type_specific:{instance_scanning:{"
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{path:\"/proc/self/mountinfo\"}}"
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \".* /dev/shm .* - .*\""
+      "          expected_regex: \".* /dev/shm .*nodev.* - .*\""
+      "        }"
+      "      }"
+      "    }"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{"
+      "        path:\"/etc/fstab\"}}"      
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \".*/dev/shm.*\""
+      "          expected_regex: \".*nodev.*\""
+      "        }"
+      "      }"
+      "    }"
+      "  }"
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{path:\"/proc/self/mountinfo\"}}"
+      "      content_entry:{"
+      "        match_type: NONE_MATCH"
+      "        match_criteria: {"
+      "          filter_regex: \".* /dev/shm .* - .*\""
+      "          expected_regex: \".* /dev/shm .* - .*\""
+      "        }"
+      "      }"
+      "    }"
+      "  }"
+      "}"
+      "image_scanning:{"
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{"
+      "        path:\"/etc/fstab\"}}"      
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \".*/dev/shm.*\""
+      "          expected_regex: \".*nodev.*\""
+      "        }"
+      "      }"
+      "    }"
+      "  }"
+      "}}"
+  }
+}
+
+benchmark_configs: {
+  id: "home-nosuid"
+  compliance_note: {
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    title: "Ensure nosuid option set on /home partition"
+    description:
+      "The nosuid mount option specifies that the filesystem cannot contain setuid files."
+    rationale:
+      "Since the /home filesystem is only intended for user file storage, set this option to "
+      "ensure that users cannot create setuid files in /home."
+    remediation:
+      "- IF - a separate partition exists for /home.\n"
+      "Edit the /etc/fstab file and add nosuid to the fourth field (mounting options) for the "
+      "/home partition.\n"
+      "Example:\n"
+      "<device> /home <fstype> defaults,rw,nosuid,nodev,noexec,relatime 0 0\n"
+      "Run the following command to remount /home with the configured options:\n"
+      "# mount -o remount /home"
+    cis_benchmark: {
+      profile_level: 1
+      severity: LOW
+    }
+    scan_instructions:
+      "scan_type_specific:{instance_scanning:{"
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{path:\"/proc/self/mountinfo\"}}"
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \".* /home .* - .*\""
+      "          expected_regex: \".* /home .*nosuid.* - .*\""
+      "        }"
+      "      }"
+      "    }"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{"
+      "        path:\"/etc/fstab\"}}"      
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \".*/home.*\""
+      "          expected_regex: \".*nosuid.*\""
+      "        }"
+      "      }"
+      "    }"
+      "  }"
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{path:\"/proc/self/mountinfo\"}}"
+      "      content_entry:{"
+      "        match_type: NONE_MATCH"
+      "        match_criteria: {"
+      "          filter_regex: \".* /home .* - .*\""
+      "          expected_regex: \".* /home .* - .*\""
+      "        }"
+      "      }"
+      "    }"
+      "  }"
+      "}"
+      "image_scanning:{"
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{"
+      "        path:\"/etc/fstab\"}}"      
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \".*/home.*\""
+      "          expected_regex: \".*nosuid.*\""
+      "        }"
+      "      }"
+      "    }"
+      "  }"
+      "}}"
+  }
+}
+
+
+benchmark_configs: {
+  id: "var-nosuid"
+  compliance_note: {
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    title: "Ensure nosuid option set on /var partition"
+    description:
+      "The nosuid mount option specifies that the filesystem cannot contain setuid files."
+    rationale:
+      "Since the /var filesystem is only intended for variable files such as logs, set this option "
+      "to ensure that users cannot create setuid files in /var."
+    remediation:
+      "- IF - a separate partition exists for /var.\n"
+      "Edit the /etc/fstab file and add nosuid to the fourth field (mounting options) for the "
+      "/var partition.\n"
+      "Example:\n"
+      "<device> /var <fstype> defaults,rw,nosuid,nodev,noexec,relatime 0 0\n"
+      "Run the following command to remount /var with the configured options:\n"
+      "# mount -o remount /var"
+    cis_benchmark: {
+      profile_level: 1
+      severity: LOW
+    }
+    scan_instructions:
+      "scan_type_specific:{instance_scanning:{"
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{path:\"/proc/self/mountinfo\"}}"
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \".* /var .* - .*\""
+      "          expected_regex: \".* /var .*nosuid.* - .*\""
+      "        }"
+      "      }"
+      "    }"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{"
+      "        path:\"/etc/fstab\"}}"      
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \".*/var .*\""
+      "          expected_regex: \".*nosuid.*\""
+      "        }"
+      "      }"
+      "    }"
+      "  }"
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{path:\"/proc/self/mountinfo\"}}"
+      "      content_entry:{"
+      "        match_type: NONE_MATCH"
+      "        match_criteria: {"
+      "          filter_regex: \".* /var .* - .*\""
+      "          expected_regex: \".* /var .* - .*\""
+      "        }"
+      "      }"
+      "    }"
+      "  }"
+      "}"
+      "image_scanning:{"
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{"
+      "        path:\"/etc/fstab\"}}"      
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \".*/var .*\""
+      "          expected_regex: \".*nosuid.*\""
+      "        }"
+      "      }"
+      "    }"
+      "  }"
+      "}}"
+  }
+}
+
+
+benchmark_configs: {
+  id: "var-log-nodev"
+  compliance_note: {
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    title: "Ensure nodev option set on /var/log partition"
+    description:
+      "The nodev mount option specifies that the filesystem cannot contain special devices."
+    rationale:
+      "Since the /var/log filesystem is not intended to support devices, set this option to "
+      "ensure that users cannot create a block or character special devices in /var/log."
+    remediation:
+      "- IF - a separate partition exists for /var/log.\n"
+      "Edit the /etc/fstab file and add nodev to the fourth field (mounting options) for the "
+      "/var/log partition.\n"
+      "Example:\n"
+      "<device> /var/log <fstype> defaults,rw,nosuid,nodev,noexec,relatime 0 0\n"
+      "Run the following command to remount /var/log with the configured options:\n"
+      "# mount -o remount /var/log"
+    cis_benchmark: {
+      profile_level: 1
+      severity: LOW
+    }
+    scan_instructions:
+      "scan_type_specific:{instance_scanning:{"
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{path:\"/proc/self/mountinfo\"}}"
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \".* /var/log .* - .*\""
+      "          expected_regex: \".* /var/log .*nodev.* - .*\""
+      "        }"
+      "      }"
+      "    }"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{"
+      "        path:\"/etc/fstab\"}}"      
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \".*/var/log .*\""
+      "          expected_regex: \".*nodev.*\""
+      "        }"
+      "      }"
+      "    }"
+      "  }"
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{path:\"/proc/self/mountinfo\"}}"
+      "      content_entry:{"
+      "        match_type: NONE_MATCH"
+      "        match_criteria: {"
+      "          filter_regex: \".* /var/log .* - .*\""
+      "          expected_regex: \".* /var/log .* - .*\""
+      "        }"
+      "      }"
+      "    }"
+      "  }"
+      "}"
+      "image_scanning:{"
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{"
+      "        path:\"/etc/fstab\"}}"      
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \".*/var/log .*\""
+      "          expected_regex: \".*nodev.*\""
+      "        }"
+      "      }"
+      "    }"
+      "  }"
+      "}}"
+  }
+}
+
+benchmark_configs: {
+  id: "var-log-nosuid"
+  compliance_note: {
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    title: "Ensure nosuid option set on /var/log partition"
+    description:
+      "The nosuid mount option specifies that the filesystem cannot contain setuid files."
+    rationale:
+      "Since the /var/log filesystem is only intended for log files, set this option to ensure "
+      "that users cannot create setuid files in /var/log."
+    remediation:
+      "- IF - a separate partition exists for /var/log.\n"
+      "Edit the /etc/fstab file and add nosuid to the fourth field (mounting options) for the "
+      "/var/log partition.\n"
+      "Example:\n"
+      "<device> /var/log <fstype> defaults,rw,nosuid,nodev,noexec,relatime 0 0\n"
+      "Run the following command to remount /var/log with the configured options:\n"
+      "# mount -o remount /var/log"
+    cis_benchmark: {
+      profile_level: 1
+      severity: LOW
+    }
+    scan_instructions:
+      "scan_type_specific:{instance_scanning:{"
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{path:\"/proc/self/mountinfo\"}}"
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \".* /var/log .* - .*\""
+      "          expected_regex: \".* /var/log .*nosuid.* - .*\""
+      "        }"
+      "      }"
+      "    }"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{"
+      "        path:\"/etc/fstab\"}}"      
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \".*/var/log .*\""
+      "          expected_regex: \".*nosuid.*\""
+      "        }"
+      "      }"
+      "    }"
+      "  }"
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{path:\"/proc/self/mountinfo\"}}"
+      "      content_entry:{"
+      "        match_type: NONE_MATCH"
+      "        match_criteria: {"
+      "          filter_regex: \".* /var/log .* - .*\""
+      "          expected_regex: \".* /var/log .* - .*\""
+      "        }"
+      "      }"
+      "    }"
+      "  }"
+      "}"
+      "image_scanning:{"
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{"
+      "        path:\"/etc/fstab\"}}"      
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \".*/var/log .*\""
+      "          expected_regex: \".*nosuid.*\""
+      "        }"
+      "      }"
+      "    }"
+      "  }"
+      "}}"
+  }
+}
+
+benchmark_configs: {
+  id: "var-log-noexec"
+  compliance_note: {
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    title: "Ensure noexec option set on /var/log partition"
+    description:
+      "The noexec mount option specifies that the filesystem cannot contain executable binaries."
+    rationale:
+      "Since the /var/log filesystem is only intended for log files, set this option to ensure "
+      "that users cannot run executable binaries from /var/log."
+    remediation:
+      "- IF - a separate partition exists for /var/log.\n"
+      "Edit the /etc/fstab file and add noexec to the fourth field (mounting options) for the "
+      "/var/log partition.\n"
+      "Example:\n"
+      "<device> /var/log <fstype> defaults,rw,nosuid,nodev,noexec,relatime 0 0\n"
+      "Run the following command to remount /var/log with the configured options:\n"
+      "# mount -o remount /var/log"
+    cis_benchmark: {
+      profile_level: 1
+      severity: LOW
+    }
+    scan_instructions:
+      "scan_type_specific:{instance_scanning:{"
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{path:\"/proc/self/mountinfo\"}}"
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \".* /var/log .* - .*\""
+      "          expected_regex: \".* /var/log .*noexec.* - .*\""
+      "        }"
+      "      }"
+      "    }"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{"
+      "        path:\"/etc/fstab\"}}"      
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \".*/var/log .*\""
+      "          expected_regex: \".*noexec.*\""
+      "        }"
+      "      }"
+      "    }"
+      "  }"
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{path:\"/proc/self/mountinfo\"}}"
+      "      content_entry:{"
+      "        match_type: NONE_MATCH"
+      "        match_criteria: {"
+      "          filter_regex: \".* /var/log .* - .*\""
+      "          expected_regex: \".* /var/log .* - .*\""
+      "        }"
+      "      }"
+      "    }"
+      "  }"
+      "}"
+      "image_scanning:{"
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{"
+      "        path:\"/etc/fstab\"}}"      
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \".*/var/log .*\""
+      "          expected_regex: \".*noexec.*\""
+      "        }"
+      "      }"
+      "    }"
+      "  }"
+      "}}"
+  }
+}
+
+benchmark_configs: {
+  id: "separate-partition-var-log-audit"
+  compliance_note: {
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    title: "Ensure separate partition exists for /var/log/audit"
+    description:
+      "The auditing daemon, auditd, stores log data in the /var/log/audit directory."
+    rationale:
+      "The default installation only creates a single / partition. Since the /var/log/audit "
+      "directory contains the audit.log file which can grow quite large, there is a risk of "
+      "resource exhaustion. It will essentially have the whole disk available to fill up and impact "
+      "the system as a whole. In addition, other operations on the system could fill up the disk "
+      "unrelated to /var/log/audit and cause auditd to trigger its space_left_action as "
+      "the disk is full. See man auditd.conf for details.\n"
+      "Configuring /var/log/audit as its own file system allows an administrator to set "
+      "additional mount options such as noexec/nosuid/nodev. These options limit an "
+      "attacker's ability to create exploits on the system. Other options allow for specific "
+      "behavior. See man mount for exact details regarding filesystem-independent and "
+      "filesystem-specific options.\n"
+      "As /var/log/audit contains audit logs, care should be taken to ensure the security "
+      "and integrity of the data and mount point."
+    remediation:
+      "For new installations, during installation create a custom partition setup and specify a "
+      "separate partition for /var/log/audit.\n"
+      "For systems that were previously installed, create a new partition and configure "
+      "/etc/fstab as appropriate."
+    cis_benchmark: {
+      profile_level: 2
+      severity: LOW
+    }
+    scan_instructions:
+      "scan_type_specific:{instance_scanning:{"
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{path:\"/proc/self/mountinfo\"}}"
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \".* /var/log/audit .* - .*\""
+      "          expected_regex: \".* /var/log/audit .* - .*\""
+      "        }"
+      "      }"
+      "    }"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{"
+      "        path:\"/etc/fstab\"}}"      
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \".*/var/log/audit .*\""
+      "          expected_regex: \".*/var/log/audit .*\""
+      "        }"
+      "      }"
+      "    }"
+      "  }"
+      "}"
+      "image_scanning:{"
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{"
+      "        path:\"/etc/fstab\"}}"      
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \".*/var/log/audit .*\""
+      "          expected_regex: \".*/var/log/audit .*\""
+      "        }"
+      "      }"
+      "    }"
+      "  }"
+      "}}"
+  }
+}
+
+benchmark_configs: {
+  id: "var-log-audit-nodev"
+  compliance_note: {
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    title: "Ensure nodev option set on /var/log/audit partition"
+    description:
+      "The nodev mount option specifies that the filesystem cannot contain special devices."
+    rationale:
+      "Since the /var/log/audit filesystem is not intended to support devices, set this option "
+      "to ensure that users cannot create a block or character special devices in"
+      "/var/log/audit."
+    remediation:
+      "- IF - a separate partition exists for /var/log/audit.\n"
+      "Edit the /etc/fstab file and add nodev to the fourth field (mounting options) for the "
+      "/var/log/audit partition.\n"
+      "Example:\n"
+      "<device> /var/log/audit <fstype>\n"
+      "defaults,rw,nosuid,nodev,noexec,relatime 0 0\n"
+      "Run the following command to remount /var/log/audit with the configured options:\n"
+      "# mount -o remount /var/log/audit"
+    cis_benchmark: {
+      profile_level: 1
+      severity: LOW
+    }
+    scan_instructions:
+      "scan_type_specific:{instance_scanning:{"
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{path:\"/proc/self/mountinfo\"}}"
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \".* /var/log/audit .* - .*\""
+      "          expected_regex: \".* /var/log/audit .*nodev.* - .*\""
+      "        }"
+      "      }"
+      "    }"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{"
+      "        path:\"/etc/fstab\"}}"      
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \".*/var/log/audit .*\""
+      "          expected_regex: \".*nodev.*\""
+      "        }"
+      "      }"
+      "    }"
+      "  }"
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{path:\"/proc/self/mountinfo\"}}"
+      "      content_entry:{"
+      "        match_type: NONE_MATCH"
+      "        match_criteria: {"
+      "          filter_regex: \".* /var/log/audit .* - .*\""
+      "          expected_regex: \".* /var/log/audit .* - .*\""
+      "        }"
+      "      }"
+      "    }"
+      "  }"
+      "}"
+      "image_scanning:{"
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{"
+      "        path:\"/etc/fstab\"}}"      
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \".*/var/log/audit .*\""
+      "          expected_regex: \".*nodev.*\""
+      "        }"
+      "      }"
+      "    }"
+      "  }"
+      "}}"
+  }
+}
+
+benchmark_configs: {
+  id: "var-log-audit-nosuid"
+  compliance_note: {
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    title: "Ensure nosuid option set on /var/log/audit partition"
+    description:
+      "The nosuid mount option specifies that the filesystem cannot contain setuid files."
+    rationale:
+      "Since the /var/log/audit filesystem is only intended for variable files such as logs, "
+      "set this option to ensure that users cannot create setuid files in /var/log/audit."
+    remediation:
+      "- IF - a separate partition exists for /var/log/audit.\n"
+      "Edit the /etc/fstab file and add nosuid to the fourth field (mounting options) for the "
+      "/var/log/audit partition.\n"
+      "Example:\n"
+      "<device> /var/log/audit <fstype>\n"
+      "defaults,rw,nosuid,nodev,noexec,relatime 0 0\n"
+      "Run the following command to remount /var/log/audit with the configured options:\n"
+      "# mount -o remount /var/log/audit"
+    cis_benchmark: {
+      profile_level: 1
+      severity: LOW
+    }
+    scan_instructions:
+      "scan_type_specific:{instance_scanning:{"
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{path:\"/proc/self/mountinfo\"}}"
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \".* /var/log/audit .* - .*\""
+      "          expected_regex: \".* /var/log/audit .*nosuid.* - .*\""
+      "        }"
+      "      }"
+      "    }"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{"
+      "        path:\"/etc/fstab\"}}"      
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \".*/var/log/audit .*\""
+      "          expected_regex: \".*nosuid.*\""
+      "        }"
+      "      }"
+      "    }"
+      "  }"
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{path:\"/proc/self/mountinfo\"}}"
+      "      content_entry:{"
+      "        match_type: NONE_MATCH"
+      "        match_criteria: {"
+      "          filter_regex: \".* /var/log/audit .* - .*\""
+      "          expected_regex: \".* /var/log/audit .* - .*\""
+      "        }"
+      "      }"
+      "    }"
+      "  }"
+      "}"
+      "image_scanning:{"
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{"
+      "        path:\"/etc/fstab\"}}"      
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \".*/var/log/audit .*\""
+      "          expected_regex: \".*nosuid.*\""
+      "        }"
+      "      }"
+      "    }"
+      "  }"
+      "}}"
+  }
+}
+
+benchmark_configs: {
+  id: "var-log-audit-noexec"
+  compliance_note: {
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    title: "Ensure noexec option set on /var/log/audit partition"
+    description:
+      "The noexec mount option specifies that the filesystem cannot contain executable binaries."
+    rationale:
+      "Since the /var/log/audit filesystem is only intended for audit logs, set this option to "
+      "ensure that users cannot run executable binaries from /var/log/audit."
+    remediation:
+      "- IF - a separate partition exists for /var/log/audit.\n"
+      "Edit the /etc/fstab file and add noexec to the fourth field (mounting options) for the "
+      "/var/log/audit partition.\n"
+      "Example:\n"
+      "<device> /var/log/audit <fstype>\n"
+      "defaults,rw,nosuid,nodev,noexec,relatime 0 0\n"
+      "Run the following command to remount /var/log/audit with the configured options:\n"
+      "# mount -o remount /var/log/audit"
+    cis_benchmark: {
+      profile_level: 1
+      severity: LOW
+    }
+    scan_instructions:
+      "scan_type_specific:{instance_scanning:{"
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{path:\"/proc/self/mountinfo\"}}"
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \".* /var/log/audit .* - .*\""
+      "          expected_regex: \".* /var/log/audit .*noexec.* - .*\""
+      "        }"
+      "      }"
+      "    }"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{"
+      "        path:\"/etc/fstab\"}}"      
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \".*/var/log/audit .*\""
+      "          expected_regex: \".*noexec.*\""
+      "        }"
+      "      }"
+      "    }"
+      "  }"
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{path:\"/proc/self/mountinfo\"}}"
+      "      content_entry:{"
+      "        match_type: NONE_MATCH"
+      "        match_criteria: {"
+      "          filter_regex: \".* /var/log/audit .* - .*\""
+      "          expected_regex: \".* /var/log/audit .* - .*\""
+      "        }"
+      "      }"
+      "    }"
+      "  }"
+      "}"
+      "image_scanning:{"
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{"
+      "        path:\"/etc/fstab\"}}"      
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \".*/var/log/audit .*\""
+      "          expected_regex: \".*noexec.*\""
+      "        }"
+      "      }"
+      "    }"
+      "  }"
+      "}}"
+  }
+}
+
+benchmark_configs: {
+  id: "apparmor-installed-debian"
+  compliance_note: {
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    title: "Ensure AppArmor is installed"
+    description:
+      "AppArmor provides Mandatory Access Controls."
+    rationale:
+      "Without a Mandatory Access Control system installed only the default Discretionary "
+      "Access Control system will be available."
+    remediation:
+      "Install AppArmor.\n"
+      "# apt install apparmor apparmor-utils"
+    cis_benchmark: {
+      profile_level: 1
+      severity: LOW
+    }
+    scan_instructions:
+      "scan_type_specific:{instance_scanning:{"
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{path:\"/var/lib/dpkg/status\"}}"
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \".*Package: apparmor\""
+      "          expected_regex: \".*Package: apparmor\""
+      "        }"
+      "      }"
+      "    }"
+      "  }"
+      "}"
+      "image_scanning:{"
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{path:\"/var/lib/dpkg/status\"}}"
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \".*Package: apparmor\""
+      "          expected_regex: \".*Package: apparmor\""
+      "        }"
+      "      }"
+      "    }"
+      "  }"
+      "}}"
+  }
+}
+
+benchmark_configs: {
+  id: "apparmor-enabled-bootloader"
+  compliance_note: {
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    title: "Ensure AppArmor is enabled in the bootloader configuration"
+    description:
+      "Configure AppArmor to be enabled at boot time and verify that it has not been "
+      "overwritten by the bootloader boot parameters."
+    rationale:
+      "AppArmor must be enabled at boot time in your bootloader configuration to ensure that "
+      "the controls it provides are not overridden."
+    remediation:
+      "Edit /etc/default/grub and add the apparmor=1 and security=apparmor "
+      "parameters to the GRUB_CMDLINE_LINUX= line\n"
+      "GRUB_CMDLINE_LINUX=\"apparmor=1 security=apparmor\"\n"
+      "Run the following command to update the grub2 configuration:\n"
+      "# update-grub"
+    cis_benchmark: {
+      profile_level: 1
+      severity: LOW
+    }
+    scan_instructions:
+      "scan_type_specific:{instance_scanning:{"
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{path:\"/boot/grub/grub.cfg\"}}"
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \"\\\\s+linux.*\""
+      "          expected_regex: \".*apparmor=1.*\""
+      "        }"
+      "      }"
+      "    }"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{path:\"/boot/grub/grub.cfg\"}}"
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \"\\\\s+linux.*\""
+      "          expected_regex: \".*security=apparmor.*\""
+      "        }"
+      "      }"
+      "    }"
+      "  }"
+      "}"
+      "image_scanning:{"
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{path:\"/boot/grub/grub.cfg\"}}"
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \"\\\\s+linux.*\""
+      "          expected_regex: \".*apparmor=1.*\""
+      "        }"
+      "      }"
+      "    }"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{path:\"/boot/grub/grub.cfg\"}}"
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \"\\\\s+linux.*\""
+      "          expected_regex: \".*security=apparmor.*\""
+      "        }"
+      "      }"
+      "    }"
+      "  }"
+      "}}"
+  }
+}
+
+benchmark_configs: {
+  id: "local-login-warning-configured"
+  compliance_note: {
+    version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:89" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
+    title: "Ensure local login warning banner is configured properly"
+    description:
+      "The contents of the /etc/issue file are displayed to users after login and function as a "
+      "message of the day for authenticated users.\n"
+      "Unix-based systems have typically displayed information about the OS release and "
+      "patch level upon logging in to the system. This information can be useful to developers "
+      "who are developing software for a particular OS platform. If mingetty(8) supports the "
+      "following options, they display operating system information:\n"
+      " - \\\\m - machine architecture\n"
+      " - \\\\r - operating system release\n"
+      " - \\\\s - operating system name\n"
+      " - \\\\v - operating system version"
+    rationale:
+      "Warning messages inform users who are attempting to login to the "
+      "system of their legal status regarding the system and must include the "
+      "name of the organization that owns the system and any monitoring "
+      "policies that are in place. Displaying OS and patch level information "
+      "in login banners also has the side effect of providing detailed system "
+      "information to attackers attempting to target specific exploits of a "
+      "system. Authorized users can easily get this information by running "
+      "the \"uname -a\" command once they have logged in."
+    remediation:
+      "Warning messages inform users who are attempting to login to the system of their legal "
+      "status regarding the system and must include the name of the organization that owns "
+      "the system and any monitoring policies that are in place. Displaying OS and patch level "
+      "information in login banners also has the side effect of providing detailed system "
+      "information to attackers attempting to target specific exploits of a system. Authorized "
+      "users can easily get this information by running the \" uname -a \" command once they "
+      "have logged in."
+    cis_benchmark: {
+      profile_level: 1
+      severity: LOW
+    }
+    scan_instructions:
+      "generic:{"
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{path:\"/etc/issue\"}}"
+      "        content_entry:{"
+      "          match_type: NONE_MATCH"
+      "          match_criteria: {"
+      "            filter_regex: \"((.*\\\\\\\\m.*)|(.*\\\\\\\\r.*)|(.*\\\\\\\\s.*)|(.*\\\\\\\\v.*)|(.*(D|d)ebian.*12.*))\""
+      "            expected_regex: \"((.*\\\\\\\\m.*)|(.*\\\\\\\\r.*)|(.*\\\\\\\\s.*)|(.*\\\\\\\\v.*)|(.*(D|d)ebian.*12.*))\""
+      "          }"
+      "        }"
+      "     }"
+      "  }"
+      "  check_alternatives:{"
+      "	   file_checks:{"
+      "      files_to_check:{single_file:{path:\"/etc/issue.net\"}}"
+      "      existence:{should_exist:false}"
+      "	   }"
+      "  }" 
+      "}"
+  }
+}
+
+benchmark_configs: {
+  id: "remote-login-warning-configured"
+  compliance_note: {
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
+    version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:89" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    title: "Ensure remote login warning banner is configured properly"
+    description:
+      "The contents of the /etc/issue.net file are displayed to users prior to login for remote "
+      "connections from configured services.\n"
+      "Unix-based systems have typically displayed information about the OS release and "
+      "patch level upon logging in to the system. This information can be useful to developers "
+      "who are developing software for a particular OS platform. If mingetty(8) supports the "
+      "following options, they display operating system information:\n"
+      " - \\\\m - machine architecture\n"
+      " - \\\\r - operating system release\n"
+      " - \\\\s - operating system name\n"
+      " - \\\\v - operating system version"
+    rationale:
+      "Warning messages inform users who are attempting to login to the "
+      "system of their legal status regarding the system and must include the "
+      "name of the organization that owns the system and any monitoring "
+      "policies that are in place. Displaying OS and patch level information "
+      "in login banners also has the side effect of providing detailed system "
+      "information to attackers attempting to target specific exploits of a "
+      "system. Authorized users can easily get this information by running "
+      "the \"uname -a\" command once they have logged in."
+    remediation:
+      "Warning messages inform users who are attempting to login to the system of their legal "
+      "status regarding the system and must include the name of the organization that owns "
+      "the system and any monitoring policies that are in place. Displaying OS and patch level "
+      "information in login banners also has the side effect of providing detailed system "
+      "information to attackers attempting to target specific exploits of a system. Authorized "
+      "users can easily get this information by running the \" uname -a \" command once they "
+      "have logged in."
+    cis_benchmark: {
+      profile_level: 1
+      severity: LOW
+    }
+    scan_instructions:
+      "generic:{"
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{path:\"/etc/issue.net\"}}"
+      "        content_entry:{"
+      "          match_type: NONE_MATCH"
+      "          match_criteria: {"
+      "            filter_regex: \"((.*\\\\\\\\m.*)|(.*\\\\\\\\r.*)|(.*\\\\\\\\s.*)|(.*\\\\\\\\v.*)|(.*(D|d)ebian.*12.*))\""
+      "            expected_regex: \"((.*\\\\\\\\m.*)|(.*\\\\\\\\r.*)|(.*\\\\\\\\s.*)|(.*\\\\\\\\v.*)|(.*(D|d)ebian.*12.*))\""
+      "          }"
+      "        }"
+      "     }"
+      "  }"
+      "  check_alternatives:{"
+      "	   file_checks:{"
+      "      files_to_check:{single_file:{path:\"/etc/issue.net\"}}"
+      "      existence:{should_exist:false}"
+      "	   }"
+      "  }" 
+      "}"
+  }
+}
+
+benchmark_configs: {
+  id: "dhcp-server-disabled-debian"
+  compliance_note: {
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    title: "Ensure dhcp server services are not in use"
+    description:
+      "The Dynamic Host Configuration Protocol (DHCP) is a service that allows machines to "
+      "be dynamically assigned IP addresses. There are two versions of the DHCP protocol "
+      "DHCPv4 and DHCPv6. At startup the server may be started for one or the other via the -4 "
+      "or -6 arguments."
+    rationale:
+      "Unless a system is specifically set up to act as a DHCP server, it is recommended that "
+      "this package be removed to reduce the potential attack surface."
+    remediation:
+      "Run the following commands to stop isc-dhcp-server.service and isc-dhcp-"
+      "server6.service and remove the isc-dhcp-server package:\n"
+      "# systemctl stop isc-dhcp-server.service isc-dhcp-server6.service\n"
+      "# apt purge isc-dhcp-server\n"
+      "- OR -\n"
+      "- IF - the isc-dhcp-server package is required as a dependency:\n"
+      "Run the following commands to stop and mask isc-dhcp-server.service and isc-"
+      "dhcp-server6.service:\n"
+      "# systemctl stop isc-dhcp-server.service isc-dhcp-server6.service\n"
+      "# systemctl mask isc-dhcp-server isc-dhcp-server6.service"
+    cis_benchmark: {
+      profile_level: 1
+      severity: LOW
+    }
+    scan_instructions:
+      "scan_type_specific:{"
+      "instance_scanning:{check_alternatives:{"
+      "  file_checks:{"
+      "    files_to_check:{process_path:{proc_name:\"isc-dhcp-server\"}}"
+      "    existence:{should_exist: false}"
+      "  }"
+      "  file_checks:{"
+      "    files_to_check:{files_in_dir:{"
+      "      dir_path:\"/etc/systemd/system\""
+      "      recursive: true"
+      "      filename_regex: \"isc-dhcp-server.service\""
+      "    }}"
+      "    existence:{should_exist: false}"
+      "    non_compliance_msg: \"a config file in /etc/systemd/system enables isc-dhcp-server\""
+      "    file_display_command: \"find /etc/systemd/system -name 'isc-dhcp-server.service'\""
+      "  }"
+      "}}"
+      "image_scanning:{check_alternatives:{"
+      "  file_checks:{"
+      "    files_to_check:{files_in_dir:{"
+      "      dir_path:\"/etc/systemd/system\""
+      "      recursive: true"
+      "      filename_regex: \"isc-dhcp-server.service\""
+      "    }}"
+      "    existence:{should_exist: false}"
+      "    non_compliance_msg: \"a config file in /etc/systemd/system enables isc-dhcp-server\""
+      "    file_display_command: \"find /etc/systemd/system -name 'isc-dhcp-server.service'\""
+      "  }"
+      "}}"
+      "}"
+  }
+}
+
+benchmark_configs: {
+  id: "dns-server-disabled-debian"
+  compliance_note: {
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    title: "Ensure dns server services are not in use"
+    description:
+      "The Domain Name System (DNS) is a hierarchical naming system that maps names to "
+      "IP addresses for computers, services and other resources connected to a network."
+    rationale:
+      "Unless a system is specifically designated to act as a DNS server, it is recommended "
+      "that the package be deleted to reduce the potential attack surface."
+    remediation:
+      "Run the following commands to stop named.service and remove the bind9 package:\n"
+      "# systemctl stop named.service\n"
+      "# apt purge bind9\n"
+      "- OR -\n"
+      "- IF - the bind9 package is required as a dependency:\n"
+      "Run the following commands to stop and mask bind9.service:\n"
+      "# systemctl stop named.service\n"
+      "# systemctl mask named.service\n"
+    cis_benchmark: {
+      profile_level: 1
+      severity: LOW
+    }
+    scan_instructions:
+      "scan_type_specific:{"
+      "instance_scanning:{check_alternatives:{"
+      "  file_checks:{"
+      "    files_to_check:{process_path:{proc_name:\"bind9\"}}"
+      "    existence:{should_exist: false}"
+      "  }"
+      "  file_checks:{"
+      "    files_to_check:{files_in_dir:{"
+      "      dir_path:\"/etc/systemd/system\""
+      "      recursive: true"
+      "      filename_regex: \"bind9.service\""
+      "    }}"
+      "    existence:{should_exist: false}"
+      "    non_compliance_msg: \"a config file in /etc/systemd/system enables bind9\""
+      "    file_display_command: \"find /etc/systemd/system -name 'bind9.service'\""
+      "  }"
+      "}}"
+      "image_scanning:{check_alternatives:{"
+      "  file_checks:{"
+      "    files_to_check:{files_in_dir:{"
+      "      dir_path:\"/etc/systemd/system\""
+      "      recursive: true"
+      "      filename_regex: \"bind9.service\""
+      "    }}"
+      "    existence:{should_exist: false}"
+      "    non_compliance_msg: \"a config file in /etc/systemd/system enables bind9\""
+      "    file_display_command: \"find /etc/systemd/system -name 'bind9.service'\""
+      "  }"
+      "}}"
+      "}"
+  }
+}
+
+benchmark_configs: {
+  id: "dnsmasq-service-disabled"
+  compliance_note: {
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    title: "Ensure dnsmasq services are not in use"
+    description:
+      "dnsmasq is a lightweight tool that provides DNS caching, DNS forwarding and DHCP "
+      "(Dynamic Host Configuration Protocol) services."
+    rationale:
+      "Unless a system is specifically designated to act as a DNS caching, DNS forwarding "
+      "and/or DHCP server, it is recommended that the package be removed to reduce the "
+      "potential attack surface."
+    remediation:
+      "Run the following commands to stop dnsmasq.service and remove dnsmasq package:\n"
+      "# systemctl stop dnsmasq.service\n"
+      "# apt purge dnsmasq\n"
+      "- OR -\n"
+      "- IF - the dnsmasq package is required as a dependency:\n"
+      "Run the following commands to stop and mask the dnsmasq.service:\n"
+      "# systemctl stop dnsmasq.service\n"
+      "# systemctl mask dnsmasq.service"
+    cis_benchmark: {
+      profile_level: 1
+      severity: LOW
+    }
+    scan_instructions:
+      "scan_type_specific:{"
+      "instance_scanning:{check_alternatives:{"
+      "  file_checks:{"
+      "    files_to_check:{process_path:{proc_name:\"dnsmasq\"}}"
+      "    existence:{should_exist: false}"
+      "  }"
+      "  file_checks:{"
+      "    files_to_check:{files_in_dir:{"
+      "      dir_path:\"/etc/systemd/system\""
+      "      recursive: true"
+      "      filename_regex: \"dnsmasq.service\""
+      "    }}"
+      "    existence:{should_exist: false}"
+      "    non_compliance_msg: \"a config file in /etc/systemd/system enables dnsmasq\""
+      "    file_display_command: \"find /etc/systemd/system -name 'dnsmasq.service'\""
+      "  }"
+      "}}"
+      "image_scanning:{check_alternatives:{"
+      "  file_checks:{"
+      "    files_to_check:{files_in_dir:{"
+      "      dir_path:\"/etc/systemd/system\""
+      "      recursive: true"
+      "      filename_regex: \"dnsmasq.service\""
+      "    }}"
+      "    existence:{should_exist: false}"
+      "    non_compliance_msg: \"a config file in /etc/systemd/system enables dnsmasq\""
+      "    file_display_command: \"find /etc/systemd/system -name 'dnsmasq.service'\""
+      "  }"
+      "}}"
+      "}"
+  }
+}
+
+benchmark_configs: {
+  id: "network-fs-service-disabled"
+  compliance_note: {
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    title: " Ensure network file system services are not in use"
+    description:
+      "The Network File System (NFS) is one of the first and most widely distributed file "
+      "systems in the UNIX environment. It provides the ability for systems to mount file "
+      "systems of other servers through the network."
+    rationale:
+      "If the system does not export NFS shares, it is recommended that the nfs-kernel-server "
+      "package be removed to reduce the remote attack surface."
+    remediation:
+      "Run the following command to stop nfs-server.service and remove nfs-kernel-"
+      "server package:\n"
+      "# systemctl stop nfs-server.service\n"
+      "# apt purge nfs-kernel-server\n"
+      "- OR -\n"
+      "- IF - the nfs-kernel-server package is required as a dependency:\n"
+      "Run the following commands to stop and mask the nfs-server.service:\n"
+      "# systemctl stop nfs-server.service\n"
+      "# systemctl mask nfs-server.service"
+    cis_benchmark: {
+      profile_level: 1
+      severity: LOW
+    }
+    scan_instructions:
+      "scan_type_specific:{"
+      "instance_scanning:{check_alternatives:{"
+      "  file_checks:{"
+      "    files_to_check:{process_path:{proc_name:\"nfs-kernel-server\"}}"
+      "    existence:{should_exist: false}"
+      "  }"
+      "  file_checks:{"
+      "    files_to_check:{files_in_dir:{"
+      "      dir_path:\"/etc/systemd/system\""
+      "      recursive: true"
+      "      filename_regex: \"nfs-kernel-server.(service|socket)\""
+      "    }}"
+      "    existence:{should_exist: false}"
+      "    non_compliance_msg: \"a config file in /etc/systemd/system enables nfs-kernel-server\""
+      "    file_display_command: \"find /etc/systemd/system -name 'nfs-kernel-server.service'\""
+      "  }"
+      "}}"
+      "image_scanning:{check_alternatives:{"
+      "  file_checks:{"
+      "    files_to_check:{files_in_dir:{"
+      "      dir_path:\"/etc/systemd/system\""
+      "      recursive: true"
+      "      filename_regex: \"nfs-kernel-server.(service|socket)\""
+      "    }}"
+      "    existence:{should_exist: false}"
+      "    non_compliance_msg: \"a config file in /etc/systemd/system enables nfs-kernel-server\""
+      "    file_display_command: \"find /etc/systemd/system -name 'nfs-kernel-server.service'\""
+      "  }"
+      "}}"
+      "}"
+  }
+}
+
+benchmark_configs: {
+  id: "rpcbind-service-disabled"
+  compliance_note: {
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    title: "Ensure rpcbind services are not in use"
+    description:
+      "The rpcbind utility maps RPC services to the ports on which they listen. RPC "
+      "processes notify rpcbind when they start, registering the ports they are listening on and "
+      "the RPC program numbers they expect to serve. The client system then contacts "
+      "rpcbind on the server with a particular RPC program number. The rpcbind.service "
+      "redirects the client to the proper port number so it can communicate with the requested "
+      "service.\n"
+      "Portmapper is an RPC service, which always listens on tcp and udp 111, and is used to "
+      "map other RPC services (such as nfs, nlockmgr, quotad, mountd, etc.) to their "
+      "corresponding port number on the server. When a remote host makes an RPC call to "
+      "that server, it first consults with portmap to determine where the RPC server is listening."
+    rationale:
+      "A small request (~82 bytes via UDP) sent to the Portmapper generates a large "
+      "response (7x to 28x amplification), which makes it a suitable tool for DDoS attacks. If "
+      "rpcbind is not required, it is recommended to remove rpcbind package to reduce the "
+      "potential attack surface."
+    remediation:
+      "Run the following commands to stop rpcbind.socket and rpcbind.service, and "
+      "remove the rpcbind package:\n"
+      "# systemctl stop rpcbind.socket rpcbind.service\n"
+      "# apt purge rpcbind\n"
+      "- OR -\n"
+      "- IF - the rpcbind package is required as a dependency:\n"
+      "Run the following commands to stop and mask the rpcbind.socket and "
+      "rpcbind.service:\n"
+      "# systemctl stop rpcbind.socket rpcbind.service\n"
+      "# systemctl mask rpcbind.socket rpcbind.service"
+    cis_benchmark: {
+      profile_level: 1
+      severity: LOW
+    }
+    scan_instructions:
+      "scan_type_specific:{"
+      "instance_scanning:{check_alternatives:{"
+      "  file_checks:{"
+      "    files_to_check:{process_path:{proc_name:\"rpcbind\"}}"
+      "    existence:{should_exist: false}"
+      "  }"
+      "  file_checks:{"
+      "    files_to_check:{files_in_dir:{"
+      "      dir_path:\"/etc/systemd/system\""
+      "      recursive: true"
+      "      filename_regex: \"rpcbind.(service|socket)\""
+      "    }}"
+      "    existence:{should_exist: false}"
+      "    non_compliance_msg: \"a config file in /etc/systemd/system enables rpcbind\""
+      "    file_display_command: \"find /etc/systemd/system -name 'rpcbind.service'\""
+      "  }"
+      "}}"
+      "image_scanning:{check_alternatives:{"
+      "  file_checks:{"
+      "    files_to_check:{files_in_dir:{"
+      "      dir_path:\"/etc/systemd/system\""
+      "      recursive: true"
+      "      filename_regex: \"rpcbind.(service|socket)\""
+      "    }}"
+      "    existence:{should_exist: false}"
+      "    non_compliance_msg: \"a config file in /etc/systemd/system enables rpcbind\""
+      "    file_display_command: \"find /etc/systemd/system -name 'rpcbind.service'\""
+      "  }"
+      "}}"
+      "}"
+  }
+}
+
+benchmark_configs: {
+  id: "samba-disabled"
+  compliance_note: {
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
+    version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
+    title: "Ensure samba file server services are not in use"
+    description:
+      "The Samba daemon allows system administrators to configure their Linux systems to "
+      "share file systems and directories with Windows desktops. Samba will advertise the file "
+      "systems and directories via the Server Message Block (SMB) protocol. Windows "
+      "desktop users will be able to mount these directories and file systems as letter drives on "
+      "their systems."
+    rationale:
+      "The Samba daemon allows system administrators to configure their Linux systems to "
+      "share file systems and directories with Windows desktops. Samba will advertise the file "
+      "systems and directories via the Server Message Block (SMB) protocol. Windows "
+      "desktop users will be able to mount these directories and file systems as letter drives on "
+      "their systems."
+    remediation:
+      "Run the following commands to stop smbd.service and remove samba package:\n"
+      "# systemctl stop smbd.service\n"
+      "# apt purge samba\n"
+      "- OR -\n"
+      "- IF - the samba package is required as a dependency:\n"
+      "Run the following commands to stop and mask the smbd.service:\n"
+      "# systemctl stop smbd.service\n"
+      "# systemctl mask smbd.service"
+    cis_benchmark: {
+      profile_level: 1
+      severity: LOW
+    }
+    scan_instructions:
+      "scan_type_specific:{"
+      "instance_scanning:{check_alternatives:{"
+      "  file_checks:{"
+      "    files_to_check:{process_path:{proc_name:\"smbd\"}}"
+      "    existence:{should_exist: false}"
+      "  }"
+      "  file_checks:{"
+      "    files_to_check:{files_in_dir:{"
+      "      dir_path:\"/etc/systemd/system\""
+      "      recursive: true"
+      "      filename_regex: \"smbd.service\""
+      "    }}"
+      "    existence:{should_exist: false}"
+      "    non_compliance_msg: \"a config file in /etc/systemd/system enables smbd\""
+      "    file_display_command: \"find /etc/systemd/system -name 'smbd.service'\""
+      "  }"
+      "}}"
+      "image_scanning:{check_alternatives:{"
+      "  file_checks:{"
+      "    files_to_check:{files_in_dir:{"
+      "      dir_path:\"/etc/systemd/system\""
+      "      recursive: true"
+      "      filename_regex: \"smbd.service\""
+      "    }}"
+      "    existence:{should_exist: false}"
+      "    non_compliance_msg: \"a config file in /etc/systemd/system enables smbd\""
+      "    file_display_command: \"find /etc/systemd/system -name 'smbd.service'\""
+      "  }"
+      "}}"
+      "}"
+  }
+}
+
+benchmark_configs: {
+  id: "tftp-server-service-disabled"
+  compliance_note: {
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    title: "Ensure tftp server services are not in use"
+    description:
+      "Trivial File Transfer Protocol (TFTP) is a simple protocol for exchanging files between "
+      "two TCP/IP machines. TFTP servers allow connections from a TFTP Client for sending "
+      "and receiving files."
+    rationale:
+      "Unless there is a need to run the system as a TFTP server, it is recommended that the "
+      "package be removed to reduce the potential attack surface.\n"
+      "TFTP does not have built-in encryption, access control or authentication. This makes it "
+      "very easy for an attacker to exploit TFTP to gain access to files"
+    remediation:
+      "Run the following commands to stop tftpd-hpa.service, and remove the tftpd-hpa "
+      "package:\n"
+      "# systemctl stop tftpd-hpa.service\n"
+      "# apt purge tftpd-hpa\n"
+      "- OR -\n"
+      "- IF - the tftpd-hpa package is required as a dependency:\n"
+      "Run the following commands to stop and mask tftpd-hpa.service:\n"
+      "# systemctl stop tftpd-hpa.service\n"
+      "# systemctl mask tftpd-hpa.service"
+    cis_benchmark: {
+      profile_level: 1
+      severity: LOW
+    }
+    scan_instructions:
+      "scan_type_specific:{"
+      "instance_scanning:{check_alternatives:{"
+      "  file_checks:{"
+      "    files_to_check:{process_path:{proc_name:\"tftpd-hpa\"}}"
+      "    existence:{should_exist: false}"
+      "  }"
+      "  file_checks:{"
+      "    files_to_check:{files_in_dir:{"
+      "      dir_path:\"/etc/systemd/system\""
+      "      recursive: true"
+      "      filename_regex: \"tftpd-hpa.service\""
+      "    }}"
+      "    existence:{should_exist: false}"
+      "    non_compliance_msg: \"a config file in /etc/systemd/system enables tftpd-hpa\""
+      "    file_display_command: \"find /etc/systemd/system -name 'tftpd-hpa.service'\""
+      "  }"
+      "}}"
+      "image_scanning:{check_alternatives:{"
+      "  file_checks:{"
+      "    files_to_check:{files_in_dir:{"
+      "      dir_path:\"/etc/systemd/system\""
+      "      recursive: true"
+      "      filename_regex: \"tftpd-hpa.service\""
+      "    }}"
+      "    existence:{should_exist: false}"
+      "    non_compliance_msg: \"a config file in /etc/systemd/system enables tftpd-hpa\""
+      "    file_display_command: \"find /etc/systemd/system -name 'tftpd-hpa.service'\""
+      "  }"
+      "}}"
+      "}"
+  }
+}
+
+benchmark_configs: {
+  id: "web-server-service-disabled"
+  compliance_note: {
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    title: "Ensure web server services are not in use"
+    description:
+      "Web servers provide the ability to host web site content."
+    rationale:
+      "Unless there is a local site approved requirement to run a web server service on the "
+      "system, web server packages should be removed to reduce the potential attack surface."
+    remediation:
+      "Run the following commands to stop httpd.socket, httpd.service, and "
+      "nginx.service, and remove apache2 and nginx packages:\n"
+      "# systemctl stop apache2.socket apache2.service nginx.service\n"
+      "# apt purge apache2 nginx\n"
+      "- OR -\n"
+      "- IF - a package is installed and is required for dependencies:\n"
+      "Run the following commands to stop and mask apache2.socket, apache2.service, "
+      "and nginx.service:\n"
+      "# systemctl stop apache2.socket apache2.service nginx.service\n"
+      "# systemctl mask apache2.socket apache2.service nginx.service\n"
+      "Note: Other web server packages may exist. If not required and authorized by local site "
+      "policy, they should also be removed. If the package is required for a dependency, the "
+      "service and socket should be stopped and masked."
+    cis_benchmark: {
+      profile_level: 1
+      severity: LOW
+    }
+    scan_instructions:
+      "scan_type_specific:{"
+      "instance_scanning:{check_alternatives:{"
+      "  file_checks:{"
+      "    files_to_check:{process_path:{proc_name:\"(nginx|apache2)\"}}"
+      "    existence:{should_exist: false}"
+      "  }"
+      "  file_checks:{"
+      "    files_to_check:{files_in_dir:{"
+      "      dir_path:\"/etc/systemd/system\""
+      "      recursive: true"
+      "      filename_regex: \"(nginx|apache2).service\""
+      "    }}"
+      "    existence:{should_exist: false}"
+      "    non_compliance_msg: \"a config file in /etc/systemd/system enables (nginx|apache2)\""
+      "    file_display_command: \"find /etc/systemd/system -name '(nginx|apache2).service'\""
+      "  }"
+      "}}"
+      "image_scanning:{check_alternatives:{"
+      "  file_checks:{"
+      "    files_to_check:{files_in_dir:{"
+      "      dir_path:\"/etc/systemd/system\""
+      "      recursive: true"
+      "      filename_regex: \"(nginx|apache2).service\""
+      "    }}"
+      "    existence:{should_exist: false}"
+      "    non_compliance_msg: \"a config file in /etc/systemd/system enables (nginx|apache2)\""
+      "    file_display_command: \"find /etc/systemd/system -name '(nginx|apache2).service'\""
+      "  }"
+      "}}"
+      "}"
+  }
+}
+
+benchmark_configs: {
+  id: "xinetd-service-disabled"
+  compliance_note: {
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    title: "Ensure xinetd services are not in use"
+    description:
+      "The eXtended InterNET Daemon (xinetd) is an open source super daemon that "
+      "replaced the original inetd daemon. The xinetd daemon listens for well known "
+      "services and dispatches the appropriate daemon to properly respond to service "
+      "requests."
+    rationale:
+      "If there are no xinetd services required, it is recommended that the package be "
+      "removed to reduce the attack surface are of the system."
+    remediation:
+      "Run the following commands to stop xinetd.service, and remove the xinetd "
+      "package:\n"
+      "# systemctl stop xinetd.service\n"
+      "# apt purge xinetd\n"
+      "-OR-\n"
+      "-IF- the xinetd package is required as a dependency:\n"
+      "Run the following commands to stop and mask the xinetd.service:\n"
+      "# systemctl stop xinetd.service\n"
+      "# systemctl mask xinetd.service"
+    cis_benchmark: {
+      profile_level: 1
+      severity: LOW
+    }
+    scan_instructions:
+      "scan_type_specific:{"
+      "instance_scanning:{check_alternatives:{"
+      "  file_checks:{"
+      "    files_to_check:{process_path:{proc_name:\"xinetd\"}}"
+      "    existence:{should_exist: false}"
+      "  }"
+      "  file_checks:{"
+      "    files_to_check:{files_in_dir:{"
+      "      dir_path:\"/etc/systemd/system\""
+      "      recursive: true"
+      "      filename_regex: \"xinetd.service\""
+      "    }}"
+      "    existence:{should_exist: false}"
+      "    non_compliance_msg: \"a config file in /etc/systemd/system enables xinetd\""
+      "    file_display_command: \"find /etc/systemd/system -name 'xinetd.service'\""
+      "  }"
+      "}}"
+      "image_scanning:{check_alternatives:{"
+      "  file_checks:{"
+      "    files_to_check:{files_in_dir:{"
+      "      dir_path:\"/etc/systemd/system\""
+      "      recursive: true"
+      "      filename_regex: \"xinetd.service\""
+      "    }}"
+      "    existence:{should_exist: false}"
+      "    non_compliance_msg: \"a config file in /etc/systemd/system enables xinetd\""
+      "    file_display_command: \"find /etc/systemd/system -name 'xinetd.service'\""
+      "  }"
+      "}}"
+      "}"
+  }
+}
+
+benchmark_configs: {
+  id: "x-server-service-disabled"
+  compliance_note: {
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
+    title: "Ensure X window server services are not in use"
+    description:
+      "The X Window System provides a Graphical User Interface (GUI) where users can have "
+      "multiple windows in which to run programs and various add on. The X Windows system "
+      "is typically used on workstations where users login, but not on servers where users "
+      "typically do not login."
+    rationale:
+      "Unless your organization specifically requires graphical login access via X Windows, "
+      "remove it to reduce the potential attack surface."
+    remediation:
+      "- IF - a Graphical Desktop Manager or X-Windows server is not required and approved "
+      "by local site policy:\n"
+      "Run the following command to remove the X Windows Server package:\n"
+      "# apt purge xserver-common"
+    cis_benchmark: {
+      profile_level: 2
+      severity: LOW
+    }
+    scan_instructions:
+      "generic:{check_alternatives:{"
+      "  file_checks:{"
+      "    files_to_check:{single_file:{path:\"/var/lib/dpkg/status\"}}"
+      "    content_entry:{"
+      "      match_type: NONE_MATCH"
+      "      match_criteria: {"
+      "        filter_regex: \"Package: xserver-common.*\""
+      "        expected_regex: \"Package: xserver-common\""
+      "      }"
+      "    }"
+      "  }"
+      "}}"
+  }
+}
+
+
+benchmark_configs: {
+  id: "ensure-systemd-timesyncd-enabled"
+  compliance_note: {
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
+    title: "Ensure a single time synchronization daemon is in use"
+    description:
+      "systemd-timesyncd is a daemon that has been added for synchronizing the system "
+      "clock across the network"
+    rationale:
+      "systemd-timesyncd needs to be enabled and running in order to synchronize the system "
+      "to a timeserver.\n"
+      "Time synchronization is important to support time sensitive security mechanisms and to "
+      "ensure log files have consistent time records across the enterprise to aid in forensic "
+      "investigations"
+    remediation:
+      "- IF - systemd-timesyncd is in use on the system, run the following commands:\n"
+      "Run the following command to unmask systemd-timesyncd.service:\n"
+      "# systemctl unmask systemd-timesyncd.service\n"
+      "Run the following command to enable and start systemd-timesyncd.service:\n"
+      "# systemctl --now enable systemd-timesyncd.service\n"
+      "- OR -\n"
+      "If another time synchronization service is in use on the system, run the following "
+      "command to stop and mask systemd-timesyncd:\n"
+      "# systemctl --now mask systemd-timesyncd.service"
+    cis_benchmark: {
+      profile_level: 1
+      severity: MEDIUM
+    }
+    scan_instructions:
+      "generic:{check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{path:\"/lib/systemd/systemd-timesyncd\"}}"
+      "      existence:{should_exist:true}"
+      "      non_compliance_msg: \"systemd-timesyncd is not active.\""
+      "    }"
+      "}"
+    "}"
+  }
+}
+
+benchmark_configs: {
+  id: "dccp-module-not-available"
+  compliance_note: {
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    title: "Ensure dccp kernel module is not available"
+    description:
+      "The Datagram Congestion Control Protocol (DCCP) is a transport layer protocol that "
+      "supports streaming media and telephony. DCCP provides a way to gain access to "
+      "congestion control, without having to do it at the application layer, but does not provide "
+      "in-sequence delivery."
+    rationale:
+      "- IF - the protocol is not required, it is recommended that the drivers not be installed to "
+      "reduce the potential attack surface."
+    remediation:
+      "Run the following script to unload and disable the dccp module:\n"
+      "- IF - the dccp kernel module is available in ANY installed kernel:\n"
+      "• Create a file ending in .conf with install dccp /bin/false in the "
+      "/etc/modprobe.d/ directory\n"
+      "• Create a file ending in .conf with blacklist dccp in the /etc/modprobe.d/ "
+      "directory\n"
+      "• Run modprobe -r dccp 2>/dev/null; rmmod dccp 2>/dev/null to remove "
+      "dccp from the kernel\n"
+      "- IF - the dccp kernel module is not available on the system, or pre-compiled into the "
+      "kernel, no remediation is necessary"
+          cis_benchmark: {
+      profile_level: 2
+      severity: LOW
+    }
+    scan_instructions:
+      "scan_type_specific:{instance_scanning:{"
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{files_in_dir:{"
+      "        dir_path:\"/lib/modules/\""
+      "        filename_regex: \"dccp.ko\""
+      "        recursive: true"
+      "      }}"
+      "      existence:{should_exist: false}"
+      "    }"      
+      "  }"
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{files_in_dir:{"
+      "        dir_path:\"/etc/modprobe.d\""
+      "        filename_regex: \".*\\\\.conf\""
+      "        recursive: true"
+      "      }}"
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \"install dccp .*\""
+      "          expected_regex: \"install dccp /bin/(true|false)\""
+      "        }"
+      "      }"
+      "    }"
+      "    file_checks:{"
+      "      files_to_check:{files_in_dir:{"
+      "        dir_path:\"/etc/modprobe.d\""
+      "        filename_regex: \".*\\\\.conf\""
+      "        recursive: true"
+      "      }}"
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \"blacklist dccp.*\""
+      "          expected_regex: \"blacklist dccp.*\""
+      "        }"
+      "      }"
+      "    }"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{path:\"/proc/modules\"}}"
+      "      content_entry:{"
+      "        match_type: NONE_MATCH"
+      "        match_criteria: {"
+      "          filter_regex: \"dccp .*\""
+      "          expected_regex: \"dccp .*\""
+      "        }"
+      "      }"
+      "    }"
+      "  }"
+      "}"
+      "image_scanning:{"
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{files_in_dir:{"
+      "        dir_path:\"/lib/modules/\""
+      "        filename_regex: \"dccp.ko\""
+      "        recursive: true"
+      "      }}"
+      "      existence:{should_exist: false}"
+      "    }"      
+      "  }"	  
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{files_in_dir:{"
+      "        dir_path:\"/etc/modprobe.d\""
+      "        filename_regex: \".*\\\\.conf\""
+      "        recursive: true"
+      "      }}"
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \"install dccp .*\""
+      "          expected_regex: \"install dccp /bin/(true|false)\""
+      "        }"
+      "      }"
+      "    }"
+      "    file_checks:{"
+      "      files_to_check:{files_in_dir:{"
+      "        dir_path:\"/etc/modprobe.d\""
+      "        filename_regex: \".*\\\\.conf\""
+      "        recursive: true"
+      "      }}"
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \"blacklist dccp.*\""
+      "          expected_regex: \"blacklist dccp.*\""
+      "        }"
+      "      }"
+      "    }"
+      "  }"
+      "}}"
+  }
+}
+
+benchmark_configs: {
+  id: "tipc-module-not-available"
+  compliance_note: {
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    title: "Ensure tipc kernel module is not available"
+    description:
+      "The Transparent Inter-Process Communication (TIPC) protocol is designed to provide "
+      "communication between cluster nodes."
+    rationale:
+      "- IF - the protocol is not being used, it is recommended that kernel module not be "
+      "loaded, disabling the service to reduce the potential attack surface."
+    remediation:
+      "Run the following script to unload and disable the tipc module:\n"
+      "- IF - the tipc kernel module is available in ANY installed kernel:\n"
+      "• Create a file ending in .conf with install tipc /bin/false in the "
+      "/etc/modprobe.d/ directory\n"
+      "• Create a file ending in .conf with blacklist tipc in the /etc/modprobe.d/ "
+      "directory\n"
+      "• Run modprobe -r tipc 2>/dev/null; rmmod tipc 2>/dev/null to remove "
+      "tipc from the kernel\n"
+      "- IF - the tipc kernel module is not available on the system, or pre-compiled into the "
+      "kernel, no remediation is necessary"
+    cis_benchmark: {
+      profile_level: 2
+      severity: LOW
+    }
+    scan_instructions:
+      "scan_type_specific:{instance_scanning:{"
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{files_in_dir:{"
+      "        dir_path:\"/lib/modules/\""
+      "        filename_regex: \"tipc.ko\""
+      "        recursive: true"
+      "      }}"
+      "      existence:{should_exist: false}"
+      "    }"      
+      "  }"
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{files_in_dir:{"
+      "        dir_path:\"/etc/modprobe.d\""
+      "        filename_regex: \".*\\\\.conf\""
+      "        recursive: true"
+      "      }}"
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \"install tipc .*\""
+      "          expected_regex: \"install tipc /bin/(true|false)\""
+      "        }"
+      "      }"
+      "    }"
+      "    file_checks:{"
+      "      files_to_check:{files_in_dir:{"
+      "        dir_path:\"/etc/modprobe.d\""
+      "        filename_regex: \".*\\\\.conf\""
+      "        recursive: true"
+      "      }}"
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \"blacklist tipc.*\""
+      "          expected_regex: \"blacklist tipc.*\""
+      "        }"
+      "      }"
+      "    }"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{path:\"/proc/modules\"}}"
+      "      content_entry:{"
+      "        match_type: NONE_MATCH"
+      "        match_criteria: {"
+      "          filter_regex: \"tipc .*\""
+      "          expected_regex: \"tipc .*\""
+      "        }"
+      "      }"
+      "    }"
+      "  }"
+      "}"
+      "image_scanning:{"
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{files_in_dir:{"
+      "        dir_path:\"/lib/modules/\""
+      "        filename_regex: \"tipc.ko\""
+      "        recursive: true"
+      "      }}"
+      "      existence:{should_exist: false}"
+      "    }"      
+      "  }"	  
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{files_in_dir:{"
+      "        dir_path:\"/etc/modprobe.d\""
+      "        filename_regex: \".*\\\\.conf\""
+      "        recursive: true"
+      "      }}"
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \"install tipc .*\""
+      "          expected_regex: \"install tipc /bin/(true|false)\""
+      "        }"
+      "      }"
+      "    }"
+      "    file_checks:{"
+      "      files_to_check:{files_in_dir:{"
+      "        dir_path:\"/etc/modprobe.d\""
+      "        filename_regex: \".*\\\\.conf\""
+      "        recursive: true"
+      "      }}"
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \"blacklist tipc.*\""
+      "          expected_regex: \"blacklist tipc.*\""
+      "        }"
+      "      }"
+      "    }"
+      "  }"
+      "}}"
+  }
+}
+
+benchmark_configs: {
+  id: "rds-module-not-available"
+  compliance_note: {
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    title: "Ensure rds kernel module is not available"
+    description:
+      "The Reliable Datagram Sockets (RDS) protocol is a transport layer protocol designed to "
+      "provide low-latency, high-bandwidth communications between cluster nodes. It was "
+      "developed by the Oracle Corporation."
+    rationale:
+      "- IF - the protocol is not being used, it is recommended that kernel module not be "
+      "loaded, disabling the service to reduce the potential attack surface."
+    remediation:
+      "Run the following script to unload and disable the rds module:\n"
+      "- IF - the rds kernel module is available in ANY installed kernel:\n"
+      "• Create a file ending in .conf with install rds /bin/false in the "
+      "/etc/modprobe.d/ directory\n"
+      "• Create a file ending in .conf with blacklist rds in the /etc/modprobe.d/ "
+      "directory\n"
+      "• Run modprobe -r rds 2>/dev/null; rmmod rds 2>/dev/null to remove "
+      "rds from the kernel\n"
+      "- IF - the rds kernel module is not available on the system, or pre-compiled into the "
+      "kernel, no remediation is necessary"
+    cis_benchmark: {
+      profile_level: 2
+      severity: LOW
+    }
+    scan_instructions:
+      "scan_type_specific:{instance_scanning:{"
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{files_in_dir:{"
+      "        dir_path:\"/lib/modules/\""
+      "        filename_regex: \"rds.ko\""
+      "        recursive: true"
+      "      }}"
+      "      existence:{should_exist: false}"
+      "    }"      
+      "  }"
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{files_in_dir:{"
+      "        dir_path:\"/etc/modprobe.d\""
+      "        filename_regex: \".*\\\\.conf\""
+      "        recursive: true"
+      "      }}"
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \"install rds .*\""
+      "          expected_regex: \"install rds /bin/(true|false)\""
+      "        }"
+      "      }"
+      "    }"
+      "    file_checks:{"
+      "      files_to_check:{files_in_dir:{"
+      "        dir_path:\"/etc/modprobe.d\""
+      "        filename_regex: \".*\\\\.conf\""
+      "        recursive: true"
+      "      }}"
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \"blacklist rds.*\""
+      "          expected_regex: \"blacklist rds.*\""
+      "        }"
+      "      }"
+      "    }"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{path:\"/proc/modules\"}}"
+      "      content_entry:{"
+      "        match_type: NONE_MATCH"
+      "        match_criteria: {"
+      "          filter_regex: \"rds .*\""
+      "          expected_regex: \"rds .*\""
+      "        }"
+      "      }"
+      "    }"
+      "  }"
+      "}"
+      "image_scanning:{"
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{files_in_dir:{"
+      "        dir_path:\"/lib/modules/\""
+      "        filename_regex: \"rds.ko\""
+      "        recursive: true"
+      "      }}"
+      "      existence:{should_exist: false}"
+      "    }"      
+      "  }"	  
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{files_in_dir:{"
+      "        dir_path:\"/etc/modprobe.d\""
+      "        filename_regex: \".*\\\\.conf\""
+      "        recursive: true"
+      "      }}"
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \"install rds .*\""
+      "          expected_regex: \"install rds /bin/(true|false)\""
+      "        }"
+      "      }"
+      "    }"
+      "    file_checks:{"
+      "      files_to_check:{files_in_dir:{"
+      "        dir_path:\"/etc/modprobe.d\""
+      "        filename_regex: \".*\\\\.conf\""
+      "        recursive: true"
+      "      }}"
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \"blacklist rds.*\""
+      "          expected_regex: \"blacklist rds.*\""
+      "        }"
+      "      }"
+      "    }"
+      "  }"
+      "}}"
+  }
+}
+
+benchmark_configs: {
+  id: "sctp-module-not-available"
+  compliance_note: {
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    title: "Ensure sctp kernel module is not available"
+    description:
+      "The Stream Control Transmission Protocol (SCTP) is a transport layer protocol used to "
+      "support message oriented communication, with several streams of messages in one "
+      "connection. It serves a similar function as TCP and UDP, incorporating features of both.\n"
+      "It is message-oriented like UDP, and ensures reliable in-sequence transport of "
+      "messages with congestion control like TCP."
+    rationale:
+      "- IF - the protocol is not being used, it is recommended that kernel module not be "
+      "loaded, disabling the service to reduce the potential attack surface."
+    remediation:
+      "Run the following script to unload and disable the sctp module:\n"
+      "- IF - the sctp kernel module is available in ANY installed kernel:\n"
+      "• Create a file ending in .conf with install sctp /bin/false in the "
+      "/etc/modprobe.d/ directory\n"
+      "• Create a file ending in .conf with blacklist sctp in the /etc/modprobe.d/ "
+      "directory\n"
+      "• Run modprobe -r sctp 2>/dev/null; rmmod sctp 2>/dev/null to remove "
+      "sctp from the kernel\n"
+      "- IF - the sctp kernel module is not available on the system, or pre-compiled into the "
+      "kernel, no remediation is necessary"
+    cis_benchmark: {
+      profile_level: 2
+      severity: LOW
+    }
+    scan_instructions:
+      "scan_type_specific:{instance_scanning:{"
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{files_in_dir:{"
+      "        dir_path:\"/lib/modules/\""
+      "        filename_regex: \"sctp.ko\""
+      "        recursive: true"
+      "      }}"
+      "      existence:{should_exist: false}"
+      "    }"      
+      "  }"
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{files_in_dir:{"
+      "        dir_path:\"/etc/modprobe.d\""
+      "        filename_regex: \".*\\\\.conf\""
+      "        recursive: true"
+      "      }}"
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \"install sctp .*\""
+      "          expected_regex: \"install sctp /bin/(true|false)\""
+      "        }"
+      "      }"
+      "    }"
+      "    file_checks:{"
+      "      files_to_check:{files_in_dir:{"
+      "        dir_path:\"/etc/modprobe.d\""
+      "        filename_regex: \".*\\\\.conf\""
+      "        recursive: true"
+      "      }}"
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \"blacklist sctp.*\""
+      "          expected_regex: \"blacklist sctp.*\""
+      "        }"
+      "      }"
+      "    }"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{path:\"/proc/modules\"}}"
+      "      content_entry:{"
+      "        match_type: NONE_MATCH"
+      "        match_criteria: {"
+      "          filter_regex: \"sctp .*\""
+      "          expected_regex: \"sctp .*\""
+      "        }"
+      "      }"
+      "    }"
+      "  }"
+      "}"
+      "image_scanning:{"
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{files_in_dir:{"
+      "        dir_path:\"/lib/modules/\""
+      "        filename_regex: \"sctp.ko\""
+      "        recursive: true"
+      "      }}"
+      "      existence:{should_exist: false}"
+      "    }"      
+      "  }"	  
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{files_in_dir:{"
+      "        dir_path:\"/etc/modprobe.d\""
+      "        filename_regex: \".*\\\\.conf\""
+      "        recursive: true"
+      "      }}"
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \"install sctp .*\""
+      "          expected_regex: \"install sctp /bin/(true|false)\""
+      "        }"
+      "      }"
+      "    }"
+      "    file_checks:{"
+      "      files_to_check:{files_in_dir:{"
+      "        dir_path:\"/etc/modprobe.d\""
+      "        filename_regex: \".*\\\\.conf\""
+      "        recursive: true"
+      "      }}"
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \"blacklist sctp.*\""
+      "          expected_regex: \"blacklist sctp.*\""
+      "        }"
+      "      }"
+      "    }"
+      "  }"
+      "}}"
+  }
+}
+
+benchmark_configs: {
+  id: "ufw-loopback-traffic-configured"
+  compliance_note: {
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    title: "Ensure ufw loopback traffic is configured"
+    description: 
+      "Configure the loopback interface to accept traffic and configure all other interfaces to "
+      "deny traffic to the loopback network (127.0.0.0/8 for IPv4 and ::1/128 for IPv6)."
+    rationale: 
+      "Loopback traffic is critical to system operation and should only be allowed on the loopback "
+      "interface. Denying loopback traffic on other interfaces is an anti-spoofing measure."
+    remediation: 
+      "To implement the loopback rules, run:\n"
+      "```\n"
+      "# ufw allow in on lo\n"
+      "# ufw allow out on lo\n"
+      "# ufw deny in from 127.0.0.0/8\n"
+      "# ufw deny in from ::1\n"
+      "```\n"
+      "Note: Ensure ufw rules are applied in the correct order to achieve the desired effect."
+    cis_benchmark: {
+      profile_level: 1
+      severity: MEDIUM
+    }
+    scan_instructions:
+      "generic:{check_alternatives:{"
+      "  file_checks:{"
+      "    files_to_check:{single_file:{path:\"/etc/ufw/user.rules\"}}"
+      "    content_entry:{"
+      "      match_type: ALL_MATCH_ANY_ORDER"
+      "      match_criteria:{"
+      "        filter_regex: \".*-i lo.*\""
+      "        expected_regex: \".*ACCEPT.*\""
+      "      }"
+      "    }"
+      "  }"
+      "  file_checks:{"
+      "    files_to_check:{single_file:{path:\"/etc/ufw/user.rules\"}}"
+      "    content_entry:{"
+      "      match_type: ALL_MATCH_ANY_ORDER"
+      "      match_criteria:{"
+      "        filter_regex: \".*-o lo.*\""
+      "        expected_regex: \".*ACCEPT.*\""
+      "      }"
+      "    }"
+      "  }"
+      "  file_checks:{"
+      "    files_to_check:{single_file:{path:\"/etc/ufw/user.rules\"}}"
+      "    content_entry:{"
+      "      match_type: ALL_MATCH_ANY_ORDER"
+      "      match_criteria:{"
+      "        filter_regex: \".*-s 127.0.0.0/8.*\""
+      "        expected_regex: \".*DROP.*\""
+      "      }"
+      "    }"
+      "  }"
+      "  file_checks:{"
+      "    files_to_check:{single_file:{path:\"/etc/ufw/user6.rules\"}}"
+      "    content_entry:{"
+      "      match_type: ALL_MATCH_ANY_ORDER"
+      "      match_criteria:{"
+      "        filter_regex: \".*-s ::1.*\""
+      "        expected_regex: \".*DROP.*\""
+      "      }"
+      "    }"
+      "  }"
+      "}}"
+  }
+}
+
+benchmark_configs: {
+  id: "nftables-loopback-traffic-configured"
+  compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
+    title: "Ensure nftables Loopback Traffic is Configured"
+    description: 
+      "Configuring loopback traffic ensures that internal communication between processes on the machine is "
+      "maintained while preventing spoofing attacks by dropping loopback traffic on other interfaces."
+    rationale: 
+      "The loopback interface is critical for system operation as it handles communication within the system "
+      "itself. Blocking loopback traffic on non-loopback interfaces prevents potential spoofing attacks."
+    remediation: 
+      "Run the following commands to configure loopback traffic rules:\n"
+      "```\n"
+      "# nft add rule inet filter input iif lo accept\n"
+      "# nft add rule inet filter input ip saddr 127.0.0.0/8 counter drop\n"
+      "```\n"
+      "If IPv6 is enabled on the system, run:\n"
+      "```\n"
+      "# nft add rule inet filter input ip6 saddr ::1 counter drop\n"
+      "```"
+    cis_benchmark: {
+      profile_level: 1
+      severity: MEDIUM
+    }
+    scan_instructions:
+      "generic:{check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{path:\"/etc/nftables.rules\"}}"
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria:{"
+      "          filter_regex: \"\\\\s*iif \\\"lo\\\" accept\""
+      "          expected_regex: \"\\\\s*iif \\\"lo\\\" accept\""
+      "        }"
+      "      }"
+      "    }"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{path:\"/etc/nftables.rules\"}}"
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria:{"
+      "          filter_regex: \"\\\\s*ip saddr 127\\\\.0\\\\.0\\\\.0/8 counter.*drop\""
+      "          expected_regex: \"\\\\s*ip saddr 127\\\\.0\\\\.0\\\\.0/8 counter.*drop\""
+      "        }"
+      "      }"
+      "    }"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{path:\"/etc/nftables.rules\"}}"
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria:{"
+      "          filter_regex: \"\\\\s*ip6 saddr ::1 counter.*drop\""
+      "          expected_regex: \"\\\\s*ip6 saddr ::1 counter.*drop\""
+      "        }"
+      "      }"
+      "  }"
+      "}}"
+  }
+}
+
+benchmark_configs: {
+  id: "nftables-default-deny-policy"
+  compliance_note: {
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    title: "Ensure nftables default deny firewall policy"
+    description: 
+      "Base chain policy is the default verdict that will be applied to packets reaching the end of the chain.\n"
+      "Setting a default deny policy helps ensure only explicitly allowed traffic is permitted."
+    rationale: 
+      "There are two policies: accept (Default) and drop. If the policy is set to accept, the "
+      "firewall will accept any packet that is not configured to be denied and the packet will"
+      "continue transversing the network stack.\n"
+      "It is easier to allow list acceptable usage than to deny list unacceptable usage."
+    remediation: 
+      "Run the following command for the base chains with the input, forward, and output "
+      "hooks to implement a default DROP policy:\n"
+      "# nft chain <table family> <table name> <chain name> { policy drop \\\\; }\n"
+      "Example:\n"
+      "# nft chain inet filter input { policy drop \\\\; }\n"
+      "# nft chain inet filter forward { policy drop \\\\; }\n"
+      "# nft chain inet filter output { policy drop \\\\; }\n"
+    cis_benchmark: {
+      profile_level: 1
+      severity: MEDIUM
+    }
+    scan_instructions:
+      "generic:{check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{path:\"/etc/nftables.rules\"}}"
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria:{"
+      "          filter_regex: \"[^#]*hook input\\\\s*.*policy drop;\""
+      "          expected_regex: \"[^#]*hook input\\\\s*.*policy drop;\""
+      "        }"
+      "      }"
+      "    }"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{path:\"/etc/nftables.rules\"}}"
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria:{"
+      "          filter_regex: \"[^#]*hook forward\\\\s*.*policy drop;\""
+      "          expected_regex: \"[^#]*hook forward\\\\s*.*policy drop;\""
+      "        }"
+      "      }"
+      "    }"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{path:\"/etc/nftables.rules\"}}"
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria:{"
+      "          filter_regex: \"[^#]*hook output\\\\s*.*policy drop;\""
+      "          expected_regex: \"[^#]*hook output\\\\s*.*policy drop;\""
+      "        }"
+      "      }"
+      "  }"
+      "}}"
+  }
+}
+
+benchmark_configs: {
+  id: "iptables-packages-installed"
+  compliance_note: {
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    title: "Ensure iptables packages are installed"
+    description: 
+      "iptables is a utility program that allows a system administrator to configure the tables provided by the "
+      "Linux kernel firewall, implemented as different Netfilter modules, and the chains and rules it stores."
+    rationale: 
+      "A method of configuring and maintaining firewall rules is necessary to configure a Host Based Firewall."
+    remediation: 
+      "To install iptables and iptables-persistent, run:\n"
+      "```\n"
+      "# apt install iptables iptables-persistent\n"
+      "```\n"
+      "Ensure proper configuration of firewall rules after installation."
+    cis_benchmark: {
+      profile_level: 1
+      severity: MEDIUM
+    }
+    scan_instructions:
+      "generic:{check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{path:\"/usr/sbin/iptables\"}}"
+      "      existence:{should_exist:true}"
+      "    }"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{path:\"/usr/sbin/iptables-persistent\"}}"
+      "      existence:{should_exist:true}"
+      "    }"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{path:\"/var/lib/dpkg/status\"}}"
+      "        content_entry:{"
+      "          match_type: ALL_MATCH_ANY_ORDER"
+      "          match_criteria:{"
+      "            filter_regex: \"Package: iptables-persistent\""
+      "            expected_regex: \"Package: iptables-persistent\""
+      "          }"
+      "       }"
+      "    }"
+      "}}"
+  }
+}
+
+benchmark_configs: {
+  id: "nftables-not-in-use-with-iptables"
+  compliance_note: {
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    title: "Ensure nftables is not in use with iptable"
+    description:
+      "nftables is a subsystem of the Linux kernel providing filtering and classification of "
+      "network packets/datagrams/frames and is the successor to iptables."
+    rationale: "Running both iptables and nftables may lead to conflict."
+    remediation:
+      "Run the following command to remove nftables:\n"
+      "# apt purge nftables\n"
+      "- OR -\n"
+      "Run the following commands to stop and mask nftables.service:\n"
+      "# systemctl stop nftables.service\n"
+      "# systemctl mask nftables.service"
+    cis_benchmark: {
+      profile_level: 1
+      severity: LOW
+    }
+    scan_instructions:
+      "generic:{"
+      " check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{files_in_dir:{"
+      "         dir_path:\"/etc/systemd/system/\""
+      "        recursive: true"
+      "        filename_regex: \"nftables.service\""
+      "       }"
+      "      }"
+      "      existence:{should_exist:false}"
+      "    }"
+      " }"
+      " check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{files_in_dir:{"
+      "         dir_path:\"/etc/systemd/system/\""
+      "        recursive: true"
+      "        filename_regex: \"nftables.service\""
+      "       }"
+      "      }"
+      "      existence:{should_exist:true}"
+      "    }"
+      "    file_checks:{"
+      "      files_to_check:{files_in_dir:{"
+      "         dir_path:\"/etc/systemd/system/\""
+      "        recursive: true"
+      "        filename_regex: \"iptables.service\""
+      "       }"
+      "      }"
+      "      existence:{should_exist:false}"
+      "    }"
+      " }"
+      "}"
+  }
+}
+
+benchmark_configs: {
+  id: "systemd-timesyncd-enabled"
+  compliance_note: {
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
+    title: " Ensure systemd-timesyncd is enabled and running"
+    description:
+      "systemd-timesyncd is a daemon that has been added for synchronizing the system "
+      "clock across the network"
+    rationale:
+      "systemd-timesyncd needs to be enabled and running in order to synchronize the system "
+      "to a timeserver.\n"
+      "Time synchronization is important to support time sensitive security mechanisms and to "
+      "ensure log files have consistent time records across the enterprise to aid in forensic "
+      "investigations"
+    remediation:
+      "- IF - systemd-timesyncd is in use on the system, run the following commands:\n"
+      "Run the following command to unmask systemd-timesyncd.service:\n"
+      "# systemctl unmask systemd-timesyncd.service\n"
+      "Run the following command to enable and start systemd-timesyncd.service:\n"
+      "# systemctl --now enable systemd-timesyncd.service\n"
+      "- OR -\n"
+      "If another time synchronization service is in use on the system, run the following "
+      "command to stop and mask systemd-timesyncd:\n"
+      "# systemctl --now mask systemd-timesyncd.service"
+    cis_benchmark: {
+      profile_level: 1
+      severity: LOW
+    }
+    scan_instructions:
+      "generic:{check_alternatives:{"
+      "  file_checks:{"
+      "    files_to_check:{single_file:{path:\"/lib/systemd/systemd-timesyncd\"}}"
+      "    existence:{should_exist: true}"
+      "  }"
+      "  file_checks:{"
+      "    files_to_check:{single_file:{path:\"/usr/sbin/chronyd\"}}"
+      "    existence:{should_exist: false}"
+      "  }"
+      "}}"
+  }
+}
+
+benchmark_configs: {
+  id: "ensure-using-single-firewall"
+  compliance_note: {
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
+    title: "Ensure a single firewall configuration utility is in use"
+    description:
+      "In Linux security, employing a single, effective firewall configuration utility ensures that "
+      "only legitimate traffic gets processed, reducing the system’s exposure to potential "
+      "threats. The choice between ufw, nftables, and iptables depends on organizational "
+      "needs."
+    rationale:
+      "Proper configuration of a single firewall utility minimizes cyber threats and protects "
+      "services and data, while avoiding vulnerabilities like open ports or exposed services.\n"
+      "Standardizing on a single tool simplifies management, reduces errors, and fortifies "
+      "security across Linux systems."
+    remediation:
+      "Remediating to a single firewall configuration is a complex process and involves several "
+      "steps. The following provides the basic steps to follow for a single firewall configuration:\n"
+      "1. Determine which firewall utility best fits organizational needs\n"
+      "2. Follow the recommendations in the subsequent subsection for the single firewall "
+      "to be used\n"
+      "Note: Review the firewall subsection overview for the selected firewall to be "
+      "used, it contains a script to "
+      "simplify this process.\n"
+      "3. Return to this recommendation to ensure a single firewall configuration utility is in "
+      "use"
+    cis_benchmark: {
+      profile_level: 1
+      severity: LOW
+    }
+    scan_instructions:
+      "generic:{check_alternatives:{"
+      "  file_checks:{"
+      "    files_to_check:{single_file:{path:\"/usr/sbin/ufw\"}}"
+      "    existence:{should_exist: true}"
+      "  }"
+      "  file_checks:{"
+      "    files_to_check:{single_file:{path:\"/usr/sbin/iptables\"}}"
+      "    existence:{should_exist: false}"
+      "  }"
+      "  file_checks:{"
+      "    files_to_check:{single_file:{path:\"/lib/systemd/system/nftables.service\"}}"
+      "    existence:{should_exist: false}"
+      "  }"  
+      "}"
+      "check_alternatives:{"
+      "  file_checks:{"
+      "    files_to_check:{single_file:{path:\"/usr/sbin/iptables\"}}"
+      "    existence:{should_exist: true}"
+      "  }"
+      "  file_checks:{"
+      "    files_to_check:{single_file:{path:\"/usr/sbin/ufw\"}}"
+      "    existence:{should_exist: false}"
+      "  }"
+      "  file_checks:{"
+      "    files_to_check:{single_file:{path:\"/lib/systemd/system/nftables.service\"}}"
+      "    existence:{should_exist: false}"
+      "  }"
+      "}"
+      "check_alternatives:{"
+      "  file_checks:{"
+      "    files_to_check:{single_file:{path:\"/lib/systemd/system/nftables.service\"}}"
+      "    existence:{should_exist: true}"
+      "  }"
+      "  file_checks:{"
+      "    files_to_check:{single_file:{path:\"/usr/sbin/iptables\"}}"
+      "    existence:{should_exist: false}"
+      "  }"
+      "  file_checks:{"
+      "    files_to_check:{single_file:{path:\"/usr/sbin/ufw\"}}"
+      "    existence:{should_exist: false}"
+      "  }"
+      "}}"
+  }
+}
+
+benchmark_configs: {
+  id: "root-gid-zero-group-check"
+  compliance_note: {
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
+    title: "Ensure group root is the only GID 0 group"
+    description: 
+      "Using GID 0 for the root group helps prevent root group owned files from accidentally "
+      "becoming accessible to non-privileged users."
+    rationale: 
+      "Restricting GID 0 to the root account minimizes the risk of unauthorized access and ensures critical system "
+      "files are properly secured."
+    remediation: 
+      "Run the following commands to ensure the root user and group GID are correctly set and no other users have GID 0:\n"
+      "usermod -g 0 root\n"
+      "groupmod -g 0 root\n"
+      "Remove or reassign GID 0 from any other users."
+    cis_benchmark: {
+      profile_level: 1
+      severity: HIGH
+    }
+    scan_instructions:
+      "generic:{check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{path:\"/etc/group\"}}"
+      "      content_entry:{"
+      "        match_type: NONE_MATCH"
+      "        match_criteria: {"
+      "          filter_regex: \"[^root]:x:0:.*\""
+      "          expected_regex: \".*\""
+      "        }"
+      "      }"
+      "    }"
+      "}}"
+  }
+}
+
+benchmark_configs: {
+  id: "ensure-single-logging-system"
+  compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
+    title: "Ensure only one logging system is in use"
+    description: 
+      "Best practices recommend that a single centralized logging system be used for log "
+      "management, choose a single service either rsyslog - OR - journald to be used as a "
+      "single centralized logging system."
+    rationale: 
+      "Configuring only one logging service either rsyslog - OR - journald avoids "
+      "redundancy, optimizes resources, simplifies configuration and management, and "
+      "ensures consistency."
+    remediation: 
+      "1. Determine whether to use journald - OR - rsyslog depending on site needs\n"
+      "2. Configure systemd-jounald.service\n"
+      "3. Configure only ONE either journald - OR - rsyslog and complete the "
+      "recommendations in that subsection\n"
+      "4. Return to this recommendation to ensure only one logging system is in use"
+    cis_benchmark: {
+      profile_level: 1
+      severity: LOW
+    }
+    scan_instructions: 
+      "generic:{check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{path:\"/lib/systemd/system/systemd-journald.service\"}}"
+      "      existence:{should_exist:true}"
+      "    }"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{path:\"/lib/systemd/system/rsyslog.service\"}}"
+      "      existence:{should_exist:false}"
+      "    }"
+      "}"
+      "check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{path:\"/lib/systemd/system/systemd-journald.service\"}}"
+      "      existence:{should_exist:false}"
+      "    }"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{path:\"/lib/systemd/system/rsyslog.service\"}}"
+      "      existence:{should_exist:true}"
+      "    }"
+      "}}"
+  }
+}
+
+benchmark_configs: {
+  id: "ensure-rsyslog-installed"
+  compliance_note: {
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
+    title: " Ensure rsyslog is installed"
+    description: 
+      "The rsyslog software is recommended in environments where journald does not "
+      "meet operation requirements."
+    rationale: 
+      "The security enhancements of rsyslog such as connection-oriented (i.e. TCP) "
+      "transmission of logs, the option to log to database formats, and the encryption of log "
+      "data en route to a central logging server) justify installing and configuring the package."
+    remediation: 
+      "Run the following command to install rsyslog:\n"
+      "# apt install rsyslog"
+    cis_benchmark: {
+      profile_level: 1
+      severity: MEDIUM
+    }
+    scan_instructions:
+      "generic:{check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{path:\"/lib/systemd/system/rsyslog.service\"}}"
+      "      existence:{should_exist:true}"
+      "    }"
+      "    }"
+      "}"
+  }
+}
+
+benchmark_configs: {
+  id: "ensure-audit-log-mode-configured"
+  compliance_note: {
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
+    title: "Ensure audit log files mode is configured"
+    description: "Audit log files contain information about the system and system activity."
+    rationale:
+      "Access to audit records can reveal system and configuration data to attackers, "
+      "potentially compromising its confidentiality."
+    remediation:
+      "Run the following command to remove more permissive mode than 0640 from audit log "
+      "files:\n"
+      "```"
+      "# [ -f /etc/audit/auditd.conf ] && find \"$(dirname $(awk -F \"=\""
+      "'/^\\\\s*log_file/ {print $2}' /etc/audit/auditd.conf | xargs))\" -type f -perm"
+      "/0137 -exec chmod u-x,g-wx,o-rwx {} +"
+      "```"
+  cis_benchmark: {
+    profile_level: 2
+    severity: MEDIUM
+  }
+  scan_instructions:
+    "generic:{check_alternatives:{"
+    "    file_checks:{"
+    "      files_to_check:{single_file:{path:\"/var/log/audit/audit.log\"}}"
+    "      existence:{should_exist:true}"
+    "    }"
+    "      file_checks:{"
+    "        files_to_check:{single_file:{"
+    "          path:\"/var/log/audit/audit.log\""
+    "        }}"
+    "        permission:{"
+    "          set_bits: 0640"
+    "          clear_bits: 0137"
+    "          bits_should_match: BOTH_SET_AND_CLEAR"
+    "        }"
+    "      }"
+    "    }"
+    "}"
+  }
+}
+
+benchmark_configs: {
+  id: "ensure-audit-log-owner-configured"
+  compliance_note: {
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
+    title: "Ensure audit log files owner is configured"
+    description: "Audit configuration files must be configured with mode 0640 or more restrictive to prevent "
+    "unauthorized access and protect the integrity of the audit system.\n"
+    rationale: "Access to audit records can reveal system and configuration data to attackers, potentially "
+    "compromising its confidentiality."
+    remediation:
+      "Run the following command to configure the audit log files to be group owned by adm:\n"
+      "# find $(dirname $(awk -F\"=\" '/^\\\\s*log_file/ {print $2}'\n"
+      "/etc/audit/auditd.conf | xargs)) -type f \\\\( ! -group adm -a ! -group root \\\\)"
+      "-exec chgrp adm {} +\n"
+      "Run the following command to set the log_group parameter in the audit configuration "
+      "file to log_group = adm:\n"
+      "/etc/audit/auditd.conf\n"
+      "Run the following command to restart the audit daemon to reload the configuration file:\n"
+      "```\n"
+      "# [ -f /etc/audit/auditd.conf ] && find \"$(dirname $(awk -F \"=\""
+      "'/^\\\\s*log_file/ {print $2}' /etc/audit/auditd.conf | xargs))\" -type f ! -user"
+      "root -exec chown root {} +"
+      "```"
+      "# systemctl restart audit"
+  cis_benchmark: {
+    profile_level: 2
+    severity: MEDIUM
+  }
+  scan_instructions:
+    "generic:{check_alternatives:{"
+    "    file_checks:{"
+    "      files_to_check:{single_file:{path:\"/var/log/audit/audit.log\"}}"
+    "      existence:{should_exist:true}"
+    "    }"
+    "      file_checks:{"
+    "        files_to_check:{single_file:{"
+    "          path:\"/var/log/audit/audit.log\""
+    "        }}"
+    "        permission:{"
+    "          user: {name: \"root\" should_own: true}"
+    "        }"
+    "      }"
+    "    }"
+    "}"
+  }
+}
+
+benchmark_configs: {
+  id: "ensure-audit-log-group-configured"
+  compliance_note: {
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
+    title: "Ensure audit log files group owner is configured"
+    description: "Audit log files contain information about the system and system activity."
+    rationale: "Restricting access to audit configuration files ensures that only authorized personnel can modify "
+    "the settings, preventing the disabling of critical auditing or misconfigurations that may impact performance "
+    "or investigation efforts."
+    remediation:
+     "Run the following command to configure the audit log files to be group owned by adm:\n"
+     "```"
+     "# find $(dirname $(awk -F\"=\" '/^\\\\s*log_file/ {print $2}'"
+     "/etc/audit/auditd.conf | xargs)) -type f \\\\( ! -group adm -a ! -group root \\\\)"
+     "-exec chgrp adm {} +"
+     "```"
+     "Run the following command to set the log_group parameter in the audit configuration\n"
+     "file to log_group = adm:\n"
+     "```"
+     "# sed -ri 's/^\\\\s*#?\\\\s*log_group\\\\s*=\\\\s*\\\\S+(\\\\s*#.*)?.*$/log_group = adm\1/'"
+     "/etc/audit/auditd.conf"
+     "```"
+     "Run the following command to restart the audit daemon to reload the configuration file:\n"
+     "```"
+     "# systemctl restart audit\n"
+     "```"
+  cis_benchmark: {
+    profile_level: 2
+    severity: MEDIUM
+  }
+  scan_instructions:
+    "generic:{check_alternatives:{"
+    "    file_checks:{"
+    "      files_to_check:{single_file:{path:\"/var/log/audit/audit.log\"}}"
+    "      existence:{should_exist:true}"
+    "    }"
+    "      file_checks:{"
+    "        files_to_check:{single_file:{"
+    "          path:\"/var/log/audit/audit.log\""
+    "        }}"
+    "        permission:{"
+    "          group: {name: \"adm\" should_own: true}"
+    "        }"
+    "      }"
+    "    }"
+    "}"
+  }
+}
+
+benchmark_configs: {
+  id: "ensure-audit-configuration-files-owner-configured"
+  compliance_note: {
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
+    title: "Ensure audit configuration files owner is configured"
+    description:
+      "Access to the audit configuration files could allow unauthorized personnel to prevent the "
+      "auditing of critical events.\n"
+      "Misconfigured audit configuration files may prevent the auditing of critical events or "
+      "impact the system's performance by overwhelming the audit log. Misconfiguration of the "
+      "audit configuration files may also make it more difficult to establish and investigate "
+      "events relating to an incident."
+    remediation:
+      "Run the following command to set permissions on audit configuration files:\n"
+      "```bash\n"
+      "find /etc/audit/ -type f \\\\( -name '*.conf' -o -name '*.rules' \\\\) -exec chmod u-x,g-wx,o-rwx {} +\n"
+      "```"
+  cis_benchmark: {
+    profile_level: 2
+    severity: MEDIUM
+  }
+  scan_instructions:
+    "generic:{check_alternatives:{"
+    "    file_checks:{"
+    "      files_to_check:{single_file:{path:\"/etc/audit/auditd.conf\"}}"
+    "      existence:{should_exist:true}"
+    "    }"
+    "    file_checks:{"
+    "      files_to_check:{single_file:{"
+    "        path:\"/etc/audit/auditd.conf\""
+    "      }}"
+    "      permission:{"
+    "        user: {name: \"root\" should_own: true}"
+    "      }"
+    "    }"
+    "  }"
+    "}"
+  }
+}
+
+benchmark_configs: {
+  id: "ensure-audit-configuration-files-group-configured"
+  compliance_note: {
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
+    title: "Ensure audit configuration files owner is configured"
+    description:
+      "Access to the audit configuration files could allow unauthorized personnel to prevent the "
+      "auditing of critical events.\n"
+      "Misconfigured audit configuration files may prevent the auditing of critical events or "
+      "impact the system's performance by overwhelming the audit log. Misconfiguration of the "
+      "audit configuration files may also make it more difficult to establish and investigate "
+      "events relating to an incident."
+    remediation:
+      "Run the following command to set permissions on audit configuration files:\n"
+      "```bash\n"
+      "find /etc/audit/ -type f \\\\( -name '*.conf' -o -name '*.rules' \\\\) -exec chmod u-x,g-wx,o-rwx {} +\n"
+      "```"
+  cis_benchmark: {
+    profile_level: 2
+    severity: MEDIUM
+  }
+  scan_instructions:
+    "generic:{check_alternatives:{"
+    "    file_checks:{"
+    "      files_to_check:{single_file:{path:\"/etc/audit/auditd.conf\"}}"
+    "      existence:{should_exist:true}"
+    "    }"
+    "    file_checks:{"
+    "      files_to_check:{single_file:{"
+    "        path:\"/etc/audit/auditd.conf\""
+    "      }}"
+    "      permission:{"
+    "        group: {name: \"root\" should_own: true}"
+    "      }"
+    "    }"
+    "  }"
+    "}"
+  }
+}
+
+benchmark_configs: {
+  id: "rsyslog-log-creation-file-configured"
+  compliance_note: {
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
+    title: "Ensure rsyslog log file creation mode is configured"
+    description:
+      "rsyslog will create logfiles that do not already exist on the system.\n"
+      "The global() configuration object umask, available in rsyslog 8.26.0+, sets the "
+      "rsyslogd process’ umask. If not specified, the system-provided default is used. The "
+      "value given must always be a 4-digit octal number, with the initial digit being zero.\n"
+      "The legacy $umask parameter sets the rsyslogd process' umask. If not specified, the "
+      "system-provided default is used. The value given must always be a 4-digit octal "
+      "number, with the initial digit being zero.\n"
+      "The legacy $FileCreateMode parameter allows the setting of the mode with which "
+      "rsyslogd creates new files. If not specified, the value 0644 is used. The value given "
+      "must always be a 4-digit octal number, with the initial digit being zero. Please note that "
+      "the actual permission depend on rsyslogd process umask. If in doubt, use $umask "
+      "0000 right at the beginning of the configuration file to remove any restrictions.\n"
+      "The legacy $FileCreateMode may be specified multiple times. If so, it specifies the "
+      "creation mode for all selector lines that follow until the next $FileCreateMode "
+      "parameter. Order of lines is vitally important."
+    rationale:
+      "It is important to ensure that log files have the correct permissions to ensure that "
+      "sensitive data is archived and protected."
+    remediation:
+      "Edit either /etc/rsyslog.conf or a dedicated .conf file in /etc/rsyslog.d/ and set "
+      "$FileCreateMode to 0640 or more restrictive:\n"
+      "$FileCreateMode 0640\n"
+      "Example script to create a drop-in configuration file in the default include location:\n"
+      "#!/usr/bin/env bash\n"
+      "{\n"
+      "[ ! -d \"/etc/rsyslog.d/\" ] && mkdir /etc/rsyslog.d/\n"
+      "printf '%s\n' \"\" \"\\\\$FileCreateMode 0640\" >> /etc/rsyslog.d/60-rsyslog.conf\n"
+      "}\n"
+      "Reload the service:\n"
+      "# systemctl reload-or-restart rsyslog"
+    cis_benchmark: {
+      profile_level: 1
+      severity: LOW
+    }
+    scan_instructions:
+      "generic:{"
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{files_in_dir:{"
+      "         dir_path:\"/etc/rsyslog.d/\""
+      "         filename_regex: \"*.conf\""
+      "       }"
+      "      }"
+      "    content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \"\\\\s*\\\\$FileCreateMode [0-9]+\""
+      "          expected_regex: \"\\\\s*\\\\$FileCreateMode 0[640][40]0\""
+      "        }"
+      "      }"
+      "    }"
+      "  }"
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "    files_to_check:{single_file:{"
+      "         path:\"/etc/rsyslog.conf\""
+      "       }"
+      "      }"
+      "    content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \"\\\\s*\\\\$FileCreateMode [0-9]+\""
+      "          expected_regex: \"\\\\s*\\\\$FileCreateMode 0[640][40]0\""
+      "        }"
+      "      }"
+      "    }"
+      "  }"
+      "}"
+  }
+}
+
+benchmark_configs: {
+  id: "ensure-rsyslog-not-receive-log-from-client"
+  compliance_note: {
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
+    title: "Ensure rsyslog is not configured to receive logs from a remote client"
+    description:
+      "rsyslog supports the ability to receive messages from remote hosts, thus acting as a "
+      "log server. Clients should not receive data from other hosts."
+    rationale:
+      "If a client is configured to also receive data, thus turning it into a server, the client "
+      "system is acting outside its operational boundary."
+    remediation:
+      "Unless the system's primary function is to serve as a logfile server , modify the files "
+      "returned by the Audit Procedure and remove the specific lines highlighted by the audit.\n"
+      "Verify none of the following entries are present in the rsyslog configuration.\n"
+      "```\n"
+      "advanced format\n"
+      "module(load=\"imtcp\")\n"
+      "input(type=\"imtcp\" port=\"514\")\n"
+      "deprecated legacy format\n"
+      "$ModLoad imtcp\n"
+      "$InputTCPServerRun\n"
+      "```\n"
+      "Reload the service:\n"
+      "# systemctl reload-or-restart rsyslog"
+    cis_benchmark: {
+      profile_level: 1
+      severity: LOW
+    }
+    scan_instructions:
+      "generic:{"
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{files_in_dir:{"
+      "         dir_path:\"/etc/rsyslog.d/\""
+      "         filename_regex: \"*.conf\""
+      "       }"
+      "      }"
+      "    content_entry:{"
+      "        match_type: NONE_MATCH"
+      "        match_criteria: {"
+      "          filter_regex: \"[^#]\\\\s*input(type=\\\"imtcp\\\" port=\\\"514\\\")\""
+      "          expected_regex: \".*\""
+      "        }"
+      "      }"
+      "  }"
+      "    file_checks:{"
+      "      files_to_check:{files_in_dir:{"
+      "         dir_path:\"/etc/rsyslog.d/\""
+      "         filename_regex: \"*.conf\""
+      "       }"
+      "      }"
+      "    content_entry:{"
+      "        match_type: NONE_MATCH"
+      "        match_criteria: {"
+      "          filter_regex: \"[^#]\\\\s*module(load=\\\"imtcp\\\")\""
+      "          expected_regex: \".*\""
+      "        }"
+      "      }"
+      "  }"
+      "}"
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{"
+      "           path:\"/etc/rsyslog.conf\""
+      "         }"
+      "        }"
+      "      content_entry:{"
+      "          match_type: ALL_MATCH_ANY_ORDER"
+      "          match_criteria: {"
+      "            filter_regex: \"[^#]\\\\s*input(type=\\\"imtcp\\\" port=\\\"514\\\")\""
+      "          expected_regex: \".*\""
+      "          }"
+      "        }"
+      "      }"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{"
+      "           path:\"/etc/rsyslog.conf\""
+      "        }"
+      "      }"
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \"[^#]\\\\s*module(load=\\\"imtcp\\\")\""
+      "          expected_regex: \".*\""
+      "        }"
+      "      }"
+      "    }"
+      "  }"
+      "}"
+  }
+}
+benchmark_configs: {
+  id: "etc-passwd-passwords-not-empty"
+  compliance_note: {
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
+    title: " Ensure /etc/shadow password fields are not empty"
+    description: 
+      "An account with an empty password field means that anybody may log in as that user "
+      "without providing a password."
+    rationale: 
+      "All accounts must have passwords or be locked to prevent the account from being used "
+      "by an unauthorized user."
+    remediation: 
+      "If any accounts in the /etc/shadow file do not have a password, run the following "
+      "command to lock the account until it can be determined why it does not have a "
+      "password:\n"
+      "# passwd -l <username>\n"
+      "Also, check to see if the account is logged in and investigate what it is being used for to "
+      "determine if it needs to be forced off."
+    cis_benchmark: {
+      profile_level: 1
+      severity: HIGH
+    }
+    scan_instructions:
+      "generic:{check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{path:\"/etc/shadow\"}}"
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \".*:.*:.*\""
+      "          expected_regex: \".*\""
+      "        }"
+      "      }"
+      "    }"
+      "}}"
+  }
+}
+
+benchmark_configs: {
+  id: "ensure-apparmor-profiles-enforce-complain"
+  compliance_note: {
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    title: "Ensure all AppArmor Profiles are in enforce or complain mode"
+    description:
+      "AppArmor profiles define what resources applications are able to access."
+    rationale:
+      "Security configuration requirements vary from site to site.\n"
+      "Some sites may mandate a policy that is stricter than the default policy, which is perfectly acceptable.\n"
+      "This item is intended to ensure that any policies that exist on the system are activated."
+    remediation:
+      "Run the following command to set all profiles to enforce mode: \n"
+      "```\n"
+      "# enforce /etc/apparmor.d/*\n"
+      "```\n "
+      "Any unconfined processes may need to have a profile created or activated for them and then be restarted."
+    cis_benchmark: {
+      profile_level: 2
+      severity: LOW
+    }
+    scan_instructions:
+      "scan_type_specific:{"
+      "    instance_scanning:{"
+      "        check_alternatives:{"
+      "            file_checks:{"
+      "                files_to_check:{single_file:{path: \"/sys/kernel/security/apparmor/profiles\"}}"
+      "                content_entry:{"
+      "                    match_type: ALL_MATCH_ANY_ORDER"
+      "                    match_criteria:{"
+      "                        filter_regex: \".*\\\\(\\\\w+\\\\)\""
+      "                        expected_regex: \".*\\\\(enforce|complain\\\\)\""
+      "                    }"
+      "                }"
+      "            }"
+      "        }"
+      "    }"
+      "}"
+  }
+}
+
+benchmark_configs: {
+  id: "ensure-local-interactive-user-home-dir-configured"
+  compliance_note: {
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
+    title: "Ensure local interactive user home directories are configured"
+    description:
+      "The user home directory is space defined for the particular user to set local environment "
+      "variables and to store personal files. While the system administrator can establish "
+      "secure permissions for users' home directories, the users can easily override these.\n"
+      "Users can be defined in /etc/passwd without a home directory or with a home directory "
+      "that does not actually exist."
+    rationale:
+      "Since the user is accountable for files stored in the user home directory, the user must "
+      "be the owner of the directory. Group or world-writable user home directories may enable "
+      "malicious users to steal or modify other users' data or to gain another user's system "
+      "privileges. If the user's home directory does not exist or is unassigned, the user will be "
+      "placed in \"/\" and will not be able to write any files or have local environment variables "
+      "set."
+    remediation:
+      "If a local interactive users' home directory is undefined and/or doesn't exist, follow local "
+      "site policy and perform one of the following:\n"
+      "• Lock the user account\n"
+      "• Remove the user from the system\n"
+      "• create a directory for the user. If undefined, edit /etc/passwd and add the "
+      "absolute path to the directory to the last field of the user.\n"
+      "Run the following script to:\n"
+      "• Remove excessive permissions from local interactive users home directories\n"
+      "• Update the home directory's owner"
+    cis_benchmark: {
+      profile_level: 1
+      severity: LOW
+    }
+    scan_instructions:
+      "generic:{check_alternatives:{"        
+      "  file_checks:{"
+      "    files_to_check:{single_file:{path:\"$home\"}}"
+      "    repeat_config: {type: FOR_EACH_USER_WITH_LOGIN"
+      "      opt_out: {wildcard: \"$home\", value: \"/bin\"}}"
+      "    permission:{"
+      "      set_bits: 0700"
+      "      bits_should_match: BOTH_SET_AND_CLEAR"
+      "      user: {name: \"$user\" should_own: true}"
+      "    }"
+      "  }"
+      "  file_checks:{"
+      "    files_to_check:{single_file:{path:\"$home\"}}"
+      "    repeat_config: {type: FOR_EACH_USER_WITH_LOGIN}"
+      "    existence:{should_exist:true}"
+      "  }"
+      "}}"
+  }
+}
+
+benchmark_configs: {
+  id: "ensure-audit-log-dir-mode-configured"
+  compliance_note: {
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
+    title: "Ensure the audit log file directory mode is configured"
+    description: "The audit log directory contains audit log files."
+    rationale:
+      "Audit information includes all information including: audit records, audit settings and "
+      "audit reports. This information is needed to successfully audit system activity. This "
+      "information must be protected from unauthorized modification or deletion. If this "
+      "information were to be compromised, forensic analysis and discovery of the true source "
+      "of potentially malicious system activity is impossible to achieve."
+    remediation:
+      "Run the following command to configure the audit log directory to have a mode of "
+      "\"0750\" or less permissive:\n"
+      "```"
+      "# chmod g-w,o-rwx \"$(dirname \"$(awk -F= '/^\\\\s*log_file\\\\s*/{print $2}'"
+      "/etc/audit/auditd.conf | xargs)\")\""
+      "```"
+    cis_benchmark: {
+      profile_level: 1
+      severity: LOW
+    }
+    scan_instructions:
+      "generic:{check_alternatives:{"
+      "  file_checks:{"
+      "    files_to_check:{single_file:{path:\"/var/log/audit/audit.log\"}}"
+      "    permission:{"
+      "      clear_bits: 0133"
+      "    }"
+      "  }"
+      "}}"
+  }
+}
+
+benchmark_configs: {
+  id: "ufw-open-ports-rules-configured"
+  compliance_note: {
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    title: "Ensure ufw is uninstalled or disabled with nftables"
+    description: 
+      "Services and ports can be accepted or explicitly rejected."
+    rationale: 
+      "To reduce the attack surface of a system, all services and ports should be blocked "
+      "unless required.\n"
+      "• Any ports that have been opened on non-loopback addresses need firewall rules "
+      "to govern traffic.\n"
+      "• Without a firewall rule configured for open ports, the default firewall policy will "
+      "drop all packets to these ports.\n"
+      "• Required ports should have a firewall rule created to allow approved connections "
+      "in accordance with local site policy.\n"
+      "• Unapproved ports should have an explicit deny rule created."
+    remediation: 
+      "For each port identified in the audit which does not have a firewall rule, evaluate the "
+      "service listening on the port and add a rule for accepting or denying inbound "
+      "connections in accordance with local site policy:\n"
+      "Examples:\n"
+      "```\n"
+      "# ufw allow in <port>/<tcp or udp protocol>\n"
+      "# ufw deny in <port>/<tcp or udp protocol>\n"
+      "```\n"
+      "Note: Examples create rules for from any, to any. More specific rules should be "
+      "concentered when allowing inbound traffic e.g only traffic from this network.\n"
+      "Example to allow traffic on port 443 using the tcp protocol from the 192.168.1.0 network:\n"
+      "```\n"
+      "ufw allow from 192.168.1.0/24 to any proto tcp port 443\n"
+      "```"
+    cis_benchmark: {
+      profile_level: 1
+      severity: MEDIUM
+    }
+    scan_instructions:
+      "generic:{check_alternatives:{"
+      "  file_checks:{"
+      "    files_to_check:{single_file:{path:\"/etc/ufw/user.rules\"}}"
+      "    repeat_config: {type: FOR_EACH_OPEN_IPV4_PORT}"      
+      "    content_entry:{"
+      "      match_type: ALL_MATCH_ANY_ORDER"
+      "      match_criteria: {"
+      "        filter_regex: \".*--dport $port.*\""
+      "        expected_regex: \"\\\\s*[^#].*--dport $port.*\""
+      "      }"
+      "    }"
+      "  }"
+      "  file_checks:{"
+      "    files_to_check:{single_file:{path:\"/etc/ufw/user6.rules\"}}"
+      "    repeat_config: {type: FOR_EACH_OPEN_IPV6_PORT}"      
+      "    content_entry:{"
+      "      match_type: ALL_MATCH_ANY_ORDER"
+      "      match_criteria: {"
+      "        filter_regex: \".*--dport $port.*\""
+      "        expected_regex: \"\\\\s*[^#].*--dport $port.*\""
+      "      }"
+      "    }"
+      "  }"
+      "}}"
+  }
+}
+
+benchmark_configs: {
+  id: "iptables-open-ports-rules-configured"
+  compliance_note: {
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    title: "Ensure iptables firewall rules exist for all open ports"
+    description: 
+      "Any ports that have been opened on non-loopback addresses need firewall rules to"
+      "govern traffic."
+    rationale: 
+      "Without a firewall rule configured for open ports default firewall policy will drop all"
+      "packets to these ports."
+    remediation: 
+      "For each port identified in the audit which does not have a firewall rule establish a"
+      "proper rule for accepting inbound connections:"
+      "# iptables -A INPUT -p <protocol> --dport <port> -m state --state NEW -j ACCEPT"
+    cis_benchmark: {
+      profile_level: 1
+      severity: MEDIUM
+    }
+    scan_instructions:
+      "generic:{check_alternatives:{"
+      "  file_checks:{"
+      "    files_to_check:{single_file:{path:\"/etc/iptables/rules.v4\"}}"
+      "    repeat_config: {type: FOR_EACH_OPEN_IPV4_PORT}"      
+      "    content_entry:{"
+      "      match_type: ALL_MATCH_ANY_ORDER"
+      "      match_criteria: {"
+      "        filter_regex: \".*--dport $port.*\""
+      "        expected_regex: \"[^#].*--dport $port.*\""
+      "      }"
+      "    }"
+      "  }"
+      "}}"
+  }
+}
+
+benchmark_configs: {
+  id: "ip6tables-open-ports-rules-configured"
+  compliance_note: {
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    title: "Ensure ip6tables firewall rules exist for all open ports"
+    description: 
+      "Any ports that have been opened on non-loopback addresses need firewall rules to"
+      "govern traffic."
+    rationale: 
+      "Without a firewall rule configured for open ports default firewall policy will drop all"
+      "packets to these ports."
+    remediation: 
+      "For each port identified in the audit which does not have a firewall rule establish a"
+      "proper rule for accepting inbound connections:\n"
+      "# ip6tables -A INPUT -p <protocol> --dport <port> -m state --state NEW -j ACCEPT"
+    cis_benchmark: {
+      profile_level: 1
+      severity: MEDIUM
+    }
+    scan_instructions:
+      "generic:{check_alternatives:{"
+      "  file_checks:{"
+      "    files_to_check:{single_file:{path:\"/etc/iptables/rules.v6\"}}"
+      "    repeat_config: {type: FOR_EACH_OPEN_IPV6_PORT}"      
+      "    content_entry:{"
+      "      match_type: ALL_MATCH_ANY_ORDER"
+      "      match_criteria: {"
+      "        filter_regex: \".*--dport $port.*\""
+      "        expected_regex: \"[^#].*--dport $port.*\""
+      "      }"
+      "    }"
+      "  }"
+      "}}"
+  }
+}
+
+benchmark_configs: {
+  id: "disable-gnome-automount-removable-media"
+  compliance_note: {
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }	
+    title: "Ensure GDM disabling automatic mounting of removable media is disabled"
+    description: 
+        "By default GNOME automatically mounts removable media when inserted as a "
+	"convenience to the user."
+    rationale: 
+        "With automounting enabled anyone with physical access could attach a USB drive or "
+	"disc and have its contents available in system even if they lacked permissions to mount"
+	"it themselves."
+    remediation: 
+        "- IF - A user profile exists run the following commands to ensure automatic mounting is "
+	"disabled:\n"
+	"```\n"
+	"# gsettings set org.gnome.desktop.media-handling automount false\n"
+	"# gsettings set org.gnome.desktop.media-handling automount-open false\n"
+	"Note:\n"
+	"• gsettings commands in this section MUST be done from a command window "
+	"on a graphical desktop or an error will be returned.\n"
+	"• The system must be restarted after all gsettings configurations have been set "
+	"in order for CIS-CAT Assessor to appropriately assess.\n"
+	"• If the dconf database is not updating correctly due to umask requirements "
+	"contain in the benchmark, then use (umask 0022 && gsetting set)\n"
+	"commands from above to temporarily set umask ensuring that any files or "
+	"directories created by gsettings will have the required permissions.\n"
+	"- OR/IF - A user profile does not exist:\n"
+	"1. Create a file /etc/dconf/db/local.d/00-media-automount with following\n"
+	"content:\n"
+	"```\n"
+	"[org/gnome/desktop/media-handling]\n"
+	"automount=false\n"
+	"automount-open=false\n"
+	"```"
+    cis_benchmark: {
+      profile_level: 1
+      severity: MEDIUM
+    }
+    scan_instructions:
+      "generic:{check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{path:\"/etc/dconf/db/local.d/locks/00-media-automount\"}}"
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \"automount=false\\\\s*\""
+      "          expected_regex: \"automount=false\\\\s*\""
+      "        }"
+      "      }"
+      "    }"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{path:\"/etc/dconf/db/local.d/locks/00-media-automount\"}}"
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \"automount-open=false\\\\s*\""
+      "          expected_regex: \"automount-open=false\\\\s*\""
+      "        }"
+      "      }"
+      "    }"
+      "}}"
+  }
+}
+
+benchmark_configs: {
+  id: "ensure-latest-libpam-installed"
+  compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
+    title: "Ensure libpam-modules is installed"
+    description:
+      "Updated versions of PAM include additional functionality"
+    rationale:
+      "To ensure the system has full functionality and access to the options covered by this "
+      "Benchmark the latest version of libpam-runtime should be installed on the system"
+    remediation:
+      "- IF - the version of libpam-runtime on the system is less that version 1.5.2-6:\n"
+      "Run the following command to update to the latest version of PAM:\n"
+      "```\n"
+      "# apt upgrade libpam-runtime\n"
+      "```"
+    cis_benchmark: {
+      profile_level: 1
+      severity: MEDIUM
+    }
+    scan_instructions:
+      "generic:{check_alternatives:{"
+      "  file_checks:{"
+      "    files_to_check:{single_file:{path:\"/var/lib/dpkg/status\"}}"
+      "    content_entry:{"
+      "	     delimiter: \"\\n\\n\""
+      "      match_type: ALL_MATCH_ANY_ORDER"
+      "      match_criteria: {"
+      "        filter_regex: \"Package: libpam-runtime.*\""
+      "        expected_regex: \"(?m).*Version: (\\\\S*)\""
+      "        group_criteria:{"
+      "          group_index: 1"
+      "          type: VERSION_GREATER_THAN"
+      "          version: \"1.5.2-5\"" 
+      "        }"
+      "      }"
+      "    }"
+      "  }"
+      "}}"
+  }
+}

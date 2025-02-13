@@ -36,6 +36,10 @@ import (
 
 const maxTraversalDepth = 100
 
+// PipelineToken is a wildcard token value to be used in scan instructions which will
+// be replaced with the previous check result at runtime.
+const PipelineToken = "%%pipeline%%"
+
 var (
 	procDirMatcher     = regexp.MustCompile(`^\d+$`)
 	procEnvironMatcher = regexp.MustCompile("^(.*)=(.*)$")
@@ -60,10 +64,53 @@ func ApplyOptOutConfig(fileSet *ipb.FileSet, config *apb.OptOutConfig) {
 		append(fileSet.GetFilesInDir().GetOptOutPathRegexes(), config.GetTraversalOptoutRegexes()...)
 }
 
+// ApplyReplacementConfig applies the path replacement settings from a
+// ReplacementConfig to a FileSet.
+func ApplyReplacementConfig(fileSet *ipb.FileSet, config *apb.ReplacementConfig) {
+	if config == nil {
+		return
+	}
+	for prefix, replacement := range config.PathPrefixReplacements {
+		applyPathPrefixReplacement(fileSet, prefix, replacement)
+	}
+}
+
+// ApplyPipelineTokenReplacement replaces the File Path if the wildcard is set
+func ApplyPipelineTokenReplacement(fileSet *ipb.FileSet, prvRes string) {
+	if fileSet.GetSingleFile() != nil {
+
+		if fileSet.GetSingleFile().Path == PipelineToken {
+			fileSet.GetSingleFile().Path = prvRes
+		}
+	}
+}
+
+func applyPathPrefixReplacement(fileSet *ipb.FileSet, prefix, replacement string) {
+	switch {
+	case fileSet.GetSingleFile() != nil:
+		fileSet.GetSingleFile().Path = replacePrefix(fileSet.GetSingleFile().GetPath(), prefix, replacement)
+	case fileSet.GetFilesInDir() != nil:
+		fileSet.GetFilesInDir().DirPath = replacePrefix(fileSet.GetFilesInDir().GetDirPath(), prefix, replacement)
+	}
+}
+
+func replacePrefix(str, prefix, replacement string) string {
+	if !strings.HasSuffix(prefix, "/") {
+		prefix += "/"
+	}
+	if !strings.HasSuffix(replacement, "/") {
+		replacement += "/"
+	}
+	if !strings.HasPrefix(str, prefix) {
+		return str
+	}
+	return replacement + strings.TrimPrefix(str, prefix)
+}
+
 // WalkFunc is the type of the function called by WalkFiles to visit each file
 // or directory in the FileSet. If the function returns an error, WalkFiles
 // stops and returns the same error.
-type WalkFunc func(path string, isDir bool) error
+type WalkFunc func(path string, isDir bool, traversingDir bool) error
 
 // WalkFiles calls walkFunc for each file described by the provided FileSet.
 func WalkFiles(ctx context.Context, fileSet *ipb.FileSet, fs scanapi.Filesystem, timeout time.Time, walkFunc WalkFunc) error {
@@ -72,7 +119,7 @@ func WalkFiles(ctx context.Context, fileSet *ipb.FileSet, fs scanapi.Filesystem,
 	}
 	switch {
 	case fileSet.GetSingleFile() != nil:
-		return walkFunc(fileSet.GetSingleFile().GetPath(), false)
+		return walkFunc(fileSet.GetSingleFile().GetPath(), false, false)
 	case fileSet.GetFilesInDir() != nil:
 		f := fileSet.GetFilesInDir()
 		filenameRegex, optOutPathRegexes, err := createFilterRegexes(f)
@@ -85,7 +132,7 @@ func WalkFiles(ctx context.Context, fileSet *ipb.FileSet, fs scanapi.Filesystem,
 		// Walk the root directory first (unless it's filtered out).
 		matchesRegex := filenameRegex == nil || filenameRegex.MatchString(path.Base(f.GetDirPath()))
 		if !f.GetFilesOnly() && matchesRegex {
-			if err := walkFunc(f.GetDirPath(), true); err != nil {
+			if err := walkFunc(f.GetDirPath(), true, true); err != nil {
 				return err
 			}
 		}
@@ -179,7 +226,7 @@ func walkFilesInDir(opts *walkFilesInDirOptions) error {
 		skipFile := !c.GetIsDir() && opts.dirsOnly
 		skipSymlink := c.GetIsSymlink() && opts.skipSymlinks
 		if !skipDirectory && !skipFile && !skipSymlink && matchesRegex {
-			if err := opts.walkFunc(contentPath, c.GetIsDir()); err != nil {
+			if err := opts.walkFunc(contentPath, c.GetIsDir(), true); err != nil {
 				return err
 			}
 			if err := checkTimeout(opts.timeout); err != nil {
@@ -289,11 +336,11 @@ func walkProcessPaths(ctx context.Context, procName string, fileName string, cli
 
 		if fileName == "" {
 			// No filename was specified, check the directory itself.
-			if err := walkFunc(dirName, true); err != nil {
+			if err := walkFunc(dirName, true, false); err != nil {
 				return err
 			}
 		} else {
-			if err := walkFunc(path.Join(dirName, fileName), false); err != nil {
+			if err := walkFunc(path.Join(dirName, fileName), false, false); err != nil {
 				return err
 			}
 		}
@@ -330,7 +377,7 @@ func walkVarPaths(ctx context.Context, evp *ipb.FileSet_UnixEnvVarPaths, timeout
 			continue
 		}
 
-		if err := walkFunc(path, isDir); err != nil {
+		if err := walkFunc(path, isDir, false); err != nil {
 			return err
 		}
 

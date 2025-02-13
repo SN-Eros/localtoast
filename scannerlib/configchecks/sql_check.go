@@ -37,41 +37,43 @@ type SQLCheck struct {
 }
 
 // Exec executes the SQL checks and returns the compliance status.
-func (c *SQLCheck) Exec() (ComplianceMap, error) {
+func (c *SQLCheck) Exec(prvRes string) (ComplianceMap, string, error) {
 	query := c.checkInstruction.GetQuery()
+	var resVal string = ""
 
 	var reason string
 	if c.checkInstruction.TargetDatabase == ipb.SQLCheck_DB_MYSQL || c.checkInstruction.TargetDatabase == ipb.SQLCheck_DB_CASSANDRA {
 		// Check number of returned rows for MySQL and Cassandra
-		rows, err := c.querier.SQLQuery(c.ctx, query)
+		resVal, err := c.querier.SQLQuery(c.ctx, query)
 		if err != nil {
-			return nil, err
+			return nil, "", err
 		}
-		if rows > 0 && !c.checkInstruction.GetExpectResults() {
-			reason = fmt.Sprintf("Expected no results for query %q, but got %d rows.", query, rows)
-		} else if rows == 0 && c.checkInstruction.GetExpectResults() {
+		if len(resVal) > 0 && !c.checkInstruction.GetExpectResults() {
+			reason = fmt.Sprintf("Expected no results for query %q, but got some.", query)
+		} else if len(resVal) == 0 && c.checkInstruction.GetExpectResults() {
 			reason = fmt.Sprintf("Expected results for query %q, but got none.", query)
 		}
+
 	} else if c.checkInstruction.TargetDatabase == ipb.SQLCheck_DB_ELASTICSEARCH {
 		// Perform regex match on result string for ElasticSearch
 		filterRegex, err := regexp.Compile("^" + c.checkInstruction.FilterRegex + "$")
 		if err != nil {
-			return nil, err
+			return nil, "", err
 		}
 		// Execute ElasticSearch query
-		res, err := c.querier.SQLQueryWithResponse(c.ctx, query)
+		resVal, err = c.querier.SQLQuery(c.ctx, query)
 		if err != nil {
-			return nil, err
+			return nil, "", err
 		}
 		// Check if regex obtains results and compare with expected result
-		if !filterRegex.MatchString(res) && c.checkInstruction.GetExpectResults() {
-			reason = fmt.Sprintf("ElasticSearch response %q does not match the Filter Regex %q and it should.", res, c.checkInstruction.FilterRegex)
-		} else if filterRegex.MatchString(res) && !c.checkInstruction.GetExpectResults() {
-			reason = fmt.Sprintf("ElasticSearch response %q matches the Filter Regex %q and it should not.", res, c.checkInstruction.FilterRegex)
+		if !filterRegex.MatchString(resVal) && c.checkInstruction.GetExpectResults() {
+			reason = fmt.Sprintf("ElasticSearch response %q does not match the Filter Regex %q and it should.", resVal, c.checkInstruction.FilterRegex)
+		} else if filterRegex.MatchString(resVal) && !c.checkInstruction.GetExpectResults() {
+			reason = fmt.Sprintf("ElasticSearch response %q matches the Filter Regex %q and it should not.", resVal, c.checkInstruction.FilterRegex)
 		}
 	} else {
 		// Return error for unsupported database
-		return nil, errors.New("unsupported database for SQLCheck")
+		return nil, "", errors.New("unsupported database for SQLCheck")
 	}
 
 	if reason != "" && c.checkInstruction.GetNonComplianceMsg() != "" {
@@ -83,7 +85,7 @@ func (c *SQLCheck) Exec() (ComplianceMap, error) {
 			NonComplianceReason: reason,
 		},
 	}
-	return ComplianceMap{c.alternativeID: r}, nil
+	return ComplianceMap{c.alternativeID: r}, resVal, nil
 }
 
 // BenchmarkIDs returns the IDs of the benchmarks associated with this check.

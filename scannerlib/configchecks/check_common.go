@@ -21,6 +21,7 @@ import (
 
 	"google.golang.org/protobuf/encoding/prototext"
 	"google.golang.org/protobuf/proto"
+	cpb "github.com/google/localtoast/scannerlib/proto/compliance_go_proto"
 	"github.com/google/localtoast/scanapi"
 	apb "github.com/google/localtoast/scannerlib/proto/api_go_proto"
 	ipb "github.com/google/localtoast/scannerlib/proto/scan_instructions_go_proto"
@@ -30,7 +31,9 @@ import (
 // (e.g. checking for the existence of a given file).
 type BenchmarkCheck interface {
 	// Exec executes the checks defined by the interface implementation.
-	Exec() (ComplianceMap, error)
+	// The second parameter of the Exec() is the result propagated from the previous check, if any
+	// The returned value of the Exec() is the check result to be propagated, if any (e.g. the output of a SQL Query)
+	Exec(string) (ComplianceMap, string, error)
 	// BenchmarkIDs returns the IDs of the benchmarks associated with this check.
 	BenchmarkIDs() []string
 	String() string
@@ -119,7 +122,7 @@ func CreateChecksFromConfig(ctx context.Context, scanConfig *apb.ScanConfig, api
 		benchmarkCheckDuration: scanConfig.GetBenchmarkCheckTimeout().AsDuration(),
 	}
 
-	fileCheckBatches, err := createFileCheckBatchesFromConfig(ctx, benchmarks, scanConfig.GetOptOutConfig(), timeout, api)
+	fileCheckBatches, err := createFileCheckBatchesFromConfig(ctx, benchmarks, scanConfig.GetOptOutConfig(), scanConfig.GetReplacementConfig(), timeout, api)
 	if err != nil {
 		return nil, err
 	}
@@ -129,11 +132,11 @@ func CreateChecksFromConfig(ctx context.Context, scanConfig *apb.ScanConfig, api
 	}
 
 	checks := make([]BenchmarkCheck, 0, len(fileCheckBatches)+len(sqlChecks))
-	for _, b := range fileCheckBatches {
-		checks = append(checks, b)
-	}
 	for _, c := range sqlChecks {
 		checks = append(checks, c)
+	}
+	for _, b := range fileCheckBatches {
+		checks = append(checks, b)
 	}
 	return checks, nil
 }
@@ -149,6 +152,26 @@ func ValidateScanInstructions(config *apb.BenchmarkConfig) error {
 		if len(alt.proto.GetFileChecks()) == 0 && len(alt.proto.GetSqlChecks()) == 0 {
 			return fmt.Errorf("alternative #%d in benchmark %s doesn't have any checks", i, config.GetId())
 		}
+	}
+	return nil
+}
+
+// AddBenchmarkVersionToResults fills out the compliance_occurrence.version field of the
+// given compliance results based on the original benchmark config.
+func AddBenchmarkVersionToResults(results []*apb.ComplianceResult, configs []*apb.BenchmarkConfig) error {
+	idToVersion := make(map[string]*cpb.ComplianceVersion)
+	for _, c := range configs {
+		if len(c.GetComplianceNote().GetVersion()) != 1 {
+			return fmt.Errorf("benchmark config has multiple versions set: %v", c)
+		}
+		idToVersion[c.GetId()] = c.GetComplianceNote().GetVersion()[0]
+	}
+	for _, r := range results {
+		version, ok := idToVersion[r.GetId()]
+		if !ok {
+			return fmt.Errorf("got compliance result with ID not in original benchmark config: %q", r.GetId())
+		}
+		r.GetComplianceOccurrence().Version = version
 	}
 	return nil
 }

@@ -60,18 +60,15 @@ func (fakeAPIProvider) OpenDir(ctx context.Context, path string) (scanapi.DirRea
 func (fakeAPIProvider) FilePermissions(ctx context.Context, path string) (*apb.PosixPermissions, error) {
 	return nil, errors.New("not implemented")
 }
-func (fakeAPIProvider) SQLQuery(ctx context.Context, query string) (int, error) {
+func (fakeAPIProvider) SQLQuery(ctx context.Context, query string) (string, error) {
 	switch query {
 	case testQueryNoRows:
-		return 0, nil
+		return "", nil
 	case testQueryOneRow:
-		return 1, nil
+		return "testValue", nil
 	default:
-		return 0, fmt.Errorf("the query %q is not supported by fakeAPIProvider", query)
+		return "", fmt.Errorf("the query %q is not supported by fakeAPIProvider", query)
 	}
-}
-func (fakeAPIProvider) SQLQueryWithResponse(ctx context.Context, query string) (string, error) {
-	return "", errors.New("not implemented")
 }
 func (fakeAPIProvider) SupportedDatabase() (ipb.SQLCheck_SQLDatabase, error) {
 	return ipb.SQLCheck_DB_MYSQL, nil
@@ -242,6 +239,14 @@ func TestBenchmarkDocumentInScanResults(t *testing.T) {
 		t.Fatalf("scannerlib.Scan(%v) had unexpected error: %v", config, err)
 	}
 
+	if len(result.GetCompliantBenchmarks()) != 1 {
+		t.Fatalf("scannerlib.Scan(%v): Want 1 compliant benchmark, got %d", config, len(result.GetCompliantBenchmarks()))
+	}
+	gotDoc := result.GetCompliantBenchmarks()[0].GetComplianceOccurrence().GetVersion().GetBenchmarkDocument()
+	if gotDoc != document {
+		t.Errorf("scannerlib.Scan(%v) compliance results expected to contain document %q, got %q", config, document, gotDoc)
+	}
+
 	if result.GetBenchmarkDocument() != document {
 		t.Errorf("scannerlib.Scan(%v) expected to return document %q, got %q", config, document, result.GetBenchmarkDocument())
 	}
@@ -306,7 +311,7 @@ func TestNonCompliantFileCheckResultsAreAggregated(t *testing.T) {
 					Id: "id",
 					ComplianceOccurrence: &cpb.ComplianceOccurrence{
 						NonCompliantFiles:   []*cpb.NonCompliantFile{},
-						NonComplianceReason: fmt.Sprintf("Expected no results for query %q, but got 1 rows.\nExpected results for query %q, but got none.", testQueryOneRow, testQueryNoRows),
+						NonComplianceReason: fmt.Sprintf("Expected no results for query %q, but got some.\nExpected results for query %q, but got none.", testQueryOneRow, testQueryNoRows),
 					},
 				},
 			},

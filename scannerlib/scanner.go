@@ -39,7 +39,8 @@ type Scanner struct{}
 // Scan executes the scan for benchmark compliance using the provided scan
 // config and API for accessing the scanned machine.
 func (Scanner) Scan(ctx context.Context, config *apb.ScanConfig, api scanapi.ScanAPI) (*apb.ScanResults, error) {
-	if err := validateBenchmarkConfigs(config.GetBenchmarkConfigs()); err != nil {
+	benchmarkConfigs := config.GetBenchmarkConfigs()
+	if err := validateBenchmarkConfigs(benchmarkConfigs); err != nil {
 		return nil, err
 	}
 	scanStartTime := time.Now()
@@ -49,6 +50,7 @@ func (Scanner) Scan(ctx context.Context, config *apb.ScanConfig, api scanapi.Sca
 	}
 
 	checkResults, benchmarkErrors := executeChecks(checks)
+	configchecks.AddBenchmarkVersionToResults(checkResults, benchmarkConfigs)
 	complianceResults := determineBenchmarkCompliance(checks, checkResults, benchmarkErrors)
 
 	benchmarkVersion, err := oldestBenchmarkVersion(config.GetBenchmarkConfigs())
@@ -104,8 +106,14 @@ func validateBenchmarkConfigs(configs []*apb.BenchmarkConfig) error {
 func executeChecks(checks []configchecks.BenchmarkCheck) ([]*apb.ComplianceResult, map[string][]error) {
 	compliancePerAlternative := make(configchecks.ComplianceMap)
 	benchmarkErrors := make(map[string][]error)
+	var prvRes string
 	for _, check := range checks {
-		checkResults, err := check.Exec()
+		checkResults, res, err := check.Exec(prvRes)
+
+		if len(res) > 0 {
+			prvRes = res
+		}
+
 		if err != nil {
 			fmt.Fprintf(os.Stderr, "Error while executing check %s: %v\n", check, err)
 		}

@@ -53,13 +53,17 @@ type FileCheckBatch struct {
 }
 
 // Exec executes the file checks batched by the FileCheckBatch.
-func (b *FileCheckBatch) Exec() (ComplianceMap, error) {
+// The method takes as input the Previous check result output as string, if any
+func (b *FileCheckBatch) Exec(prvRes string) (ComplianceMap, string, error) {
+
+	fileset.ApplyPipelineTokenReplacement(b.filesToCheck, prvRes)
+
 	err := fileset.WalkFiles(b.ctx, b.filesToCheck, b.fs, b.timeout.benchmarkCheckTimeoutNow(),
-		func(path string, isDir bool) error {
-			return b.fileCheckers.execChecksOnFile(b.ctx, path, isDir, b.fs)
+		func(path string, isDir bool, traversingDir bool) error {
+			return b.fileCheckers.execChecksOnFile(b.ctx, path, isDir, traversingDir, b.fs)
 		})
 	if err != nil {
-		return nil, err
+		return nil, "", err
 	}
 	b.fileCheckers.execChecksAfterFileTraversal(b.filesToCheck)
 	return aggregateComplianceResults(b.fileChecks)
@@ -119,7 +123,7 @@ type fileCheckBatchMap map[fileCheckBatchCommonProps][]*fileCheck
 // createFileCheckBatchesFromConfig parses the benchmark config and creates the
 // file check batches defined by it.
 func createFileCheckBatchesFromConfig(
-	ctx context.Context, benchmarks []*benchmark, optOut *apb.OptOutConfig, timeout *timeoutOptions, fs scanapi.Filesystem) ([]*FileCheckBatch, error) {
+	ctx context.Context, benchmarks []*benchmark, optOut *apb.OptOutConfig, replacement *apb.ReplacementConfig, timeout *timeoutOptions, fs scanapi.Filesystem) ([]*FileCheckBatch, error) {
 	batchMap := make(fileCheckBatchMap)
 
 	for _, b := range benchmarks {
@@ -133,6 +137,7 @@ func createFileCheckBatchesFromConfig(
 					batchMap,
 					fs,
 					optOut,
+					replacement,
 					b.id,
 					alt.id,
 				}
@@ -166,6 +171,7 @@ type addFileCheckToBatchMapOptions struct {
 	batchMap      fileCheckBatchMap
 	fs            scanapi.Filesystem
 	optOut        *apb.OptOutConfig
+	replacement   *apb.ReplacementConfig
 	benchmarkID   string
 	alternativeID int
 }
@@ -180,6 +186,7 @@ func addFileCheckToBatchMap(ctx context.Context, options addFileCheckToBatchMapO
 		for _, filesToCheck := range fc.GetFilesToCheck() {
 			filesToCheck := repeatconfig.ApplyRepeatConfigToFile(filesToCheck, repeatConfig)
 			fileset.ApplyOptOutConfig(filesToCheck, options.optOut)
+			fileset.ApplyReplacementConfig(filesToCheck, options.replacement)
 
 			fileSetAsBytes, err := proto.MarshalOptions{Deterministic: true}.Marshal(filesToCheck)
 			if err != nil {
@@ -257,14 +264,14 @@ func newFileCheckers(fileChecks []*fileCheck) (*fileCheckers, error) {
 	return result, nil
 }
 
-func (c *fileCheckers) execChecksOnFile(ctx context.Context, path string, isDir bool, fs scanapi.Filesystem) error {
+func (c *fileCheckers) execChecksOnFile(ctx context.Context, path string, isDir bool, traversingDir bool, fs scanapi.Filesystem) error {
 	f, openError := c.openFileForCheckExec(ctx, path, fs)
 	if f != nil {
 		defer f.Close()
 	}
 
 	for _, checker := range c.existenceFileCheckers {
-		if err := checker.exec(path, openError); err != nil {
+		if err := checker.exec(path, openError, isDir, traversingDir); err != nil {
 			return err
 		}
 	}
@@ -322,7 +329,7 @@ func newFileCheckBatch(
 		benchmarkIDMap[fc.benchmarkID] = true
 	}
 	benchmarkIDs := make([]string, 0, len(benchmarkIDMap))
-	for id, _ := range benchmarkIDMap {
+	for id := range benchmarkIDMap {
 		benchmarkIDs = append(benchmarkIDs, id)
 	}
 
@@ -352,10 +359,18 @@ func newExistenceFileChecker(fc *fileCheck) *existenceFileChecker {
 	return &existenceFileChecker{fc: fc, foundFile: ""}
 }
 
-func (c *existenceFileChecker) exec(path string, openError error) error {
-	exists, err := fileExists(openError)
-	if err != nil {
-		return err
+func (c *existenceFileChecker) exec(path string, openError error, isDir bool, traversingDir bool) error {
+	exists := false
+	// If this file was listed while traversing a directory
+	// we know it exists without needing to open it.
+	if traversingDir && !isDir {
+		exists = true
+	} else {
+		var err error
+		exists, err = fileExists(openError)
+		if err != nil {
+			return err
+		}
 	}
 	if exists {
 		c.foundFile = path
@@ -497,7 +512,7 @@ func (c *contentFileChecker) exec(path string, content []byte) error {
 
 // aggregateComplianceResults merges the non-compliant files of the
 // specified fileChecks for each check alternative.
-func aggregateComplianceResults(fileChecks []*fileCheck) (ComplianceMap, error) {
+func aggregateComplianceResults(fileChecks []*fileCheck) (ComplianceMap, string, error) {
 	result := make(map[int]*apb.ComplianceResult) // Key: The CheckAlternative ID.
 	for _, fc := range fileChecks {
 		nonCompliantFiles := fc.nonCompliantFiles
@@ -539,7 +554,7 @@ func aggregateComplianceResults(fileChecks []*fileCheck) (ComplianceMap, error) 
 		}
 	}
 
-	return result, nil
+	return result, "", nil
 }
 
 // openFileForReading opens the specified path and returns a ReadCloser.

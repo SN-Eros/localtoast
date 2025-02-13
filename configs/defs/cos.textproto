@@ -6,6 +6,11 @@ benchmark_configs: {
   compliance_note: {
     version: { cpe_uri: "cpe:/o:cos:cos_linux:93" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:97" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:101" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:105" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:109" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:113" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:117" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     title: "Ensure /tmp is configured"
     description:
       "The /tmp directory is a world-writable directory used for temporary "
@@ -24,24 +29,24 @@ benchmark_configs: {
     remediation:
       "Configure /etc/fstab as appropriate.\n"
       "example:\n"
-      "```\n"
+      "\n```\n"
       "tmpfs /tmp tmpfs defaults,rw,nosuid,nodev,noexec,relatime 0 0\n"
-      "```\n"
+      "```\n\n"
       "OR\n"
       "Run the following commands to enable systemd /tmp mounting:\n"
-      "```\n"
+      "\n```\n"
       "systemctl unmask tmp.mount\n"
       "systemctl enable tmp.mount\n"
-      "```\n"
+      "```\n\n"
       "Edit /usr/lib/systemd/system/tmp.mount to configure "
       "the /tmp mount:\n"
-      "```\n"
+      "\n```\n"
       "[Mount]\n"
       "What=tmpfs\n"
       "Where=/tmp\n"
       "Type=tmpfs\n"
       "Options=mode=1777,strictatime,noexec,nodev,nosuid\n"
-      "```\n"
+      "```\n\n"
       "`/etc` is stateless on Container-Optimized OS. Therefore, `/etc` "
       "cannot be used to make these changes persistent across reboots. The "
       "steps mentioned above needs to be performed after every boot."
@@ -95,6 +100,11 @@ benchmark_configs: {
   compliance_note: {
     version: { cpe_uri: "cpe:/o:cos:cos_linux:93" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:97" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:101" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:105" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:109" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:113" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:117" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     title: "Ensure nodev option set on /var partition"
     description:
       "The nodev mount option specifies that the filesystem cannot contain "
@@ -105,9 +115,9 @@ benchmark_configs: {
       "character special devices in /var."
     remediation:
       "Run the following command to remount /var:\n"
-      "```\n"
+      "\n```\n"
       "# mount -o remount,nodev /var\n"
-      "```\n"
+      "```\n\n"
       "`/etc` is stateless on Container-Optimized OS. Therefore, `/etc` "
       "cannot be used to make these changes persistent across reboots. The "
       "steps mentioned above needs to be performed after every boot."
@@ -147,6 +157,11 @@ benchmark_configs: {
   compliance_note: {
     version: { cpe_uri: "cpe:/o:cos:cos_linux:93" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:97" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:101" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:105" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:109" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:113" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:117" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     title: "Ensure nosuid option set on /var partition"
     description:
       "The nosuid mount option specifies that the filesystem cannot contain "
@@ -157,9 +172,9 @@ benchmark_configs: {
       "files in /var."
     remediation:
       "Run the following command to remount /var:\n"
-      "```\n"
+      "\n```\n"
       "# mount -o remount,nosuid /var\n"
-      "```\n"
+      "```\n\n"
       "`/etc` is stateless on Container-Optimized OS. Therefore, `/etc` "
       "cannot be used to make these changes persistent across reboots. The "
       "steps mentioned above needs to be performed after every boot."
@@ -199,6 +214,11 @@ benchmark_configs: {
   compliance_note: {
     version: { cpe_uri: "cpe:/o:cos:cos_linux:93" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:97" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:101" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:105" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:109" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:113" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:117" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     title: "Ensure noexec option set on /var partition"
     description:
       "The noexec mount option specifies that the filesystem cannot contain "
@@ -209,9 +229,9 @@ benchmark_configs: {
       "binaries from /var."
     remediation:
       "Run the following command to remount /var:\n"
-      "```\n"
+      "\n```\n"
       "# mount -o remount,noexec /var\n"
-      "```\n"
+      "```\n\n"
       "`/etc` is stateless on Container-Optimized OS. Therefore, `/etc` "
       "cannot be used to make these changes persistent across reboots. The "
       "steps mentioned above needs to be performed after every boot."
@@ -251,6 +271,11 @@ benchmark_configs: {
   compliance_note: {
     version: { cpe_uri: "cpe:/o:cos:cos_linux:93" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:97" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:101" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:105" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:109" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:113" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:117" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     title: "Ensure nodev option set on /tmp partition"
     description:
       "The nodev mount option specifies that the filesystem cannot contain "
@@ -264,18 +289,18 @@ benchmark_configs: {
       "options) for the /tmp partition. See the fstab(5) manual page for "
       "more information.\n"
       "Run the following command to remount /tmp:\n"
-      "```\n"
+      "\n```\n"
       "# mount -o remount,nodev /tmp\n"
-      "```\n"
+      "```\n\n"
       "or\n"
       "Edit the config file in /usr/lib/systemd/system/tmp.mount.d to add "
       "nodev to the /tmp mount options:\n"
-      "```\n"
+      "\n```\n"
       "[Mount]\n"
       "Options=mode=1777,strictatime,noexec,nodev,nosuid\n"
       "Run the following command to remount /tmp:\n"
       "# mount -o remount,nodev /tmp\n"
-      "```\n"
+      "```\n\n"
       "`/etc` is stateless on Container-Optimized OS. Therefore, `/etc` "
       "cannot be used to make these changes persistent across reboots. The "
       "steps mentioned above needs to be performed after every boot."
@@ -347,6 +372,11 @@ benchmark_configs: {
   compliance_note: {
     version: { cpe_uri: "cpe:/o:cos:cos_linux:93" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:97" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:101" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:105" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:109" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:113" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:117" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     title: "Ensure nosuid option set on /tmp partition"
     description:
       "The nosuid mount option specifies that the filesystem cannot contain "
@@ -360,20 +390,20 @@ benchmark_configs: {
       "options) for the /tmp partition. See the fstab(5) manual page for "
       "more information."
       "Run the following command to remount /tmp:\n"
-      "```\n"
+      "\n```\n"
       "# mount -o remount,nosuid /tmp\n"
-      "```\n"
+      "```\n\n"
       "or\n"
       "Edit the config file in /usr/lib/systemd/system/tmp.mount.d to add "
       "nosuid to the /tmp mount options:\n"
-      "```\n"
+      "\n```\n"
       "[Mount]\n"
       "Options=mode=1777,strictatime,noexec,nodev,nosuid\n"
-      "```\n"
+      "```\n\n"
       "Run the following command to remount /tmp:\n"
-      "```\n"
+      "\n```\n"
       "# mount -o remount,nosuid /tmp\n"
-      "```\n"
+      "```\n\n"
       "`/etc` is stateless on Container-Optimized OS. Therefore, `/etc` "
       "cannot be used to make these changes persistent across reboots. The "
       "steps mentioned above needs to be performed after every boot."
@@ -445,6 +475,11 @@ benchmark_configs: {
   compliance_note: {
     version: { cpe_uri: "cpe:/o:cos:cos_linux:93" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:97" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:101" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:105" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:109" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:113" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:117" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     title: "Ensure noexec option set on /tmp partition"
     description:
       "The noexec mount option specifies that the filesystem cannot contain "
@@ -458,20 +493,20 @@ benchmark_configs: {
       "options) for the /tmp partition. See the fstab(5) manual page for "
       "more information.\n"
       "Run the following command to remount /tmp:\n"
-      "```\n"
+      "\n```\n"
       "# mount -o remount,noexec /tmp\n"
-      "```\n"
+      "```\n\n"
       "or\n"
       "Edit the config file in /usr/lib/systemd/system/tmp.mount.d to add "
       "noexec to the /tmp mount options:\n"
-      "```\n"
+      "\n```\n"
       "[Mount]\n"
       "Options=mode=1777,strictatime,noexec,nodev,nosuid\n"
-      "```\n"
+      "```\n\n"
       "Run the following command to remount /tmp:\n"
-      "```\n"
+      "\n```\n"
       "# mount -o remount,noexec /tmp\n"
-      "```\n"
+      "```\n\n"
       "`/etc` is stateless on Container-Optimized OS. Therefore, `/etc` "
       "cannot be used to make these changes persistent across reboots. The "
       "steps mentioned above needs to be performed after every boot."
@@ -543,6 +578,11 @@ benchmark_configs: {
   compliance_note: {
     version: { cpe_uri: "cpe:/o:cos:cos_linux:93" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:97" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:101" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:105" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:109" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:113" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:117" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     title: "Ensure nodev option set on /home partition"
     description:
       "The nodev mount option specifies that the filesystem cannot contain "
@@ -595,6 +635,11 @@ benchmark_configs: {
   compliance_note: {
     version: { cpe_uri: "cpe:/o:cos:cos_linux:93" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:97" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:101" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:105" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:109" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:113" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:117" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     title: "Ensure nodev option set on /dev/shm partition"
     description:
       "The nodev mount option specifies that the filesystem cannot contain "
@@ -608,9 +653,9 @@ benchmark_configs: {
       "options) for the /dev/shm partition. See the fstab(5) manual page for "
       "more information.\n"
       "Run the following command to remount /dev/shm:\n"
-      "```\n"
-      "# mount -o remount,nodev /dev/shm\n\n"
-      "```\n"
+      "\n```\n"
+      "# mount -o remount,nodev /dev/shm\n"
+      "```\n\n"
       "`/etc` is stateless on Container-Optimized OS. Therefore, `/etc` "
       "cannot be used to make these changes persistent across reboots. The "
       "steps mentioned above needs to be performed after every boot."
@@ -650,6 +695,11 @@ benchmark_configs: {
   compliance_note: {
     version: { cpe_uri: "cpe:/o:cos:cos_linux:93" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:97" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:101" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:105" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:109" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:113" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:117" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     title: "Ensure nosuid option set on /dev/shm partition"
     description:
       "The nosuid mount option specifies that the filesystem cannot contain "
@@ -663,9 +713,9 @@ benchmark_configs: {
       "options) for the /dev/shm partition. See the fstab(5) manual page for "
       "more information.\n"
       "Run the following command to remount /dev/shm:\n"
-      "```\n"
+      "\n```\n"
       "# mount -o remount,nosuid /dev/shm\n\n"
-      "```\n"
+      "```\n\n"
       "`/etc` is stateless on Container-Optimized OS. Therefore, `/etc` "
       "cannot be used to make these changes persistent across reboots. The "
       "steps mentioned above needs to be performed after every boot."
@@ -705,6 +755,11 @@ benchmark_configs: {
   compliance_note: {
     version: { cpe_uri: "cpe:/o:cos:cos_linux:93" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:97" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:101" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:105" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:109" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:113" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:117" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     title: "Ensure noexec option set on /dev/shm partition"
     description:
       "The noexec mount option specifies that the filesystem cannot contain "
@@ -716,9 +771,9 @@ benchmark_configs: {
     remediation:
       "Make sure the /usr/lib/systemd/system/dev-shm-remount.service file "
       "remounts the /dev/shm partition with noexec:\n"
-      "```\n"
+      "\n```\n"
       "ExecStart=/bin/mount -o remount,noexec /dev/shm\n"
-      "```\n"
+      "```\n\n"
       "`/etc` is stateless on Container-Optimized OS. Therefore, `/etc` "
       "cannot be used to make these changes persistent across reboots. The "
       "steps mentioned above needs to be performed after every boot."
@@ -818,6 +873,11 @@ benchmark_configs: {
   compliance_note: {
     version: { cpe_uri: "cpe:/o:cos:cos_linux:93" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:97" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:101" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:105" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:109" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:113" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:117" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     title: "Ensure dm-verity is enabled"
     description:
       "device-mapper-verity (dm-verity) kernel feature provides transparent "
@@ -857,6 +917,11 @@ benchmark_configs: {
   compliance_note: {
     version: { cpe_uri: "cpe:/o:cos:cos_linux:93" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:97" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:101" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:105" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:109" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:113" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:117" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     title: "Ensure permissions on bootloader config are configured"
     description:
       "The grub configuration file contains information on boot settings and "
@@ -894,6 +959,11 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:cos:cos_linux:89" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:93" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:97" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:101" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:105" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:109" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:113" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:117" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     title: "Ensure authentication required for single user mode"
     description:
       "Single user mode is used for recovery when the system detects an "
@@ -939,6 +1009,11 @@ benchmark_configs: {
   compliance_note: {
     version: { cpe_uri: "cpe:/o:cos:cos_linux:93" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:97" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:101" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:105" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:109" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:113" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:117" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     title: "Ensure core dumps are restricted"
     description:
       "A core dump is the memory of an executable program. It is generally "
@@ -957,19 +1032,19 @@ benchmark_configs: {
       "/etc/security/limits.d/* file\n:"
       "* hard core 0\n"
       "Run the following command to set the active kernel parameter:\n"
-      "```\n"
+      "\n```\n"
       "# sysctl -w fs.suid_dumpable=0\n"
-      "```\n"
+      "```\n\n"
       "If systemd-coredump@ is installed:\n"
       "edit /etc/systemd/coredump.conf and add/modify the following lines:\n"
-      "```\n"
+      "\n```\n"
       "Storage=none\n"
       "ProcessSizeMax=0\n"
-      "```\n"
+      "```\n\n"
       "Run the command:\n"
-      "```\n"
+      "\n```\n"
       "systemctl daemon-reload\n"
-      "```\n"
+      "```\n\n"
       "`/etc` is stateless on Container-Optimized OS. Therefore, `/etc` "
       "cannot be used to make these changes persistent across reboots. The "
       "steps mentioned above needs to be performed after every boot."
@@ -1043,6 +1118,11 @@ benchmark_configs: {
   compliance_note: {
     version: { cpe_uri: "cpe:/o:cos:cos_linux:93" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:97" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:101" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:105" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:109" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:113" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:117" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     title: "Ensure message of the day is configured properly"
     description:
       "The contents of the /etc/motd file are displayed to users after login "
@@ -1117,6 +1197,11 @@ benchmark_configs: {
   compliance_note: {
     version: { cpe_uri: "cpe:/o:cos:cos_linux:93" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:97" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:101" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:105" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:109" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:113" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:117" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     title: "Ensure local login warning banner is configured properly"
     description:
       "The contents of the /etc/issue file are displayed to users prior to "
@@ -1170,6 +1255,11 @@ benchmark_configs: {
   compliance_note: {
     version: { cpe_uri: "cpe:/o:cos:cos_linux:93" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:97" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:101" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:105" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:109" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:113" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:117" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     title: "Ensure remote login warning banner is configured properly"
     description:
       "The contents of the /etc/issue.net file are displayed to users prior to "
@@ -1224,6 +1314,11 @@ benchmark_configs: {
   compliance_note: {
     version: { cpe_uri: "cpe:/o:cos:cos_linux:93" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:97" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:101" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:105" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:109" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:113" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:117" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     title: "Ensure permissions on /etc/motd are configured"
     description:
       "The contents of the /etc/motd file are displayed to users after login "
@@ -1233,10 +1328,10 @@ benchmark_configs: {
       "modified by unauthorized users with incorrect or misleading information."
     remediation:
       "Run the following commands to set permissions on /etc/motd:\n"
-      "```\n"
+      "\n```\n"
       "# chown root:root /etc/motd\n"
       "# chmod 644 /etc/motd\n"
-      "```\n"
+      "```\n\n"
       "`/etc` is stateless on Container-Optimized OS. Therefore, `/etc` "
       "cannot be used to make these changes persistent across reboots. The "
       "steps mentioned above needs to be performed after every boot."
@@ -1270,6 +1365,11 @@ benchmark_configs: {
   compliance_note: {
     version: { cpe_uri: "cpe:/o:cos:cos_linux:93" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:97" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:101" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:105" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:109" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:113" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:117" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     title: "Ensure permissions on /etc/issue are configured"
     description:
       "The contents of the /etc/issue file are displayed to users prior to "
@@ -1280,10 +1380,10 @@ benchmark_configs: {
       "information."
     remediation:
       "Run the following commands to set permissions on /etc/issue:\n"
-      "```\n"
+      "\n```\n"
       "# chown root:root /etc/issue\n"
       "# chmod 644 /etc/issue\n\n"
-      "```\n"
+      "```\n\n"
       "`/etc` is stateless on Container-Optimized OS. Therefore, `/etc` "
       "cannot be used to make these changes persistent across reboots. The "
       "steps mentioned above needs to be performed after every boot."
@@ -1317,6 +1417,11 @@ benchmark_configs: {
   compliance_note: {
     version: { cpe_uri: "cpe:/o:cos:cos_linux:93" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:97" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:101" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:105" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:109" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:113" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:117" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     title: "Ensure permissions on /etc/issue.net are configured"
     description:
       "The contents of the /etc/issue.net file are displayed to users prior "
@@ -1327,10 +1432,10 @@ benchmark_configs: {
       "information."
     remediation:
       "Run the following commands to set permissions on /etc/issue.net:\n"
-      "```\n"
+      "\n```\n"
       "# chown root:root /etc/issue.net\n"
       "# chmod 644 /etc/issue.net\n"
-      "```\n"
+      "```\n\n"
       "`/etc` is stateless on Container-Optimized OS. Therefore, `/etc` "
       "cannot be used to make these changes persistent across reboots. The "
       "steps mentioned above needs to be performed after every boot."
@@ -1365,6 +1470,11 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:cos:cos_linux:89" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:93" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:97" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:101" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:105" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:109" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:113" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:117" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     title: "Ensure time synchronization is in use"
     description:
       "System time should be synchronized between all systems in an environment. This\n"
@@ -1417,9 +1527,9 @@ benchmark_configs: {
       "chrony is in use on the system."
     remediation:
       "Add or edit server or pool lines to /etc/chrony.conf as appropriate:\n"
-      "```\n"
+      "\n```\n"
       "server <remote-server>\n"
-      "```\n"
+      "```\n\n"
       "Configure chrony to run as the chrony user by configuring the appropriate\n"
       "startup script for your distribution. Startup scripts are typically stored in \n"
       "/etc/init.d or /etc/systemd"
@@ -1463,6 +1573,11 @@ benchmark_configs: {
   compliance_note: {
     version: { cpe_uri: "cpe:/o:cos:cos_linux:93" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:97" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:101" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:105" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:109" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:113" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:117" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     title: "Ensure chrony is configured"
     description:
       "chrony is a daemon which implements the Network Time Protocol (NTP) is\n"
@@ -1476,9 +1591,9 @@ benchmark_configs: {
       "chrony is in use on the system."
     remediation:
       "Add or edit server or pool lines to /etc/chrony.conf as appropriate:\n"
-      "```\n"
+      "\n```\n"
       "server <remote-server>\n"
-      "```\n"
+      "```\n\n"
       "Configure chrony to run as the chrony user by configuring the appropriate\n"
       "startup script for your distribution. Startup scripts are typically stored in\n"
       "etc/init.d or /etc/systemd"
@@ -1527,6 +1642,11 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:cos:cos_linux:89" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:93" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:97" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:101" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:105" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:109" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:113" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:117" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     title: "Ensure X Window System is not installed"
     description:
       "The X Window System provides a Graphical User Interface (GUI) where users can\n"
@@ -1562,6 +1682,11 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:cos:cos_linux:89" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:93" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:97" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:101" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:105" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:109" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:113" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:117" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     title: "Ensure NFS and RPC are not enabled"
     description:
       "The Network File System (NFS) is one of the first and most widely distributed\n"
@@ -1573,14 +1698,14 @@ benchmark_configs: {
       "surface."
     remediation:
       "Run one of the following commands to disable nfs and rpcbind:\n"
-      "```\n"
+      "\n```\n"
       "# chkconfig nfs off\n"
       "# chkconfig rpcbind off\n"
       "# systemctl disable nfs\n"
       "# systemctl disable rpcbind\n"
       "# update-rc.d nfs disable\n"
       "# update-rc.d rpcbind disable\n"
-      "```\n"
+      "```\n\n"
       "`/etc` is stateless on Container-Optimized OS. Therefore, `/etc` "
       "cannot be used to make these changes persistent across reboots. The "
       "steps mentioned above needs to be performed after every boot."
@@ -1618,6 +1743,11 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:cos:cos_linux:89" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:93" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:97" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:101" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:105" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:109" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:113" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:117" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     title: "Ensure rsync service is not enabled"
     description:
       "The rsyncd service can be used to synchronize files between systems over\n"
@@ -1627,9 +1757,9 @@ benchmark_configs: {
       "for communication."
     remediation:
       "Run the following command to disable rsyncd:\n"
-      "```\n"
+      "\n```\n"
       "# systemctl --now disable rsyncd\n"
-      "```\n"
+      "```\n\n"
       "`/etc` is stateless on Container-Optimized OS. Therefore, `/etc` "
       "cannot be used to make these changes persistent across reboots. The "
       "steps mentioned above needs to be performed after every boot."
@@ -1657,6 +1787,11 @@ benchmark_configs: {
   compliance_note: {
     version: { cpe_uri: "cpe:/o:cos:cos_linux:93" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:97" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:101" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:105" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:109" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:113" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:117" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     title: "Ensure packet redirect sending is disabled"
     description:
       "ICMP Redirects are used to send routing information to other hosts. As a host\n"
@@ -1668,16 +1803,16 @@ benchmark_configs: {
       "system set up by the attacker as opposed to a valid system."
     remediation:
       "Set the following parameters in /etc/sysctl.conf or a /etc/sysctl.d/* file:\n"
-      "```\n"
+      "\n```\n"
       "net.ipv4.conf.all.send_redirects = 0\n"
       "net.ipv4.conf.default.send_redirects = 0\n"
-      "```\n"
+      "```\n\n"
       "Run the following commands to set the active kernel parameters:\n"
-      "```\n"
+      "\n```\n"
       "# sysctl -w net.ipv4.conf.all.send_redirects=0\n"
       "# sysctl -w net.ipv4.conf.default.send_redirects=0\n"
       "# sysctl -w net.ipv4.route.flush=1\n"
-      "```\n"
+      "```\n\n"
       "`/etc` is stateless on Container-Optimized OS. Therefore, `/etc` "
       "cannot be used to make these changes persistent across reboots. The "
       "steps mentioned above needs to be performed after every boot."
@@ -1763,11 +1898,11 @@ benchmark_configs: {
       "protocols that did not allow this routing."
     remediation:
       "Run the following commands to set the active kernel parameters:\n"
-      "```\n"
+      "\n```\n"
       "# sysctl -w net.ipv4.conf.all.accept_source_route=0\n"
       "# sysctl -w net.ipv4.conf.default.accept_source_route=0\n"
       "# sysctl -w net.ipv4.route.flush=1\n"
-      "```\n"
+      "```\n\n"
     cis_benchmark: {
       profile_level: 2
       severity: LOW
@@ -1810,6 +1945,11 @@ benchmark_configs: {
   compliance_note: {
     version: { cpe_uri: "cpe:/o:cos:cos_linux:93" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:97" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:101" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:105" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:109" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:113" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:117" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     title: "Ensure source routed packets are not accepted"
     description:
       "In networking, source routing allows a sender to partially or fully specify\n"
@@ -1832,14 +1972,14 @@ benchmark_configs: {
       "protocols that did not allow this routing."
     remediation:
       "Run the following commands to set the active kernel parameters:\n"
-      "```\n"
+      "\n```\n"
       "# sysctl -w net.ipv4.conf.all.accept_source_route=0\n"
       "# sysctl -w net.ipv4.conf.default.accept_source_route=0\n"
       "# sysctl -w net.ipv6.conf.all.accept_source_route=0\n"
       "# sysctl -w net.ipv6.conf.default.accept_source_route=0\n"
       "# sysctl -w net.ipv4.route.flush=1\n"
       "# sysctl -w net.ipv6.route.flush=1\n"
-      "```\n"
+      "```\n\n"
       "`/etc` is stateless on Container-Optimized OS. Therefore, `/etc` "
       "cannot be used to make these changes persistent across reboots. The "
       "steps mentioned above needs to be performed after every boot."
@@ -1900,11 +2040,11 @@ benchmark_configs: {
       "allow your system packets to be captured."
     remediation:
       "Run the following commands to set the active kernel parameters:\n"
-      "```\n"
+      "\n```\n"
       "# sysctl -w net.ipv4.conf.all.accept_redirects=0\n"
       "# sysctl -w net.ipv4.conf.default.accept_redirects=0\n"
       "# sysctl -w net.ipv4.route.flush=1\n"
-      "```\n"
+      "```\n\n"
     cis_benchmark: {
       profile_level: 2
       severity: LOW
@@ -1924,6 +2064,11 @@ benchmark_configs: {
   compliance_note: {
     version: { cpe_uri: "cpe:/o:cos:cos_linux:93" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:97" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:101" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:105" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:109" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:113" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:117" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     title: "Ensure ICMP redirects are not accepted"
     description:
       "ICMP redirect messages are packets that convey routing information and tell\n"
@@ -1938,14 +2083,14 @@ benchmark_configs: {
       "allow your system packets to be captured."
     remediation:
       "Run the following commands to set the active kernel parameters:\n"
-      "```\n"
+      "\n```\n"
       "# sysctl -w net.ipv4.conf.all.accept_redirects=0\n"
       "# sysctl -w net.ipv4.conf.default.accept_redirects=0\n"
       "# sysctl -w net.ipv6.conf.all.accept_redirects=0\n"
       "# sysctl -w net.ipv6.conf.default.accept_redirects=0\n"
       "# sysctl -w net.ipv4.route.flush=1\n"
       "# sysctl -w net.ipv6.route.flush=1\n"
-      "```\n"
+      "```\n\n"
       "`/etc` is stateless on Container-Optimized OS. Therefore, `/etc` "
       "cannot be used to make these changes persistent across reboots. The "
       "steps mentioned above needs to be performed after every boot."
@@ -1970,6 +2115,11 @@ benchmark_configs: {
   compliance_note: {
     version: { cpe_uri: "cpe:/o:cos:cos_linux:93" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:97" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:101" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:105" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:109" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:113" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:117" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     title: "Ensure secure ICMP redirects are not accepted"
     description:
       "Secure ICMP redirects are the same as ICMP redirects, except they come "
@@ -1982,11 +2132,11 @@ benchmark_configs: {
       "from routing table updates by possibly compromised known gateways."
     remediation:
       "Run the following commands to set the active kernel parameters:\n"
-      "```\n"
+      "\n```\n"
       "# sysctl -w net.ipv4.conf.all.secure_redirects=0\n"
       "# sysctl -w net.ipv4.conf.default.secure_redirects=0\n"
       "# sysctl -w net.ipv4.route.flush=1\n"
-      "```\n"
+      "```\n\n"
       "`/etc` is stateless on Container-Optimized OS. Therefore, `/etc` "
       "cannot be used to make these changes persistent across reboots. The "
       "steps mentioned above needs to be performed after every boot."
@@ -2009,6 +2159,11 @@ benchmark_configs: {
   compliance_note: {
     version: { cpe_uri: "cpe:/o:cos:cos_linux:93" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:97" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:101" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:105" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:109" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:113" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:117" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     title: "Ensure suspicious packets are logged"
     description:
       "When enabled, this feature logs packets with un-routable source "
@@ -2019,11 +2174,11 @@ benchmark_configs: {
       "packets to their system."
     remediation:
       "Run the following commands to set the active kernel parameters:\n"
-      "```\n"
+      "\n```\n"
       "# sysctl -w net.ipv4.conf.all.log_martians=1\n"
       "# sysctl -w net.ipv4.conf.default.log_martians=1\n"
       "# sysctl -w net.ipv4.route.flush=1\n"
-      "```\n"
+      "```\n\n"
       "`/etc` is stateless on Container-Optimized OS. Therefore, `/etc` "
       "cannot be used to make these changes persistent across reboots. The "
       "steps mentioned above needs to be performed after every boot."
@@ -2046,6 +2201,11 @@ benchmark_configs: {
   compliance_note: {
     version: { cpe_uri: "cpe:/o:cos:cos_linux:93" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:97" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:101" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:105" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:109" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:113" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:117" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     title: "Ensure broadcast ICMP requests are ignored"
     description:
       "Setting net.ipv4.icmp_echo_ignore_broadcasts to 1 will cause the system to\n"
@@ -2062,14 +2222,14 @@ benchmark_configs: {
       "significantly multiplied."
     remediation:
       "Set the following parameters in /etc/sysctl.conf or a /etc/sysctl.d/* file:\n"
-      "```\n"
+      "\n```\n"
       "net.ipv4.icmp_echo_ignore_broadcasts = 1\n"
-      "```\n"
+      "```\n\n"
       "Run the following commands to set the active kernel parameters:\n"
-      "```\n"
+      "\n```\n"
       "# sysctl -w net.ipv4.icmp_echo_ignore_broadcasts=1\n"
       "# sysctl -w net.ipv4.route.flush=1\n"
-      "```\n"
+      "```\n\n"
       "`/etc` is stateless on Container-Optimized OS. Therefore, `/etc` "
       "cannot be used to make these changes persistent across reboots. The "
       "steps mentioned above needs to be performed after every boot."
@@ -2125,6 +2285,11 @@ benchmark_configs: {
   compliance_note: {
     version: { cpe_uri: "cpe:/o:cos:cos_linux:93" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:97" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:101" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:105" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:109" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:113" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:117" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     title: "Ensure bogus ICMP responses are ignored"
     description:
       "Setting icmp_ignore_bogus_error_responses to 1 prevents the kernel from\n"
@@ -2135,14 +2300,14 @@ benchmark_configs: {
       "and attempt to fill up a log file system with many useless error messages."
     remediation:
       "Set the following parameter in /etc/sysctl.conf or a /etc/sysctl.d/* file:\n"
-      "```\n"
+      "\n```\n"
       "net.ipv4.icmp_ignore_bogus_error_responses = 1\n"
-      "```\n"
+      "```\n\n"
       "Run the following commands to set the active kernel parameters:\n"
-      "```\n"
+      "\n```\n"
       "# sysctl -w net.ipv4.icmp_ignore_bogus_error_responses=1\n"
       "# sysctl -w net.ipv4.route.flush=1\n"
-      "```\n"
+      "```\n\n"
       "`/etc` is stateless on Container-Optimized OS. Therefore, `/etc` "
       "cannot be used to make these changes persistent across reboots. The "
       "steps mentioned above needs to be performed after every boot."
@@ -2198,6 +2363,11 @@ benchmark_configs: {
   compliance_note: {
     version: { cpe_uri: "cpe:/o:cos:cos_linux:93" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:97" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:101" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:105" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:109" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:113" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:117" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     title: "Ensure Reverse Path Filtering is enabled"
     description:
       "Setting net.ipv4.conf.all.rp_filter and net.ipv4.conf.default.rp_filter to 1\n"
@@ -2215,16 +2385,16 @@ benchmark_configs: {
       "feature without breaking the routing."
     remediation:
       "Set the following parameters in /etc/sysctl.conf or a /etc/sysctl.d/* file:\n"
-      "```\n"
+      "\n```\n"
       "net.ipv4.conf.all.rp_filter = 1\n"
       "net.ipv4.conf.default.rp_filter = 1\n"
-      "```\n"
+      "```\n\n"
       "Run the following commands to set the active kernel parameters:\n"
-      "```\n"
+      "\n```\n"
       "# sysctl -w net.ipv4.conf.all.rp_filter=1\n"
       "# sysctl -w net.ipv4.conf.default.rp_filter=1\n"
       "# sysctl -w net.ipv4.route.flush=1\n"
-      "```\n"
+      "```\n\n"
       "`/etc` is stateless on Container-Optimized OS. Therefore, `/etc` "
       "cannot be used to make these changes persistent across reboots. The "
       "steps mentioned above needs to be performed after every boot."
@@ -2289,6 +2459,11 @@ benchmark_configs: {
   compliance_note: {
     version: { cpe_uri: "cpe:/o:cos:cos_linux:93" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:97" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:101" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:105" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:109" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:113" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:117" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     title: "Ensure TCP SYN Cookies is enabled"
     description:
       "When tcp_syncookies is set, the kernel will handle TCP SYN packets normally\n"
@@ -2309,14 +2484,14 @@ benchmark_configs: {
       "to keep accepting valid connections, even if under a denial of service attack."
     remediation:
       "Set the following parameters in /etc/sysctl.conf or a /etc/sysctl.d/* file:\n"
-      "```\n"
+      "\n```\n"
       "net.ipv4.tcp_syncookies = 1\n"
-      "```\n"
+      "```\n\n"
       "Run the following commands to set the active kernel parameters:\n"
-      "```\n"
+      "\n```\n"
       "# sysctl -w net.ipv4.tcp_syncookies=1\n"
       "# sysctl -w net.ipv4.route.flush=1\n"
-      "```\n"
+      "```\n\n"
       "`/etc` is stateless on Container-Optimized OS. Therefore, `/etc` "
       "cannot be used to make these changes persistent across reboots. The "
       "steps mentioned above needs to be performed after every boot."
@@ -2372,6 +2547,11 @@ benchmark_configs: {
   compliance_note: {
     version: { cpe_uri: "cpe:/o:cos:cos_linux:93" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:97" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:101" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:105" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:109" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:113" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:117" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     title: "Ensure IPv6 router advertisements are not accepted"
     description:
       "This setting disables the system's ability to accept IPv6 router "
@@ -2383,11 +2563,11 @@ benchmark_configs: {
       "to a trusted router) protects the system from bad routes."
     remediation:
       "Run the following commands to set the active kernel parameters:\n"
-      "```\n"
+      "\n```\n"
       "# sysctl -w net.ipv6.conf.all.accept_ra=0\n"
       "# sysctl -w net.ipv6.conf.default.accept_ra=0\n"
       "# sysctl -w net.ipv6.route.flush=1\n"
-      "```\n"
+      "```\n\n"
       "`/etc` is stateless on Container-Optimized OS. Therefore, `/etc` "
       "cannot be used to make these changes persistent across reboots. The "
       "steps mentioned above needs to be performed after every boot."
@@ -2411,6 +2591,11 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:cos:cos_linux:89" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:93" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:97" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:101" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:105" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:109" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:113" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:117" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     title: "Ensure iptables is installed"
     description:
       "iptables allows configuration of the IPv4 and IPv6 tables in the linux kernel\n"
@@ -2442,6 +2627,11 @@ benchmark_configs: {
   compliance_note: {
     version: { cpe_uri: "cpe:/o:cos:cos_linux:93" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:97" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:101" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:105" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:109" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:113" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:117" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     title: "Ensure correct container image is set for stackdriver logging agent"
     description:
       "stackdriver-logging service runs stackdriver container image to export "
@@ -2453,9 +2643,9 @@ benchmark_configs: {
       "Edit the LOGGING_AGENT_DOCKER_IMAGE variable in the "
       "/etc/stackdriver/env_vars file to set the correct logging agent.\n"
       "Run the following command to restart stackdriver-logging service:\n"
-      "```\n"
+      "\n```\n"
       "# systemctl restart stackdriver-logging\n"
-      "```\n"
+      "```\n\n"
       "`/etc` is stateless on Container-Optimized OS. Therefore, `/etc` "
       "cannot be used to make these changes persistent across reboots. The "
       "steps mentioned above needs to be performed after every boot."
@@ -2483,6 +2673,11 @@ benchmark_configs: {
   compliance_note: {
     version: { cpe_uri: "cpe:/o:cos:cos_linux:93" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:97" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:101" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:105" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:109" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:113" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:117" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     title: "Ensure logging Service is running"
     description:
       "Stackdriver-logging agent or fluent-bit logging agent needs "
@@ -2493,13 +2688,21 @@ benchmark_configs: {
     remediation:
       "Stackdriver-logging Agent \n"
       "Run the following command to enable stackdriver-logging : \n"
-      "```# systemctl start stackdriver-logging```\n "
+      "\n```\n"
+      "# systemctl start stackdriver-logging\n"
+      "```\n\n"
       "Fluent-bit Logging \n"
-      "Run the following command to enable fluent-bit : \n"
-      "```# systemctl start fluent-bit```\n "
+      "Run the following command to enable fluent-bit:\n"
+      "\n```\n"
+      "# systemctl start fluent-bit\n"
+      "```\n\n"
       "Works for Both \n"
       "Simply update the instance metadata to enable logging as follows: \n"
-      "```# gcloud compute instances add-metadata <instance-name> \\ --zone <compute-zone> \\ --metadata google-logging-enabled=true```"
+      "\n```\n"
+      "# gcloud compute instances add-metadata <instance-name> \\\n"
+      " --zone <compute-zone> \\\n"
+      " --metadata google-logging-enabled=true\n"
+      "```\n\n"
     cis_benchmark: {
       profile_level: 2
       severity: LOW
@@ -2509,22 +2712,25 @@ benchmark_configs: {
       "  file_checks:{"
       "    files_to_check:{"
       "      files_in_dir:{"
-      "        dir_path:\"/etc/systemd/system\""
+      "        dir_path:\"/run/systemd/units\""
       "        recursive: true"
-      "        filename_regex: \"stackdriver-logging.service\""
-      "      }"
-      "    }"
-      "    files_to_check:{"
-      "      files_in_dir:{"
-      "        dir_path:\"/etc/systemd/system\""
-      "        recursive: true"
-      "        filename_regex: \"fluent-bit.service\""
+      "        filename_regex: \"invocation:stackdriver-logging.service\""
       "      }"
       "    }"
       "    existence:{should_exist: true}"
       "  }"
-      " }"
-      "}"
+      "} check_alternatives:{"
+      "  file_checks:{"
+      "    files_to_check:{"
+      "      files_in_dir:{"
+      "        dir_path:\"/run/systemd/units\""
+      "        recursive: true"
+      "        filename_regex: \"invocation:fluent-bit.service\""
+      "      }"
+      "    }"
+      "    existence:{should_exist: true}"
+      "  }"
+      "}}"
   }
 }
 benchmark_configs: {
@@ -2532,6 +2738,11 @@ benchmark_configs: {
   compliance_note: {
     version: { cpe_uri: "cpe:/o:cos:cos_linux:93" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:97" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:101" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:105" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:109" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:113" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:117" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     title: "Ensure logging is configured"
     description:
       "For AMD, the /etc/stackdriver/logging.config.d/*.conf files specifies rules "
@@ -2547,9 +2758,9 @@ benchmark_configs: {
       "and /usr/share/fluent-bit/fluent-bit.conf for ARM to ensure appropriate"
       "logging is set. In addition, run the following command and verify that"
       "the log files are logging information:\n"
-      "```\n"
+      "\n```\n"
       "# ls -l /var/log/\n"
-      "```\n"
+      "```\n\n"
       "`/etc` is stateless on Container-Optimized OS. Therefore, `/etc` "
       "cannot be used to make these changes persistent across reboots. The "
       "steps mentioned above need to be performed after every boot for AMD. This"
@@ -2609,6 +2820,11 @@ benchmark_configs: {
   compliance_note: {
     version: { cpe_uri: "cpe:/o:cos:cos_linux:93" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:97" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:101" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:105" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:109" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:113" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:117" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     title: "Ensure journald is configured to compress large log files"
     description:
       "The journald system includes the capability of compressing overly "
@@ -2620,13 +2836,13 @@ benchmark_configs: {
       "sudden, unexpected filesystem impacts."
     remediation:
       "Edit the /etc/systemd/journald.conf file and add the following line:\n"
-      "```\n"
+      "\n```\n"
       "Compress=yes\n"
-      "```\n"
+      "```\n\n"
       "Reload the configuration to be effective.\n"
-      "```\n"
+      "\n```\n"
       "# systemctl force-reload systemd-journald\n"
-      "```\n"
+      "```\n\n"
       "`/etc` is stateless on Container-Optimized OS. Therefore, `/etc` "
       "cannot be used to make these changes persistent across reboots. The "
       "steps mentioned above needs to be performed after every boot."
@@ -2676,6 +2892,11 @@ benchmark_configs: {
   compliance_note: {
     version: { cpe_uri: "cpe:/o:cos:cos_linux:93" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:97" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:101" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:105" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:109" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:113" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:117" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     title: "Ensure journald is configured to write logfiles to persistent disk"
     description:
       "Data from journald may be stored in volatile memory or persisted locally on\n"
@@ -2687,9 +2908,9 @@ benchmark_configs: {
       "after a system crash or reboot."
     remediation:
       "Edit the /etc/systemd/journald.conf file and add the following line:\n"
-      "```\n"
+      "\n```\n"
       "Storage=persistent\n"
-      "```\n"
+      "```\n\n"
       "`/etc` is stateless on Container-Optimized OS. Therefore, `/etc` "
       "cannot be used to make these changes persistent across reboots. The "
       "steps mentioned above needs to be performed after every boot."
@@ -2717,6 +2938,11 @@ benchmark_configs: {
   compliance_note: {
     version: { cpe_uri: "cpe:/o:cos:cos_linux:93" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:97" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:101" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:105" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:109" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:113" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:117" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     title: "Ensure permissions on all logfiles are configured"
     description:
       "Log files stored in /var/log/ contain logged information from many "
@@ -2726,31 +2952,57 @@ benchmark_configs: {
       "to ensure that sensitive data is archived and protected."
     remediation:
       "Run the following commands to set permissions on all existing log files:\n"
-      "```\n"
+      "\n```\n"
       "find /var/log -type f -exec chmod g-wx,o-rwx \"{}\" + -o -type d -exec chmod gw,o-rwx \"{}\" +\n"
-      "```\n"
+      "```\n\n"
       "`/etc` is stateless on Container-Optimized OS. Therefore, `/etc` "
       "cannot be used to make these changes persistent across reboots. The "
       "steps mentioned above needs to be performed after every boot."
-     cis_benchmark: {
+    cis_benchmark: {
       profile_level: 2
       severity: LOW
     }
     scan_instructions:
-      "generic:{check_alternatives:{"
-      "  file_checks:{"
-      "    files_to_check:{files_in_dir:{"
-      "      dir_path:\"/usr/share/google/security\""
-      "      filename_regex: \".*\\\\.sh\""
-      "      recursive: true"
-      "    }}"
-      "    content_entry:{"
-      "      match_type: ALL_MATCH_ANY_ORDER"
+      "scan_type_specific:{instance_scanning:{"
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{files_in_dir:{"
+      "        dir_path:\"/var/log\""
+      "        files_only: true"
+      "        recursive: true"
+      "      }}"
+      "      permission:{"
+      "        clear_bits: 0037" # g-wx,o-rwx
+      "      }"
+      "    }"
+      "    file_checks:{"
+      "      files_to_check:{files_in_dir:{"
+      "        dir_path:\"/var/log\""
+      "        dirs_only: true"
+      "        recursive: true"
+      "      }}"
+      "      permission:{"
+      "        clear_bits: 0027" # g-w,o-rwx
+      "      }"
+      "    }"
+      "  }"
+      "}"
+      "image_scanning:{"
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{files_in_dir:{"
+      "        dir_path:\"/usr/share/google/security\""
+      "        filename_regex: \".*\\\\.sh\""
+      "        recursive: true"
+      "      }}"
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
       # Use a null byte as the delimiter to be able to match multi-line commands.
-      "      delimiter: \"\\0\""
-      "      match_criteria: {"
-      "        filter_regex: \".*sudo find /var/log.*\""
-      "        expected_regex: \".*sudo find /var/log -type f -exec chmod g-wx,o-rwx \\\"{}\\\" \\\\+ -o .* -type d -exec chmod g-w,o-rwx \\\"{}\\\" +.*\""
+      "        delimiter: \"\\0\""
+      "        match_criteria: {"
+      "          filter_regex: \".*sudo find /var/log.*\""
+      "          expected_regex: \".*sudo find /var/log -type f -exec chmod g-wx,o-rwx \\\"{}\\\" \\\\+ -o .* -type d -exec chmod g-w,o-rwx \\\"{}\\\" +.*\""
+      "        }"
       "      }"
       "    }"
       "  }"
@@ -2762,6 +3014,11 @@ benchmark_configs: {
   compliance_note: {
     version: { cpe_uri: "cpe:/o:cos:cos_linux:93" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:97" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:101" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:105" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:109" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:113" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:117" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     title: "Ensure logrotate is configured"
     description:
       "The system includes the capability of rotating log files regularly to "
@@ -2802,28 +3059,33 @@ benchmark_configs: {
   compliance_note: {
     version: { cpe_uri: "cpe:/o:cos:cos_linux:93" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:97" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:101" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:105" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:109" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:113" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:117" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     title: "Ensure password creation requirements are configured"
     description:
       "The pam_passwdqc.so module checks the strength of passwords. It "
       "performs checks such as making sure a password is not a dictionary "
       "word, it is a certain length, contains a mix of characters (e.g. "
       "alphabet, numeric, other) and more based on the following options set "
-      "in the /etc/security/passwdqc.conf:\n"
-      "min=disabled,disabled,disabled,disabled,14 - The password must be 14 "
+      "in the /etc/security/passwdqc.conf:\n\n"
+      "- min=disabled,disabled,disabled,disabled,14 - The password must be 14 "
       "characters or more and consists of four character classes.\n"
-      "max=40 - The maximum allowed password length is 40.\n"
+      "- max=40 - The maximum allowed password length is 40.\n"
       "passphrase=3 - The number of words required for a passphrase is at "
       "least 3.\n"
-      "match=4 - The length of common substring required to conclude that a "
+      "- match=4 - The length of common substring required to conclude that a "
       "password is at least partially based on information found in a "
       "character string is 4.\n"
-      "similar=deny - The password that is similar to the old one is going to "
+      "- similar=deny - The password that is similar to the old one is going to "
       "be denied.\n"
-      "random=47 - The size of randomly-generated passphrases in bits is 47.\n"
+      "- random=47 - The size of randomly-generated passphrases in bits is 47.\n"
       "enforce=everyone - Warn everyone for weak passwords.\n"
-      "retry=3 - Let the user provide a password 3 times if the user fails to "
+      "- retry=3 - Let the user provide a password 3 times if the user fails to "
       "provide a sufficiently strong password and enter it twice the first "
-      "time.\n"
+      "time.\n\n"
       "For more details, refer to pam_passwdqc module documentation. The "
       "settings shown above are one possible policy. Alter these values to "
       "conform to your own organization's password policies.\n"
@@ -2834,7 +3096,7 @@ benchmark_configs: {
       "Edit the file /etc/security/passwdqc.conf and add or modify the "
       "following lines for password length and complexity to conform to site "
       "policy:\n"
-      "```\n"
+      "\n```\n"
       "min=disabled,disabled,disabled,disabled,14\n"
       "max=40\n"
       "passphrase=3\n"
@@ -2843,12 +3105,12 @@ benchmark_configs: {
       "random=47\n"
       "enforce=everyone\n"
       "retry=3\n"
-      "```\n"
+      "```\n\n"
       "Edit the /etc/pam.d/system-auth files to include the appropriate "
       "options for pam_passwdqc.so and to conform to site policy:\n"
-      "```\n"
+      "\n```\n"
       "password required pam_passwdqc.so config=/etc/security/passwdqc.conf\n"
-      "```\n"
+      "```\n\n"
     cis_benchmark: {
       profile_level: 2
       severity: LOW
@@ -2892,6 +3154,11 @@ benchmark_configs: {
   compliance_note: {
     version: { cpe_uri: "cpe:/o:cos:cos_linux:93" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:97" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:101" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:105" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:109" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:113" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:117" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     title: "Ensure default user umask is 027 or more restrictive"
     description:
       "The default umask determines the permissions of files created by "
@@ -2912,9 +3179,9 @@ benchmark_configs: {
       "Edit the /etc/bash/bashrc, /etc/profile and /etc/profile.d/*.sh files "
       "(and the appropriate files for any other shell supported on your "
       "system) and add or edit any umask parameters as follows:\n"
-      "```\n"
+      "\n```\n"
       "umask 027\n"
-      "```\n"
+      "```\n\n"
     cis_benchmark: {
       profile_level: 2
       severity: LOW
@@ -2980,6 +3247,11 @@ benchmark_configs: {
   compliance_note: {
     version: { cpe_uri: "cpe:/o:cos:cos_linux:93" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:97" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:101" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:105" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:109" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:113" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:117" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     title: "Ensure access to the su command is restricted"
     description:
       "The su command allows a user to run a command or shell as another user. The\n"
@@ -2995,14 +3267,14 @@ benchmark_configs: {
       "record that a user executed the su program."
     remediation:
       "Add the following line to the /etc/pam.d/su file:\n"
-      "```\n"
+      "\n```\n"
       "auth required pam_wheel.so use_uid\n"
-      "```\n"
+      "```\n\n"
       "Create a comma separated list of users in the wheel statement in the "
       "/etc/group file:\n"
-      "```\n"
+      "\n```\n"
       "wheel:!:10:root,<user list>\n"
-      "```\n"
+      "```\n\n"
       "`/etc` is stateless on Container-Optimized OS. Therefore, `/etc` "
       "cannot be used to make these changes persistent across reboots. The "
       "steps mentioned above needs to be performed after every boot."
@@ -3040,6 +3312,11 @@ benchmark_configs: {
   compliance_note: {
     version: { cpe_uri: "cpe:/o:cos:cos_linux:93" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:97" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:101" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:105" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:109" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:113" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:117" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     title: "Ensure permissions on /etc/passwd- are configured"
     description: "The /etc/passwd- file contains backup user account information."
     rationale:
@@ -3049,10 +3326,10 @@ benchmark_configs: {
       "actions."
     remediation:
       "Run the following command to set permissions on /etc/passwd-:\n"
-      "```\n"
+      "\n```\n"
       "# chown root:root /etc/passwd-\n"
       "# chmod u-x,go-wx /etc/passwd-\n"
-      "```\n"
+      "```\n\n"
     cis_benchmark: {
       profile_level: 2
       severity: LOW
@@ -3081,6 +3358,11 @@ benchmark_configs: {
   compliance_note: {
     version: { cpe_uri: "cpe:/o:cos:cos_linux:93" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:97" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:101" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:105" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:109" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:113" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:117" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     title: "Ensure root PATH Integrity"
     description:
       "The root user can execute any command on the system and could be fooled "
@@ -3154,6 +3436,11 @@ benchmark_configs: {
   compliance_note: {
     version: { cpe_uri: "cpe:/o:cos:cos_linux:93" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:97" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:101" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:105" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:109" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:113" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:117" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     title: "Ensure mounting of udf filesystems is disabled"
     description:
       "The udf filesystem type is the universal disk format used to implement "
@@ -3169,13 +3456,13 @@ benchmark_configs: {
       "Edit or create a file in the /etc/modprobe.d/ directory ending in .conf\n"
       "Example: vim /etc/modprobe.d/udf.conf\n"
       "and add the following line:\n"
-      "```\n"
+      "\n```\n"
       "install udf /bin/true\n"
-      "```\n"
+      "```\n\n"
       "Run the following command to unload the udf module:\n"
-      "```\n"
+      "\n```\n"
       "# rmmod udf\n"
-      "```\n"
+      "```\n\n"
     cis_benchmark: {
       profile_level: 1
       severity: LOW
@@ -3236,6 +3523,11 @@ benchmark_configs: {
   compliance_note: {
     version: { cpe_uri: "cpe:/o:cos:cos_linux:93" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:97" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:101" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:105" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:109" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:113" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:117" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     title: "Ensure only strong MAC algorithms are used"
     description: "This variable limits the types of MAC algorithms that SSH can use during communication."
     rationale:
@@ -3249,9 +3541,9 @@ benchmark_configs: {
       "Edit the /etc/ssh/sshd_config file and add/modify the MACs line to "
       "contain a comma separated list of the site approved MACs\n"
       "Example:\n"
-      "```\n"
+      "\n```\n"
       "MACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-sha2-512,hmac-sha2-256\n"
-      "```\n"
+      "```\n\n"
     cis_benchmark: {
       profile_level: 1
       severity: LOW
@@ -3361,6 +3653,11 @@ benchmark_configs: {
   compliance_note: {
     version: { cpe_uri: "cpe:/o:cos:cos_linux:93" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:97" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:101" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:105" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:109" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:113" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:117" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     title: "Ensure SSH Idle Timeout Interval is configured"
     description:
       "The two options ClientAliveInterval and ClientAliveCountMax control the "
@@ -3386,10 +3683,10 @@ benchmark_configs: {
     remediation:
       "Edit the /etc/ssh/sshd_config file to set the parameters according to "
       "site policy:\n"
-      "```\n"
+      "\n```\n"
       "ClientAliveInterval 300\n"
       "ClientAliveCountMax 0\n"
-      "```\n"
+      "```\n\n"
     cis_benchmark: {
       profile_level: 1
       severity: LOW
@@ -3475,6 +3772,11 @@ benchmark_configs: {
   compliance_note: {
     version: { cpe_uri: "cpe:/o:cos:cos_linux:93" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:97" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:101" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:105" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:109" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:113" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:117" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     title: "Ensure SSH LoginGraceTime is set to one minute or less"
     description:
       "The LoginGraceTime parameter specifies the time allowed for successful "
@@ -3491,9 +3793,9 @@ benchmark_configs: {
       "site policy."
     remediation:
       "Edit the /etc/ssh/sshd_config file to set the parameter as follows:\n"
-      "```\n"
+      "\n```\n"
       "LoginGraceTime 60\n"
-      "```\n"
+      "```\n\n"
     cis_benchmark: {
       profile_level: 1
       severity: LOW
@@ -3554,6 +3856,11 @@ benchmark_configs: {
   compliance_note: {
     version: { cpe_uri: "cpe:/o:cos:cos_linux:93" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:97" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:101" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:105" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:109" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:113" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:117" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     title: "Ensure SSH warning banner is configured"
     description:
       "The Banner parameter specifies a file whose contents must be sent to "
@@ -3566,9 +3873,9 @@ benchmark_configs: {
       "the computer system."
     remediation:
       "Edit the /etc/ssh/sshd_config file to set the parameter as follows:\n"
-      "```\n"
+      "\n```\n"
       "Banner /etc/issue.net\n"
-      "```\n"
+      "```\n\n"
     cis_benchmark: {
       profile_level: 1
       severity: LOW
@@ -3615,6 +3922,11 @@ benchmark_configs: {
   compliance_note: {
     version: { cpe_uri: "cpe:/o:cos:cos_linux:93" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:97" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:101" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:105" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:109" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:113" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:117" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     title: "Ensure SSH AllowTcpForwarding is disabled"
     description:
       "SSH port forwarding is a mechanism in SSH for tunneling application "
@@ -3634,9 +3946,9 @@ benchmark_configs: {
       "target network"
     remediation:
       "Edit the /etc/ssh/sshd_config file to set the parameter as follows:\n"
-      "```\n"
+      "\n```\n"
       "AllowTcpForwarding no\n"
-      "```\n"
+      "```\n\n"
     cis_benchmark: {
       profile_level: 1
       severity: LOW
@@ -3683,6 +3995,11 @@ benchmark_configs: {
   compliance_note: {
     version: { cpe_uri: "cpe:/o:cos:cos_linux:93" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:97" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:101" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:105" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:109" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:113" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:117" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     title: "Ensure SSH MaxStartups is configured"
     description:
       "The MaxStartups parameter specifies the maximum number of concurrent "
@@ -3694,9 +4011,9 @@ benchmark_configs: {
       "prevent overwhelming the daemon."
     remediation:
       "Edit the /etc/ssh/sshd_config file to set the parameter as follows:\n"
-      "```\n"
+      "\n```\n"
       "maxstartups 10:30:60\n"
-      "```\n"
+      "```\n\n"
     cis_benchmark: {
       profile_level: 1
       severity: LOW
@@ -3743,6 +4060,11 @@ benchmark_configs: {
   compliance_note: {
     version: { cpe_uri: "cpe:/o:cos:cos_linux:93" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:97" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:101" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:105" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:109" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:113" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:117" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     title: "Ensure SSH MaxSessions is set to 4 or less"
     description:
       "The MaxSessions parameter specifies the maximum number of open "
@@ -3753,9 +4075,9 @@ benchmark_configs: {
       "protect availability of sshd logins and prevent overwhelming the daemon."
     remediation:
       "Edit the /etc/ssh/sshd_config file to set the parameter as follows:\n"
-      "```\n"
+      "\n```\n"
       "MaxSessions 4\n"
-      "```\n"
+      "```\n\n"
     cis_benchmark: {
       profile_level: 1
       severity: LOW
@@ -3807,6 +4129,11 @@ benchmark_configs: {
   compliance_note: {
     version: { cpe_uri: "cpe:/o:cos:cos_linux:93" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:97" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:101" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:105" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:109" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:113" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:117" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     title: "Ensure password reuse is limited"
     description:
       "The /etc/security/opasswd file stores the users' old passwords and can "
@@ -3822,10 +4149,10 @@ benchmark_configs: {
       "your documentation for details. If no tooling is provided edit the "
       "appropriate /etc/pam.d/ configuration file and add or modify the "
       "pam_pwhistory.so or pam_unix.so lines to include the remember option:\n"
-      "```\n"
+      "\n```\n"
       "password required pam_pwhistory.so remember=5\n"
       "password sufficient pam_unix.so remember=5\n"
-      "```\n"
+      "```\n\n"
     cis_benchmark: {
       profile_level: 1
       severity: LOW
@@ -3896,6 +4223,11 @@ benchmark_configs: {
   compliance_note: {
     version: { cpe_uri: "cpe:/o:cos:cos_linux:93" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:97" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:101" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:105" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:109" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:113" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:117" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     title: "Ensure password hashing algorithm is SHA-512"
     description:
       "The commands below change password encryption from md5 to sha512 (a "
@@ -3914,9 +4246,9 @@ benchmark_configs: {
       "details. If no tooling is provided edit the appropriate /etc/pam.d/ "
       "configuration file and add or modify the pam_unix.so lines to include "
       "the sha512 option:\n"
-      "```\n"
+      "\n```\n"
       "password sufficient pam_unix.so sha512\n"
-      "```\n"
+      "```\n\n"
     cis_benchmark: {
       profile_level: 1
       severity: LOW
@@ -3967,6 +4299,11 @@ benchmark_configs: {
   compliance_note: {
     version: { cpe_uri: "cpe:/o:cos:cos_linux:93" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:97" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:101" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:105" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:109" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:113" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:117" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     title: "Ensure password expiration is 365 days or less"
     description:
       "The PASS_MAX_DAYS parameter in /etc/login.defs allows an administrator "
@@ -3982,13 +4319,13 @@ benchmark_configs: {
     remediation:
       "Set the PASS_MAX_DAYS parameter to conform to site policy in "
       "/etc/login.defs:\n"
-      "```\n"
+      "\n```\n"
       "PASS_MAX_DAYS 365\n"
-      "```\n"
+      "```\n\n"
       "Modify user parameters for all users with a password set to match:\n"
-      "```\n"
+      "\n```\n"
       "# chage --maxdays 365 <user>\n"
-      "```\n"
+      "```\n\n"
     cis_benchmark: {
       profile_level: 1
       severity: LOW
@@ -4072,6 +4409,11 @@ benchmark_configs: {
   compliance_note: {
     version: { cpe_uri: "cpe:/o:cos:cos_linux:93" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:97" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:101" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:105" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:109" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:113" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:117" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     title: "Ensure minimum days between password changes is 7 or more"
     description:
       "The PASS_MIN_DAYS parameter in /etc/login.defs allows an administrator "
@@ -4084,13 +4426,13 @@ benchmark_configs: {
       "circumvent password reuse controls."
     remediation:
       "Set the PASS_MIN_DAYS parameter to 7 in /etc/login.defs:\n"
-      "```\n"
+      "\n```\n"
       "PASS_MIN_DAYS 7\n"
-      "```\n"
+      "```\n\n"
       "Modify user parameters for all users with a password set to match:\n"
-      "```\n"
+      "\n```\n"
       "# chage --mindays 7 <user>\n"
-      "```\n"
+      "```\n\n"
     cis_benchmark: {
       profile_level: 1
       severity: LOW
@@ -4174,6 +4516,11 @@ benchmark_configs: {
   compliance_note: {
     version: { cpe_uri: "cpe:/o:cos:cos_linux:93" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:97" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:101" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:105" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:109" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:113" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:117" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     title: "Ensure inactive password lock is 30 days or less"
     description:
       "User accounts that have been inactive for over a given period of time "
@@ -4185,13 +4532,13 @@ benchmark_configs: {
     remediation:
       "Run the following command to set the default password inactivity "
       "period to 30 days:\n"
-      "```\n"
+      "\n```\n"
       "# useradd -D -f 30\n"
-      "```\n"
+      "```\n\n"
       "Modify user parameters for all users with a password set to match:\n"
-      "```\n"
+      "\n```\n"
       "# chage --inactive 30 <user>\n"
-      "```\n"
+      "```\n\n"
     cis_benchmark: {
       profile_level: 1
       severity: LOW
@@ -4275,6 +4622,11 @@ benchmark_configs: {
   compliance_note: {
     version: { cpe_uri: "cpe:/o:cos:cos_linux:93" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:97" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:101" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:105" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:109" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:113" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:117" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     title: "Ensure IPv6 default deny firewall policy"
     description:
       "A default deny all policy on connections ensures that any "
@@ -4286,43 +4638,50 @@ benchmark_configs: {
       "to black list unacceptable usage."
     remediation:
       "Run the following commands to implement a default DROP policy: \n"
-      "```# ip6tables -P INPUT DROP \n"
+      "\n```\n"
+      "# ip6tables -P INPUT DROP \n"
       "# ip6tables -P OUTPUT DROP \n"
-      "# ip6tables -P FORWARD DROP```"
+      "# ip6tables -P FORWARD DROP\n"
+      "```\n\n"
     cis_benchmark: {
       profile_level: 2
       severity: LOW
     }
     scan_instructions:
-    "generic:{"
-    " check_alternatives:{"
-    "   file_checks:{"
-    "     files_to_check:{single_file:{path:\"/usr/share/cloud/ip6tables-setup\"}}"
-    "     content_entry:{"
-    "         match_type: ALL_MATCH_ANY_ORDER"
-    "         match_criteria: {"
-    "           filter_regex: \"ip6tables\\\\s+-P\\\\s+INPUT\\\\s+[a-zA-Z]+\\\\s+-w\\\\s*\""
-    "           expected_regex: \"ip6tables\\\\s+-P\\\\s+INPUT\\\\s+(DROP|REJECT)\\\\s+-w\\\\s*\""
-    "         }"
-    "         match_criteria: {"
-    "           filter_regex: \"ip6tables\\\\s+-P\\\\s+OUTPUT\\\\s+[a-zA-Z]+\\\\s+-w\\\\s*\""
-    "           expected_regex: \"ip6tables\\\\s+-P\\\\s+OUTPUT\\\\s+(DROP|REJECT)\\\\s+-w\\\\s*\""
-    "         }"
-    "         match_criteria: {"
-    "           filter_regex: \"ip6tables\\\\s+-P\\\\s+FORWARD\\\\s+[a-zA-Z]+\\\\s+-w\\\\s*\""
-    "           expected_regex: \"ip6tables\\\\s+-P\\\\s+FORWARD\\\\s+(DROP|REJECT)\\\\s+-w\\\\s*\""
-    "         }"
-    "     }"
-    "   }"
-    " }"
-    "}"
+      "generic:{"
+      " check_alternatives:{"
+      "   file_checks:{"
+      "     files_to_check:{single_file:{path:\"/usr/share/cloud/ip6tables-setup\"}}"
+      "     content_entry:{"
+      "         match_type: ALL_MATCH_ANY_ORDER"
+      "         match_criteria: {"
+      "           filter_regex: \"ip6tables\\\\s+-P\\\\s+INPUT\\\\s+[a-zA-Z]+\\\\s+-w\\\\s*\""
+      "           expected_regex: \"ip6tables\\\\s+-P\\\\s+INPUT\\\\s+(DROP|REJECT)\\\\s+-w\\\\s*\""
+      "         }"
+      "         match_criteria: {"
+      "           filter_regex: \"ip6tables\\\\s+-P\\\\s+OUTPUT\\\\s+[a-zA-Z]+\\\\s+-w\\\\s*\""
+      "           expected_regex: \"ip6tables\\\\s+-P\\\\s+OUTPUT\\\\s+(DROP|REJECT)\\\\s+-w\\\\s*\""
+      "         }"
+      "         match_criteria: {"
+      "           filter_regex: \"ip6tables\\\\s+-P\\\\s+FORWARD\\\\s+[a-zA-Z]+\\\\s+-w\\\\s*\""
+      "           expected_regex: \"ip6tables\\\\s+-P\\\\s+FORWARD\\\\s+(DROP|REJECT)\\\\s+-w\\\\s*\""
+      "         }"
+      "     }"
+      "   }"
+      " }"
+      "}"
   }
 }
 benchmark_configs: {
-  id: "ipv6-loopback-traffic-configured-cos"
+  id: "configure-ipv6-loopback-cos"
   compliance_note: {
     version: { cpe_uri: "cpe:/o:cos:cos_linux:93" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:97" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:101" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:105" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:109" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:113" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:117" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     title: "Ensure IPv6 loopback traffic is configured"
     description:
       "Configure the loopback interface to accept traffic. "
@@ -4334,168 +4693,62 @@ benchmark_configs: {
       "traffic should be seen, all other interfaces should ignore traffic on this network as an anti-spoofing measure."
     remediation:
       "Run the following commands to implement the loopback rules: \n"
-      "```# ip6tables -A INPUT -i lo -j ACCEPT \n"
+      "\n```\n"
+      "# ip6tables -A INPUT -i lo -j ACCEPT \n"
       "# ip6tables -A OUTPUT -o lo -j ACCEPT \n"
-      "# ip6tables -A INPUT -s ::1 -j DROP```"
+      "# ip6tables -A INPUT -s ::1 -j DROP\n"
+      "```\n\n"
     cis_benchmark: {
       profile_level: 2
       severity: LOW
     }
     scan_instructions:
-    "generic:{"
-    " check_alternatives:{"
-    "   file_checks:{"
-    "     files_to_check:{single_file:{path:\"/usr/share/cloud/ip6tables-setup\"}}"
-    "     content_entry:{"
-    "         match_type: ALL_MATCH_STRICT_ORDER"
-    "         match_criteria: {"
-    "           filter_regex: \"ip6tables\\\\s+-[A-Z]\\\\s+INPUT\\\\s+-i\\\\s+lo\\\\s+-j\\\\s+[a-zA-Z]+\\\\s+.*\""
-    "           expected_regex: \"ip6tables\\\\s+-(A|I)\\\\s+INPUT\\\\s+-i\\\\s+lo\\\\s+-j\\\\s+ACCEPT\\\\s+.*\""
-    "         }"
-    "         match_criteria: {"
-    "           filter_regex: \"ip6tables\\\\s+-[A-Z]\\\\s+OUTPUT\\\\s+-o\\\\s+lo\\\\s+-j\\\\s+[a-zA-Z]+\\\\s+.*\""
-    "           expected_regex: \"ip6tables\\\\s+-(A|I)\\\\s+OUTPUT\\\\s+-o\\\\s+lo\\\\s+-j\\\\s+ACCEPT\\\\s+.*\""
-    "         }"
-    "         match_criteria: {"
-    "           filter_regex: \"ip6tables\\\\s+-[A-Z]\\\\s+INPUT\\\\s+-s\\\\s+::1\\\\s+-j\\\\s+[a-zA-Z]+\\\\s+.*\""
-    "           expected_regex: \"ip6tables\\\\s+-(A|I)\\\\s+INPUT\\\\s+-s\\\\s+::1\\\\s+-j\\\\s+DROP\\\\s+.*\""
-    "         }"
-    "     }"
-    "   }"
-    " }"
-    "}"
+      "scan_type_specific:{instance_scanning:{"
+      " check_alternatives:{"
+      "   file_checks:{"
+      "     files_to_check:{single_file:{path:\"/var/run/ip6tables-conf-cis-2\"}}"
+      "     content_entry:{"
+      "         match_type: ALL_MATCH_ANY_ORDER"
+      "         match_criteria: {"
+      "           filter_regex: \"ip6tables\\\\s+-[A-Z]\\\\s+INPUT\\\\s+-s\\\\s+::1\\\\s+-j\\\\s+[a-zA-Z]+.*\""
+      "           expected_regex: \"ip6tables\\\\s+-(A|I)\\\\s+INPUT\\\\s+-s\\\\s+::1\\\\s+-j\\\\s+DROP.*\""
+      "         }"
+      "     }"
+      "   }"
+      " }"
+      "}"
+      "image_scanning:{"
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{files_in_dir:{"
+      "        dir_path:\"/usr/share/google/security\""
+      "        filename_regex: \".*\\\\.sh\""
+      "        recursive: true"
+      "      }}"
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      # Use a null byte as the delimiter to be able to match multi-line commands.
+      "        delimiter: \"\\0\""
+      "        match_criteria: {"
+      "          filter_regex: \".*ip6tables\\\\s+-[A-Z]\\\\s+INPUT\\\\s+-s\\\\s+::1\\\\s+-j\\\\s+[a-zA-Z]+.*\""
+      "          expected_regex: \".*ip6tables\\\\s+-(A|I)\\\\s+INPUT\\\\s+-s\\\\s+::1\\\\s+-j\\\\s+DROP.*\""
+      "        }"
+      "      }"
+      "    }"
+      "  }"
+      "}}"
   }
 }
 benchmark_configs: {
-  id: "ipv6-outbound-established-connections-configured-cos"
+  id: "configure-loopback-cos"
   compliance_note: {
     version: { cpe_uri: "cpe:/o:cos:cos_linux:93" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:97" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
-    title: "Ensure IPv6 outbound and established connections are configured"
-    description:
-      "Configure the firewall rules for new outbound, and established IPv6 connections."
-    rationale:
-      "If rules are not in place for new outbound, and established connections all "
-      "packets will be dropped by the default policy preventing network usage."
-    remediation:
-      "Configure iptables in accordance with site policy. "
-      "The following commands will implement a policy to "
-      "allow all outbound connections and all established connections: \n"
-      "```# ip6tables -A OUTPUT -p tcp -m state --state NEW,ESTABLISHED -j ACCEPT \n"
-      "# ip6tables -A OUTPUT -p udp -m state --state NEW,ESTABLISHED -j ACCEPT \n"
-      "# ip6tables -A OUTPUT -p icmp -m state --state NEW,ESTABLISHED -j ACCEPT \n"
-      "# ip6tables -A INPUT -p tcp -m state --state ESTABLISHED -j ACCEPT \n"
-      "# ip6tables -A INPUT -p udp -m state --state ESTABLISHED -j ACCEPT \n"
-      "# ip6tables -A INPUT -p icmp -m state --state ESTABLISHED -j ACCEPT```"
-    cis_benchmark: {
-      profile_level: 2
-      severity: LOW
-    }
-    scan_instructions:
-    "generic:{"
-    " check_alternatives:{"
-    "   file_checks:{"
-    "     files_to_check:{single_file:{path:\"/usr/share/cloud/ip6tables-setup\"}}"
-    "     content_entry:{"
-    "         match_type: ALL_MATCH_ANY_ORDER"
-    "         match_criteria: {"
-    "           filter_regex: \"ip6tables\\\\s+-[A-Z]\\\\s+OUTPUT\\\\s+-p\\\\s+tcp\\\\s+-m\\\\s+state\\\\s+--state\\\\s+[A-Za-z,]+\\\\s+-j\\\\s+[A-Za-z]+\\\\s+-w\""
-    "           expected_regex: \"ip6tables\\\\s+-(A|I)\\\\s+OUTPUT\\\\s+-p\\\\s+tcp\\\\s+-m\\\\s+state\\\\s+--state\\\\s+(NEW|ESTABLISHED|,){1,3}\\\\s+-j\\\\s+ACCEPT\""
-    "         }"
-    "         match_criteria: {"
-    "           filter_regex: \"ip6tables\\\\s+-[A-Z]\\\\s+OUTPUT\\\\s+-p\\\\s+udp\\\\s+-m\\\\s+state\\\\s+--state\\\\s+[A-Za-z,]+\\\\s+-j\\\\s+[A-Za-z]+\\\\s+-w\""
-    "           expected_regex: \"ip6tables\\\\s+-(A|I)\\\\s+OUTPUT\\\\s+-p\\\\s+udp\\\\s+-m\\\\s+state\\\\s+--state\\\\s+(NEW|ESTABLISHED|,){1,3}\\\\s+-j\\\\s+ACCEPT\""
-    "         }"
-    "         match_criteria: {"
-    "           filter_regex: \"ip6tables\\\\s+-[A-Z]\\\\s+OUTPUT\\\\s+-p\\\\s+icmp\\\\s+-m\\\\s+state\\\\s+--state\\\\s+[A-Za-z,]+\\\\s+-j\\\\s+[A-Za-z]+\\\\s+-w\""
-    "           expected_regex: \"ip6tables\\\\s+-(A|I)\\\\s+OUTPUT\\\\s+-p\\\\s+icmp\\\\s+-m\\\\s+state\\\\s+--state\\\\s+(NEW|ESTABLISHED|,){1,3}\\\\s+-j\\\\s+ACCEPT\""
-    "         }"
-    "         match_criteria: {"
-    "           filter_regex: \"ip6tables\\\\s+-[A-Z]\\\\s+INPUT\\\\s+-p\\\\s+tcp\\\\s+-m\\\\s+state\\\\s+--state\\\\s+[A-Za-z,]+\\\\s+-j\\\\s+[A-Za-z]+\\\\s+-w\""
-    "           expected_regex: \"ip6tables\\\\s+-(A|I)\\\\s+INPUT\\\\s+-p\\\\s+tcp\\\\s+-m\\\\s+state\\\\s+--state\\\\s+ESTABLISHED\\\\s+-j\\\\s+ACCEPT\""
-    "         }"
-    "         match_criteria: {"
-    "           filter_regex: \"ip6tables\\\\s+-[A-Z]\\\\s+INPUT\\\\s+-p\\\\s+udp\\\\s+-m\\\\s+state\\\\s+--state\\\\s+[A-Za-z,]+\\\\s+-j\\\\s+[A-Za-z]+\\\\s+-w\""
-    "           expected_regex: \"ip6tables\\\\s+-(A|I)\\\\s+INPUT\\\\s+-p\\\\s+udp\\\\s+-m\\\\s+state\\\\s+--state\\\\s+ESTABLISHED\\\\s+-j\\\\s+ACCEPT\""
-    "         }"
-    "         match_criteria: {"
-    "           filter_regex: \"ip6tables\\\\s+-[A-Z]\\\\s+INPUT\\\\s+-p\\\\s+icmp\\\\s+-m\\\\s+state\\\\s+--state\\\\s+[A-Za-z,]+\\\\s+-j\\\\s+[A-Za-z]+\\\\s+-w\""
-    "           expected_regex: \"ip6tables\\\\s+-(A|I)\\\\s+INPUT\\\\s+-p\\\\s+icmp\\\\s+-m\\\\s+state\\\\s+--state\\\\s+ESTABLISHED\\\\s+-j\\\\s+ACCEPT\""
-    "         }"
-    "     }"
-    "   }"
-    " }"
-    " check_alternatives:{"
-    "   file_checks:{"
-    "     files_to_check:{single_file:{path:\"/usr/share/cloud/ip6tables-setup\"}}"
-    "     content_entry:{"
-    "         match_type: ALL_MATCH_ANY_ORDER"
-    "         match_criteria: {"
-    "           filter_regex: \"ip6tables\\\\s+-[A-Z]\\\\s+INPUT\\\\s+-m\\\\s+state\\\\s+--state\\\\s+[A-Za-z,]+\\\\s+-j\\\\s+[A-Za-z]+\\\\s+-w\""
-    "           expected_regex: \"ip6tables\\\\s+-(A|I)\\\\s+INPUT\\\\s+-m\\\\s+state\\\\s+--state\\\\s+(NEW|ESTABLISHED|RELATED|,){3,5}\\\\s+-j\\\\s+ACCEPT\\\\s+-w\""
-    "         }"
-    "         match_criteria: {"
-    "           filter_regex: \"ip6tables\\\\s+-[A-Z]\\\\s+OUTPUT\\\\s+-m\\\\s+state\\\\s+--state\\\\s+[A-Za-z,]+\\\\s+-j\\\\s+[A-Za-z]+\\\\s+-w\""
-    "           expected_regex: \"ip6tables\\\\s+-(A|I)\\\\s+OUTPUT\\\\s+-m\\\\s+state\\\\s+--state\\\\s+(NEW|ESTABLISHED|RELATED|,){3,5}\\\\s+-j\\\\s+ACCEPT\\\\s+-w\""
-    "         }"
-    "     }"
-    "   }"
-    " }"
-    "}"
-  }
-}
-benchmark_configs: {
-  id: "default-deny-firewall-policy-cos"
-  compliance_note: {
-    version: { cpe_uri: "cpe:/o:cos:cos_linux:93" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
-    version: { cpe_uri: "cpe:/o:cos:cos_linux:97" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
-    title: "Ensure default deny firewall policy"
-    description:
-      "A default deny all policy on connections ensures that "
-      "any unconfigured network usage will be rejected."
-    rationale:
-      "With a default accept policy the firewall will accept "
-      "any packet that is not configured to be denied. "
-      "It is easier to white list acceptable usage than to black list unacceptable usage."
-    remediation:
-      "Run the following commands to implement a default DROP policy: \n"
-      "```# iptables -P INPUT DROP \n"
-      "# iptables -P OUTPUT DROP \n"
-      "# iptables -P FORWARD DROP```"
-    cis_benchmark: {
-      profile_level: 2
-      severity: LOW
-    }
-    scan_instructions:
-    "generic:{"
-    " check_alternatives:{"
-    "   file_checks:{"
-    "     files_to_check:{single_file:{path:\"/usr/share/cloud/iptables-setup\"}}"
-    "     content_entry:{"
-    "         match_type: ALL_MATCH_ANY_ORDER"
-    "         match_criteria: {"
-    "           filter_regex: \"iptables\\\\s+-P\\\\s+INPUT\\\\s+[a-zA-Z]+\\\\s+-w\\\\s*\""
-    "           expected_regex: \"iptables\\\\s+-P\\\\s+INPUT\\\\s+(DROP|REJECT)\\\\s+-w\\\\s*\""
-    "         }"
-    "         match_criteria: {"
-    "           filter_regex: \"iptables\\\\s+-P\\\\s+OUTPUT\\\\s+[a-zA-Z]+\\\\s+-w\\\\s*\""
-    "           expected_regex: \"iptables\\\\s+-P\\\\s+OUTPUT\\\\s+(DROP|REJECT)\\\\s+-w\\\\s*\""
-    "         }"
-    "         match_criteria: {"
-    "           filter_regex: \"iptables\\\\s+-P\\\\s+FORWARD\\\\s+[a-zA-Z]+\\\\s+-w\\\\s*\""
-    "           expected_regex: \"iptables\\\\s+-P\\\\s+FORWARD\\\\s+(DROP|REJECT)\\\\s+-w\\\\s*\""
-    "         }"
-    "     }"
-    "   }"
-    " }"
-    "}"
-  }
-}
-benchmark_configs: {
-  id: "loopback-traffic-configured-cos"
-  compliance_note: {
-    version: { cpe_uri: "cpe:/o:cos:cos_linux:93" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
-    version: { cpe_uri: "cpe:/o:cos:cos_linux:97" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:101" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:105" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:109" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:113" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:117" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     title: "Ensure loopback traffic is configured"
     description:
       "Configure the loopback interface to accept traffic. "
@@ -4508,36 +4761,187 @@ benchmark_configs: {
       "ignore traffic on this network as an anti-spoofing measure."
     remediation:
       "Run the following commands to implement the loopback rules: \n"
-      "```# iptables -A INPUT -i lo -j ACCEPT \n"
+      "\n```\n"
+      "# iptables -A INPUT -i lo -j ACCEPT \n"
       "# iptables -A OUTPUT -o lo -j ACCEPT \n"
-      "# iptables -A INPUT -s 127.0.0.0/8 -j DROP```"
+      "# iptables -A INPUT -s 127.0.0.0/8 -j DROP\n```\n"
     cis_benchmark: {
       profile_level: 2
       severity: LOW
     }
     scan_instructions:
-    "generic:{"
-    " check_alternatives:{"
-    "   file_checks:{"
-    "     files_to_check:{single_file:{path:\"/usr/share/cloud/iptables-setup\"}}"
-    "     content_entry:{"
-    "         match_type: ALL_MATCH_STRICT_ORDER"
-    "         match_criteria: {"
-    "           filter_regex: \"iptables\\\\s+-[A-Z]\\\\s+INPUT\\\\s+-i\\\\s+lo\\\\s+-j\\\\s+[a-zA-Z]+\\\\s+.*\""
-    "           expected_regex: \"iptables\\\\s+-(A|I)\\\\s+INPUT\\\\s+-i\\\\s+lo\\\\s+-j\\\\s+ACCEPT\\\\s+.*\""
-    "         }"
-    "         match_criteria: {"
-    "           filter_regex: \"iptables\\\\s+-[A-Z]\\\\s+OUTPUT\\\\s+-o\\\\s+lo\\\\s+-j\\\\s+[a-zA-Z]+\\\\s+.*\""
-    "           expected_regex: \"iptables\\\\s+-(A|I)\\\\s+OUTPUT\\\\s+-o\\\\s+lo\\\\s+-j\\\\s+ACCEPT\\\\s+.*\""
-    "         }"
-    "         match_criteria: {"
-    "           filter_regex: \"iptables\\\\s+-[A-Z]\\\\s+INPUT\\\\s+-s\\\\s+::1\\\\s+-j\\\\s+[a-zA-Z]+\\\\s+.*\""
-    "           expected_regex: \"iptables\\\\s+-(A|I)\\\\s+INPUT\\\\s+-s\\\\s+::1\\\\s+-j\\\\s+DROP\\\\s+.*\""
-    "         }"
-    "     }"
-    "   }"
-    " }"
-    "}"
+      "scan_type_specific:{instance_scanning:{"
+      " check_alternatives:{"
+      "   file_checks:{"
+      "     files_to_check:{single_file:{path:\"/var/run/iptables-conf-cis-2\"}}"
+      "     content_entry:{"
+      "         match_type: ALL_MATCH_ANY_ORDER"
+      "         match_criteria: {"
+      "           filter_regex: \"iptables\\\\s+-[A-Z]\\\\s+INPUT\\\\s+-s\\\\s+127.0.0.0/8\\\\s+-j\\\\s+[a-zA-Z]+.*\""
+      "           expected_regex: \"iptables\\\\s+-(A|I)\\\\s+INPUT\\\\s+-s\\\\s+127.0.0.0/8\\\\s+-j\\\\s+DROP.*\""
+      "         }"
+      "     }"
+      "   }"
+      " }"
+      "}"
+      "image_scanning:{"
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{files_in_dir:{"
+      "        dir_path:\"/usr/share/google/security\""
+      "        filename_regex: \".*\\\\.sh\""
+      "        recursive: true"
+      "      }}"
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      # Use a null byte as the delimiter to be able to match multi-line commands.
+      "        delimiter: \"\\0\""
+      "        match_criteria: {"
+      "          filter_regex: \".*iptables\\\\s+-[A-Z]\\\\s+INPUT\\\\s+-s\\\\s+::1\\\\s+-j\\\\s+[a-zA-Z]+.*\""
+      "          expected_regex: \".*iptables\\\\s+-(A|I)\\\\s+INPUT\\\\s+-s\\\\s+::1\\\\s+-j\\\\s+DROP.*\""
+      "        }"
+      "      }"
+      "    }"
+      "  }"
+      "}}"
+  }
+}
+benchmark_configs: {
+  id: "ipv6-outbound-established-connections-configured-cos"
+  compliance_note: {
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:93" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:97" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:101" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:105" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:109" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:113" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:117" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    title: "Ensure IPv6 outbound and established connections are configured"
+    description: "Configure the firewall rules for new outbound, and established IPv6 connections."
+    rationale:
+      "If rules are not in place for new outbound, and established connections all "
+      "packets will be dropped by the default policy preventing network usage."
+    remediation:
+      "Configure iptables in accordance with site policy. "
+      "The following commands will implement a policy to "
+      "allow all outbound connections and all established connections: \n"
+      "\n```\n"
+      "# ip6tables -A OUTPUT -p tcp -m state --state NEW,ESTABLISHED -j ACCEPT \n"
+      "# ip6tables -A OUTPUT -p udp -m state --state NEW,ESTABLISHED -j ACCEPT \n"
+      "# ip6tables -A OUTPUT -p icmp -m state --state NEW,ESTABLISHED -j ACCEPT \n"
+      "# ip6tables -A INPUT -p tcp -m state --state ESTABLISHED -j ACCEPT \n"
+      "# ip6tables -A INPUT -p udp -m state --state ESTABLISHED -j ACCEPT \n"
+      "# ip6tables -A INPUT -p icmp -m state --state ESTABLISHED -j ACCEPT\n"
+      "```\n\n"
+    cis_benchmark: {
+      profile_level: 2
+      severity: LOW
+    }
+    scan_instructions:
+      "generic:{"
+      " check_alternatives:{"
+      "   file_checks:{"
+      "     files_to_check:{single_file:{path:\"/usr/share/cloud/ip6tables-setup\"}}"
+      "     content_entry:{"
+      "         match_type: ALL_MATCH_ANY_ORDER"
+      "         match_criteria: {"
+      "           filter_regex: \"ip6tables\\\\s+-[A-Z]\\\\s+OUTPUT\\\\s+-p\\\\s+tcp\\\\s+-m\\\\s+state\\\\s+--state\\\\s+[A-Za-z,]+\\\\s+-j\\\\s+[A-Za-z]+\\\\s+-w\""
+      "           expected_regex: \"ip6tables\\\\s+-(A|I)\\\\s+OUTPUT\\\\s+-p\\\\s+tcp\\\\s+-m\\\\s+state\\\\s+--state\\\\s+(NEW|ESTABLISHED|,){1,3}\\\\s+-j\\\\s+ACCEPT\""
+      "         }"
+      "         match_criteria: {"
+      "           filter_regex: \"ip6tables\\\\s+-[A-Z]\\\\s+OUTPUT\\\\s+-p\\\\s+udp\\\\s+-m\\\\s+state\\\\s+--state\\\\s+[A-Za-z,]+\\\\s+-j\\\\s+[A-Za-z]+\\\\s+-w\""
+      "           expected_regex: \"ip6tables\\\\s+-(A|I)\\\\s+OUTPUT\\\\s+-p\\\\s+udp\\\\s+-m\\\\s+state\\\\s+--state\\\\s+(NEW|ESTABLISHED|,){1,3}\\\\s+-j\\\\s+ACCEPT\""
+      "         }"
+      "         match_criteria: {"
+      "           filter_regex: \"ip6tables\\\\s+-[A-Z]\\\\s+OUTPUT\\\\s+-p\\\\s+icmp\\\\s+-m\\\\s+state\\\\s+--state\\\\s+[A-Za-z,]+\\\\s+-j\\\\s+[A-Za-z]+\\\\s+-w\""
+      "           expected_regex: \"ip6tables\\\\s+-(A|I)\\\\s+OUTPUT\\\\s+-p\\\\s+icmp\\\\s+-m\\\\s+state\\\\s+--state\\\\s+(NEW|ESTABLISHED|,){1,3}\\\\s+-j\\\\s+ACCEPT\""
+      "         }"
+      "         match_criteria: {"
+      "           filter_regex: \"ip6tables\\\\s+-[A-Z]\\\\s+INPUT\\\\s+-p\\\\s+tcp\\\\s+-m\\\\s+state\\\\s+--state\\\\s+[A-Za-z,]+\\\\s+-j\\\\s+[A-Za-z]+\\\\s+-w\""
+      "           expected_regex: \"ip6tables\\\\s+-(A|I)\\\\s+INPUT\\\\s+-p\\\\s+tcp\\\\s+-m\\\\s+state\\\\s+--state\\\\s+ESTABLISHED\\\\s+-j\\\\s+ACCEPT\""
+      "         }"
+      "         match_criteria: {"
+      "           filter_regex: \"ip6tables\\\\s+-[A-Z]\\\\s+INPUT\\\\s+-p\\\\s+udp\\\\s+-m\\\\s+state\\\\s+--state\\\\s+[A-Za-z,]+\\\\s+-j\\\\s+[A-Za-z]+\\\\s+-w\""
+      "           expected_regex: \"ip6tables\\\\s+-(A|I)\\\\s+INPUT\\\\s+-p\\\\s+udp\\\\s+-m\\\\s+state\\\\s+--state\\\\s+ESTABLISHED\\\\s+-j\\\\s+ACCEPT\""
+      "         }"
+      "         match_criteria: {"
+      "           filter_regex: \"ip6tables\\\\s+-[A-Z]\\\\s+INPUT\\\\s+-p\\\\s+icmp\\\\s+-m\\\\s+state\\\\s+--state\\\\s+[A-Za-z,]+\\\\s+-j\\\\s+[A-Za-z]+\\\\s+-w\""
+      "           expected_regex: \"ip6tables\\\\s+-(A|I)\\\\s+INPUT\\\\s+-p\\\\s+icmp\\\\s+-m\\\\s+state\\\\s+--state\\\\s+ESTABLISHED\\\\s+-j\\\\s+ACCEPT\""
+      "         }"
+      "     }"
+      "   }"
+      " }"
+      " check_alternatives:{"
+      "   file_checks:{"
+      "     files_to_check:{single_file:{path:\"/usr/share/cloud/ip6tables-setup\"}}"
+      "     content_entry:{"
+      "         match_type: ALL_MATCH_ANY_ORDER"
+      "         match_criteria: {"
+      "           filter_regex: \"ip6tables\\\\s+-[A-Z]\\\\s+INPUT\\\\s+-m\\\\s+state\\\\s+--state\\\\s+[A-Za-z,]+\\\\s+-j\\\\s+[A-Za-z]+\\\\s+-w\""
+      "           expected_regex: \"ip6tables\\\\s+-(A|I)\\\\s+INPUT\\\\s+-m\\\\s+state\\\\s+--state\\\\s+(NEW|ESTABLISHED|RELATED|,){3,5}\\\\s+-j\\\\s+ACCEPT\\\\s+-w\""
+      "         }"
+      "         match_criteria: {"
+      "           filter_regex: \"ip6tables\\\\s+-[A-Z]\\\\s+OUTPUT\\\\s+-m\\\\s+state\\\\s+--state\\\\s+[A-Za-z,]+\\\\s+-j\\\\s+[A-Za-z]+\\\\s+-w\""
+      "           expected_regex: \"ip6tables\\\\s+-(A|I)\\\\s+OUTPUT\\\\s+-m\\\\s+state\\\\s+--state\\\\s+(NEW|ESTABLISHED|RELATED|,){3,5}\\\\s+-j\\\\s+ACCEPT\\\\s+-w\""
+      "         }"
+      "     }"
+      "   }"
+      " }"
+      "}"
+  }
+}
+benchmark_configs: {
+  id: "default-deny-firewall-policy-cos"
+  compliance_note: {
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:93" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:97" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:101" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:105" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:109" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:113" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:117" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    title: "Ensure default deny firewall policy"
+    description:
+      "A default deny all policy on connections ensures that "
+      "any unconfigured network usage will be rejected."
+    rationale:
+      "With a default accept policy the firewall will accept "
+      "any packet that is not configured to be denied. "
+      "It is easier to white list acceptable usage than to black list unacceptable usage."
+    remediation:
+      "Run the following commands to implement a default DROP policy: \n"
+      "\n```\n"
+      "# iptables -P INPUT DROP \n"
+      "# iptables -P OUTPUT DROP \n"
+      "# iptables -P FORWARD DROP\n"
+      "```\n\n"
+    cis_benchmark: {
+      profile_level: 2
+      severity: LOW
+    }
+    scan_instructions:
+      "generic:{"
+      " check_alternatives:{"
+      "   file_checks:{"
+      "     files_to_check:{single_file:{path:\"/usr/share/cloud/iptables-setup\"}}"
+      "     content_entry:{"
+      "         match_type: ALL_MATCH_ANY_ORDER"
+      "         match_criteria: {"
+      "           filter_regex: \"iptables\\\\s+-P\\\\s+INPUT\\\\s+[a-zA-Z]+\\\\s+-w\\\\s*\""
+      "           expected_regex: \"iptables\\\\s+-P\\\\s+INPUT\\\\s+(DROP|REJECT)\\\\s+-w\\\\s*\""
+      "         }"
+      "         match_criteria: {"
+      "           filter_regex: \"iptables\\\\s+-P\\\\s+OUTPUT\\\\s+[a-zA-Z]+\\\\s+-w\\\\s*\""
+      "           expected_regex: \"iptables\\\\s+-P\\\\s+OUTPUT\\\\s+(DROP|REJECT)\\\\s+-w\\\\s*\""
+      "         }"
+      "         match_criteria: {"
+      "           filter_regex: \"iptables\\\\s+-P\\\\s+FORWARD\\\\s+[a-zA-Z]+\\\\s+-w\\\\s*\""
+      "           expected_regex: \"iptables\\\\s+-P\\\\s+FORWARD\\\\s+(DROP|REJECT)\\\\s+-w\\\\s*\""
+      "         }"
+      "     }"
+      "   }"
+      " }"
+      "}"
   }
 }
 benchmark_configs: {
@@ -4545,9 +4949,13 @@ benchmark_configs: {
   compliance_note: {
     version: { cpe_uri: "cpe:/o:cos:cos_linux:93" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:97" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:101" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:105" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:109" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:113" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:117" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     title: "Ensure outbound and established connections are configured"
-    description:
-      "Configure the firewall rules for new outbound, and established connections."
+    description: "Configure the firewall rules for new outbound, and established connections."
     rationale:
       "If rules are not in place for new outbound, and established "
       "connections all packets will be dropped by the default policy preventing network usage."
@@ -4555,66 +4963,143 @@ benchmark_configs: {
       "Configure iptables in accordance with site policy. "
       "The following commands will implement a policy to "
       "allow all outbound connections and all established connections: \n"
-      "```# iptables -A OUTPUT -p tcp -m state --state NEW,ESTABLISHED -j ACCEPT \n"
+      "\n```\n"
+      "# iptables -A OUTPUT -p tcp -m state --state NEW,ESTABLISHED -j ACCEPT \n"
       "# iptables -A OUTPUT -p udp -m state --state NEW,ESTABLISHED -j ACCEPT \n"
       "# iptables -A OUTPUT -p icmp -m state --state NEW,ESTABLISHED -j ACCEPT \n"
       "# iptables -A INPUT -p tcp -m state --state ESTABLISHED -j ACCEPT \n"
       "# iptables -A INPUT -p udp -m state --state ESTABLISHED -j ACCEPT \n"
-      "# iptables -A INPUT -p icmp -m state --state ESTABLISHED -j ACCEPT```"
+      "# iptables -A INPUT -p icmp -m state --state ESTABLISHED -j ACCEPT\n"
+      "```\n\n"
     cis_benchmark: {
       profile_level: 2
       severity: LOW
     }
     scan_instructions:
-    "generic:{"
-    " check_alternatives:{"
-    "   file_checks:{"
-    "     files_to_check:{single_file:{path:\"/usr/share/cloud/iptables-setup\"}}"
-    "     content_entry:{"
-    "         match_type: ALL_MATCH_ANY_ORDER"
-    "         match_criteria: {"
-    "           filter_regex: \"iptables\\\\s+-[A-Z]\\\\s+OUTPUT\\\\s+-p\\\\s+tcp\\\\s+-m\\\\s+state\\\\s+--state\\\\s+[A-Za-z,]+\\\\s+-j\\\\s+[A-Za-z]+\\\\s+-w\""
-    "           expected_regex: \"iptables\\\\s+-(A|I)\\\\s+OUTPUT\\\\s+-p\\\\s+tcp\\\\s+-m\\\\s+state\\\\s+--state\\\\s+(NEW|ESTABLISHED|,){1,3}\\\\s+-j\\\\s+ACCEPT\""
-    "         }"
-    "         match_criteria: {"
-    "           filter_regex: \"iptables\\\\s+-[A-Z]\\\\s+OUTPUT\\\\s+-p\\\\s+udp\\\\s+-m\\\\s+state\\\\s+--state\\\\s+[A-Za-z,]+\\\\s+-j\\\\s+[A-Za-z]+\\\\s+-w\""
-    "           expected_regex: \"iptables\\\\s+-(A|I)\\\\s+OUTPUT\\\\s+-p\\\\s+udp\\\\s+-m\\\\s+state\\\\s+--state\\\\s+(NEW|ESTABLISHED|,){1,3}\\\\s+-j\\\\s+ACCEPT\""
-    "         }"
-    "         match_criteria: {"
-    "           filter_regex: \"iptables\\\\s+-[A-Z]\\\\s+OUTPUT\\\\s+-p\\\\s+icmp\\\\s+-m\\\\s+state\\\\s+--state\\\\s+[A-Za-z,]+\\\\s+-j\\\\s+[A-Za-z]+\\\\s+-w\""
-    "           expected_regex: \"iptables\\\\s+-(A|I)\\\\s+OUTPUT\\\\s+-p\\\\s+icmp\\\\s+-m\\\\s+state\\\\s+--state\\\\s+(NEW|ESTABLISHED|,){1,3}\\\\s+-j\\\\s+ACCEPT\""
-    "         }"
-    "         match_criteria: {"
-    "           filter_regex: \"iptables\\\\s+-[A-Z]\\\\s+INPUT\\\\s+-p\\\\s+tcp\\\\s+-m\\\\s+state\\\\s+--state\\\\s+[A-Za-z,]+\\\\s+-j\\\\s+[A-Za-z]+\\\\s+-w\""
-    "           expected_regex: \"iptables\\\\s+-(A|I)\\\\s+INPUT\\\\s+-p\\\\s+tcp\\\\s+-m\\\\s+state\\\\s+--state\\\\s+ESTABLISHED\\\\s+-j\\\\s+ACCEPT\""
-    "         }"
-    "         match_criteria: {"
-    "           filter_regex: \"iptables\\\\s+-[A-Z]\\\\s+INPUT\\\\s+-p\\\\s+udp\\\\s+-m\\\\s+state\\\\s+--state\\\\s+[A-Za-z,]+\\\\s+-j\\\\s+[A-Za-z]+\\\\s+-w\""
-    "           expected_regex: \"ip6tables\\\\s+-(A|I)\\\\s+INPUT\\\\s+-p\\\\s+udp\\\\s+-m\\\\s+state\\\\s+--state\\\\s+ESTABLISHED\\\\s+-j\\\\s+ACCEPT\""
-    "         }"
-    "         match_criteria: {"
-    "           filter_regex: \"iptables\\\\s+-[A-Z]\\\\s+INPUT\\\\s+-p\\\\s+icmp\\\\s+-m\\\\s+state\\\\s+--state\\\\s+[A-Za-z,]+\\\\s+-j\\\\s+[A-Za-z]+\\\\s+-w\""
-    "           expected_regex: \"ip6tables\\\\s+-(A|I)\\\\s+INPUT\\\\s+-p\\\\s+icmp\\\\s+-m\\\\s+state\\\\s+--state\\\\s+ESTABLISHED\\\\s+-j\\\\s+ACCEPT\""
-    "         }"
-    "     }"
-    "   }"
-    " }"
-    " check_alternatives:{"
-    "   file_checks:{"
-    "     files_to_check:{single_file:{path:\"/usr/share/cloud/iptables-setup\"}}"
-    "     content_entry:{"
-    "         match_type: ALL_MATCH_ANY_ORDER"
-    "         match_criteria: {"
-    "           filter_regex: \"iptables\\\\s+-[A-Z]\\\\s+INPUT\\\\s+-m\\\\s+state\\\\s+--state\\\\s+[A-Za-z,]+\\\\s+-j\\\\s+[A-Za-z]+\\\\s+-w\""
-    "           expected_regex: \"iptables\\\\s+-(A|I)\\\\s+INPUT\\\\s+-m\\\\s+state\\\\s+--state\\\\s+(NEW|ESTABLISHED|RELATED|,){3,5}\\\\s+-j\\\\s+ACCEPT\\\\s+-w\""
-    "         }"
-    "         match_criteria: {"
-    "           filter_regex: \"iptables\\\\s+-[A-Z]\\\\s+OUTPUT\\\\s+-m\\\\s+state\\\\s+--state\\\\s+[A-Za-z,]+\\\\s+-j\\\\s+[A-Za-z]+\\\\s+-w\""
-    "           expected_regex: \"iptables\\\\s+-(A|I)\\\\s+OUTPUT\\\\s+-m\\\\s+state\\\\s+--state\\\\s+(NEW|ESTABLISHED|RELATED|,){3,5}\\\\s+-j\\\\s+ACCEPT\\\\s+-w\""
-    "         }"
-    "     }"
-    "   }"
-    " }"
-    "}"
+      "generic:{"
+      " check_alternatives:{"
+      "   file_checks:{"
+      "     files_to_check:{single_file:{path:\"/usr/share/cloud/iptables-setup\"}}"
+      "     content_entry:{"
+      "         match_type: ALL_MATCH_ANY_ORDER"
+      "         match_criteria: {"
+      "           filter_regex: \"iptables\\\\s+-[A-Z]\\\\s+OUTPUT\\\\s+-p\\\\s+tcp\\\\s+-m\\\\s+state\\\\s+--state\\\\s+[A-Za-z,]+\\\\s+-j\\\\s+[A-Za-z]+\\\\s+-w\""
+      "           expected_regex: \"iptables\\\\s+-(A|I)\\\\s+OUTPUT\\\\s+-p\\\\s+tcp\\\\s+-m\\\\s+state\\\\s+--state\\\\s+(NEW|ESTABLISHED|,){1,3}\\\\s+-j\\\\s+ACCEPT\""
+      "         }"
+      "         match_criteria: {"
+      "           filter_regex: \"iptables\\\\s+-[A-Z]\\\\s+OUTPUT\\\\s+-p\\\\s+udp\\\\s+-m\\\\s+state\\\\s+--state\\\\s+[A-Za-z,]+\\\\s+-j\\\\s+[A-Za-z]+\\\\s+-w\""
+      "           expected_regex: \"iptables\\\\s+-(A|I)\\\\s+OUTPUT\\\\s+-p\\\\s+udp\\\\s+-m\\\\s+state\\\\s+--state\\\\s+(NEW|ESTABLISHED|,){1,3}\\\\s+-j\\\\s+ACCEPT\""
+      "         }"
+      "         match_criteria: {"
+      "           filter_regex: \"iptables\\\\s+-[A-Z]\\\\s+OUTPUT\\\\s+-p\\\\s+icmp\\\\s+-m\\\\s+state\\\\s+--state\\\\s+[A-Za-z,]+\\\\s+-j\\\\s+[A-Za-z]+\\\\s+-w\""
+      "           expected_regex: \"iptables\\\\s+-(A|I)\\\\s+OUTPUT\\\\s+-p\\\\s+icmp\\\\s+-m\\\\s+state\\\\s+--state\\\\s+(NEW|ESTABLISHED|,){1,3}\\\\s+-j\\\\s+ACCEPT\""
+      "         }"
+      "         match_criteria: {"
+      "           filter_regex: \"iptables\\\\s+-[A-Z]\\\\s+INPUT\\\\s+-p\\\\s+tcp\\\\s+-m\\\\s+state\\\\s+--state\\\\s+[A-Za-z,]+\\\\s+-j\\\\s+[A-Za-z]+\\\\s+-w\""
+      "           expected_regex: \"iptables\\\\s+-(A|I)\\\\s+INPUT\\\\s+-p\\\\s+tcp\\\\s+-m\\\\s+state\\\\s+--state\\\\s+ESTABLISHED\\\\s+-j\\\\s+ACCEPT\""
+      "         }"
+      "         match_criteria: {"
+      "           filter_regex: \"iptables\\\\s+-[A-Z]\\\\s+INPUT\\\\s+-p\\\\s+udp\\\\s+-m\\\\s+state\\\\s+--state\\\\s+[A-Za-z,]+\\\\s+-j\\\\s+[A-Za-z]+\\\\s+-w\""
+      "           expected_regex: \"ip6tables\\\\s+-(A|I)\\\\s+INPUT\\\\s+-p\\\\s+udp\\\\s+-m\\\\s+state\\\\s+--state\\\\s+ESTABLISHED\\\\s+-j\\\\s+ACCEPT\""
+      "         }"
+      "         match_criteria: {"
+      "           filter_regex: \"iptables\\\\s+-[A-Z]\\\\s+INPUT\\\\s+-p\\\\s+icmp\\\\s+-m\\\\s+state\\\\s+--state\\\\s+[A-Za-z,]+\\\\s+-j\\\\s+[A-Za-z]+\\\\s+-w\""
+      "           expected_regex: \"ip6tables\\\\s+-(A|I)\\\\s+INPUT\\\\s+-p\\\\s+icmp\\\\s+-m\\\\s+state\\\\s+--state\\\\s+ESTABLISHED\\\\s+-j\\\\s+ACCEPT\""
+      "         }"
+      "     }"
+      "   }"
+      " }"
+      " check_alternatives:{"
+      "   file_checks:{"
+      "     files_to_check:{single_file:{path:\"/usr/share/cloud/iptables-setup\"}}"
+      "     content_entry:{"
+      "         match_type: ALL_MATCH_ANY_ORDER"
+      "         match_criteria: {"
+      "           filter_regex: \"iptables\\\\s+-[A-Z]\\\\s+INPUT\\\\s+-m\\\\s+state\\\\s+--state\\\\s+[A-Za-z,]+\\\\s+-j\\\\s+[A-Za-z]+\\\\s+-w\""
+      "           expected_regex: \"iptables\\\\s+-(A|I)\\\\s+INPUT\\\\s+-m\\\\s+state\\\\s+--state\\\\s+(NEW|ESTABLISHED|RELATED|,){3,5}\\\\s+-j\\\\s+ACCEPT\\\\s+-w\""
+      "         }"
+      "         match_criteria: {"
+      "           filter_regex: \"iptables\\\\s+-[A-Z]\\\\s+OUTPUT\\\\s+-m\\\\s+state\\\\s+--state\\\\s+[A-Za-z,]+\\\\s+-j\\\\s+[A-Za-z]+\\\\s+-w\""
+      "           expected_regex: \"iptables\\\\s+-(A|I)\\\\s+OUTPUT\\\\s+-m\\\\s+state\\\\s+--state\\\\s+(NEW|ESTABLISHED|RELATED|,){3,5}\\\\s+-j\\\\s+ACCEPT\\\\s+-w\""
+      "         }"
+      "     }"
+      "   }"
+      " }"
+      "}"
+  }
+}
+benchmark_configs: {
+  id: "system-accounts-secured-cos"
+  compliance_note: {
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:93" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:97" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:101" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:105" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:109" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:113" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    version: { cpe_uri: "cpe:/o:cos:cos_linux:117" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
+    title: "Ensure system accounts are secured"
+    description:
+      "There are a number of accounts provided with most distributions that are used to manage "
+      "applications and are not intended to provide an interactive shell."
+    rationale:
+      "It is important to make sure that accounts that are not being used by regular users are "
+      "prevented from being used to provide an interactive shell. By default, most distributions "
+      "set the password field for these accounts to an invalid string, but it is also recommended "
+      "that the shell field in the password file be set to the nologin shell. This prevents the "
+      "account from potentially being used to run any commands."
+    remediation:
+      "Run the commands appropriate for your distribution:\n"
+      "Set the shell for any accounts returned by the audit to nologin:\n"
+      "\n```\n"
+      "# usermod -s $(which nologin) <user>\n"
+      "```\n\n"
+      "Lock any non root accounts returned by the audit:\n"
+      "\n```\n"
+      "# usermod -L <user>\n"
+      "```\n\n"
+      "The following command will set all system accounts to a non login shell:\n"
+      "\n```\n"
+      "awk -F: '($1!=\"root\" && $1!=\"sync\" && $1!=\"shutdown\" && $1!=\"halt\" && $1!~/^\\+/ && $3<'\"$(awk '/^\\s*UID_MIN/{print $2}' /etc/login.defs)\"' && $7!=\"'\"$(which nologin)\"'\" && $7!=\"/bin/false\") {print $1}' /etc/passwd | while read user do usermod -s $(which nologin) $user done\n"
+      "```\n\n"
+      "The following command will automatically lock not root system accounts:\n"
+      "\n```\n"
+      "awk -F: '($1!=\"root\" && $1!~/^\\+/ && $3<'\"$(awk '/^\\s*UID_MIN/{print $2}' /etc/login.defs)\"') {print $1}' /etc/passwd | xargs -I '{}' passwd -S '{}' | awk '($2!=\"L\" && $2!=\"LK\") {print $1}' | while read user do usermod -L $user done\n"
+      "```\n\n"
+    cis_benchmark: {
+      profile_level: 2
+      severity: LOW
+    }
+    scan_instructions:
+      "generic:{check_alternatives:{"
+      "  file_checks:{"
+      "    files_to_check:{single_file:{path:\"/etc/passwd\"}}"
+      "    repeat_config:{type: FOR_EACH_SYSTEM_USER_WITH_LOGIN}"
+      "    content_entry:{"
+      "      match_type: ALL_MATCH_ANY_ORDER"
+      "      match_criteria: {"
+      "        filter_regex: \"$user:.*:.*:.*:.*:.*:.*\""
+      #        Only the root, sync, shutdown and halt system users are allowed to have a login shell.
+      "        expected_regex: \"(root|sync|shutdown|halt):.*:.*:.*:.*:.*:.*\""
+      "      }"
+      "    }"
+      "    non_compliance_msg: \"there are system users with a login shell\""
+      "    file_display_command: \"awk -F: '($1!=\\\"root\\\" && $1!=\\\"sync\\\" && $1!=\\\"shutdown\\\" && $1!=\\\"halt\\\" && $1!~/^\\\\+/ && $3>='\\\"$(awk '/^\\\\s*SYS_UID_MIN/{print $2}' /etc/login.defs)\\\"' && $3<='\\\"$(awk '/^\\\\s*SYS_UID_MAX/{print $2}' /etc/login.defs)\\\"' && $7!=\\\"'\\\"$(which nologin)\\\"'\\\" && $7!=\\\"/bin/false\\\") {print}' /etc/passwd\""
+      "  }"
+      "  file_checks:{"
+      "    files_to_check:{single_file:{path:\"/etc/shadow\"}}"
+      "    repeat_config:{type: FOR_EACH_SYSTEM_USER_WITH_LOGIN}"
+      "    content_entry:{"
+      "      match_type: ALL_MATCH_ANY_ORDER"
+      "      match_criteria: {"
+      "        filter_regex: \"$user:.*:.*:.*:.*:.*:.*:.*:.*\""
+      #        Only the root system user is allowed to have a non-locked account.
+      "        expected_regex: \"(.*:.*[*!].*:.*:.*:.*:.*:.*:.*:.*)|(root:.*:.*:.*:.*:.*:.*:.*:.*)\""
+      "      }"
+      "    }"
+      "    non_compliance_msg: \"there are non-locked system user accounts\""
+      "    file_display_command: \"awk -F: '($1!=\\\"root\\\" && $1!~/^\\\\+/ && $3>='\\\"$(awk '/^\\\\s*SYS_UID_MIN/{print $2}' /etc/login.defs)\\\"' && $3<='\\\"$(awk '/^\\\\s*SYS_UID_MAX/{print $2}' /etc/login.defs)\\\"' {print $1}' /etc/passwd | xargs -I '{}' passwd -S '{}' | awk '($2!=\\\"L\\\" && $2!=\\\"LK\\\") {print $1}'\""
+      "  }"
+      "}}"
   }
 }

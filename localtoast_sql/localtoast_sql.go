@@ -83,10 +83,10 @@ func (a *localScanAPIProvider) SupportedDatabase() (ipb.SQLCheck_SQLDatabase, er
 	return a.dbtype, nil
 }
 
-func (a *localScanAPIProvider) SQLQuery(ctx context.Context, query string) (int, error) {
+func (a *localScanAPIProvider) SQLQuery(ctx context.Context, query string) (string, error) {
 	dbtype, err := a.SupportedDatabase()
 	if err != nil {
-		return 0, err
+		return "", err
 	}
 	if dbtype == ipb.SQLCheck_DB_MYSQL {
 		return sqlquerier.Query(ctx, a.sqldb, query)
@@ -95,21 +95,9 @@ func (a *localScanAPIProvider) SQLQuery(ctx context.Context, query string) (int,
 		return cqlquerier.Query(ctx, a.cqldb, query)
 	}
 	if dbtype == ipb.SQLCheck_DB_ELASTICSEARCH {
-		return 0, errors.New("unsupported SQLQuery returning row number for ElasticSearch database")
+		return elsquerier.Query(ctx, a.elsdb, query)
 	}
-	return 0, errors.New("no database specified. Please provide one using --mysql-database, --cassandra-database or --elasticsearch-database flags")
-}
-
-func (a *localScanAPIProvider) SQLQueryWithResponse(ctx context.Context, query string) (string, error) {
-	dbtype, err := a.SupportedDatabase()
-	if err != nil {
-		return "", err
-	}
-	if dbtype != ipb.SQLCheck_DB_ELASTICSEARCH {
-		return "", errors.New("SQLQueryWithResponse compatible only with ElasticSearch database")
-	}
-
-	return elsquerier.Query(ctx, a.elsdb, query)
+	return "", errors.New("no database specified. Please provide one using --mysql-database, --cassandra-database or --elasticsearch-database flags")
 }
 
 func main() {
