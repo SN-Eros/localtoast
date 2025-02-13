@@ -2,30 +2,32 @@
 # distributions (e.g. COS, Debian).
 
 benchmark_configs: {
-  id: "cramfs-mounting-disabled"
+  id: "cramfs-module-not-available"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
-    title: "Ensure mounting of cramfs filesystems is disabled"
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    title: "Ensure cramfs kernel module is not available"
     description:
-      "The cramfs filesystem type is a compressed read-only Linux filesystem "
-      "embedded in small footprint systems. A cramfs image can be used "
-      "without having to first decompress the image."
+      "The cramfs filesystem type is a compressed read-only Linux filesystem embedded in "
+      "small footprint systems. A cramfs image can be used without having to first "
+      "decompress the image."
     rationale:
-      "Removing support for unneeded filesystem types reduces the local attack "
-      "surface of the server. If this filesystem type is not needed, disable "
-      "it."
+      "Removing support for unneeded filesystem types reduces the local attack surface of the "
+      "system. If this filesystem type is not needed, disable it."
     remediation:
-      "Edit or create a file in the /etc/modprobe.d/ directory ending in .conf\n"
-      "Example: vim /etc/modprobe.d/cramfs.conf\n"
-      "and add the following line:\n"
-      "```\n"
-      "install cramfs /bin/true\n"
-      "```\n"
-      "Run the following command to unload the cramfs module:\n"
-      "```\n"
-      "# rmmod cramfs\n"
-      "```\n"
+      "Run the following script to unload and disable the cramfs module:\n"
+      "- IF - the cramfs kernel module is available in ANY installed kernel:\n"		
+      "• Create a file ending in .conf with install cramfs /bin/false in the "
+      "/etc/modprobe.d/ directory\n"
+      "• Create a file ending in .conf with blacklist cramfs in the /etc/modprobe.d/ "
+      "directory\n"
+      "• Run modprobe -r cramfs 2>/dev/null; rmmod cramfs 2>/dev/null to "
+      "remove cramfs from the kernel\n"
+      "- IF - the cramfs kernel module is not available on the system, or pre-compiled into the "
+      "kernel, no remediation is necessary"
     cis_benchmark: {
       profile_level: 1
       severity: LOW
@@ -33,6 +35,44 @@ benchmark_configs: {
     scan_instructions:
       "scan_type_specific:{instance_scanning:{"
       "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{files_in_dir:{"
+      "        dir_path:\"/lib/modules/\""
+      "        filename_regex: \"cramfs.ko\""
+      "        recursive: true"
+      "      }}"
+      "      existence:{should_exist: false}"
+      "    }"      
+      "  }"
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{files_in_dir:{"
+      "        dir_path:\"/etc/modprobe.d\""
+      "        filename_regex: \".*\\\\.conf\""
+      "        recursive: true"
+      "      }}"
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \"install cramfs .*\""
+      "          expected_regex: \"install cramfs /bin/(true|false)\""
+      "        }"
+      "      }"
+      "    }"
+      "    file_checks:{"
+      "      files_to_check:{files_in_dir:{"
+      "        dir_path:\"/etc/modprobe.d\""
+      "        filename_regex: \".*\\\\.conf\""
+      "        recursive: true"
+      "      }}"
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \"blacklist cramfs.*\""
+      "          expected_regex: \"blacklist cramfs.*\""
+      "        }"
+      "      }"
+      "    }"
       "    file_checks:{"
       "      files_to_check:{single_file:{path:\"/proc/modules\"}}"
       "      content_entry:{"
@@ -43,23 +83,19 @@ benchmark_configs: {
       "        }"
       "      }"
       "    }"
-      "    file_checks:{"
-      "      files_to_check:{files_in_dir:{"
-      "        dir_path:\"/etc/modprobe.d\""
-      "        filename_regex: \".*\\\\.conf\""
-      "        recursive: true"
-      "      }}"
-      "      content_entry:{"
-      "        match_type: ALL_MATCH_ANY_ORDER"
-      "        match_criteria: {"
-      "          filter_regex: \"install cramfs .*\""
-      "          expected_regex: \"install cramfs /bin/true\""
-      "        }"
-      "      }"
-      "    }"
       "  }"
       "}"
       "image_scanning:{"
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{files_in_dir:{"
+      "        dir_path:\"/lib/modules/\""
+      "        filename_regex: \"cramfs.ko\""
+      "        recursive: true"
+      "      }}"
+      "      existence:{should_exist: false}"
+      "    }"      
+      "  }"	  
       "  check_alternatives:{"
       "    file_checks:{"
       "      files_to_check:{files_in_dir:{"
@@ -71,7 +107,21 @@ benchmark_configs: {
       "        match_type: ALL_MATCH_ANY_ORDER"
       "        match_criteria: {"
       "          filter_regex: \"install cramfs .*\""
-      "          expected_regex: \"install cramfs /bin/true\""
+      "          expected_regex: \"install cramfs /bin/(true|false)\""
+      "        }"
+      "      }"
+      "    }"
+      "    file_checks:{"
+      "      files_to_check:{files_in_dir:{"
+      "        dir_path:\"/etc/modprobe.d\""
+      "        filename_regex: \".*\\\\.conf\""
+      "        recursive: true"
+      "      }}"
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \"blacklist cramfs.*\""
+      "          expected_regex: \"blacklist cramfs.*\""
       "        }"
       "      }"
       "    }"
@@ -80,36 +130,29 @@ benchmark_configs: {
   }
 }
 benchmark_configs: {
-  id: "squashfs-mounting-disabled"
+  id: "squashfs-module-not-available"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
-    title: "Ensure mounting of squashfs filesystems is disabled"
+    title: "Ensure squashfs kernel module is not available"
     description:
       "The squashfs filesystem type is a compressed read-only Linux "
-      "filesystem embedded in small footprint systems. A squashfs image can "
-      "be used without having to first decompress the image."
+      "filesystem embedded in small footprint systems (similar to cramfs ). A "
+      "squashfs image can be used without having to first decompress the image."
     rationale:
       "Removing support for unneeded filesystem types reduces the local attack "
-      "surface of the system. If this filesystem type is not needed, disable "
-      "it.\n\n"
-      "Impact:\n"
-      "As Snap packages utilizes squashfs as a compressed filesystem, "
-      "disabling squashfs will cause Snap packages to fail.\n"
-      "Snap application packages of software are self-contained and work "
-      "across a range of Linux distributions. This is unlike traditional Linux "
-      "package management approaches, like APT or RPM, which require "
-      "specifically adapted packages per Linux distribution on an application "
-      "update and delay therefore application deployment from developers to "
-      "their software's end-user. Snaps themselves have no dependency on any "
-      "external store (\"App store\"), can be obtained from any source and can "
-      "be therefore used for upstream software deployment."
+      "surface of the server. If this filesystem type is not needed, disable "
+      "it."
     remediation:
-      "Edit or create a file in the /etc/modprobe.d/ directory ending in .conf\n"
-      "Example: vim /etc/modprobe.d/squashfs.conf\n"
-      "and add the following line:\n"
+      "Edit or create a file in the /etc/modprobe.d/ directory ending in .conf "
+      "with the lines that read install squashfs /bin/false and blacklist squashfs.\n"
+      "Example: \n"
       "```\n"
-      "install squashfs /bin/true\n"
+      "printf \"install squashfs /bin/false\\n"
+      "blacklist squashfs "
+      "\" >> /etc/modprobe.d/squashfs.conf "
       "```\n"
       "Run the following command to unload the squashfs module:\n"
       "```\n"
@@ -123,6 +166,44 @@ benchmark_configs: {
       "scan_type_specific:{instance_scanning:{"
       "  check_alternatives:{"
       "    file_checks:{"
+      "      files_to_check:{files_in_dir:{"
+      "        dir_path:\"/lib/modules/\""
+      "        filename_regex: \"squashfs.ko\""
+      "        recursive: true"
+      "      }}"
+      "      existence:{should_exist: false}"
+      "    }"      
+      "  }"
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{files_in_dir:{"
+      "        dir_path:\"/etc/modprobe.d\""
+      "        filename_regex: \".*\\\\.conf\""
+      "        recursive: true"
+      "      }}"
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \"install squashfs .*\""
+      "          expected_regex: \"install squashfs /bin/(true|false)\""
+      "        }"
+      "      }"
+      "    }"
+      "    file_checks:{"
+      "      files_to_check:{files_in_dir:{"
+      "        dir_path:\"/etc/modprobe.d\""
+      "        filename_regex: \".*\\\\.conf\""
+      "        recursive: true"
+      "      }}"
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \"blacklist squashfs.*\""
+      "          expected_regex: \"blacklist squashfs.*\""
+      "        }"
+      "      }"
+      "    }"
+      "    file_checks:{"
       "      files_to_check:{single_file:{path:\"/proc/modules\"}}"
       "      content_entry:{"
       "        match_type: NONE_MATCH"
@@ -132,23 +213,19 @@ benchmark_configs: {
       "        }"
       "      }"
       "    }"
-      "    file_checks:{"
-      "      files_to_check:{files_in_dir:{"
-      "        dir_path:\"/etc/modprobe.d\""
-      "        filename_regex: \".*\\\\.conf\""
-      "        recursive: true"
-      "      }}"
-      "      content_entry:{"
-      "        match_type: ALL_MATCH_ANY_ORDER"
-      "        match_criteria: {"
-      "          filter_regex: \"install squashfs .*\""
-      "          expected_regex: \"install squashfs /bin/true\""
-      "        }"
-      "      }"
-      "    }"
       "  }"
       "}"
       "image_scanning:{"
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{files_in_dir:{"
+      "        dir_path:\"/lib/modules/\""
+      "        filename_regex: \"squashfs.ko\""
+      "        recursive: true"
+      "      }}"
+      "      existence:{should_exist: false}"
+      "    }"      
+      "  }"	  
       "  check_alternatives:{"
       "    file_checks:{"
       "      files_to_check:{files_in_dir:{"
@@ -160,7 +237,21 @@ benchmark_configs: {
       "        match_type: ALL_MATCH_ANY_ORDER"
       "        match_criteria: {"
       "          filter_regex: \"install squashfs .*\""
-      "          expected_regex: \"install squashfs /bin/true\""
+      "          expected_regex: \"install squashfs /bin/(true|false)\""
+      "        }"
+      "      }"
+      "    }"
+      "    file_checks:{"
+      "      files_to_check:{files_in_dir:{"
+      "        dir_path:\"/etc/modprobe.d\""
+      "        filename_regex: \".*\\\\.conf\""
+      "        recursive: true"
+      "      }}"
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \"blacklist squashfs.*\""
+      "          expected_regex: \"blacklist squashfs.*\""
       "        }"
       "      }"
       "    }"
@@ -169,38 +260,76 @@ benchmark_configs: {
   }
 }
 benchmark_configs: {
-  id: "udf-mounting-disabled"
+  id: "udf-module-not-available"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
-    title: "Ensure mounting of udf filesystems is disabled"
+    title: "Ensure udf kernel module is not available"
     description:
-      "The udf filesystem type is the universal disk format used to implement "
-      "ISO/IEC 13346 and ECMA-167 specifications. This is an open vendor "
-      "filesystem type for data storage on a broad range of media. This "
-      "filesystem type is necessary to support writing DVDs and newer optical "
-      "disc formats."
+      "The udf filesystem type is the universal disk format used to implement ISO/IEC 13346 "
+      "and ECMA-167 specifications. This is an open vendor filesystem type for data storage "
+      "on a broad range of media. This filesystem type is necessary to support writing DVDs "
+      "and newer optical disc formats."
     rationale:
-      "Removing support for unneeded filesystem types reduces the local "
-      "attack surface of the system. If this filesystem type is not needed, "
-      "disable it."
+      "Removing support for unneeded filesystem types reduces the local attack surface of the "
+      "system. If this filesystem type is not needed, disable it."
     remediation:
-      "Edit or create a file in the /etc/modprobe.d/ directory ending in .conf\n"
-      "Example: vim /etc/modprobe.d/udf.conf\n"
-      "and add the following line:\n"
-      "```\n"
-      "install udf /bin/true\n"
-      "```\n"
-      "Run the following command to unload the udf module:\n"
-      "```\n"
-      "# rmmod udf\n"
-      "```\n"
+      "Run the following script to unload and disable the udf module:\n"
+      "- IF - the udf kernel module is available in ANY installed kernel:\n"
+      "• Create a file ending in .conf with install udf /bin/false in the "
+      "/etc/modprobe.d/ directory\n"
+      "• Create a file ending in .conf with blacklist udf in the /etc/modprobe.d/ "
+      "directory\n"
+      "• Run modprobe -r udf 2>/dev/null; rmmod udf 2>/dev/null to remove "
+      "udf from the kernel\n"
+      "- IF - the udf kernel module is not available on the system, or pre-compiled into the "
+      "kernel, no remediation is necessary"
     cis_benchmark: {
-      profile_level: 1
+      profile_level: 2
       severity: LOW
     }
     scan_instructions:
       "scan_type_specific:{instance_scanning:{"
       "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{files_in_dir:{"
+      "        dir_path:\"/lib/modules/\""
+      "        filename_regex: \"udf.ko\""
+      "        recursive: true"
+      "      }}"
+      "      existence:{should_exist: false}"
+      "    }"      
+      "  }"
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{files_in_dir:{"
+      "        dir_path:\"/etc/modprobe.d\""
+      "        filename_regex: \".*\\\\.conf\""
+      "        recursive: true"
+      "      }}"
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \"install udf .*\""
+      "          expected_regex: \"install udf /bin/(true|false)\""
+      "        }"
+      "      }"
+      "    }"
+      "    file_checks:{"
+      "      files_to_check:{files_in_dir:{"
+      "        dir_path:\"/etc/modprobe.d\""
+      "        filename_regex: \".*\\\\.conf\""
+      "        recursive: true"
+      "      }}"
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \"blacklist udf.*\""
+      "          expected_regex: \"blacklist udf.*\""
+      "        }"
+      "      }"
+      "    }"
       "    file_checks:{"
       "      files_to_check:{single_file:{path:\"/proc/modules\"}}"
       "      content_entry:{"
@@ -211,23 +340,19 @@ benchmark_configs: {
       "        }"
       "      }"
       "    }"
-      "    file_checks:{"
-      "      files_to_check:{files_in_dir:{"
-      "        dir_path:\"/etc/modprobe.d\""
-      "        filename_regex: \".*\\\\.conf\""
-      "        recursive: true"
-      "      }}"
-      "      content_entry:{"
-      "        match_type: ALL_MATCH_ANY_ORDER"
-      "        match_criteria: {"
-      "          filter_regex: \"install udf .*\""
-      "          expected_regex: \"install udf /bin/true\""
-      "        }"
-      "      }"
-      "    }"
       "  }"
       "}"
       "image_scanning:{"
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{files_in_dir:{"
+      "        dir_path:\"/lib/modules/\""
+      "        filename_regex: \"udf.ko\""
+      "        recursive: true"
+      "      }}"
+      "      existence:{should_exist: false}"
+      "    }"      
+      "  }"	  
       "  check_alternatives:{"
       "    file_checks:{"
       "      files_to_check:{files_in_dir:{"
@@ -239,7 +364,21 @@ benchmark_configs: {
       "        match_type: ALL_MATCH_ANY_ORDER"
       "        match_criteria: {"
       "          filter_regex: \"install udf .*\""
-      "          expected_regex: \"install udf /bin/true\""
+      "          expected_regex: \"install udf /bin/(true|false)\""
+      "        }"
+      "      }"
+      "    }"
+      "    file_checks:{"
+      "      files_to_check:{files_in_dir:{"
+      "        dir_path:\"/etc/modprobe.d\""
+      "        filename_regex: \".*\\\\.conf\""
+      "        recursive: true"
+      "      }}"
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \"blacklist udf.*\""
+      "          expected_regex: \"blacklist udf.*\""
       "        }"
       "      }"
       "    }"
@@ -253,6 +392,8 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:89" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure /tmp is configured"
     description:
       "The /tmp directory is a world-writable directory used for temporary "
@@ -340,6 +481,8 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:89" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure nodev option set on /tmp partition"
     description:
       "The nodev mount option specifies that the filesystem cannot contain "
@@ -434,6 +577,8 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:89" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure nosuid option set on /tmp partition"
     description:
       "The nosuid mount option specifies that the filesystem cannot contain "
@@ -528,6 +673,8 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:89" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" } 
     title: "Ensure noexec option set on /tmp partition"
     description:
       "The noexec mount option specifies that the filesystem cannot contain "
@@ -619,100 +766,162 @@ benchmark_configs: {
 benchmark_configs: {
   id: "home-nodev"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }  		   
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:89" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
-    title: "Ensure nodev option set on /home partition"
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    title: "Ensure nodev option set on /home partition"	      
     description:
-      "The nodev mount option specifies that the filesystem cannot contain "
-      "special devices."
+      "The nodev mount option specifies that the filesystem cannot contain special devices."
     rationale:
-      "Since the user partitions are not intended to support devices, set "
-      "this option to ensure that users cannot attempt to create block or "
-      "character special devices."
+      "Since the /home filesystem is not intended to support devices, set this option to ensure "
+      "that users cannot create a block or character special devices in /home."
     remediation:
-      "Edit the /etc/fstab file and add nodev to the fourth field (mounting "
-      "options) for the /home partition. See the fstab(5) manual page for "
-      "more information.\n"
-      "# mount -o remount,nodev /home"
+      "- IF - a separate partition exists for /home.\n"
+      "Edit the /etc/fstab file and add nodev to the fourth field (mounting options) for the "
+      "/home partition.\n"
+      "Example:\n"
+      "<device> /home <fstype> defaults,rw,nosuid,nodev,noexec,relatime 0 0\n"
+      "Run the following command to remount /home with the configured options:\n"
+      "# mount -o remount /home"
     cis_benchmark: {
       profile_level: 1
       severity: LOW
     }
     scan_instructions:
-      "generic:{check_alternatives:{"
-      "  file_checks:{"
-      "    files_to_check:{single_file:{path:\"/proc/self/mountinfo\"}}"
-      "    content_entry:{"
-      "      match_type: ALL_MATCH_ANY_ORDER"
-      "      match_criteria: {"
-      "        filter_regex: \".* /home .* - .*\""
-      "        expected_regex: \".* /home .*nodev.* - .*\""
+      "scan_type_specific:{instance_scanning:{"
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{path:\"/proc/self/mountinfo\"}}"
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \".* /home .* - .*\""
+      "          expected_regex: \".* /home .*nodev.* - .*\""
+      "        }"
+      "      }"
+      "    }"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{"
+      "        path:\"/etc/fstab\"}}"      
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \".*/home.*\""
+      "          expected_regex: \".*nodev.*\""
+      "        }"
+      "      }"
+      "    }"
+      "  }"
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{path:\"/proc/self/mountinfo\"}}"
+      "      content_entry:{"
+      "        match_type: NONE_MATCH"
+      "        match_criteria: {"
+      "          filter_regex: \".* /home .* - .*\""
+      "          expected_regex: \".* /home .* - .*\""
+      "        }"
       "      }"
       "    }"
       "  }"
       "}"
-      "check_alternatives:{"
-      "  file_checks:{"
-      "    files_to_check:{single_file:{path:\"/proc/self/mountinfo\"}}"
-      "    content_entry:{"
-      "      match_type: NONE_MATCH"
-      "      match_criteria: {"
-      "        filter_regex: \".* /home .* - .*\""
-      "        expected_regex: \".* /home .* - .*\""
+      "image_scanning:{"
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{"
+      "        path:\"/etc/fstab\"}}"      
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \".*/home.*\""
+      "          expected_regex: \".*nodev.*\""
+      "        }"
       "      }"
       "    }"
       "  }"
       "}}"
   }
 }
+
 benchmark_configs: {
   id: "shm-nodev"
   compliance_note: {
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:89" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure nodev option set on /dev/shm partition"
     description:
-      "The nodev mount option specifies that the filesystem cannot contain "
-      "special devices."
+      "The nodev mount option specifies that the filesystem cannot contain special devices."
     rationale:
-      "Since the /dev/shm filesystem is not intended to support devices, set "
-      "this option to ensure that users cannot attempt to create special "
-      "devices in /dev/shm partitions."
+      "Since the /dev/shm filesystem is not intended to support devices, set this option to "
+      "ensure that users cannot attempt to create special devices in /dev/shm partitions."
     remediation:
-      "Edit the /etc/fstab file and add nodev to the fourth field (mounting "
-      "options) for the /dev/shm partition. See the fstab(5) manual page for "
-      "more information.\n"
-      "Run the following command to remount /dev/shm:\n"
-      "```\n"
-      "# mount -o remount,nodev /dev/shm\n"
-      "```\n"
+      "- IF - a separate partition exists for /dev/shm.\n"
+      "Edit the /etc/fstab file and add nodev to the fourth field (mounting options) for the "
+      "/dev/shm partition. See the fstab(5) manual page for more information.\n"
+      "Example:\n"
+      "tmpfs /dev/shm tmpfs defaults,rw,nosuid,nodev,noexec,relatime 0 0\n"
+      "Run the following command to remount /dev/shm with the configured options:\n"
+      "# mount -o remount /dev/shm\n"
+      "Note: It is recommended to use tmpfs as the device/filesystem type as /dev/shm is "
+      "used as shared memory space by applications."
     cis_benchmark: {
       profile_level: 1
       severity: LOW
     }
     scan_instructions:
-      "generic:{check_alternatives:{"
-      "  file_checks:{"
-      "    files_to_check:{single_file:{path:\"/proc/self/mountinfo\"}}"
-      "    content_entry:{"
-      "      match_type: ALL_MATCH_ANY_ORDER"
-      "      match_criteria: {"
-      "        filter_regex: \".* /dev/shm .* - .*\""
-      "        expected_regex: \".* /dev/shm .*nodev.* - .*\""
+      "scan_type_specific:{instance_scanning:{"
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{path:\"/proc/self/mountinfo\"}}"
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \".* /dev/shm .* - .*\""
+      "          expected_regex: \".* /dev/shm .*nodev.* - .*\""
+      "        }"
+      "      }"
+      "    }"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{"
+      "        path:\"/etc/fstab\"}}"      
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \".*/dev/shm.*\""
+      "          expected_regex: \".*nodev.*\""
+      "        }"
+      "      }"
+      "    }"
+      "  }"
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{path:\"/proc/self/mountinfo\"}}"
+      "      content_entry:{"
+      "        match_type: NONE_MATCH"
+      "        match_criteria: {"
+      "          filter_regex: \".* /dev/shm .* - .*\""
+      "          expected_regex: \".* /dev/shm .* - .*\""
+      "        }"
       "      }"
       "    }"
       "  }"
       "}"
-      "check_alternatives:{"
-      "  file_checks:{"
-      "    files_to_check:{single_file:{path:\"/proc/self/mountinfo\"}}"
-      "    content_entry:{"
-      "      match_type: NONE_MATCH"
-      "      match_criteria: {"
-      "        filter_regex: \".* /dev/shm .* - .*\""
-      "        expected_regex: \".* /dev/shm .* - .*\""
+      "image_scanning:{"
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{"
+      "        path:\"/etc/fstab\"}}"      
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \".*/dev/shm.*\""
+      "          expected_regex: \".*nodev.*\""
+      "        }"
       "      }"
       "    }"
       "  }"
@@ -722,62 +931,95 @@ benchmark_configs: {
 benchmark_configs: {
   id: "shm-nosuid"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:89" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure nosuid option set on /dev/shm partition"
     description:
-      "The nosuid mount option specifies that the filesystem cannot contain "
-      "setuid files."
+      "The nosuid mount option specifies that the filesystem cannot contain setuid files."
     rationale:
-      "Setting this option on a file system prevents users from introducing "
-      "privileged programs onto the system and allowing non-root users to "
-      "execute them."
+      "Setting this option on a file system prevents users from introducing privileged programs "
+      "onto the system and allowing non-root users to execute them."
     remediation:
-      "Edit the /etc/fstab file and add nosuid to the fourth field (mounting "
-      "options) for the /dev/shm partition. See the fstab(5) manual page for "
-      "more information.\n"
-      "Run the following command to remount /dev/shm:\n"
-      "```\n"
-      "# mount -o remount,nosuid /dev/shm\n"
-      "```\n"
+      "- IF - a separate partition exists for /dev/shm.\n"
+      "Edit the /etc/fstab file and add nosuid to the fourth field (mounting options) for the "
+      "/dev/shm partition. See the fstab(5) manual page for more information.\n"
+      "Example:\n"
+      "tmpfs /dev/shm tmpfs defaults,rw,nosuid,nosuid,noexec,relatime 0 0\n"
+      "Run the following command to remount /dev/shm with the configured options:\n"
+      "# mount -o remount /dev/shm\n"
+      "Note: It is recommended to use tmpfs as the device/filesystem type as /dev/shm is "
+      "used as shared memory space by applications."
     cis_benchmark: {
       profile_level: 1
       severity: LOW
     }
     scan_instructions:
-      "generic:{check_alternatives:{"
-      "  file_checks:{"
-      "    files_to_check:{single_file:{path:\"/proc/self/mountinfo\"}}"
-      "    content_entry:{"
-      "      match_type: ALL_MATCH_ANY_ORDER"
-      "      match_criteria: {"
-      "        filter_regex: \".* /dev/shm .* - .*\""
-      "        expected_regex: \".* /dev/shm .*nosuid.* - .*\""
+      "scan_type_specific:{instance_scanning:{"
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{path:\"/proc/self/mountinfo\"}}"
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \".* /dev/shm/ .* - .*\""
+      "          expected_regex: \".* /dev/shm .*nosuid.* - .*\""
+      "        }"
+      "      }"
+      "    }"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{"
+      "        path:\"/etc/fstab\"}}"      
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \".*/dev/shm.*\""
+      "          expected_regex: \".*nosuid.*\""
+      "        }"
+      "      }"
+      "    }"
+      "  }"
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{path:\"/proc/self/mountinfo\"}}"
+      "      content_entry:{"
+      "        match_type: NONE_MATCH"
+      "        match_criteria: {"
+      "          filter_regex: \".* /dev/shm .* - .*\""
+      "          expected_regex: \".* /dev/shm .* - .*\""
+      "        }"
       "      }"
       "    }"
       "  }"
       "}"
-      "check_alternatives:{"
-      "  file_checks:{"
-      "    files_to_check:{single_file:{path:\"/proc/self/mountinfo\"}}"
-      "    content_entry:{"
-      "      match_type: NONE_MATCH"
-      "      match_criteria: {"
-      "        filter_regex: \".* /dev/shm .* - .*\""
-      "        expected_regex: \".* /dev/shm .* - .*\""
+      "image_scanning:{"
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{"
+      "        path:\"/etc/fstab\"}}"      
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \".*/dev/shm.*\""
+      "          expected_regex: \".*nosuid.*\""
+      "        }"
       "      }"
       "    }"
       "  }"
       "}}"
   }
 }
+
 benchmark_configs: {
   id: "shm-noexec"
   compliance_note: {
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:89" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure noexec option set on /dev/shm partition"
     description:
       "The noexec mount option specifies that the filesystem cannot contain "
@@ -849,165 +1091,246 @@ benchmark_configs: {
       "}}"
   }
 }
+
 benchmark_configs: {
   id: "var-tmp-nodev"
   compliance_note: {
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }  		   
     title: "Ensure nodev option set on /var/tmp partition"
     description:
-      "The nodev mount option specifies that the filesystem cannot contain "
-      "special devices."
+      "The nodev mount option specifies that the filesystem cannot contain special devices."
     rationale:
-      "Since the /var/tmp filesystem is not intended to support devices, set "
-      "this option to ensure that users cannot attempt to create block or "
-      "character special devices in /var/tmp."
+      "Since the /var/tmp filesystem is not intended to support devices, set this option to ensure "
+      "that users cannot create a block or character special devices in /var/tmp."
     remediation:
-      "Edit the /etc/fstab file and add nodev to the fourth field (mounting "
-      "options) for the /var/tmp partition. See the fstab(5) manual page for "
-      "more information.\n"
-      "Run the following command to remount /var/tmp:\n"
-      "```\n"
-      "# mount -o remount,nodev /var/tmp\n"
-      "```\n"
+      "- IF - a separate partition exists for /var/tmp.\n"
+      "Edit the /etc/fstab file and add nodev to the fourth field (mounting options) for the "
+      "/var/tmp partition.\n"
+      "Example:\n"
+      "<device> /var/tmp <fstype> defaults,rw,nosuid,nodev,noexec,relatime 0 0\n"
+      "Run the following command to remount /var/tmp with the configured options:\n"
+      "# mount -o remount /var/tmp"
     cis_benchmark: {
       profile_level: 1
       severity: LOW
     }
     scan_instructions:
       "scan_type_specific:{instance_scanning:{"
-      "check_alternatives:{"
-      "  file_checks:{"
-      "    files_to_check:{single_file:{path:\"/proc/self/mountinfo\"}}"
-      "    content_entry:{"
-      "      match_type: ALL_MATCH_ANY_ORDER"
-      "      match_criteria: {"
-      "        filter_regex: \".* /var/tmp .* - .*\""
-      "        expected_regex: \".* /var/tmp .*nodev.* - .*\""
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{path:\"/proc/self/mountinfo\"}}"
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \".* /var/tmp .* - .*\""
+      "          expected_regex: \".* /var/tmp .*nodev.* - .*\""
+      "        }"
+      "      }"
+      "    }"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{"
+      "        path:\"/etc/fstab\"}}"      
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \".*/var/tmp .*\""
+      "          expected_regex: \".*nodev.*\""
+      "        }"
+      "      }"
+      "    }"
+      "  }"
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{path:\"/proc/self/mountinfo\"}}"
+      "      content_entry:{"
+      "        match_type: NONE_MATCH"
+      "        match_criteria: {"
+      "          filter_regex: \".* /var/tmp .* - .*\""
+      "          expected_regex: \".* /var/tmp .* - .*\""
+      "        }"
       "      }"
       "    }"
       "  }"
       "}"
-      "check_alternatives:{"
-      "  file_checks:{"
-      "    files_to_check:{single_file:{path:\"/proc/self/mountinfo\"}}"
-      "    content_entry:{"
-      "      match_type: NONE_MATCH"
-      "      match_criteria: {"
-      "        filter_regex: \".* /var/tmp .* - .*\""
-      "        expected_regex: \".* /var/tmp .* - .*\""
+      "image_scanning:{"
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{"
+      "        path:\"/etc/fstab\"}}"      
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \".*/var/tmp .*\""
+      "          expected_regex: \".*nodev.*\""
+      "        }"
       "      }"
       "    }"
       "  }"
-      "}"
       "}}"
   }
 }
+
 benchmark_configs: {
   id: "var-tmp-nosuid"
   compliance_note: {
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }  		   
     title: "Ensure nosuid option set on /var/tmp partition"
     description:
-      "The nosuid mount option specifies that the filesystem cannot contain "
-      "setuid files."
+      "The nosuid mount option specifies that the filesystem cannot contain setuid files."
     rationale:
-      "Since the /var/tmp filesystem is only intended for temporary file "
-      "storage, set this option to ensure that users cannot create setuid "
-      "files in /var/tmp."
+      "Since the /var/tmp filesystem is only intended for temporary file storage, set this option "
+      "to ensure that users cannot create setuid files in /var/tmp."
     remediation:
-      "Edit the /etc/fstab file and add nosuid to the fourth field (mounting "
-      "options) for the /var/tmp partition. See the fstab(5) manual page for "
-      "more information.\n"
-      "Run the following command to remount /var/tmp:\n"
-      "```\n"
-      "# mount -o remount,nosuid /var/tmp\n"
-      "```\n"
+      "- IF - a separate partition exists for /var/tmp.\n"
+      "Edit the /etc/fstab file and add nosuid to the fourth field (mounting options) for the "
+      "/var/tmp partition.\n"
+      "Example:\n"
+      "<device> /var/tmp <fstype> defaults,rw,nosuid,nodev,noexec,relatime 0 0\n"
+      "Run the following command to remount /var/tmp with the configured options:\n"
+      "# mount -o remount /var/tmp"
     cis_benchmark: {
       profile_level: 1
       severity: LOW
     }
     scan_instructions:
       "scan_type_specific:{instance_scanning:{"
-      "check_alternatives:{"
-      "  file_checks:{"
-      "    files_to_check:{single_file:{path:\"/proc/self/mountinfo\"}}"
-      "    content_entry:{"
-      "      match_type: ALL_MATCH_ANY_ORDER"
-      "      match_criteria: {"
-      "        filter_regex: \".* /var/tmp .* - .*\""
-      "        expected_regex: \".* /var/tmp .*nosuid.* - .*\""
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{path:\"/proc/self/mountinfo\"}}"
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \".* /var/tmp .* - .*\""
+      "          expected_regex: \".* /var/tmp .*nosuid.* - .*\""
+      "        }"
+      "      }"
+      "    }"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{"
+      "        path:\"/etc/fstab\"}}"      
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \".*/var/tmp .*\""
+      "          expected_regex: \".*nosuid.*\""
+      "        }"
+      "      }"
+      "    }"
+      "  }"
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{path:\"/proc/self/mountinfo\"}}"
+      "      content_entry:{"
+      "        match_type: NONE_MATCH"
+      "        match_criteria: {"
+      "          filter_regex: \".* /var/tmp .* - .*\""
+      "          expected_regex: \".* /var/tmp .* - .*\""
+      "        }"
       "      }"
       "    }"
       "  }"
       "}"
-      "check_alternatives:{"
-      "  file_checks:{"
-      "    files_to_check:{single_file:{path:\"/proc/self/mountinfo\"}}"
-      "    content_entry:{"
-      "      match_type: NONE_MATCH"
-      "      match_criteria: {"
-      "        filter_regex: \".* /var/tmp .* - .*\""
-      "        expected_regex: \".* /var/tmp .* - .*\""
+      "image_scanning:{"
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{"
+      "        path:\"/etc/fstab\"}}"      
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \".*/var/tmp .*\""
+      "          expected_regex: \".*nosuid.*\""
+      "        }"
       "      }"
       "    }"
       "  }"
-      "}"
       "}}"
   }
 }
+
 benchmark_configs: {
   id: "var-tmp-noexec"
   compliance_note: {
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure noexec option set on /var/tmp partition"
     description:
-      "The noexec mount option specifies that the filesystem cannot contain "
-      "executable binaries."
+      "The noexec mount option specifies that the filesystem cannot contain executable binaries."
     rationale:
-      "Since the /var/tmp filesystem is only intended for temporary file "
-      "storage, set this option to ensure that users cannot run executable "
-      "binaries from /var/tmp."
+      "Since the /var/tmp filesystem is only intended for temporary file storage, set this option "
+      "to ensure that users cannot run executable binaries from /var/tmp."
     remediation:
-      "Edit the /etc/fstab file and add noexec to the fourth field (mounting "
-      "options) for the /var/tmp partition. See the fstab(5) manual page for "
-      "more information.\n"
-      "Run the following command to remount /var/tmp:\n"
-      "```\n"
-      "# mount -o remount,noexec /var/tmp\n"
-      "```\n"
+      "- IF - a separate partition exists for /var/tmp.\n"
+      "Edit the /etc/fstab file and add noexec to the fourth field (mounting options) for the "
+      "/var/tmp partition.\n"
+      "Example:\n"
+      "<device> /var/tmp <fstype> defaults,rw,nosuid,nodev,noexec,relatime 0 0\n"
+      "Run the following command to remount /var/tmp with the configured options:\n"
+      "# mount -o remount /var/tmp"
     cis_benchmark: {
       profile_level: 1
       severity: LOW
     }
     scan_instructions:
       "scan_type_specific:{instance_scanning:{"
-      "check_alternatives:{"
-      "  file_checks:{"
-      "    files_to_check:{single_file:{path:\"/proc/self/mountinfo\"}}"
-      "    content_entry:{"
-      "      match_type: ALL_MATCH_ANY_ORDER"
-      "      match_criteria: {"
-      "        filter_regex: \".* /var/tmp .* - .*\""
-      "        expected_regex: \".* /var/tmp .*noexec.* - .*\""
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{path:\"/proc/self/mountinfo\"}}"
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \".* /var/tmp .* - .*\""
+      "          expected_regex: \".* /var/tmp .*noexec.* - .*\""
+      "        }"
+      "      }"
+      "    }"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{"
+      "        path:\"/etc/fstab\"}}"      
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \".*/var/tmp .*\""
+      "          expected_regex: \".*noexec.*\""
+      "        }"
+      "      }"
+      "    }"
+      "  }"
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{path:\"/proc/self/mountinfo\"}}"
+      "      content_entry:{"
+      "        match_type: NONE_MATCH"
+      "        match_criteria: {"
+      "          filter_regex: \".* /var/tmp .* - .*\""
+      "          expected_regex: \".* /var/tmp .* - .*\""
+      "        }"
       "      }"
       "    }"
       "  }"
       "}"
-      "check_alternatives:{"
-      "  file_checks:{"
-      "    files_to_check:{single_file:{path:\"/proc/self/mountinfo\"}}"
-      "    content_entry:{"
-      "      match_type: NONE_MATCH"
-      "      match_criteria: {"
-      "        filter_regex: \".* /var/tmp .* - .*\""
-      "        expected_regex: \".* /var/tmp .* - .*\""
+      "image_scanning:{"
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{"
+      "        path:\"/etc/fstab\"}}"      
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \".*/var/tmp .*\""
+      "          expected_regex: \".*noexec.*\""
+      "        }"
       "      }"
       "    }"
       "  }"
-      "}"
       "}}"
   }
 }
@@ -1023,7 +1346,7 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:cos:cos_linux:113" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:117" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Disable Automounting"
     description:
@@ -1171,7 +1494,7 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:9" version: "1.0.0" benchmark_document: "CIS Debian Linux 9" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:10" version: "1.0.0" benchmark_document: "CIS Debian Linux 10" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }   
     title: "Ensure address space layout randomization (ASLR) is enabled"
     description:
@@ -1277,7 +1600,6 @@ benchmark_configs: {
       "}}"
   }
 }
-
 benchmark_configs: {
   id: "etc-issue-permissions"
   compliance_note: {
@@ -1286,7 +1608,7 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:9" version: "1.0.0" benchmark_document: "CIS Debian Linux 9" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:10" version: "1.0.0" benchmark_document: "CIS Debian Linux 10" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure permissions on /etc/issue are configured"
     description:
@@ -1388,7 +1710,7 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:9" version: "1.0.0" benchmark_document: "CIS Debian Linux 9" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:10" version: "1.0.0" benchmark_document: "CIS Debian Linux 10" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure packet redirect sending is disabled"
     description:
@@ -1475,7 +1797,7 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:9" version: "1.0.0" benchmark_document: "CIS Debian Linux 9" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:10" version: "1.0.0" benchmark_document: "CIS Debian Linux 10" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure source routed packets are not accepted"
     description:
@@ -1544,7 +1866,7 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:9" version: "1.0.0" benchmark_document: "CIS Debian Linux 9" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:10" version: "1.0.0" benchmark_document: "CIS Debian Linux 10" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure broadcast ICMP requests are ignored"
     description:
@@ -1625,7 +1947,7 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:9" version: "1.0.0" benchmark_document: "CIS Debian Linux 9" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:10" version: "1.0.0" benchmark_document: "CIS Debian Linux 10" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure bogus ICMP responses are ignored"
     description:
@@ -1700,7 +2022,7 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:9" version: "1.0.0" benchmark_document: "CIS Debian Linux 9" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:10" version: "1.0.0" benchmark_document: "CIS Debian Linux 10" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure Reverse Path Filtering is enabled"
     description:
@@ -1793,7 +2115,7 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:9" version: "1.0.0" benchmark_document: "CIS Debian Linux 9" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:10" version: "1.0.0" benchmark_document: "CIS Debian Linux 10" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure TCP SYN Cookies is enabled"
     description:
@@ -1922,7 +2244,7 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:cos:cos_linux:113" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:117" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure permissions on /etc/ssh/sshd_config are configured"
     description:
@@ -1973,7 +2295,7 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:cos:cos_linux:113" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:117" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure permissions on SSH private host key files are configured"
     description:
@@ -2027,7 +2349,7 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:cos:cos_linux:113" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:117" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure permissions on SSH public host key files are configured"
     description:
@@ -2118,7 +2440,7 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:cos:cos_linux:113" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:117" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure SSH LogLevel is appropriate"
     description:
@@ -2246,7 +2568,7 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:cos:cos_linux:113" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:117" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure SSH MaxAuthTries is set to 4 or less"
     description:
@@ -2300,7 +2622,7 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:cos:cos_linux:113" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:117" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure SSH IgnoreRhosts is enabled"
     description:
@@ -2419,7 +2741,7 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:cos:cos_linux:113" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:117" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure SSH root login is disabled"
     description:
@@ -2467,7 +2789,7 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:cos:cos_linux:113" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:117" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure SSH PermitEmptyPasswords is disabled"
     description:
@@ -2526,7 +2848,7 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:cos:cos_linux:113" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:117" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure SSH PermitUserEnvironment is disabled"
     description:
@@ -2688,7 +3010,7 @@ benchmark_configs: {
   id: "strong-mac-algorithms-used"
   compliance_note: {
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure only strong MAC algorithms are used"
     description: "This variable limits the types of MAC algorithms that SSH can use during communication."
@@ -2802,7 +3124,7 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:cos:cos_linux:109" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:113" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:117" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure only strong Key Exchange algorithms are used"
     description:
@@ -2854,6 +3176,7 @@ benchmark_configs: {
   compliance_note: {
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure SSH Idle Timeout Interval is configured"
     description:
       "The two options ClientAliveInterval and ClientAliveCountMax control the "
@@ -2932,7 +3255,7 @@ benchmark_configs: {
   compliance_note: {
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure SSH LoginGraceTime is set to one minute or less"
     description:
@@ -3042,7 +3365,7 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:cos:cos_linux:113" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:117" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure SSH PAM is enabled"
     description:
@@ -3085,7 +3408,7 @@ benchmark_configs: {
   compliance_note: {
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure SSH MaxStartups is configured"
     description:
@@ -3276,7 +3599,7 @@ benchmark_configs: {
   compliance_note: {
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure password expiration is 365 days or less"
     description:
@@ -3430,7 +3753,7 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:cos:cos_linux:113" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:117" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure password expiration warning days is 7 or more"
     description:
@@ -3496,7 +3819,7 @@ benchmark_configs: {
   compliance_note: {
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure inactive password lock is 30 days or less"
     description:
@@ -3572,7 +3895,7 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:cos:cos_linux:113" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:117" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure all users last password change date is in the past"
     description: "All users should have a password change date in the past."
@@ -3614,7 +3937,7 @@ benchmark_configs: {
   compliance_note: {
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure system accounts are secured"
     description:
@@ -3694,7 +4017,7 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:cos:cos_linux:113" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:117" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure default group for the root account is GID 0"
     description:
@@ -3776,7 +4099,7 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:89" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure access to the su command is restricted"
     description:
@@ -3845,7 +4168,7 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:9" version: "1.0.0" benchmark_document: "CIS Debian Linux 9" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:10" version: "1.0.0" benchmark_document: "CIS Debian Linux 10" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure permissions on /etc/passwd are configured"
     description:
@@ -3895,7 +4218,7 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:cos:cos_linux:113" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:117" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure permissions on /etc/shadow are configured"
     description:
@@ -3956,7 +4279,7 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:9" version: "1.0.0" benchmark_document: "CIS Debian Linux 9" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:10" version: "1.0.0" benchmark_document: "CIS Debian Linux 10" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure permissions on /etc/group are configured"
     description:
@@ -4005,7 +4328,7 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:cos:cos_linux:113" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:117" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure permissions on /etc/gshadow are configured"
     description:
@@ -4073,7 +4396,7 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:9" version: "1.0.0" benchmark_document: "CIS Debian Linux 9" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:10" version: "1.0.0" benchmark_document: "CIS Debian Linux 10" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure permissions on /etc/group- are configured"
     description:
@@ -4124,7 +4447,7 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:cos:cos_linux:113" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:117" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure permissions on /etc/shadow- are configured"
     description:
@@ -4189,7 +4512,7 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:cos:cos_linux:113" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:117" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure permissions on /etc/gshadow- are configured"
     description:
@@ -4257,6 +4580,7 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:9" version: "1.0.0" benchmark_document: "CIS Debian Linux 9" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:10" version: "1.0.0" benchmark_document: "CIS Debian Linux 10" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure password fields are not empty"
     description:
       "An account with an empty password field means that anybody may log in as that\n"
@@ -4439,7 +4763,7 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:9" version: "1.0.0" benchmark_document: "CIS Debian Linux 9" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:10" version: "1.0.0" benchmark_document: "CIS Debian Linux 10" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure root is the only UID 0 account"
     description: "Any account with UID 0 has superuser privileges on the system."
@@ -4600,6 +4924,7 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:cos:cos_linux:113" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:117" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure users own their home directories"
     description:
       "The user home directory is space defined for the particular user to "
@@ -4670,6 +4995,8 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:cos:cos_linux:113" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:117" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure users' dot files are not group or world writable"
     description:
       "While the system administrator can establish secure permissions for "
@@ -4968,7 +5295,7 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:cos:cos_linux:113" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:117" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure all groups in /etc/passwd exist in /etc/group"
     description:
@@ -5025,7 +5352,7 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:9" version: "1.0.0" benchmark_document: "CIS Debian Linux 9" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:10" version: "1.0.0" benchmark_document: "CIS Debian Linux 10" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure no duplicate UIDs exist"
     description:
@@ -5079,7 +5406,7 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:9" version: "1.0.0" benchmark_document: "CIS Debian Linux 9" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:10" version: "1.0.0" benchmark_document: "CIS Debian Linux 10" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure no duplicate GIDs exist"
     description:
@@ -5131,7 +5458,7 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:9" version: "1.0.0" benchmark_document: "CIS Debian Linux 9" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:10" version: "1.0.0" benchmark_document: "CIS Debian Linux 10" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure no duplicate user names exist"
     description:
@@ -5188,7 +5515,7 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:9" version: "1.0.0" benchmark_document: "CIS Debian Linux 9" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:10" version: "1.0.0" benchmark_document: "CIS Debian Linux 10" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure no duplicate group names exist"
     description:
@@ -5242,7 +5569,7 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:cos:cos_linux:117" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:9" version: "1.0.0" benchmark_document: "CIS Debian Linux 9" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:10" version: "1.0.0" benchmark_document: "CIS Debian Linux 10" }
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure shadow group is empty"
     description:
@@ -5291,7 +5618,7 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:cos:cos_linux:113" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:117" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure default user shell timeout is 900 seconds or less"
     description:
@@ -5438,7 +5765,7 @@ benchmark_configs: {
   compliance_note: {
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure AIDE is installed"
     description:
@@ -5502,7 +5829,7 @@ benchmark_configs: {
   compliance_note: {
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure filesystem integrity is regularly checked"
     description:
@@ -5560,7 +5887,7 @@ benchmark_configs: {
   compliance_note: {
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure bootloader password is set"
     description:
@@ -5664,7 +5991,7 @@ benchmark_configs: {
   compliance_note: {
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure permissions on bootloader config are configured"
     description:
@@ -5726,6 +6053,7 @@ benchmark_configs: {
   id: "auth-for-single-user-required"
   compliance_note: {
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure authentication required for single user mode"
     description:
       "Single user mode is used for recovery when the system detects an "
@@ -5766,7 +6094,7 @@ benchmark_configs: {
   compliance_note: {
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }   
     title: "Ensure core dumps are restricted"
     description:
@@ -5879,6 +6207,7 @@ benchmark_configs: {
   id: "prelink-disabled"
   compliance_note: {
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure prelink is disabled"
     description:
       "prelink is a program that modifies ELF shared libraries and ELF "
@@ -5921,19 +6250,22 @@ benchmark_configs: {
 benchmark_configs: {
   id: "motd-configured"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure message of the day is configured properly"
     description:
-      "The contents of the /etc/motd file are displayed to users after login "
-      "and function as a message of the day for authenticated users.\n"
-      "Unix-based systems have typically displayed information about the OS "
-      "release and patch level upon logging in to the system. This information "
-      "can be useful to developers who are developing software for a "
-      "particular OS platform. If mingetty(8) supports the following options, "
-      "they display operating system information: \\m - machine architecture "
-      "\\r - operating system release \\s - operating system name \\v - "
-      "operating system version"
+      "The contents of the /etc/motd file are displayed to users after login and function as a "
+      "message of the day for authenticated users.\n"
+      "Unix-based systems have typically displayed information about the OS release and "
+      "patch level upon logging in to the system. This information can be useful to developers "
+      "who are developing software for a particular OS platform. If mingetty(8) supports the "
+      "following options, they display operating system information:\n"
+      " - \\\\m - machine architecture\n"
+      " - \\\\r - operating system release\n"
+      " - \\\\s - operating system name\n"
+      " - \\\\v - operating system version"
     rationale:
       "Warning messages inform users who are attempting to login to the "
       "system of their legal status regarding the system and must include the "
@@ -5944,36 +6276,68 @@ benchmark_configs: {
       "system. Authorized users can easily get this information by running "
       "the \"uname -a\" command once they have logged in."
     remediation:
-      "Make sure the /etc/motd file is empty or deleted. Alternatively, "
-      "edit the /etc/motd file with the appropriate contents according "
-      "to your site policy, remove any instances of \\m , \\r , \\s , \\v "
-      "or references to the OS platform and (when applicable) opt the file out "
-      "from scanning to prevent further compliance reports."
+      "Warning messages inform users who are attempting to login to the system of their legal "
+      "status regarding the system and must include the name of the organization that owns "
+      "the system and any monitoring policies that are in place. Displaying OS and patch level "
+      "information in login banners also has the side effect of providing detailed system "
+      "information to attackers attempting to target specific exploits of a system. Authorized "
+      "users can easily get this information by running the \" uname -a \" command once they "
+      "have logged in."
     cis_benchmark: {
       profile_level: 1
       severity: LOW
     }
     scan_instructions:
-      "generic:{check_alternatives:{"
-      "  file_checks:{"
-      "    files_to_check:{single_file:{path:\"/etc/motd\"}}"
-      "    content:{content:\"\"}"
+      "scan_type_specific:{instance_scanning:{"
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{path:\"/etc/motd\"}}"
+      "        content_entry:{"
+      "          match_type: NONE_MATCH"
+      "          match_criteria: {"
+      "            filter_regex: \"((.*\\\\\\\\m.*)|(.*\\\\\\\\r.*)|(.*\\\\\\\\s.*)|(.*\\\\\\\\v.*)|(.*(D|d)ebian.*)|(.*12.*))\""
+      "            expected_regex: \"((.*\\\\\\\\m.*)|(.*\\\\\\\\r.*)|(.*\\\\\\\\s.*)|(.*\\\\\\\\v.*)|(.*(D|d)ebian.*12.*))\""
+      "          }"
+      "        }"
+      "     }"
       "  }"
+      "  check_alternatives:{"
+      "	   file_checks:{"
+      "      files_to_check:{single_file:{path:\"/etc/motd\"}}"
+      "      existence:{should_exist:false}"
+      "	   }"
+      "  }" 
       "}"
-      "check_alternatives:{"
-      "  file_checks:{"
-      "    files_to_check:{single_file:{path:\"/etc/motd\"}}"
-      "    existence:{should_exist:false}"
+      "image_scanning:{"
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{path:\"/etc/motd\"}}"
+      "        content_entry:{"
+      "          match_type: NONE_MATCH"
+      "          match_criteria: {"
+      "            filter_regex: \"((.*\\\\\\\\m.*)|(.*\\\\\\\\r.*)|(.*\\\\\\\\s.*)|(.*\\\\\\\\v.*)|(.*(D|d)ebian.*)|(.*12.*))\""
+      "            expected_regex: \"((.*\\\\\\\\m.*)|(.*\\\\\\\\r.*)|(.*\\\\\\\\s.*)|(.*\\\\\\\\v.*)|(.*(D|d)ebian.*)|(.*12.*))\""
+      "          }"
+      "        }"
+      "     }"
       "  }"
-      "}}"
+      "  check_alternatives:{"
+      "	   file_checks:{"
+      "      files_to_check:{single_file:{path:\"/etc/motd\"}}"
+      "      existence:{should_exist:false}"
+      "	   }"
+      "  }" 
+      "}"
+      "}"
   }
 }
+
 benchmark_configs: {
   id: "motd-permissions"
   compliance_note: {
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }   
     title: "Ensure permissions on /etc/motd are configured"
     description:
@@ -6012,7 +6376,7 @@ benchmark_configs: {
   compliance_note: {
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }   
     title: "Ensure permissions on /etc/issue.net are configured"
     description:
@@ -6052,7 +6416,7 @@ benchmark_configs: {
   compliance_note: {
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure time synchronization is in use"
     description:
@@ -6164,6 +6528,8 @@ benchmark_configs: {
   compliance_note: {
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure chrony is configured"
     description:
       "chrony is a daemon which implements the Network Time Protocol (NTP) is\n"
@@ -6335,7 +6701,7 @@ benchmark_configs: {
   compliance_note: {
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure CUPS is not enabled"
     description:
@@ -6377,7 +6743,7 @@ benchmark_configs: {
   id: "dhcp-server-disabled"
   compliance_note: {
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
-    version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }    
+    version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
     title: "Ensure DHCP Server is not enabled"
     description:
       "The Dynamic Host Configuration Protocol (DHCP) is a service that "
@@ -6417,7 +6783,7 @@ benchmark_configs: {
   compliance_note: {
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure LDAP Server is not enabled"
     description:
@@ -6499,7 +6865,7 @@ benchmark_configs: {
   compliance_note: {
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure FTP Server is not enabled"
     description:
@@ -6577,6 +6943,71 @@ benchmark_configs: {
 benchmark_configs: {
   id: "imap-pop3-server-disabled"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
+    version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
+    title: "Ensure message access server services are not in use"
+    description:
+      "dovecot-imapd and dovecot-pop3d are an open source IMAP and POP3 server for "
+      "Linux based systems."
+    rationale:
+      "Unless POP3 and/or IMAP servers are to be provided by this system, it is "
+      "recommended that the package be removed to reduce the potential attack surface.\n"
+      "Note: Several IMAP/POP3 servers exist and can use other service names. These "
+      "should also be audited and the packages removed if not required."
+    remediation:
+      "Run one of the following commands to remove dovecot-imapd and dovecot-pop3d:\n"
+      "Run the following commands to stop dovecot.socket and dovecot.service, and "
+      "remove the dovecot-imapd and dovecot-pop3d packages:\n"
+      "# systemctl stop dovecot.socket dovecot.service\n"
+      "# apt purge dovecot-imapd dovecot-pop3d\n"
+      "- OR -\n"
+      "- IF - a package is installed and is required for dependencies:\n"
+      "Run the following commands to stop and mask dovecot.socket and "
+      "dovecot.service:\n"
+      "# systemctl stop dovecot.socket dovecot.service\n"
+      "# systemctl mask dovecot.socket dovecot.service"
+    cis_benchmark: {
+      profile_level: 1
+      severity: LOW
+    }
+    scan_instructions:
+      "scan_type_specific:{"
+      "instance_scanning:{check_alternatives:{"
+      "  file_checks:{"
+      "    files_to_check:{process_path:{proc_name:\"dovecot\"}}"
+      "    existence:{should_exist: false}"
+      "  }"
+      "  file_checks:{"
+      "    files_to_check:{files_in_dir:{"
+      "      dir_path:\"/etc/systemd/system\""
+      "      recursive: true"
+      "      filename_regex: \"dovecot.(service|socket)\""
+      "    }}"
+      "    existence:{should_exist: false}"
+      "    non_compliance_msg: \"a config file in /etc/systemd/system enables dovecot\""
+      "    file_display_command: \"find /etc/systemd/system -name 'dovecot.service'\""
+      "  }"
+      "}}"
+      "image_scanning:{check_alternatives:{"
+      "  file_checks:{"
+      "    files_to_check:{files_in_dir:{"
+      "      dir_path:\"/etc/systemd/system\""
+      "      recursive: true"
+      "      filename_regex: \"dovecot.(service|socket)\""
+      "    }}"
+      "    existence:{should_exist: false}"
+      "    non_compliance_msg: \"a config file in /etc/systemd/system enables dovecot\""
+      "    file_display_command: \"find /etc/systemd/system -name 'dovecot.service'\""
+      "  }"
+      "}}"
+      "}"
+  }
+}
+benchmark_configs: {
+  id: ""
+  compliance_note: {
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
     title: "Ensure IMAP and POP3 Server is not enabled"
@@ -6614,52 +7045,76 @@ benchmark_configs: {
 benchmark_configs: {
   id: "samba-disabled"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
-    title: "Ensure Samba Server is not enabled"
+    title: "Ensure samba file server services are not in use"
     description:
-      "The Samba daemon allows system administrators to configure their Linux "
-      "systems to share file systems and directories with Windows desktops. "
-      "Samba will advertise the file systems and directories via the Server "
-      "Message Block (SMB) protocol. Windows desktop users will be able to "
-      "mount these directories and file systems as letter drives on their "
-      "systems."
+      "The Samba daemon allows system administrators to configure their Linux systems to "
+      "share file systems and directories with Windows desktops. Samba will advertise the file "
+      "systems and directories via the Server Message Block (SMB) protocol. Windows "
+      "desktop users will be able to mount these directories and file systems as letter drives on "
+      "their systems."
     rationale:
-      "If there is no need to mount directories and file systems to Windows "
-      "systems, then this service can be deleted to reduce the potential "
-      "attack surface."
+      "The Samba daemon allows system administrators to configure their Linux systems to "
+      "share file systems and directories with Windows desktops. Samba will advertise the file "
+      "systems and directories via the Server Message Block (SMB) protocol. Windows "
+      "desktop users will be able to mount these directories and file systems as letter drives on "
+      "their systems."
     remediation:
-      "Run one of the following commands to disable smb:\n"
-      "```\n"
-      "# chkconfig smb off\n"
-      "# systemctl disable smb\n"
-      "# update-rc.d smb disable\n"
-      "```\n"
+      "Run the following commands to stop smbd.service and remove samba package:\n"
+      "# systemctl stop smbd.service\n"
+      "# apt purge samba\n"
+      "- OR -\n"
+      "- IF - the samba package is required as a dependency:\n"
+      "Run the following commands to stop and mask the smbd.service:\n"
+      "# systemctl stop smbd.service\n"
+      "# systemctl mask smbd.service"
     cis_benchmark: {
       profile_level: 1
       severity: LOW
     }
     scan_instructions:
-      "generic:{check_alternatives:{"
+      "scan_type_specific:{"
+      "instance_scanning:{check_alternatives:{"
+      "  file_checks:{"
+      "    files_to_check:{process_path:{proc_name:\"smbd\"}}"
+      "    existence:{should_exist: false}"
+      "  }"
       "  file_checks:{"
       "    files_to_check:{files_in_dir:{"
       "      dir_path:\"/etc/systemd/system\""
       "      recursive: true"
-      "      filename_regex: \"smb.service\""
+      "      filename_regex: \"smbd.service\""
       "    }}"
       "    existence:{should_exist: false}"
-      "    non_compliance_msg: \"a config file in /etc/systemd/system enables smb\""
-      "    file_display_command: \"find /etc/systemd/system -name smb.service\""
+      "    non_compliance_msg: \"a config file in /etc/systemd/system enables smbd\""
+      "    file_display_command: \"find /etc/systemd/system -name 'smbd.service'\""
       "  }"
       "}}"
+      "image_scanning:{check_alternatives:{"
+      "  file_checks:{"
+      "    files_to_check:{files_in_dir:{"
+      "      dir_path:\"/etc/systemd/system\""
+      "      recursive: true"
+      "      filename_regex: \"smbd.service\""
+      "    }}"
+      "    existence:{should_exist: false}"
+      "    non_compliance_msg: \"a config file in /etc/systemd/system enables smbd\""
+      "    file_display_command: \"find /etc/systemd/system -name 'smbd.service'\""
+      "  }"
+      "}}"
+      "}"
   }
 }
+
 benchmark_configs: {
   id: "http-proxy-server-disabled"
   compliance_note: {
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure HTTP Proxy Server is not enabled"
     description:
@@ -6717,7 +7172,7 @@ benchmark_configs: {
   compliance_note: {
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure SNMP Server is not enabled"
     description:
@@ -6780,7 +7235,7 @@ benchmark_configs: {
   compliance_note: {
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure NIS Server is not enabled"
     description:
@@ -6886,38 +7341,60 @@ benchmark_configs: {
   id: "rsync-disabled"
   compliance_note: {
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
-    version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
-    title: "Ensure rsync service is not enabled"
+    version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }  
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    title: "Ensure rsync services are not in use"
     description:
-      "The rsyncd service can be used to synchronize files between systems over\n"
-      "network links."
+      "The rsync service can be used to synchronize files between systems over network "
+      "links."
     rationale:
-      "The rsyncd service presents a security risk as it uses unencrypted protocols\n"
-      "for communication."
+      "rsync.service presents a security risk as the rsync protocol is unencrypted.\n"
+      "The rsync package should be removed to reduce the attack area of the system."
     remediation:
-      "Run one of the following commands to disable rsyncd:\n"
-      "```\n"
-      "# chkconfig rsyncd off\n"
-      "# systemctl disable rsyncd\n"
-      "# update-rc.d rsyncd disable\n"
-      "```\n"
+      "Run the following commands to stop rsync.service, and remove the rsync package:\n"
+      "# systemctl stop rsync.service\n"
+      "# apt purge rsync\n"
+      "- OR -\n"
+      "- IF - the rsync package is required as a dependency:\n"
+      "Run the following commands to stop and mask rsync.service:\n"
+      "# systemctl stop rsync.service\n"
+      "# systemctl mask rsync.service"
     cis_benchmark: {
       profile_level: 1
       severity: LOW
     }
     scan_instructions:
-      "generic:{check_alternatives:{"
+      "scan_type_specific:{"
+      "instance_scanning:{check_alternatives:{"
+      "  file_checks:{"
+      "    files_to_check:{process_path:{proc_name:\"rsync\"}}"
+      "    existence:{should_exist: false}"
+      "  }"
       "  file_checks:{"
       "    files_to_check:{files_in_dir:{"
       "      dir_path:\"/etc/systemd/system\""
       "      recursive: true"
-      "      filename_regex: \"rsyncd.service\""
+      "      filename_regex: \"rsync.(service|socket)\""
       "    }}"
       "    existence:{should_exist: false}"
-      "    non_compliance_msg: \"a config file in /etc/systemd/system enables rsyncd\""
-      "    file_display_command: \"find /etc/systemd/system -name rsyncd.service\""
+      "    non_compliance_msg: \"a config file in /etc/systemd/system enables rsync\""
+      "    file_display_command: \"find /etc/systemd/system -name 'rsync.service'\""
       "  }"
       "}}"
+      "image_scanning:{check_alternatives:{"
+      "  file_checks:{"
+      "    files_to_check:{files_in_dir:{"
+      "      dir_path:\"/etc/systemd/system\""
+      "      recursive: true"
+      "      filename_regex: \"rsync.(service|socket)\""
+      "    }}"
+      "    existence:{should_exist: false}"
+      "    non_compliance_msg: \"a config file in /etc/systemd/system enables rsync\""
+      "    file_display_command: \"find /etc/systemd/system -name 'rsync.service'\""
+      "  }"
+      "}}"
+      "}"
   }
 }
 benchmark_configs: {
@@ -6925,7 +7402,7 @@ benchmark_configs: {
   compliance_note: {
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure rsh client is not installed"
     description: "The rsh package contains the client commands for the rsh services."
@@ -6965,7 +7442,7 @@ benchmark_configs: {
   compliance_note: {
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure talk client is not installed"
     description:
@@ -7004,7 +7481,7 @@ benchmark_configs: {
   compliance_note: {
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure telnet client is not installed"
     description:
@@ -7044,7 +7521,7 @@ benchmark_configs: {
   compliance_note: {
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure LDAP client is not installed"
     description:
@@ -7082,7 +7559,7 @@ benchmark_configs: {
   compliance_note: {
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure IP forwarding is disabled"
     description:
@@ -7172,7 +7649,7 @@ benchmark_configs: {
   compliance_note: {
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure ICMP redirects are not accepted"
     description:
@@ -7282,7 +7759,7 @@ benchmark_configs: {
   compliance_note: {
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure secure ICMP redirects are not accepted"
     description:
@@ -7367,7 +7844,7 @@ benchmark_configs: {
   compliance_note: {
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure suspicious packets are logged"
     description:
@@ -7450,7 +7927,7 @@ benchmark_configs: {
   compliance_note: {
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure IPv6 router advertisements are not accepted"
     description:
@@ -7534,7 +8011,7 @@ benchmark_configs: {
   compliance_note: {
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure permissions on all logfiles are configured"
     description:
@@ -7630,7 +8107,7 @@ benchmark_configs: {
   compliance_note: {
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure cron daemon is enabled"
     description: "The cron daemon is used to execute batch jobs on the system."
@@ -7668,7 +8145,7 @@ benchmark_configs: {
   compliance_note: {
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure permissions on /etc/crontab are configured"
     description:
@@ -7710,7 +8187,7 @@ benchmark_configs: {
   compliance_note: {
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure permissions on /etc/cron.hourly are configured"
     description:
@@ -7754,7 +8231,7 @@ benchmark_configs: {
   compliance_note: {
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure permissions on /etc/cron.daily are configured"
     description:
@@ -7798,7 +8275,7 @@ benchmark_configs: {
   compliance_note: {
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure permissions on /etc/cron.weekly are configured"
     description:
@@ -7842,7 +8319,7 @@ benchmark_configs: {
   compliance_note: {
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure permissions on /etc/cron.monthly are configured"
     description:
@@ -7886,7 +8363,7 @@ benchmark_configs: {
   compliance_note: {
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure permissions on /etc/cron.d are configured"
     description:
@@ -7932,7 +8409,7 @@ benchmark_configs: {
   compliance_note: {
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure at/cron is restricted to authorized users"
     description:
@@ -8255,7 +8732,7 @@ benchmark_configs: {
   compliance_note: {
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure no world writable files exist"
     description:
@@ -8319,6 +8796,8 @@ benchmark_configs: {
   compliance_note: {
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure no unowned files or directories exist"
     description:
       "Sometimes when administrators delete users from the password file they "
@@ -8381,6 +8860,7 @@ benchmark_configs: {
   compliance_note: {
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure no ungrouped files or directories exist"
     description:
       "Sometimes when administrators delete users or groups from the system "
@@ -8575,7 +9055,7 @@ benchmark_configs: {
   compliance_note: {
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure root PATH Integrity"
     description:
@@ -8833,7 +9313,7 @@ benchmark_configs: {
   compliance_note: {
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure GDM login banner is configured"
     description:
@@ -8989,7 +9469,7 @@ benchmark_configs: {
   compliance_note: {
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure XDCMP is not enabled"
     description:
@@ -9042,7 +9522,7 @@ benchmark_configs: {
   compliance_note: {
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure mail transfer agent is configured for local-only mode"
     description:
@@ -9118,7 +9598,7 @@ benchmark_configs: {
   compliance_note: {
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure nftables rules are permanent"
     description:
@@ -9549,7 +10029,7 @@ benchmark_configs: {
   compliance_note: {
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure sudo commands use pty"
     description:
@@ -9611,7 +10091,7 @@ benchmark_configs: {
   compliance_note: {
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure sudo log file exists"
     description:
@@ -9720,7 +10200,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "separate-partition-var"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure separate partition exists for /var"
     description:
@@ -9761,7 +10241,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "var-nodev"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure nodev option set on /var partition"
     description:
@@ -9810,11 +10290,10 @@ benchmark_configs: {
       "}}"
   }
 }
-
 benchmark_configs: {
   id: "separate-partition-var-tmp"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure separate partition exists for /var/tmp"
     description: "The /var/tmp directory is a world-writable directory used for temporary storage by all users and some applications."
@@ -9833,72 +10312,123 @@ benchmark_configs: {
     }
     scan_instructions:
       "scan_type_specific:{instance_scanning:{"
-      "    check_alternatives:{"
-      "      file_checks:{"
-      "        files_to_check:{single_file:{path:\"/proc/self/mountinfo\"}}"
-      "        content_entry:{"
-      "          match_type: ALL_MATCH_ANY_ORDER"
-      "          match_criteria: {"
-      "            filter_regex: \".* /var/tmp .* - .*\""
-      "            expected_regex: \".* /var/tmp .* - .*\""
-      "          }"
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{path:\"/proc/self/mountinfo\"}}"
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \".* /var/tmp .* - .*\""
+      "          expected_regex: \".* /var/tmp .* - .*\""
       "        }"
       "      }"
       "    }"
-      "    check_alternatives:{"
-      "     file_checks:{"
-      "       files_to_check:{single_file:{path:\"/proc/self/mountinfo\"}}"
-      "       existence:{should_exist: false}"
-      "     }"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{"
+      "        path:\"/etc/fstab\"}}"      
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \".*/var/tmp.*\""
+      "          expected_regex: \".*/var/tmp.*\""
+      "        }"
+      "      }"
       "    }"
       "  }"
       "}"
+      "image_scanning:{"
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{"
+      "        path:\"/etc/fstab\"}}"      
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \".*/var/tmp.*\""
+      "          expected_regex: \".*/var/tmp.*\""
+      "        }"
+      "      }"
+      "    }"
+      "  }"
+      "}}"
   }
 }
 benchmark_configs: {
   id: "separate-partition-var-log"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure separate partition exists for /var/log"
-    description: "The /var/log directory is used by system services to store log data."
+    description:
+      "The /var/log directory is used by system services to store log data."
     rationale:
-      "There are two important reasons to ensure that system logs are stored on a separate partition: "
-      "protection against resource exhaustion (since logs can grow quite large) and protection of audit data."
+      "The default installation only creates a single / partition. Since the /var/log directory "
+      "contains log files which can grow quite large, there is a risk of resource exhaustion. It "
+      "will essentially have the whole disk available to fill up and impact the system as a whole.\n"
+      "Configuring /var/log as its own file system allows an administrator to set additional "
+      "mount options such as noexec/nosuid/nodev. These options limit an attackers ability "
+      "to create exploits on the system. Other options allow for specific behavior. See man "
+      "mount for exact details regarding filesystem-independent and filesystem-specific "
+      "options.\n"
+      "As /var/log contains log files, care should be taken to ensure the security and integrity "
+      "of the data and mount point."
     remediation:
-      "For new installations, during installation create a custom partition setup and specify a separate partition for /var/log .\n"
-      "For systems that were previously installed, create a new partition and configure /etc/fstab as appropriate."
+      "For new installations, during installation create a custom partition setup and specify a "
+      "separate partition for /var/log .\n"
+      "For systems that were previously installed, create a new partition and configure "
+      "/etc/fstab as appropriate."
     cis_benchmark: {
       profile_level: 2
       severity: LOW
     }
     scan_instructions:
       "scan_type_specific:{instance_scanning:{"
-      "    check_alternatives:{"
-      "      file_checks:{"
-      "        files_to_check:{single_file:{path:\"/proc/self/mountinfo\"}}"
-      "        content_entry:{"
-      "          match_type: ALL_MATCH_ANY_ORDER"
-      "          match_criteria: {"
-      "            filter_regex: \".* /var/log .* - .*\""
-      "            expected_regex: \".* /var/log .* - .*\""
-      "          }"
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{path:\"/proc/self/mountinfo\"}}"
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \".* /var/log .* - .*\""
+      "          expected_regex: \".* /var/log .* - .*\""
       "        }"
       "      }"
       "    }"
-      "    check_alternatives:{"
-      "     file_checks:{"
-      "       files_to_check:{single_file:{path:\"/proc/self/mountinfo\"}}"
-      "       existence:{should_exist: false}"
-      "     }"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{"
+      "        path:\"/etc/fstab\"}}"      
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \".*/var/log .*\""
+      "          expected_regex: \".*/var/log .*\""
+      "        }"
+      "      }"
       "    }"
       "  }"
       "}"
+      "image_scanning:{"
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{"
+      "        path:\"/etc/fstab\"}}"      
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \".*/var/log .*\""
+      "          expected_regex: \".*/var/log .*\""
+      "        }"
+      "      }"
+      "    }"
+      "  }"
+      "}}"
   }
 }
+
 benchmark_configs: {
   id: "avahi-disabled"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure Avahi Server is not enabled"
     description:
@@ -9939,11 +10469,10 @@ benchmark_configs: {
       "}}"
   }
 }
-
 benchmark_configs: {
   id: "x-not-installed"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure X Window System is not installed"
     description:
       "The X Window System provides a Graphical User Interface (GUI) where "
@@ -9980,7 +10509,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "nis-client-not-installed"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure NIS Client is not installed"
     description:
@@ -10022,7 +10551,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "systemd-timesyncd-configured"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure systemd-timesyncd is configured"
     description:
@@ -10102,7 +10631,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "ensure-pam-unix-enabled"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure pam_unix module is enabled"
     description: 
@@ -10141,7 +10670,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "ensure-password-unlock-time-is-configured"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure password unlock time is configured"
     description:
@@ -10174,7 +10703,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "journald-compress-large-log-files"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure journald is configured to compress large log files"
     description:
@@ -10221,7 +10750,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "auditd-installed"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure auditd is installed"
     description:
@@ -10278,7 +10807,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "auditd-service-enabled"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure auditd service is enabled"
     description: "Turn on the auditd daemon to record system events."
@@ -10319,7 +10848,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "audit-log-storage-size-configured"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure audit log storage size is configured"
     description:
@@ -10365,7 +10894,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "audit-log-not-auto-deleted"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure audit logs are not automatically deleted"
     description:
@@ -10403,7 +10932,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "changes-to-sudoers-collected"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure changes to system administration scope (sudoers) is collected"
     description:
@@ -10506,11 +11035,10 @@ benchmark_configs: {
       "}"
   }
 }
-
 benchmark_configs: {
   id: "enforcing-apparmor-profiles"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure all AppArmor Profiles are enforcing"
     description: "AppArmor profiles define what resources applications are able to access."
@@ -10548,7 +11076,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "disable-user-list-enabled"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure last logged in user display is disabled"
     description:
@@ -10580,212 +11108,9 @@ benchmark_configs: {
   }
 }
 benchmark_configs: {
-  id: "dccp-disabled"
-  compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
-    title: "Ensure DCCP is disabled"
-    description:
-      "The Datagram Congestion Control Protocol (DCCP) is a transport layer protocol "
-      "that supports streaming media and telephony. "
-      "DCCP provides a way to gain access to congestion control, without having to do "
-      "it at the application layer, but does not provide insequence delivery."
-    rationale:
-      "If the protocol is not required, it is recommended that the drivers "
-      "not be installed to reduce the potential attack surface."
-    remediation:
-      "Edit or create a file in the /etc/modprobe.d/ directory ending in .conf \n"
-      "Example: vim /etc/modprobe.d/dccp.conf \n"
-      "and add the following line: \n"
-      "```install dccp /bin/true```"
-    cis_benchmark: {
-      profile_level: 2
-      severity: LOW
-    }
-    scan_instructions:
-      "scan_type_specific:{instance_scanning:{"
-      "    check_alternatives:{"
-      "      file_checks:{"
-      "        files_to_check:{single_file:{path:\"/proc/modules\"}}"
-      "        content_entry:{"
-      "          match_type: NONE_MATCH"
-      "          match_criteria: {"
-      "            filter_regex: \"dccp\\\\s+.*\""
-      "            expected_regex: \"dccp .*\""
-      "          }"
-      "        }"
-      "      }"
-      "      file_checks:{"
-      "        files_to_check:{files_in_dir:{"
-      "          dir_path:\"/etc/modprobe.d\""
-      "          filename_regex: \".*\\\\.conf\""
-      "          recursive: true"
-      "        }}"
-      "        content_entry:{"
-      "          match_type: ALL_MATCH_ANY_ORDER"
-      "          match_criteria: {"
-      "            filter_regex: \"install dccp .*\""
-      "            expected_regex: \"install dccp /bin/(true|false)\""
-      "          }"
-      "        }"
-      "      }"
-      "    }"
-      "    check_alternatives:{"
-      "      file_checks:{"
-      "        files_to_check:{single_file:{path:\"/etc/modprobe.d\"}}"
-      "        existence:{should_exist: false}"
-      "      }"
-      "    }"
-      "    check_alternatives:{"
-      "        file_checks:{"
-      "            files_to_check:{"
-      "                files_in_dir:{"
-      "                    dir_path:\"/boot\""
-      "                    filename_regex: \"config-.*\""
-      "                    recursive: true"
-      "                }"
-      "            }"
-      "            content_entry:{"
-      "                match_type: NONE_MATCH"
-      "                match_criteria:{"
-      "                    filter_regex: \".*(DCCP).*\""
-      "                    expected_regex: \"[^#]*CONFIG_IP_DCCP.*\""
-      "                }"
-      "            }"
-      "        }"
-      "    }"
-      "  }"
-      "  image_scanning:{"
-      "    check_alternatives:{"
-      "      file_checks:{"
-      "        files_to_check:{files_in_dir:{"
-      "          dir_path:\"/etc/modprobe.d\""
-      "          filename_regex: \".*\\\\.conf\""
-      "          recursive: true"
-      "        }}"
-      "        content_entry:{"
-      "          match_type: ALL_MATCH_ANY_ORDER"
-      "          match_criteria: {"
-      "            filter_regex: \"install sctp .*\""
-      "            expected_regex: \"install sctp /bin/(true|false)\""
-      "          }"
-      "        }"
-      "      }"
-      "    }"
-      "    check_alternatives:{"
-      "      file_checks:{"
-      "        files_to_check:{single_file:{path:\"/etc/modprobe.d\"}}"
-      "        existence:{should_exist: false}"
-      "      }"
-      "    }"
-      "    check_alternatives:{"
-      "        file_checks:{"
-      "            files_to_check:{"
-      "                files_in_dir:{"
-      "                    dir_path:\"/boot\""
-      "                    filename_regex: \"config-.*\""
-      "                    recursive: true"
-      "                }"
-      "            }"
-      "            content_entry:{"
-      "                match_type: NONE_MATCH"
-      "                match_criteria:{"
-      "                    filter_regex: \".*(DCCP).*\""
-      "                    expected_regex: \"[^#]*CONFIG_IP_DCCP.*\""
-      "                }"
-      "            }"
-      "        }"
-      "    }"
-      "  }}"
-  }
-}
-
-benchmark_configs: {
-  id: "rds-disabled"
-  compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
-    title: "Ensure RDS is disabled"
-    description:
-      "The Reliable Datagram Sockets (RDS) protocol is a transport layer protocol "
-      "designed to provide low-latency, high-bandwidth communications between cluster nodes. "
-      "It was developed by the Oracle Corporation."
-    rationale:
-      "If the protocol is not being used, it is recommended that kernel module not be loaded, "
-      "disabling the service to reduce the potential attack surface."
-    remediation:
-      "Edit or create a file in the /etc/modprobe.d/ directory ending in .conf \n"
-      "Example: vim /etc/modprobe.d/rds.conf \n"
-      "and add the following line: \n"
-      "```install rds /bin/true```"
-    cis_benchmark: {
-      profile_level: 2
-      severity: LOW
-    }
-    scan_instructions:
-      "scan_type_specific:{instance_scanning:{"
-      "  check_alternatives:{"
-      "    file_checks:{"
-      "      files_to_check:{single_file:{path:\"/proc/modules\"}}"
-      "      content_entry:{"
-      "        match_type: NONE_MATCH"
-      "        match_criteria: {"
-      "          filter_regex: \"rds\\\\s+.*\""
-      "          expected_regex: \"rds .*\""
-      "        }"
-      "      }"
-      "    }"
-      "    file_checks:{"
-      "      files_to_check:{files_in_dir:{"
-      "        dir_path:\"/etc/modprobe.d\""
-      "        filename_regex: \".*\\\\.conf\""
-      "        recursive: true"
-      "      }}"
-      "      content_entry:{"
-      "        match_type: ALL_MATCH_ANY_ORDER"
-      "        match_criteria: {"
-      "          filter_regex: \"install rds .*\""
-      "          expected_regex: \"install rds /bin/(true|false)\""
-      "        }"
-      "      }"
-      "    }"
-      "  }"
-      "  check_alternatives:{"
-      "    file_checks:{"
-      "      files_to_check:{single_file:{path:\"/etc/modprobe.d\"}}"
-      "      existence:{should_exist: false}"
-      "    }"
-      "  }"
-      "}"
-      "image_scanning:{"
-      "  check_alternatives:{"
-      "    file_checks:{"
-      "      files_to_check:{files_in_dir:{"
-      "        dir_path:\"/etc/modprobe.d\""
-      "        filename_regex: \".*\\\\.conf\""
-      "        recursive: true"
-      "      }}"
-      "      content_entry:{"
-      "        match_type: ALL_MATCH_ANY_ORDER"
-      "        match_criteria: {"
-      "          filter_regex: \"install rds .*\""
-      "          expected_regex: \"install rds /bin/(true|false)\""
-      "        }"
-      "      }"
-      "    }"
-      "  }"
-      "  check_alternatives:{"
-      "    file_checks:{"
-      "      files_to_check:{single_file:{path:\"/etc/modprobe.d\"}}"
-      "      existence:{should_exist: false}"
-      "    }"
-      "  }"
-      "}}"
-  }
-}
-
-benchmark_configs: {
   id: "etc-passwd-dash-permissions"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure permissions on /etc/passwd- are configured"
     description: "The /etc/passwd- file contains backup user account information."
@@ -10838,7 +11163,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "kernel-module-loading-unloading-collected"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure kernel module loading and unloading is collected"
     description:
@@ -10948,7 +11273,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "file-deletion-collected"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure file deletion events by users are collected"
     description:
@@ -11033,7 +11358,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "events-modifying-system-mac-collected"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure events that modify the system's Mandatory Access Controls are collected"
     description:
@@ -11118,7 +11443,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "login-logout-events-collected"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure login and logout events are collected"
     description:
@@ -11204,7 +11529,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "session-initiation-info-collected"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure session initiation information is collected"
     description:
@@ -11298,7 +11623,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "successful-mounts-collected"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure successful file system mounts are collected"
     description:
@@ -11392,7 +11717,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "dac-permission-modification-collected"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure discretionary access control permission modification events are collected"
     description:
@@ -11500,7 +11825,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "events-modifying-user-group-info-collected"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure events that modify user/group information are collected"
     description:
@@ -11605,7 +11930,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "events-modifying-date-time-info-collected"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure events that modify date and time information are collected"
     description:
@@ -11751,7 +12076,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "sudolog-actions-collected"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure system administrator actions (sudolog) are collected"
     description:
@@ -11827,7 +12152,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "system-disabled-when-audit-logs-full"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure system is disabled when audit logs are full"
     description: "The auditd daemon can be configured to halt the system when the audit logs are full."
@@ -11877,7 +12202,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "audit-configuration-immutable"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure the Audit Configuration is Immutable"
     description: 
@@ -11918,7 +12243,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "audit-processes-prior-to-auditd-enabled"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure Auditing for Processes That Start Prior to Auditd Is Enabled"
     description: 
@@ -11951,7 +12276,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "freevxfs-mounting-disabled"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure mounting of freevxfs filesystems is disabled"
     description:
       "The freevxfs filesystem type is a free version of the Veritas type "
@@ -12040,7 +12365,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "hfs-mounting-disabled"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure mounting of hfs filesystems is disabled"
     description:
       "The hfs filesystem type is a hierarchical filesystem that allows you "
@@ -12128,47 +12453,82 @@ benchmark_configs: {
 benchmark_configs: {
   id: "separate-partition-home"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure separate partition exists for /home"
     description: "The /home directory is used to support disk storage needs of local users."
     rationale:
-      "If the system is intended to support local users, create a separate partition for the /home directory "
-      "to protect against resource exhaustion and restrict the type of files that can be stored under /home ."
+      "The default installation only creates a single / partition. Since the /home directory "
+      "contains user generated data, there is a risk of resource exhaustion. It will essentially "
+      "have the whole disk available to fill up and impact the system as a whole. In addition, "
+      "other operations on the system could fill up the disk unrelated to /home and impact all "
+      "local users.\n"
+      "Configuring /home as its own file system allows an administrator to set additional mount "
+      "options such as noexec/nosuid/nodev. These options limit an attacker's ability to "
+      "create exploits on the system. In the case of /home options such as "
+      "usrquota/grpquota may be considered to limit the impact that users can have on each "
+      "other with regards to disk resource exhaustion. Other options allow for specific "
+      "behavior. See man mount for exact details regarding filesystem-independent and "
+      "filesystem-specific options.\n"
+      "As /home contains user data, care should be taken to ensure the security and integrity "
+      "of the data and mount point."
     remediation:
-      "For new installations, during installation create a custom partition setup and specify a separate partition for /home . \n"
-      "For systems that were previously installed, create a new partition and configure /etc/fstab as appropriate."
+      "For new installations, during installation create a custom partition setup and specify a "
+      "separate partition for /home.\n"
+      "For systems that were previously installed, create a new partition and configure "
+      "/etc/fstab as appropriate."
     cis_benchmark: {
       profile_level: 2
       severity: LOW
     }
     scan_instructions:
       "scan_type_specific:{instance_scanning:{"
-      "    check_alternatives:{"
-      "      file_checks:{"
-      "        files_to_check:{single_file:{path:\"/proc/self/mountinfo\"}}"
-      "        content_entry:{"
-      "          match_type: ALL_MATCH_ANY_ORDER"
-      "          match_criteria: {"
-      "            filter_regex: \".* /home .* - .*\""
-      "            expected_regex: \".* /home .* - .*\""
-      "          }"
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{path:\"/proc/self/mountinfo\"}}"
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \".* /home .* - .*\""
+      "          expected_regex: \".* /home .*\""
       "        }"
       "      }"
       "    }"
-      "    check_alternatives:{"
-      "     file_checks:{"
-      "       files_to_check:{single_file:{path:\"/proc/self/mountinfo\"}}"
-      "       existence:{should_exist: false}"
-      "     }"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{"
+      "        path:\"/etc/fstab\"}}"      
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \".*/home.*\""
+      "          expected_regex: \".*/home.*\""
+      "        }"
+      "      }"
       "    }"
       "  }"
       "}"
+      "image_scanning:{"
+      "  check_alternatives:{"
+      "    file_checks:{"
+      "      files_to_check:{single_file:{"
+      "        path:\"/etc/fstab\"}}"      
+      "      content_entry:{"
+      "        match_type: ALL_MATCH_ANY_ORDER"
+      "        match_criteria: {"
+      "          filter_regex: \".*/home.*\""
+      "          expected_regex: \".*/home.*\""
+      "        }"
+      "      }"
+      "    }"
+      "  }"
+      "}}"
   }
 }
+
 benchmark_configs: {
   id: "wireless-interfaces-disabled"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:12.0" version: "1.1.0" benchmark_document: "CIS Debian Linux 12" }
     title: "Ensure wireless interfaces are disabled"
     description:
@@ -12214,7 +12574,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "wireless-interfaces-disabled"
   compliance_note: {
-    version: { cpe_uri: "cpe:/o:debian:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure wireless interfaces are disabled"
     description:
       "Wireless networking is used when wired networks are unavailable. "
