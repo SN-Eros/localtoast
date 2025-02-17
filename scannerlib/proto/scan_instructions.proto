@@ -177,14 +177,15 @@ message GroupCriterion {
     LESS_THAN = 0;
     // ...is an integer > `comparison_value`.
     GREATER_THAN = 1;
-    // ...is a version < `comparison_value`.
-    VERSION_LESS_THAN = 2;
-    // ...is a version < `comparison_value`.
-    VERSION_GREATER_THAN = 3;
     // ...represents rwx umask at least as strict as (const) `comparison_value`.
-    NO_LESS_RESTRICTIVE_UMASK = 4;
+    NO_LESS_RESTRICTIVE_UMASK = 2;
     // ...appears exactly once.
-    UNIQUE = 5;
+    UNIQUE = 3;
+    // ...is a version < `comparison_value`.
+    VERSION_LESS_THAN = 4;
+    // ...is a version < `comparison_value`.
+    VERSION_GREATER_THAN = 5;
+    
   }
   Type type = 2;
 
@@ -193,10 +194,10 @@ message GroupCriterion {
   oneof comparison_value {
     // ...a constant integer.
     int32 const = 3;
-    // ...a constant string.
-    string version = 4;
     // ...the number of days since the epoch.
-    Today today = 5;
+    Today today = 4;
+    // ...a constant string.
+    string version = 5;
   }
 }
 
