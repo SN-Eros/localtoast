@@ -4,6 +4,7 @@
 benchmark_configs: {
   id: "cramfs-mounting-disabled"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
     title: "Ensure cramfs kernel module is not available"
@@ -130,6 +131,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "freevxfs-mounting-disabled"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure freevxfs kernel module is not available"
     description:
       "The freevxfs filesystem type is a free version of the Veritas type filesystem. This is the "
@@ -253,6 +255,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "hfs-mounting-disabled"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure hfs kernel module is not available"
     description:
       "The hfs filesystem type is a hierarchical filesystem that allows you to mount Mac OS "
@@ -376,6 +379,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "hfsplus-mounting-disabled"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure hfsplus kernel module is not available"
     description:
       "The hfsplus filesystem type is a hierarchical filesystem designed to replace hfs that "
@@ -499,6 +503,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "jffs2-mounting-disabled"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure jffs2 kernel module is not available"
     description:
       "The jffs2 (journaling flash filesystem 2) filesystem type is a log-structured filesystem "
@@ -622,6 +627,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "overlayfs-mounting-disabled"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure overlayfs kernel module is not available"
     description:
       "overlayfs is a Linux filesystem that layers multiple filesystems to create a single "
@@ -746,6 +752,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "squashfs-mounting-disabled"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:89" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
@@ -837,6 +844,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "udf-mounting-disabled"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     title: "Ensure mounting of udf filesystems is disabled"
     description:
@@ -917,6 +925,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "usb_storage-mounting-disabled"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure usb_storage kernel module is not available"
     description:
       "USB storage provides a means to transfer and store files ensuring persistence and "
@@ -1044,6 +1053,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "tmp-configured"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:89" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
@@ -1131,6 +1141,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "tmp-nodev"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:89" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
@@ -1225,6 +1236,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "tmp-nosuid"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:89" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
@@ -1319,6 +1331,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "tmp-noexec"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:89" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
@@ -1414,6 +1427,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "separate-partition-home"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure separate partition exists for /home"
     description: "The /home directory is used to support disk storage needs of local users."
     rationale:
@@ -1487,6 +1501,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "home-nodev"
     compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:89" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
@@ -1568,6 +1583,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "home-nosuid"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure nosuid option set on /home partition"
     description:
       "The nosuid mount option specifies that the filesystem cannot contain setuid files."
@@ -1647,6 +1663,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "shm-nodev"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:89" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
@@ -1728,6 +1745,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "shm-nosuid"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:89" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
@@ -1810,6 +1828,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "separate-partition-shm"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure /dev/shm is a separate partition"
     description:
       "The /dev/shm directory is a world-writable directory that can function as shared memory "
@@ -1868,6 +1887,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "shm-noexec"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:89" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
@@ -1948,6 +1968,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "var-nodev"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure nodev option set on /var partition"
     description:
       "The nodev mount option specifies that the filesystem cannot contain "
@@ -1999,6 +2020,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "var-nosuid"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure nosuid option set on /var partition"
     description:
       "The nosuid mount option specifies that the filesystem cannot contain setuid files."
@@ -2076,6 +2098,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "separate-partition-var-tmp"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure separate partition exists for /var/tmp"
     description:
       "The /var/tmp directory is a world-writable directory used for temporary storage by all "
@@ -2145,6 +2168,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "var-tmp-nodev"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
     title: "Ensure nodev option set on /var/tmp partition"
@@ -2226,6 +2250,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "var-tmp-nosuid"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
     title: "Ensure nosuid option set on /var/tmp partition"
@@ -2307,6 +2332,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "var-tmp-noexec"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
     title: "Ensure noexec option set on /var/tmp partition"
@@ -2388,6 +2414,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "separate-partition-var-log"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure separate partition exists for /var/log"
     description:
       "The /var/log directory is used by system services to store log data."
@@ -2458,6 +2485,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "var-log-nodev"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure nodev option set on /var/log partition"
     description:
       "The nodev mount option specifies that the filesystem cannot contain special devices."
@@ -2535,6 +2563,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "var-log-nosuid"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure nosuid option set on /var/log partition"
     description:
       "The nosuid mount option specifies that the filesystem cannot contain setuid files."
@@ -2614,6 +2643,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "var-log-noexec"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure noexec option set on /var/log partition"
     description:
       "The noexec mount option specifies that the filesystem cannot contain executable binaries."
@@ -2693,6 +2723,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "separate-partition-var"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure separate partition exists for /var"
     description:
       "The /var directory is used by daemons and other system services to temporarily store dynamic data. "
@@ -2733,6 +2764,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "separate-partition-var-log-audit"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure separate partition exists for /var/log/audit"
     description:
       "The auditing daemon, auditd, stores log data in the /var/log/audit directory."
@@ -2806,6 +2838,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "var-log-audit-nodev"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure nodev option set on /var/log/audit partition"
     description:
       "The nodev mount option specifies that the filesystem cannot contain special devices."
@@ -2887,6 +2920,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "var-log-audit-nosuid"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure nosuid option set on /var/log/audit partition"
     description:
       "The nosuid mount option specifies that the filesystem cannot contain setuid files."
@@ -2968,6 +3002,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "var-log-audit-noexec"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure noexec option set on /var/log/audit partition"
     description:
       "The noexec mount option specifies that the filesystem cannot contain executable binaries."
@@ -3048,6 +3083,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "automounting-disabled"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:89" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:93" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:97" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
@@ -3191,6 +3227,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "aslr-enabled"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:89" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:93" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
@@ -3272,6 +3309,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "apparmor-installed"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:89" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:93" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:97" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
@@ -3325,6 +3363,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "apparmor-enabled-bootloader"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure AppArmor is enabled in the bootloader configuration"
     description:
       "Configure AppArmor to be enabled at boot time and verify that it has not been "
@@ -3399,6 +3438,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "ensure-apparmor-profiles-enforce-complain"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure all AppArmor Profiles are in enforce or complain mode"
     description:
       "AppArmor profiles define what resources applications are able to access."
@@ -3443,6 +3483,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "enforcing-apparmor-profiles"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure all AppArmor Profiles are enforcing"
     description:
       "AppArmor profiles define what resources applications are able to access."
@@ -3484,6 +3525,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "local-login-warning-configured"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:89" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     title: "Ensure local login warning banner is configured properly"
@@ -3542,6 +3584,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "remote-login-warning-configured"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:89" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     title: "Ensure remote login warning banner is configured properly"
@@ -3601,6 +3644,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "etc-issue-permissions"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:89" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:9" version: "1.0.0" benchmark_document: "CIS Debian Linux 9" }
@@ -3649,6 +3693,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "login-logout-events-collected"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure login and logout events are collected"
     description:
       "Monitor login and logout events. "
@@ -3793,6 +3838,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "nfs-rpc-disabled"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:89" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
@@ -3846,6 +3892,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "packet-redirect-sending-disabled"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:89" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:9" version: "1.0.0" benchmark_document: "CIS Debian Linux 9" }
@@ -3931,6 +3978,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "source-routed-packets-not-accepted"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:89" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:9" version: "1.0.0" benchmark_document: "CIS Debian Linux 9" }
@@ -3998,6 +4046,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "broadcast-icmp-requests-ignored"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:89" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:9" version: "1.0.0" benchmark_document: "CIS Debian Linux 9" }
@@ -4077,6 +4126,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "bogus-icmp-responses-ignored"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:89" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:9" version: "1.0.0" benchmark_document: "CIS Debian Linux 9" }
@@ -4150,6 +4200,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "reverse-path-filtering-enabled"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:89" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:9" version: "1.0.0" benchmark_document: "CIS Debian Linux 9" }
@@ -4241,6 +4292,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "tcp-syn-cookies-enabled"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:89" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:debian:debian_linux:9" version: "1.0.0" benchmark_document: "CIS Debian Linux 9" }
@@ -4325,6 +4377,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "journald-service-enabled"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure journald service is enabled"
     description: 
       "Ensure that the systemd-journald service is enabled and running to allow capturing of logging events."
@@ -4401,6 +4454,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "ensure-sshd-ciphers-configured"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure sshd Ciphers are configured"
     description: 
       "This variable limits the ciphers that SSH can use during communication. The only strong ciphers currently FIPS 140 "
@@ -4456,6 +4510,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "ensure-sshd-clientalive-configured"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure sshd ClientAliveInterval and ClientAliveCountMax are configured"
     description:
       "The two options ClientAliveInterval and ClientAliveCountMax control the timeout "
@@ -4538,6 +4593,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "sshd-config-permissions"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:89" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:93" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
@@ -4587,6 +4643,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "sshd-private-host-key-permissions"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:89" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:93" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
@@ -4641,6 +4698,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "sshd-public-host-key-permissions"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:89" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:93" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
@@ -4732,6 +4790,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "ssh-loglevel-appropriate"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:89" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:93" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
@@ -4801,6 +4860,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "sshd-banner-configured"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure sshd Banner is configured"
     description:
       "The Banner parameter specifies a file whose contents must be sent to the remote user "
@@ -4841,6 +4901,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "sshd-access-configured"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure sshd access is configured"
     description:
       "There are several options available to limit which users and groups can access the "
@@ -4888,6 +4949,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "sshd-hostbasedauthentication-disabled"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure SSH HostbasedAuthentication is disabled"
     description:
       "The HostbasedAuthentication parameter specifies if authentication is allowed through "
@@ -4990,6 +5052,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "sshd-disable-forwarding-configured"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure sshd DisableForwarding is enabled"
     description:
       "The DisableForwarding parameter disables all forwarding features, including X11, ssh-agent, TCP, and StreamLocal forwarding. "
@@ -5029,6 +5092,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "sshd-gssapi-authentication-disabled"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure sshd GSSAPIAuthentication is disabled"
     description:
       "The GSSAPIAuthentication parameter specifies whether user authentication "
@@ -5068,6 +5132,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "ssh-maxauthtries-4-or-less"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:93" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:97" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
@@ -5119,6 +5184,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "ssh-ignorerhosts-enabled"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:89" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:93" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
@@ -5236,6 +5302,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "ssh-root-login-disabled"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:89" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:93" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
@@ -5339,6 +5406,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "ssh-permituserenvironments-disabled"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:89" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:93" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
@@ -5508,6 +5576,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "strong-mac-algorithms-used"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     title: "Ensure only strong MAC algorithms are used"
     description: "This variable limits the types of MAC algorithms that SSH can use during communication."
@@ -5612,6 +5681,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "strong-key-exchange-algos-used"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:89" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:93" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
@@ -5747,6 +5817,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "ssh-logingrace-one-minute-or-less"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
     title: "Ensure SSH LoginGraceTime is set to one minute or less"
@@ -5847,6 +5918,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "ssh-pam-enabled"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:89" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:93" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
@@ -5896,6 +5968,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "ssh-maxstartups-configured"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
     title: "Ensure SSH MaxStartups is configured"
@@ -5937,6 +6010,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "ssh-maxsessions-10-or-less"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure SSH MaxSessions is set to 10 or less"
     description:
       "The MaxSessions parameter specifies the maximum number of open "
@@ -6025,6 +6099,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "password-history-enforce-for-root"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure Password History is Enforced for the Root User"
     description: 
       "The configuration ensures that the pam_pwhistory module enforces password history for the root user as well, preventing root from reusing recent passwords."
@@ -6162,6 +6237,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "password-expiration-365-days-or-less"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
     title: "Ensure password expiration is 365 days or less"
@@ -6306,6 +6382,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "password-expiration-warning-days-7-or-more"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:89" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:93" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
@@ -6378,6 +6455,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "inactive-password-lock-30-days-or-less"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
     title: "Ensure inactive password lock is 30 days or less"
@@ -6444,6 +6522,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "last-password-change-date-in-past"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:89" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:93" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
@@ -6492,6 +6571,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "system-accounts-secured"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
     title: "Ensure system accounts are secured"
@@ -6563,6 +6643,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "ptrace-scope-restricted"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure ptrace_scope is restricted"
     description:
       "This configuration ensures that the ptrace() system call is restricted to limit the ability of compromised "
@@ -6625,6 +6706,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "root-gid-zero-check"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure Root is the Only GID 0 Account"
     description: 
       "The configuration ensures that the root user's primary GID is 0 and no other user accounts have GID 0 as their "
@@ -6697,6 +6779,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "reauthentication-for-privilege-escalation-not-disabled"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure re-authentication for privilege escalation is not disabled globally"
     description:
       "The operating system must be configured so that users must re-authenticate for privilege "
@@ -6743,6 +6826,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "users-password-for-escalation"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure users must provide password for escalation"
     description:
       "The operating system must be configured so that users must provide a password for "
@@ -6796,6 +6880,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "default-group-for-root-account-is-gid-0"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:89" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:93" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
@@ -6883,6 +6968,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "access-to-su-restricted"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:89" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
@@ -6942,6 +7028,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "etc-shadow-passwords-not-empty"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: " Ensure /etc/shadow password fields are not empty"
     description: 
       "An account with an empty password field means that anybody may log in as that user "
@@ -6980,6 +7067,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "etc-passwd-permissions"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:89" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:93" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
@@ -7030,6 +7118,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "etc-shadow-permissions"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:89" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:93" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
@@ -7087,6 +7176,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "etc-group-permissions"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:89" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:93" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
@@ -7136,6 +7226,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "etc-gshadow-permissions"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:89" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:93" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
@@ -7200,6 +7291,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "etc-group-dash-permissions"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:89" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:93" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
@@ -7252,6 +7344,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "etc-shadow-dash-permissions"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:93" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:97" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
@@ -7315,6 +7408,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "etc-gshadow-dash-permissions"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:93" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:97" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
@@ -7379,6 +7473,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "audit-configuration-immutable"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure the Audit Configuration is Immutable"
     description: 
       "This configuration ensures that the audit rules are immutable, preventing unauthorized modifications and ensuring the integrity of the audit system."
@@ -7419,6 +7514,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "password-fields-not-empty"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:89" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:93" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
@@ -7601,6 +7697,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "root-is-only-uid-0-account"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:89" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:93" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
@@ -7697,6 +7794,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "audit-log-not-auto-deleted"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure audit logs are not automatically deleted"
     description:
       "The max_log_file_action setting determines how to handle the audit log file reaching the "
@@ -7787,6 +7885,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "ensure-audit-log-dir-mode-configured"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure the audit log file directory mode is configured"
     description: "The audit log directory contains audit log files."
     rationale:
@@ -7821,6 +7920,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "wireless-interfaces-disabled"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure wireless interfaces are disabled"
     description:
       "Wireless networking is used when wired networks are unavailable. "
@@ -7866,6 +7966,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "ufw-default-deny-policy"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure ufw default deny firewall policy"
     description: 
       "A default deny policy on connections ensures that any unconfigured network usage will be rejected."
@@ -7924,6 +8025,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "audit-log-storage-size-configured"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure audit log storage size is configured"
     description:
       "Configure the maximum size of the audit log file. "
@@ -7969,6 +8071,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "ufw-open-ports-rules-configured"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure ufw is uninstalled or disabled with nftables"
     description: 
       "Services and ports can be accepted or explicitly rejected."
@@ -8032,6 +8135,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "audit-processes-prior-to-auditd-enabled"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure Auditing for Processes That Start Prior to Auditd Is Enabled"
     description: 
       "This configuration ensures that audit events for processes that start prior to auditd are captured, enabling early detection of potential malicious activity."
@@ -8064,6 +8168,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "iptables-open-ports-rules-configured"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure iptables firewall rules exist for all open ports"
     description: 
       "Any ports that have been opened on non-loopback addresses need firewall rules to "
@@ -8138,6 +8243,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "ensure-gdm-removed"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure GDM is removed"
     description: 
       "The GNOME Display Manager (GDM) is a program that manages graphical display servers and handles graphical user logins.\n"
@@ -8173,6 +8279,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "ensure-disable-gnome-automount-removable-media-not-overridden"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure GDM disabling automatic mounting of removable media is not overridden"
     description: 
         "By default, GNOME automatically mounts removable media when inserted as a convenience to the user. Disabling "
@@ -8360,6 +8467,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "users-own-home-dirs"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:93" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:97" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
@@ -8430,6 +8538,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "dot-files-not-group-world-writable"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:93" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:97" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
@@ -8560,6 +8669,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "successful-mounts-collected"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure successful file system mounts are collected"
     description:
       "Monitor the use of the mount system call. "
@@ -8822,6 +8932,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "groups-from-etc-passwd-in-etc-group"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:93" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:97" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
@@ -8874,6 +8985,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "no-duplicate-uids"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:89" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:93" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
@@ -8926,6 +9038,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "no-duplicate-gids"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:89" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:93" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
@@ -8976,6 +9089,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "no-duplicate-user-names"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:89" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:93" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
@@ -9031,6 +9145,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "no-duplicate-group-names"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:89" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:93" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
@@ -9084,6 +9199,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "shadow-group-empty"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:89" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:93" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
@@ -9133,6 +9249,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "default-user-shell-timeout-900-or-less"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:93" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
     version: { cpe_uri: "cpe:/o:cos:cos_linux:97" version: "1.0.0" benchmark_document: "CIS Container-Optimized OS" }
@@ -9247,6 +9364,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "aide-installed"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
     title: "Ensure AIDE is installed"
@@ -9309,6 +9427,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "filesystem-integrity-checked"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
     title: "Ensure filesystem integrity is regularly checked"
@@ -9365,6 +9484,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "bootloader-password-set"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
     title: "Ensure bootloader password is set"
@@ -9467,6 +9587,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "bootloader-config-permissions"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
     title: "Ensure permissions on bootloader config are configured"
@@ -9567,6 +9688,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "core-dumps-restricted"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
     title: "Ensure core dumps are restricted"
@@ -9679,6 +9801,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "prelink-disabled"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     title: "Ensure prelink is disabled"
     description:
@@ -9722,6 +9845,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "motd-configured"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
     title: "Ensure message of the day is configured properly"
@@ -9772,6 +9896,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "motd-permissions"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     title: "Ensure permissions on /etc/motd are configured"
     description:
@@ -9808,6 +9933,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "etc-issue-net-permissions"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
     title: "Ensure permissions on /etc/issue.net are configured"
@@ -9847,6 +9973,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "session-initiation-info-collected"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure session initiation information is collected"
     description:
       "Monitor session initiation events. "
@@ -9986,6 +10113,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "time-synchronization-in-use"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
     title: "Ensure time synchronization is in use"
@@ -10267,6 +10395,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "cups-disabled"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
     title: "Ensure CUPS is not enabled"
@@ -10308,6 +10437,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "dhcp-server-disabled"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
     title: "Ensure dhcp server services are not in use"
@@ -10374,6 +10504,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "ldap-server-disabled"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
     title: "Ensure LDAP Server is not enabled"
@@ -10414,6 +10545,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "dns-server-disabled"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
     title: "Ensure DNS Server is not enabled"
@@ -10455,6 +10587,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "tftp-server-service-disabled"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure tftp server services are not in use"
     description:
       "Trivial File Transfer Protocol (TFTP) is a simple protocol for exchanging files between "
@@ -10516,6 +10649,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "etc-passwd-dash-permissions"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure permissions on /etc/passwd- are configured"
     description: "The /etc/passwd- file contains backup user account information."
     rationale:
@@ -10568,6 +10702,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "dnsmasq-service-disabled"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure dnsmasq services are not in use"
     description:
       "dnsmasq is a lightweight tool that provides DNS caching, DNS forwarding and DHCP "
@@ -10630,6 +10765,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "systemd-timesyncd-configured"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure systemd-timesyncd is configured"
     description:
       "systemd-timesyncd is a daemon that has been added for synchronizing "
@@ -10709,6 +10845,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "ftp-server-disabled"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
     title: "Ensure FTP Server is not enabled"
@@ -10750,6 +10887,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "http-server-disabled"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
     title: "Ensure HTTP Server is not enabled"
@@ -10806,6 +10944,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "events-modifying-system-mac-collected"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure events that modify the system's Mandatory Access Controls are collected"
     description:
       "Monitor SELinux/AppArmor mandatory access controls. "
@@ -10890,6 +11029,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "events-modifying-date-time-info-collected"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure events that modify date and time information are collected"
     description:
       "Capture events where the system date and/or time has been modified. "
@@ -11035,6 +11175,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "imap-pop3-server-disabled"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
     title: "Ensure IMAP and POP3 Server is not enabled"
@@ -11072,6 +11213,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "samba-disabled"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
     title: "Ensure Samba Server is not enabled"
@@ -11133,6 +11275,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "http-proxy-server-disabled"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
     title: "Ensure HTTP Proxy Server is not enabled"
@@ -11172,6 +11315,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "dccp-mounting-disabled"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure dccp kernel module is not available"
     description:
       "The Datagram Congestion Control Protocol (DCCP) is a transport layer protocol that "
@@ -11297,6 +11441,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "tipc-mounting-disabled"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure tipc kernel module is not available"
     description:
       "The Transparent Inter-Process Communication (TIPC) protocol is designed to provide "
@@ -11420,6 +11565,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "rds-mounting-disabled"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure rds kernel module is not available"
     description:
       "The Reliable Datagram Sockets (RDS) protocol is a transport layer protocol designed to "
@@ -11545,6 +11691,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "sctp-mounting-disabled"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure sctp kernel module is not available"
     description:
       "The Stream Control Transmission Protocol (SCTP) is a transport layer protocol used to "
@@ -11671,6 +11818,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "ufw-loopback-traffic-configured"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure ufw loopback traffic is configured"
     description: 
       "Configure the loopback interface to accept traffic and configure all other interfaces to "
@@ -11740,6 +11888,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "nftables-is-installed"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure nftables is installed"
     description:
       "nftables provides a new in-kernel packet classification framework that is based on a "
@@ -11849,6 +11998,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "nftables-table-exists"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure a nftables table exists"
     description: 
       "Tables hold chains in nftables. Each table only has one address family and only applies to packets of this family. "
@@ -11891,6 +12041,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "nftables-loopback-traffic-configured"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure nftables Loopback Traffic is Configured"
     description: 
       "Configuring loopback traffic ensures that internal communication between processes on the machine is "
@@ -11951,6 +12102,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "nftables-service-enabled"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure nftables service is enabled"
     description: 
       "The nftables service allows for the loading of nftables rulesets during boot, or starting on "
@@ -11986,6 +12138,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "nftables-base-chains-exist"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure nftables Base Chains Exist"
     description: 
       "Chains are containers for rules in nftables. Base chains are entry points for packets from the networking stack, "
@@ -12047,6 +12200,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "nftables-default-deny-policy"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure nftables default deny firewall policy"
     description: 
       "Base chain policy is the default verdict that will be applied to packets reaching the end of the chain.\n"
@@ -12112,6 +12266,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "snmp-server-disabled"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
     title: "Ensure SNMP Server is not enabled"
@@ -12155,6 +12310,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "nis-server-disabled"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
     title: "Ensure NIS Server is not enabled"
@@ -12200,6 +12356,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "xinetd-service-disabled"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure xinetd services are not in use"
     description:
       "The eXtended InterNET Daemon (xinetd) is an open source super daemon that "
@@ -12264,6 +12421,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "x-server-service-disabled"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure X window server services are not in use"
     description:
       "The X Window System provides a Graphical User Interface (GUI) where users can have "
@@ -12365,6 +12523,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "rsync-disabled"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
     title: "Ensure rsync service is not enabled"
@@ -12404,6 +12563,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "nis-client-not-installed"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure NIS Client is not installed"
     description:
       "The Network Information Service (NIS), formerly known as Yellow Pages, "
@@ -12445,6 +12605,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "rsh-client-not-installed"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
     title: "Ensure rsh client is not installed"
@@ -12483,6 +12644,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "talk-client-not-installed"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
     title: "Ensure talk client is not installed"
@@ -12520,6 +12682,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "telnet-client-not-installed"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
     title: "Ensure telnet client is not installed"
@@ -12558,6 +12721,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "ldap-client-not-installed"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
     title: "Ensure LDAP client is not installed"
@@ -12596,6 +12760,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "ip-forwarding-disabled"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
     title: "Ensure IP forwarding is disabled"
@@ -12684,6 +12849,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "icmp-redirects-not-accepted"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
     title: "Ensure ICMP redirects are not accepted"
@@ -12792,6 +12958,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "secure-icmp-redirects-not-accepted"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
     title: "Ensure secure ICMP redirects are not accepted"
@@ -12875,6 +13042,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "suspicious-packets-logged"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
     title: "Ensure suspicious packets are logged"
@@ -12956,6 +13124,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "ipv6-router-advertisements-not-accepted"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
     title: "Ensure IPv6 router advertisements are not accepted"
@@ -13038,6 +13207,8 @@ benchmark_configs: {
 benchmark_configs: {
   id: "logfile-permissions"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
     title: "Ensure permissions on all logfiles are configured"
@@ -13132,6 +13303,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "cron-daemon-enabled"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
     title: "Ensure cron daemon is enabled"
@@ -13169,6 +13341,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "crontab-restricted-to-authorized-users"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure crontab is restricted to authorized users"
     description:
       "crontab is the program used to install, deinstall, or list the tables used to drive the cron "
@@ -13227,6 +13400,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "crontab-permissions"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
     title: "Ensure permissions on /etc/crontab are configured"
@@ -13267,6 +13441,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "cron-hourly-permissions"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
     title: "Ensure permissions on /etc/cron.hourly are configured"
@@ -13309,6 +13484,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "cron-daily-permissions"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
     title: "Ensure permissions on /etc/cron.daily are configured"
@@ -13351,6 +13527,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "cron-weekly-permissions"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
     title: "Ensure permissions on /etc/cron.weekly are configured"
@@ -13393,6 +13570,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "cron-monthly-permissions"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
     title: "Ensure permissions on /etc/cron.monthly are configured"
@@ -13435,6 +13613,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "cron-d-permissions"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
     title: "Ensure permissions on /etc/cron.d are configured"
@@ -13479,6 +13658,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "at-cron-restricted-to-authorized-users"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
     title: "Ensure at/cron is restricted to authorized users"
@@ -13800,6 +13980,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "no-world-writable-files"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
     title: "Ensure no world writable files exist"
@@ -13862,6 +14043,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "no-unowned-files-or-dirs"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
     title: "Ensure no unowned files or directories exist"
@@ -13924,6 +14106,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "no-ungrouped-files-or-dirs"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
     title: "Ensure no ungrouped files or directories exist"
@@ -13987,6 +14170,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "system-disabled-when-audit-logs-full"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure system is disabled when audit logs are full"
     description: "The auditd daemon can be configured to halt the system when the audit logs are full."
     rationale:
@@ -14168,6 +14352,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "root-path-integrity"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
     title: "Ensure root PATH Integrity"
@@ -14430,6 +14615,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "gdm-login-banner-configured"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
     title: "Ensure GDM login banner is configured"
@@ -14594,6 +14780,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "xdcmp-not-enabled"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
     title: "Ensure XDCMP is not enabled"
@@ -14648,6 +14835,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "mail-transfer-agent-is-configured-for-localonly-mode"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
     title: "Ensure mail transfer agent is configured for local-only mode"
@@ -14727,6 +14915,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "ensure-gdm-screen-locks-cannot-be-overridden"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure GDM screen locks cannot be overridden"
     description:
       "GNOME Desktop Manager can lock down specific settings by using the lockdown mode in dconf to prevent users from changing specific settings."
@@ -14777,6 +14966,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "ensure-gdm-autorun-never-enabled"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure GDM autorun-never is enabled"
     description: 
       "The autorun-never setting allows the GNOME Desktop Display Manager to disable autorun through GDM."
@@ -14869,6 +15059,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "ensure-gdm-autorun-never-is-not-overridden"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure GDM autorun-never is not overridden"
     description: 
       "The autorun-never setting allows the GNOME Desktop Display Manager to disable autorun through GDM. By using the lockdown mode in dconf, you can prevent users from changing specific settings."
@@ -14920,6 +15111,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "ensure-gdm-screen-locks-when-user-is-idle"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure GDM screen locks when the user is idle"
     description: 
       "GNOME Desktop Manager can make the screen lock automatically whenever the user is idle for some amount of time."
@@ -14986,6 +15178,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "ufw-uninstalled-or-disabled-with-iptables"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure ufw is uninstalled or disabled with iptables"
     description: 
       "Uncomplicated Firewall (UFW) is a program for managing a Netfilter firewall designed to be easy to use. Running "
@@ -15058,6 +15251,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "disable-user-list-enabled"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure last logged in user display is disabled"
     description:
       "GDM is the GNOME Display Manager which handles graphical login for GNOME based "
@@ -15091,6 +15285,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "ufw-is-installed"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure ufw is installed"
     description:
       "The Uncomplicated Firewall (ufw) is a frontend for iptables and is particularly well-suited for host-based firewalls. "
@@ -15121,6 +15316,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "ensure-ufw-service-enabled"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure ufw Service is Enabled"
     description: 
       "Uncomplicated Firewall (ufw) is a frontend for iptables that provides a framework for managing Netfilter, offering "
@@ -15171,6 +15367,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "ufw-uninstalled-or-disabled-with-nftables"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure ufw is uninstalled or disabled with nftables"
     description: 
       "Uncomplicated Firewall (UFW) is a program for managing a Netfilter firewall designed to be easy to use. Running "
@@ -15287,6 +15484,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "nftables-rules-are-permanent"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
     title: "Ensure nftables rules are permanent"
@@ -15345,6 +15543,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "iptables-packages-installed"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure iptables packages are installed"
     description: 
       "iptables is a utility program that allows a system administrator to configure the tables provided by the "
@@ -15388,6 +15587,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "iptables-persistent-not-installed-with-ufw"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure iptables-persistent is not installed with ufw"
     description: 
       "The iptables-persistent is a boot-time loader for Netfilter rules, which may conflict with ufw if both are running simultaneously."
@@ -15475,6 +15675,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "iptables-default-deny-policy"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure iptables Default Deny Firewall Policy"
     description: 
       "A default deny all policy on connections ensures that any unconfigured network usage will be rejected."
@@ -15520,6 +15721,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "iptables-loopback-traffic-configured"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure iptables Loopback Traffic is Configured"
     description: 
       "Configure the loopback interface to accept traffic and deny traffic to the loopback network on all other interfaces "
@@ -15611,6 +15813,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "ip6tables-loopback-traffic-configured"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure ip6tables Loopback Traffic is Configured"
     description: 
       "Configure the loopback interface to accept traffic. Configure all other interfaces to deny traffic to the loopback "
@@ -15658,6 +15861,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "ip6tables-default-deny-policy"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure iptables Default Deny Firewall Policy"
     description: 
       "A default deny all policy on connections ensures that any unconfigured network usage will be rejected."
@@ -15703,6 +15907,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "nftables-not-in-use-with-iptables"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure nftables is not in use with iptable"
     description:
       "nftables is a subsystem of the Linux kernel providing filtering and classification of "
@@ -15764,6 +15969,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "ensure-password-unlock-time-is-configured"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure password unlock time is configured"
     description:
       "unlock_time=<n> - The access will be re-enabled after seconds after the lock out. The value 0 has the same meaning as value never - the access will not be re-enabled without resetting the faillock entries by the faillock(8) command."
@@ -15843,6 +16049,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "systemd-journal-remote-installed"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure systemd-journal-remote is installed"
     description:
       "Journald (via systemd-journal-remote) supports the ability to send log events it gathers to "
@@ -15875,6 +16082,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "systemd-journal-upload-enabled"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure systemd-journal-upload is enabled and active"
     description:
       "Journald (via systemd-journal-remote) supports the ability to send log events it gathers to "
@@ -15907,6 +16115,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "ensure-systemd-journal-remote-not-enabled"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure systemd-journal-remote service is not in use"
     description:
       "The systemd-journal-remote service supports receiving messages from remote hosts, effectively turning the system "
@@ -16041,6 +16250,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "events-modifying-user-group-info-collected"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure events that modify user/group information are collected"
     description:
       "Record events affecting the group , passwd (user IDs), shadow and gshadow (passwords) "
@@ -16239,6 +16449,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "ensure-pam-unix-enabled"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure pam_unix module is enabled"
     description: 
       "pam_unix is the standard Unix authentication module. It uses standard calls from the system's libraries to retrieve and set account information as well as authentication."
@@ -16277,6 +16488,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "ensure-events-modifying-system-network-env-collected"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure events that modify the system's network environment are collected"
     description: "Record changes to network environment files or system calls. The parameters monitor the sethostname "
     "and setdomainname system calls and various network-related files.\n"
@@ -16355,6 +16567,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "file-deletion-collected"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure file deletion events by users are collected"
     description:
       "Monitor the use of system calls associated with the deletion or renaming of files and file attributes. "
@@ -16439,6 +16652,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "ensure-audit-tools-owner-configured"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure audit tools owner is configured"
     description: "Audit tools must be owned by the root user to ensure their integrity and prevent unauthorized access "
     "or modifications.\n"
@@ -16499,6 +16713,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "ensure-audit-tools-group-owner-configured"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure audit tools group owner is configured"
     description: "Audit tools must be owned by the root group to ensure their integrity and prevent unauthorized access "
     "or modifications."
@@ -16560,6 +16775,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "ensure-audit-configuration-files-mode-configured"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure audit configuration files mode is configured"
     description: "Audit configuration files must be configured with mode 0640 or more restrictive to prevent unauthorized "
     "access and protect the integrity of the audit system."
@@ -16598,6 +16814,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "ensure-audit-configuration-files-owner-configured"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure audit configuration files owner is configured"
     description:
       "Access to the audit configuration files could allow unauthorized personnel to prevent the "
@@ -16637,6 +16854,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "ensure-audit-configuration-files-group-configured"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure audit configuration files owner is configured"
     description:
       "Access to the audit configuration files could allow unauthorized personnel to prevent the "
@@ -16676,6 +16894,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "ensure-audit-tools-mode-configured"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure audit tools mode is configured"
     description:
       "Audit tools must be configured with mode 0755 or more restrictive to protect the integrity of audit tools and prevent unauthorized access."
@@ -16717,6 +16936,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "ensure-privileged-commands-are-collected"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure use of privileged commands are collected"
     description: "Monitor privileged programs with setuid and/or setgid bit set to detect unauthorized use."
     rationale: "Monitoring privileged commands by non-privileged users helps identify potential unauthorized activities "
@@ -16992,6 +17212,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "journald-is-configured-to-compress-large-log-files"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
     title: "Ensure journald is configured to compress large log files"
@@ -17041,6 +17262,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "sudo-authentication-timeout-is-configured-correctly"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure sudo authentication timeout is configured correctly"
     description:
       "sudo caches used credentials for a default of 5 minutes. This is for ease of use when there "
@@ -17128,6 +17350,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "sudo-is-installed"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure sudo is installed"
     description:
       "sudo allows a permitted user to execute a command as the superuser or another user, as "
@@ -17184,6 +17407,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "sudo-commands-use-pty"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
     title: "Ensure sudo commands use pty"
@@ -17233,6 +17457,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "sudo-log-file-exists"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     version: { cpe_uri: "cpe:/o:centos:centos:7.%02" version: "3.1.2" benchmark_document: "CIS Centos Linux 7.x" }
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
     title: "Ensure sudo log file exists"
@@ -17343,6 +17568,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "ensure-accounts-without-valid-shell-locked"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure accounts without a valid login shell are locked"
     description:
       "Accounts that are not intended for interactive login should have their login "
@@ -17396,6 +17622,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "etc-shells-permissions"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure permissions on /etc/shells are configured"
     description: 
       "/etc/shells is a text file which contains the full pathnames of valid login shells. This file "
@@ -17437,6 +17664,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "opasswd-permissions"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure permissions on /etc/security/opasswd are configured"
     description:
       "/etc/security/opasswd and its backup /etc/security/opasswd.old hold user's previous passwords if pam_unix or "
@@ -17497,6 +17725,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "ensure-libpam-modules-installed"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure libpam-modules is installed"
     description:
       "Pluggable Authentication Modules for PAM. Ensures the system has full functionality and access to the PAM options "
@@ -17536,6 +17765,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "ensure-libpam-pwquality-installed"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: 
       "Ensure libpam-pwquality is installed"
     description: 
@@ -17573,6 +17803,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "ensure-pam-faillock-enabled"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure pam_faillock module is enabled"
     description:
       "The pam_faillock.so module maintains a list of failed authentication attempts per user during a specified interval "
@@ -17635,6 +17866,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "kernel-module-loading-unloading-collected"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure kernel module loading and unloading is collected"
     description:
       "Monitor the loading and unloading of kernel modules. "
@@ -17744,6 +17976,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "changes-to-sudoers-collected"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure changes to system administration scope (sudoers) is collected"
     description:
       "Monitor scope changes for system administrators. If the system has been properly "
@@ -17850,6 +18083,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "ensure-pam-pwquality-enabled"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure pam_pwquality module is enabled"
     description:
       "The pam_pwquality.so module performs password quality checking. This module can be plugged into the password "
@@ -17915,6 +18149,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "ensure-pam-pwhistory-enabled"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure pam_pwhistory module is enabled"
     description:
       "The pam_pwhistory.so module saves the last passwords for each user in order to force password change history "
@@ -17983,6 +18218,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "ensure-password-failed-attempts-lockout-is-configured"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure password failed attempts lockout is configured"
     description:
       "The deny=<n> option will deny access if the number of consecutive authentication failures for this user during "
@@ -18021,6 +18257,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "sudolog-actions-collected"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure system administrator actions (sudolog) are collected"
     description:
       "Monitor the sudo log file. "
@@ -18096,6 +18333,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "accounts-in-etc-passwd-use-shadowed-passwords"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure accounts in /etc/passwd use shadowed passwords"
     description:
       "Local accounts can uses shadowed passwords. With shadowed passwords, The passwords "
@@ -18151,6 +18389,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "attempts-to-use-usermod-recorded"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure successful and unsuccessful attempts to use the usermod command are recorded"
     description:
       "The operating system must generate audit records for successful/unsuccessful uses of the "
@@ -18238,6 +18477,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "attempts-to-use-chacl-recorded"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure successful and unsuccessful attempts to use the chacl command are recorded"
     description:
       "The operating system must generate audit records for successful/unsuccessful uses of the"
@@ -18325,6 +18565,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "attempts-to-use-setfacl-recorded"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure successful and unsuccessful attempts to use the setfacl command are recorded"
     description:
       "The operating system must generate audit records for successful/unsuccessful uses of the"
@@ -18412,6 +18653,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "avahi-disabled"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure Avahi Server is not enabled"
     description:
       "Avahi is a free zeroconf implementation, including a system for "
@@ -18455,6 +18697,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "attempts-to-use-chcon-recorded"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure successful and unsuccessful attempts to use the chcon command are recorded"
     description:
       "The operating system must generate audit records for successful/unsuccessful uses of the "
@@ -18542,6 +18785,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "unsuccessful-file-access-attempts-collected"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure unsuccessful file access attempts are collected"
     description:
       "Monitor for unsuccessful attempts to access files. The following parameters are associated "
@@ -18764,6 +19008,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "actions-as-another-user-logged"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure actions as another user are always logged"
     description:
       "sudo provides users with temporary elevated privileges to perform operations, either as "
@@ -18847,6 +19092,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "password-difok-changed-characters-configured"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure Password Number of Changed Characters is Configured"
     description: 
       "The configuration ensures that a specified number of characters in a new password differ from the old password, "
@@ -18884,6 +19130,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "password-minimum-length-configured"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure Minimum Password Length is Configured"
     description: 
       "The configuration ensures that the minimum password length is enforced to enhance password security."
@@ -18920,6 +19167,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "password-maxrepeat-configured"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure Password Same Consecutive Characters is Configured"
     description: 
       "The configuration ensures that the maximum number of allowed same consecutive characters in a new password is "
@@ -18957,6 +19205,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "password-maxsequence-configured"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure Password Maximum Sequential Characters is Configured"
     description: 
       "The configuration ensures that the maximum length of monotonic character sequences in the new password is limited, "
@@ -18994,6 +19243,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "password-dictionary-check-enabled"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure Password Dictionary Check is Enabled"
     description: 
       "The configuration ensures that passwords are checked against a dictionary to avoid the use of weak or predictable "
@@ -19031,6 +19281,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "password-quality-check-enforced"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure Password Quality Checking is Enforced"
     description: 
       "The configuration ensures that the pam_pwquality module enforces password quality checks by rejecting passwords "
@@ -19068,6 +19319,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "password-quality-enforced-for-root"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure Password Quality is Enforced for the Root User"
     description: 
       "The configuration ensures that the pam_pwquality module enforces password quality checks for the root user."
@@ -19103,6 +19355,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "password-history-remember-configured"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure Password History Remember is Configured"
     description: 
       "The configuration ensures that the pam_pwhistory module enforces a specific number of old passwords remembered, "
@@ -19139,6 +19392,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "password-history-enforce-use-authtok"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure pam_pwhistory Includes use_authtok"
     description: 
       "The configuration ensures that the pam_pwhistory module enforces the use_authtok argument, enabling multiple pam "
@@ -19174,6 +19428,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "dac-permission-modification-collected"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure discretionary access control permission modification events are collected"
     description:
       "Monitor changes to file permissions, attributes, ownership and group. "
@@ -19281,6 +19536,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "pam-unix-nullok-not-included"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure pam_unix Does Not Include nullok"
     description: 
       "The configuration ensures that the pam_unix module does not include the `nullok` argument, which permits blank passwords."
@@ -19314,6 +19570,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "pam-unix-remember-not-included"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure pam_unix Does Not Include remember"
     description: 
       "The configuration ensures that the pam_unix module does not include the `remember` argument, which stores passwords "
@@ -19348,6 +19605,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "pam-unix-strong-hashing-algorithm"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure pam_unix Includes a Strong Password Hashing Algorithm"
     description: 
       "The configuration ensures that the pam_unix module uses a strong password hashing algorithm, such as SHA-512 or "
@@ -19381,6 +19639,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "pam-unix-use-authtok"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure pam_unix Includes use_authtok"
     description: 
       "The configuration ensures that the pam_unix module uses the `use_authtok` argument to enforce the use of a password "
@@ -19414,6 +19673,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "login-defs-strong-password-hashing"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure Strong Password Hashing Algorithm is Configured in /etc/login.defs"
     description: 
       "The configuration ensures that /etc/login.defs specifies a strong password hashing algorithm, such as SHA-512 or "
@@ -19446,6 +19706,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "ensure-root-umask-configured"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure root user umask is configured"
     description: 
       "The configuration ensures that the root user's umask is set to a secure value to enforce permissions for newly "
@@ -19492,6 +19753,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "ensure-nologin-not-in-shells"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure nologin is not listed in /etc/shells"
     description: 
       "/etc/shells is a text file which contains the full pathnames of valid login shells. This file is consulted by "
@@ -19524,6 +19786,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "ensure-default-user-umask-configured"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure default user umask is configured"
     description: 
       "The user file-creation mode mask (umask) determines the default permissions for newly created files and directories, "
@@ -19577,6 +19840,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "ensure-cryptographic-mechanisms-audit-tools"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure cryptographic mechanisms are used to protect the integrity of audit tools"
     description: 
       "Audit tools include vendor-provided and open source tools needed to view and manipulate audit information. "
@@ -19619,6 +19883,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "ensure-journald-forwardtosyslog-disabled"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure journald ForwardToSyslog is disabled"
     description: 
       "Data from journald should be kept within the service and not forwarded to other logging mechanisms."
@@ -19668,6 +19933,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "ensure-journald-storage-configured"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure journald Storage is configured"
     description: 
       "Data from journald may be stored in volatile memory or persisted locally on the server. Logs in memory will be "
@@ -19709,6 +19975,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "audit-backlog-limit-sufficient"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure Audit Backlog Limit is Sufficient"
     description: 
       "This configuration ensures that the audit subsystem's queue for audit events has a sufficient backlog limit to "
@@ -19744,6 +20011,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "ensure-audit-log-mode-configured"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure audit log files mode is configured"
     description: "Audit log files contain information about the system and system activity."
     rationale:
@@ -19785,6 +20053,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "auditd-installed"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure auditd is installed"
     description:
       "auditd is the userspace component to the Linux Auditing System. "
@@ -19841,6 +20110,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "ensure-audit-log-owner-configured"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure audit log files owner is configured"
     description: "Audit configuration files must be configured with mode 0640 or more restrictive to prevent "
     "unauthorized access and protect the integrity of the audit system.\n"
@@ -19888,6 +20158,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "ensure-audit-log-group-configured"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure audit log files group owner is configured"
     description: "Audit log files contain information about the system and system activity."
     rationale: "Restricting access to audit configuration files ensures that only authorized personnel can modify "
@@ -19937,6 +20208,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "system-warns-on-audit-logs-low-space"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure System Warns When Audit Logs Are Low on Space"
     description: 
       "This configuration ensures that the system is configured to warn or take appropriate actions when audit logs are "
@@ -19984,6 +20256,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "auditd-service-enabled"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure auditd service is enabled"
     description: "Turn on the auditd daemon to record system events."
     rationale:
@@ -20024,6 +20297,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "rpcbind-not-in-use"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure rpcbind services are not in use"
     description: 
       "The rpcbind utility maps RPC services to the ports on which they listen. RPC processes notify rpcbind when they "
@@ -20059,6 +20333,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "ensure-password-failed-attempts-lockout-includes-root-account"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure password failed attempts lockout includes root account"
     description: 
       "even_deny_root - Root account can become locked as well as regular accounts. root_unlock_time=n - This option "
@@ -20106,6 +20381,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "ensure-root-password-is-set"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure root password is set"
     description: 
       "There are a number of methods to access the root account directly. Without a password set, any user would be able "
@@ -20191,6 +20467,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "ensure-ftp-client-not-installed"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure FTP client is not installed"
     description: 
       "FTP (File Transfer Protocol) is a traditional and widely used standard tool for transferring files between a server "
@@ -20227,6 +20504,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "ensure-single-time-sync-daemon"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure a single time synchronization daemon is in use"
     description:
       "System time should be synchronized between all systems in an environment. This is typically done by establishing "
@@ -20285,6 +20563,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "ensure-chrony-running-as-user-chrony"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure chrony is running as user _chrony"
     description:
       "The chrony package is installed with a dedicated user account _chrony. This account is granted the access required "
@@ -20359,6 +20638,7 @@ benchmark_configs: {
 benchmark_configs: {
   id: "ensure-bluetooth-services-disabled"
   compliance_note: {
+    version: { cpe_uri: "cpe:/o:canonical:ubuntu_linux:22.04" version: "2.0.0" benchmark_document: "CIS Ubuntu 22.04" }
     title: "Ensure Bluetooth Services Are Not in Use"
     description:
       "Bluetooth is a short-range wireless technology standard that is used for exchanging data between devices over short "
@@ -20419,4 +20699,4 @@ benchmark_configs: {
       "  }"
       "}"
   }
-}
+
