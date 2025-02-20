@@ -3490,7 +3490,7 @@ benchmark_configs: {
       "Run the following command to set all profiles to enforce mode:\n"
       "```\n"
       "# aa-enforce /etc/apparmor.d/*\n"
-      "```\n""
+      "```\n"
       "OR\n"
       "Run the following command to set all profiles to complain mode:\n"
       "```\n"
@@ -10200,7 +10200,7 @@ benchmark_configs: {
     title: "Ensure a single time synchronization daemon is in use"
     description:
       "systemd-timesyncd is a daemon that has been added for synchronizing the system "
-      "clock across the network"q
+      "clock across the network"
     rationale:
       "systemd-timesyncd needs to be enabled and running in order to synchronize the system "
       "to a timeserver.\n"
@@ -17830,7 +17830,10 @@ benchmark_configs: {
       "generic:{check_alternatives:{"
       "  file_checks:{"
       "    files_to_check:{single_file:{path:\"/etc/passwd\"}}"
-      "    repeat_config:{type: FOR_EAC
+      "    repeat_config:{type: FOR_EACH_USER_WITH_LOGIN}"
+      "    content_entry:{"
+      "      match_type: NONE_MATCH"
+      "      match_criteria: {"
       "        filter_regex: \"$user:.*:.*:.*:.*:.*:(/bin/bash|/bin/sh|/bin/zsh|/bin/tcsh|/bin/csh)$\""
       "      }"
       "    }"
@@ -18659,7 +18662,7 @@ benchmark_configs: {
       "[ -n \"${UID_MIN}\" ] && printf \""
       "-a always,exit -F path=/usr/sbin/usermod -F perm=x -F auid>=${UID_MIN} -F "
       "auid!=unset -k usermod "
-      "\" >> /etc/audit/rules.d/50-usermod.rules \ \n"
+      "\" >> /etc/audit/rules.d/50-usermod.rules \\ \n"
       "|| printf \"ERROR: Variable 'UID_MIN' is unset.\\\n\"\n"
       "}\n"
       "```\n"
@@ -18971,7 +18974,7 @@ benchmark_configs: {
       "[ -n \"${UID_MIN}\" ] && printf \""
       "-a always,exit -F path=/usr/bin/chcon -F perm=x -F auid>=${UID_MIN} -F "
       "auid!=unset -k perm_chng"
-      "\" >> /etc/audit/rules.d/50-perm_chng.rules \ \n"
+      "\" >> /etc/audit/rules.d/50-perm_chng.rules \\ \n"
       "|| printf \"ERROR: Variable 'UID_MIN' is unset.\\\n\"\n"
       "}\n"
       "```\n"
@@ -20986,4 +20989,4 @@ benchmark_configs: {
       "  }"
       "}"
   }
-
+}
