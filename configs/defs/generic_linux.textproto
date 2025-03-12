@@ -1715,11 +1715,11 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
     title: "Ensure bogus ICMP responses are ignored"
     description:
-      "Setting icmp_ignore_bogus_error_responses to 1 prevents the kernel from\n"
-      "logging bogus responses (RFC-1122 non-compliant) from broadcast reframes,\n"
+      "Setting icmp_ignore_bogus_error_responses to 1 prevents the kernel from "
+      "logging bogus responses (RFC-1122 non-compliant) from broadcast reframes, "
       "keeping file systems from filling up with useless log messages."
     rationale:
-      "Some routers (and some attackers) will send responses that violate RFC-1122\n"
+      "Some routers (and some attackers) will send responses that violate RFC-1122 "
       "and attempt to fill up a log file system with many useless error messages."
     remediation:
       "Set the following parameter in /etc/sysctl.conf or a /etc/sysctl.d/* file:\n"
