@@ -1636,17 +1636,17 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
     title: "Ensure broadcast ICMP requests are ignored"
     description:
-      "Setting net.ipv4.icmp_echo_ignore_broadcasts to 1 will cause the system to\n"
-      "ignore all ICMP echo and timestamp requests to broadcast and multicast\n"
+      "Setting net.ipv4.icmp_echo_ignore_broadcasts to 1 will cause the system to "
+      "ignore all ICMP echo and timestamp requests to broadcast and multicast "
       "addresses."
     rationale:
-      "Accepting ICMP echo and timestamp requests with broadcast or multicast\n"
-      "destinations for your network could be used to trick your host into starting\n"
-      "or participating) in a Smurf attack. A Smurf attack relies on an attacker\n"
-      "sending large amounts of ICMP broadcast messages with a spoofed source\n"
-      "address. All hosts receiving this message and responding would send echo-reply\n"
-      "messages back to the spoofed address, which is probably not routable. If many\n"
-      "hosts respond to the packets, the amount of traffic on the network could be\n"
+      "Accepting ICMP echo and timestamp requests with broadcast or multicast "
+      "destinations for your network could be used to trick your host into starting "
+      "or participating) in a Smurf attack. A Smurf attack relies on an attacker "
+      "sending large amounts of ICMP broadcast messages with a spoofed source "
+      "address. All hosts receiving this message and responding would send echo-reply "
+      "messages back to the spoofed address, which is probably not routable. If many "
+      "hosts respond to the packets, the amount of traffic on the network could be "
       "significantly multiplied."
     remediation:
       "Set the following parameters in /etc/sysctl.conf or a /etc/sysctl.d/* file:\n"
