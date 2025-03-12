@@ -1025,7 +1025,7 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
     title: "Disable Automounting"
     description:
-      "autofs allows automatic mounting of devices, typically including CD/"
+      "autofs allows automatic mounting of devices, typically including CD "
       "DVDs and USB drives."
     rationale:
       "With automounting enabled anyone with physical access could attach a "
