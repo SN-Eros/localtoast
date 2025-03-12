@@ -3886,13 +3886,13 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
     title: "Ensure permissions on /etc/passwd are configured"
     description:
-      "The /etc/passwd file contains user account information that is used by many\n"
-      "system utilities and therefore must be readable for these utilities to\n"
+      "The /etc/passwd file contains user account information that is used by many "
+      "system utilities and therefore must be readable for these utilities to "
       "operate."
     rationale:
-      "It is critical to ensure that the /etc/passwd file is protected from\n"
-      "unauthorized write access. Although it is protected by default, the file\n"
-      "permissions could be changed either inadvertently or through malicious\n"
+      "It is critical to ensure that the /etc/passwd file is protected from "
+      "unauthorized write access. Although it is protected by default, the file "
+      "permissions could be changed either inadvertently or through malicious "
       "actions."
     remediation:
       "Run the following command to set permissions on /etc/passwd:\n"
