@@ -3739,10 +3739,10 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
     title: "Ensure default group for the root account is GID 0"
     description:
-      "The usermod command can be used to specify which group the root user belongs\n"
+      "The usermod command can be used to specify which group the root user belongs "
       "to. This affects permissions of files that are created by the root user."
     rationale:
-      "Using GID 0 for the root account helps prevent root -owned files from\n"
+      "Using GID 0 for the root account helps prevent root -owned files from "
       "accidentally becoming accessible to non-privileged users."
     remediation:
       "Run the following command to set the root user default group to GID 0:\n"
