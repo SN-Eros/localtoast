@@ -8711,17 +8711,23 @@ benchmark_configs: {
       "of the system."
     remediation:
       "Edit or create the file /etc/dconf/profile/gdmand add the following:\n"
+      "```\n"
       "user-db:user\n"
       "system-db:gdm\n"
       "file-db:/usr/share/gdm/greeter-dconf-defaults\n"
-      "Edit or create the file /etc/dconf/db/gdm.d/ and add the following: (This is typically\n"
+      "```\n"
+      "Edit or create the file /etc/dconf/db/gdm.d/ and add the following: (This is typically "
+      "```\n"
       "/etc/dconf/db/gdm.d/01-banner-message)\n"
       "[org/gnome/login-screen]\n"
       "banner-message-enable=true\n"
       "banner-message-text=\"'<banner message>'\n"
+      "```\n"
       "Example Banner Text: 'Authorized users only. All activity may be monitored and reported.'\n"
       "Run the following command to update the system databases:\n"
+      "```\n"
       "# dconf update"
+      "```\n"
     cis_benchmark: {
       profile_level: 1
       severity: LOW
