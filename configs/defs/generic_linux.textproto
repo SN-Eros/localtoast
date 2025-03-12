@@ -3993,12 +3993,12 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
     title: "Ensure permissions on /etc/group are configured"
     description:
-      "The /etc/group file contains a list of all the valid groups defined in the\n"
-      "system. The command below allows read/write access for root and read access\n"
+      "The /etc/group file contains a list of all the valid groups defined in the "
+      "system. The command below allows read/write access for root and read access "
       "for everyone else."
     rationale:
-      "The /etc/group file needs to be protected from unauthorized changes by non\n"
-      "privileged users, but needs to be readable as this information is used with\n"
+      "The /etc/group file needs to be protected from unauthorized changes by non "
+      "privileged users, but needs to be readable as this information is used with "
       "many non-privileged programs."
     remediation:
       "Run the following command to set permissions on /etc/group:\n"
