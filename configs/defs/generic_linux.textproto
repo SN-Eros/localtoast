@@ -3934,16 +3934,16 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
     title: "Ensure permissions on /etc/shadow are configured"
     description:
-      "The /etc/shadow file is used to store the information about user accounts that\n"
-      "is critical to the security of those accounts, such as the hashed password and\n"
+      "The /etc/shadow file is used to store the information about user accounts that "
+      "is critical to the security of those accounts, such as the hashed password and "
       "other security information."
     rationale:
-      "If attackers can gain read access to the /etc/shadow file, they can easily run\n"
-      "a password cracking program against the hashed password to break it. Other\n"
-      "security information that is stored in the /etc/shadow file (such as\n"
+      "If attackers can gain read access to the /etc/shadow file, they can easily run "
+      "a password cracking program against the hashed password to break it. Other "
+      "security information that is stored in the /etc/shadow file (such as "
       "expiration) could also be useful to subvert the user accounts."
     remediation:
-      "Run the one of the following chown commands as appropriate and the chmod to\n"
+      "Run the one of the following chown commands as appropriate and the chmod to "
       "set permissions on /etc/shadow:\n"
       "```\n"
       "# chown root:root /etc/shadow\n"
