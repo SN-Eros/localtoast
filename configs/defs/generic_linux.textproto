@@ -9380,10 +9380,11 @@ benchmark_configs: {
       "impacts."
     remediation:
       "Edit the /etc/systemd/journald.cont file and add the following line:\n"
+      "```\n"
       "Compress=yes\n"
+      "```\n"
       "References:\n"
-      "1. https://github.com/konstruktoid/hardening/blob/master/systemd.adoc#etcsyste"
-      "mdjournaldconf"
+      "1. https://github.com/konstruktoid/hardening/blob/master/systemd.adoc#etcsystemdjournaldconf"
     cis_benchmark: {
       profile_level: 1
       severity: LOW
