@@ -6120,22 +6120,22 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
     title: "Ensure chrony is configured"
     description:
-      "chrony is a daemon which implements the Network Time Protocol (NTP) is\n"
-      "designed to synchronize system clocks across a variety of systems and use a\n"
-      "source that is highly accurate. More information on chrony can be found at\n"
-      "http://chrony.tuxfamily.org/. chrony can be configured to be a client and/or a\n"
+      "chrony is a daemon which implements the Network Time Protocol (NTP) is "
+      "designed to synchronize system clocks across a variety of systems and use a "
+      "source that is highly accurate. More information on chrony can be found at "
+      "http://chrony.tuxfamily.org/. chrony can be configured to be a client and/or a "
       "server."
     rationale:
-      "If chrony is in use on the system proper configuration is vital to ensuring\n"
-      "time synchronization is working properly. This recommendation only applies if\n"
+      "If chrony is in use on the system proper configuration is vital to ensuring "
+      "time synchronization is working properly. This recommendation only applies if "
       "chrony is in use on the system."
     remediation:
       "Add or edit server or pool lines to /etc/chrony.conf as appropriate:\n"
       "```\n"
       "server <remote-server>\n"
       "```\n"
-      "Configure chrony to run as the chrony user by configuring the appropriate\n"
-      "startup script for your distribution. Startup scripts are typically stored in\n"
+      "Configure chrony to run as the chrony user by configuring the appropriate "
+      "startup script for your distribution. Startup scripts are typically stored in "
       "etc/init.d or /etc/systemd"
     cis_benchmark: {
       profile_level: 1
