@@ -9051,7 +9051,9 @@ benchmark_configs: {
       "lost."
     remediation:
       "Run the following command to save any configuration to file:\n"
+      "```\n"
       "# service iptables save"
+      "```\n"
     cis_benchmark: {
       profile_level: 1
       severity: LOW
