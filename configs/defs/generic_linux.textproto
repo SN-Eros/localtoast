@@ -4106,11 +4106,11 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
     title: "Ensure permissions on /etc/group- are configured"
     description:
-      "The /etc/group- file contains a backup list of all the valid groups defined in\n"
+      "The /etc/group- file contains a backup list of all the valid groups defined in "
       "the system."
     rationale:
-      "It is critical to ensure that the /etc/group- file is protected from\n"
-      "unauthorized access. Although it is protected by default, the file permissions\n"
+      "It is critical to ensure that the /etc/group- file is protected from "
+      "unauthorized access. Although it is protected by default, the file permissions "
       "could be changed either inadvertently or through malicious actions."
     remediation:
       "Run the following command to set permissions on /etc/group-:\n"
