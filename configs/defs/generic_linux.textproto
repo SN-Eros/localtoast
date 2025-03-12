@@ -9334,10 +9334,11 @@ benchmark_configs: {
       "stored on the local system."
     remediation:
       "Edit the /etc/systemd/journald.conf file and add the following line:\n"
+      "```\n"
       "ForwardToSyslog=yes\n"
+      "```\n"
       "References:\n"
-      "1. https://github.com/konstruktoid/hardening/blob/master/systemd.adoc#etcsyste"
-      "mdjournaldconf"
+      "1. https://github.com/konstruktoid/hardening/blob/master/systemd.adoc#etcsystemdjournaldconf"
     cis_benchmark: {
       profile_level: 1
       severity: LOW
