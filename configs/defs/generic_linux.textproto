@@ -7728,7 +7728,7 @@ benchmark_configs: {
       "regular users from accessing this directory."
     rationale:
       "Granting write access to this directory for non-privileged users could "
-      "provide them the means for gaining unauthorized elevated privileges. "
+      "provide them the means for gaining unauthorized elevated privileges.\n"
       "Granting read access to this directory could give an unprivileged "
       "user insight in how to gain elevated privileges or circumvent auditing "
       "controls."
