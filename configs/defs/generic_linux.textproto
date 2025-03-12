@@ -3819,16 +3819,16 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
     title: "Ensure access to the su command is restricted"
     description:
-      "The su command allows a user to run a command or shell as another user. The\n"
-      "program has been superseded by sudo , which allows for more granular control\n"
+      "The su command allows a user to run a command or shell as another user. The "
+      "program has been superseded by sudo , which allows for more granular control "
       "over privileged access. Normally, the su command can be executed by any user.\n"
-      "By uncommenting the pam_wheel.so statement in /etc/pam.d/su , the su command\n"
+      "By uncommenting the pam_wheel.so statement in /etc/pam.d/su , the su command "
       "will only allow users in the wheel group to execute su."
     rationale:
-      "Restricting the use of su , and using sudo in its place, provides system\n"
-      "administrators better control of the escalation of user privileges to execute\n"
-      "privileged commands. The sudo utility also provides a better logging and audit\n"
-      "mechanism, as it can log each command executed via sudo, whereas su can only\n"
+      "Restricting the use of su , and using sudo in its place, provides system "
+      "administrators better control of the escalation of user privileges to execute "
+      "privileged commands. The sudo utility also provides a better logging and audit "
+      "mechanism, as it can log each command executed via sudo, whereas su can only "
       "record that a user executed the su program."
     remediation:
       "Add the following line to the /etc/pam.d/su file:\n"
