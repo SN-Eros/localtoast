@@ -2055,19 +2055,21 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
     title: "Ensure permissions on SSH private host key files are configured"
     description:
-      "An SSH private key is one of two files used in SSH public key authentication.\n"
-      "In this authentication method, The possession of the private key is proof of\n"
-      "identity. Only a private key that corresponds to a public key will be able to\n"
-      "authenticate successfully. The private keys need to be stored and handled\n"
+      "An SSH private key is one of two files used in SSH public key authentication. "
+      "In this authentication method, The possession of the private key is proof of "
+      "identity. Only a private key that corresponds to a public key will be able to "
+      "authenticate successfully. The private keys need to be stored and handled "
       "carefully, and no copies of the private key should be distributed."
     rationale:
-      "If an unauthorized user obtains the private SSH host key file, the host could\n"
+      "If an unauthorized user obtains the private SSH host key file, the host could "
       "be impersonated"
     remediation:
-      "Run the following commands to set ownership and permissions on the private SSH\n"
-      "host key files\n"
+      "Run the following commands to set ownership and permissions on the private SSH "
+      "host key files:\n"
+      "```\n"
       "# find /etc/ssh -xdev -type f -name 'ssh_host_*_key' -exec chown root:root {} \\;\n"
       "# find /etc/ssh -xdev -type f -name 'ssh_host_*_key' -exec chmod 0600 {} \\;"
+      "```\n"
     cis_benchmark: {
       profile_level: 1
       severity: LOW
