@@ -8867,18 +8867,19 @@ benchmark_configs: {
       "X Display Manager Control Protocol (XDMCP) is designed to provide authenticated access "
       "to display management services for remote displays"
     rationale:
-      "XDMCP is inherently insecure.\n"
-      "XDMCP is not a ciphered protocol. This may allow an attacker to capture keystrokes "
-      "entered by a user.\n"
+      "XDMCP is inherently insecure. XDMCP is not a ciphered protocol."
+      "This may allow an attacker to capture keystrokes entered by a user.\n"
       "XDMCP is vulnerable to man-in-the-middle attacks. This may allow an attacker to "
       "steal the credentials of legitimate users by impersonating the XDMCP server."
     remediation:
       "Edit the file /etc/gdm/custom.conf and remove the line\n"
+      "```\n"
       "Enable=true\n"
       "Default Value:\n"
       "false \n"
       "# This is denoted by no Enabled= entry in the file /etc/gdm/custom.conf in the\n"
       "# [xdmcp] section\n"
+      "```\n"
       "# References:\n"
       "# 1. https://help.gnome.org/admin/gdm/2.32/configuration.html.en\n"
     cis_benchmark: {
