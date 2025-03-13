@@ -9172,7 +9172,9 @@ benchmark_configs: {
     remediation:
       "Edit the /etc/rsyslog.conf and /etc/rsyslog.d/*.conf files and set $FilecreateMode to "
       "0640 or more restrictive:\n"
+      "```\n"
       "$FileCreateMode 0640\n"
+      "```\n"
       "References:\n"
       "1. See the rsyslog.conf(5) man page for more information."
     cis_benchmark: {
