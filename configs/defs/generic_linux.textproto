@@ -2490,12 +2490,12 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
     title: "Ensure SSH root login is disabled"
     description:
-      "The PermitRootLogin parameter specifies if the root user can log in using ssh.\n"
+      "The PermitRootLogin parameter specifies if the root user can log in using ssh. "
       "The default is no."
     rationale:
-      "Disallowing root logins over SSH requires system admins to authenticate using\n"
-      "their own individual account, then escalating to root via sudo or su. This in\n"
-      "turn limits opportunity for non-repudiation and provides a clear audit trail\n"
+      "Disallowing root logins over SSH requires system admins to authenticate using "
+      "their own individual account, then escalating to root via sudo or su. This in "
+      "turn limits opportunity for non-repudiation and provides a clear audit trail "
       "in the event of a security incident"
     remediation:
       "Edit the /etc/ssh/sshd_config file to set the parameter as follows:\n"
