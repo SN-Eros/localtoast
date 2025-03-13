@@ -2110,18 +2110,20 @@ benchmark_configs: {
     title: "Ensure permissions on SSH public host key files are configured"
     description:
       "An SSH public key is one of two files used in SSH public key authentication.\n"
-      "In this authentication method, a public key is a key that can be used for\n"
-      "verifying digital signatures generated using a corresponding private key. Only\n"
-      "a public key that corresponds to a private key will be able to authenticate\n"
+      "In this authentication method, a public key is a key that can be used for "
+      "verifying digital signatures generated using a corresponding private key. Only "
+      "a public key that corresponds to a private key will be able to authenticate "
       "successfully."
     rationale:
-      "If a public host key file is modified by an unauthorized user, the SSH service\n"
+      "If a public host key file is modified by an unauthorized user, the SSH service "
       "may be compromised."
     remediation:
-      "Run the following commands to set permissions and ownership on the SSH host\n"
-      "public key files\n"
+      "Run the following commands to set permissions and ownership on the SSH host "
+      "public key files:\n"
+      "```\n"
       "# find /etc/ssh -xdev -type f -name 'ssh_host_*_key.pub' -exec chmod 0644 {} \\;\n"
-      "#find /etc/ssh -xdev -type f -name 'ssh_host_*_key.pub' -exec chown root:root {} \\;"
+      "# find /etc/ssh -xdev -type f -name 'ssh_host_*_key.pub' -exec chown root:root {} \\;"
+      "```\n"
     cis_benchmark: {
       profile_level: 1
       severity: LOW
