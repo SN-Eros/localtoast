@@ -2593,11 +2593,11 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
     title: "Ensure SSH PermitUserEnvironment is disabled"
     description:
-      "The PermitUserEnvironment option allows users to present environment options\n"
+      "The PermitUserEnvironment option allows users to present environment options "
       "to the ssh daemon."
     rationale:
-      "Permitting users the ability to set environment variables through the SSH\n"
-      "daemon could potentially allow users to bypass security controls (e.g. setting\n"
+      "Permitting users the ability to set environment variables through the SSH "
+      "daemon could potentially allow users to bypass security controls (e.g. setting "
       "an execution path that has ssh executing trojan'd programs)"
     remediation:
       "Edit the /etc/ssh/sshd_config file to set the parameter as follows:\n"
