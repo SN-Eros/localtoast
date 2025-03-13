@@ -2431,13 +2431,13 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
     title: "Ensure SSH HostbasedAuthentication is disabled"
     description:
-      "The HostbasedAuthentication parameter specifies if authentication is allowed\n"
-      "through trusted hosts via the user of .rhosts, or /etc/hosts.equiv, along with\n"
-      "successful public key client host authentication. This option only applies to\n"
+      "The HostbasedAuthentication parameter specifies if authentication is allowed "
+      "through trusted hosts via the user of .rhosts, or /etc/hosts.equiv, along with "
+      "successful public key client host authentication. This option only applies to "
       "SSH Protocol Version 2."
     rationale:
-      "Even though the .rhosts files are ineffective if support is disabled in /etc\n"
-      "pam.conf, disabling the ability to use .rhosts files in SSH provides an\n"
+      "Even though the .rhosts files are ineffective if support is disabled in /etc "
+      "pam.conf, disabling the ability to use .rhosts files in SSH provides an "
       "additional layer of protection."
     remediation:
       "Edit the /etc/ssh/sshd_config file to set the parameter as follows:\n"
