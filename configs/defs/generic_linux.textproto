@@ -2536,10 +2536,10 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
     title: "Ensure SSH PermitEmptyPasswords is disabled"
     description:
-      "The PermitEmptyPasswords parameter specifies if the SSH server allows login to\n"
+      "The PermitEmptyPasswords parameter specifies if the SSH server allows login to "
       "accounts with empty password strings."
     rationale:
-      "Disallowing remote shell access to accounts that have an empty password\n"
+      "Disallowing remote shell access to accounts that have an empty password "
       "reduces the probability of unauthorized access to the system"
     remediation:
       "Edit the /etc/ssh/sshd_config file to set the parameter as follows:\n"
