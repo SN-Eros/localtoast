@@ -4378,9 +4378,9 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:10" version: "1.0.0" benchmark_document: "CIS Debian Linux 10" }
     title: "Ensure no legacy \"+\" entries exist in /etc/shadow"
     description:
-      "The character + in various files used to be markers for systems to insert data\n"
-      "from NIS maps at a certain point in a system configuration file. These entries\n"
-      "are no longer required on most systems, but may exist in files that have been\n"
+      "The character + in various files used to be markers for systems to insert data "
+      "from NIS maps at a certain point in a system configuration file. These entries "
+      "are no longer required on most systems, but may exist in files that have been "
       "imported from other platforms."
     rationale: "These entries may provide an avenue for attackers to gain privileged access on the system."
     remediation: "Remove any legacy '+' entries from /etc/shadow if they exist."
