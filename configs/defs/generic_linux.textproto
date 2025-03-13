@@ -5257,17 +5257,17 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:debian:debian_linux:10" version: "1.0.0" benchmark_document: "CIS Debian Linux 10" }
     title: "Ensure shadow group is empty"
     description:
-      "The shadow group allows system programs which require access the ability to\n"
+      "The shadow group allows system programs which require access the ability to "
       "read the /etc/shadow file. No users should be assigned to the shadow group."
     rationale:
-      "Any users assigned to the shadow group would be granted read access to the\n"
-      "etc/shadow file. If attackers can gain read access to the /etc/shadow file,\n"
-      "they can easily run a password cracking program against the hashed passwords\n"
-      "to break them. Other security information that is stored in the /etc/shadow\n"
-      "file (such as expiration) could also be useful to subvert additional user\n"
+      "Any users assigned to the shadow group would be granted read access to the "
+      "etc/shadow file. If attackers can gain read access to the /etc/shadow file, "
+      "they can easily run a password cracking program against the hashed passwords "
+      "to break them. Other security information that is stored in the /etc/shadow "
+      "file (such as expiration) could also be useful to subvert additional user "
       "accounts."
     remediation:
-      "Remove all users from the shadow group, and change the primary group of any\n"
+      "Remove all users from the shadow group, and change the primary group of any "
       "users with shadow as their primary group."
     cis_benchmark: {
       profile_level: 1
