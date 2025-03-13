@@ -3101,15 +3101,15 @@ benchmark_configs: {
     version: { cpe_uri: "cpe:/o:rockylinux:rockylinux:8.5" version: "1.0.0" benchmark_document: "CIS Rocky Linux 8" }
     title: "Ensure SSH PAM is enabled"
     description:
-      "UsePAM Enables the Pluggable Authentication Module interface. If set to “yes”\n"
-      "this will enable PAM authentication using ChallengeResponseAuthentication and\n"
-      "PasswordAuthentication in addition to PAM account and session module\n"
+      "UsePAM Enables the Pluggable Authentication Module interface. If set to “yes” "
+      "this will enable PAM authentication using ChallengeResponseAuthentication and "
+      "PasswordAuthentication in addition to PAM account and session module "
       "processing for all authentication types"
     rationale:
-      "When usePAM is set to yes, PAM runs through account and session types\n"
-      "properly. This is important if you want to restrict access to services based\n"
-      "off of IP, time or other factors of the account. Additionally, you can make\n"
-      "sure users inherit certain environment variables on login or disallow access\n"
+      "When usePAM is set to yes, PAM runs through account and session types "
+      "properly. This is important if you want to restrict access to services based "
+      "off of IP, time or other factors of the account. Additionally, you can make "
+      "sure users inherit certain environment variables on login or disallow access "
       "to the server"
     remediation:
       "Edit the /etc/ssh/sshd_config file to set the parameter as follows:\n"
