@@ -8516,11 +8516,15 @@ benchmark_configs: {
       "controls it provides are not overridden."
     remediation:
       "Edit /etc/default/grub and remove all instances of selinux=0 and enforcing=0 from all\n"
+      "```\n"
       "CMDLINE_LINUX parameters:\n"
       "GRUB_CMDLINE_LINUX=\n"
       "GRUB_CMDLINE_LINUX DEFAULT=\"quiet\"\n"
+      "```\n"
       "Run the following command to update the grub2 configuration:\n"
+      "```\n"
       "# grub2-mkconfig -o /boot/grub2/grub.cfg"
+      "```\n"
     cis_benchmark: {
       profile_level: 1
       severity: LOW
